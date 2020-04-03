@@ -1,2 +1,4 @@
 # Hospital_IS
-sims/hci
+
+* `User Stories` - Projects>User Story Board (Issues)
+* `Use Cases` - `powerdesigner` branch, folder *Use Case*
