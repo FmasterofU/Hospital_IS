@@ -4,5 +4,4 @@ Projekat iz predmeta SIMS(Specifikacija i modelovanje softvera) i HCI (Human-Com
 
 ## Kontrolna tačka 1
 * `User Stories` - Projects>User Story Board (Issues)
-* `Use Cases` - `powerdesigner` branch, folder *Use Case*
-* `Class Diagrams` - **Null Pointer Exception**
+* `Use Cases, Class Diagrams` - `powerdesigner` branch, folder *Powerdesigner diagrams*
