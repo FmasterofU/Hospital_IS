@@ -4,4 +4,7 @@ Projekat iz predmeta SIMS(Specifikacija i modelovanje softvera) i HCI (Human-Com
 
 ## Kontrolna tačka 1
 * `User Stories` - Projects>User Story Board (Issues)
-* `Use Cases, Class Diagrams` - `powerdesigner` branch, folder *Powerdesigner diagrams*
+* `Use Cases, Class Diagrams` - folder *Powerdesigner diagrams*
+
+## In development powerdesigner stuff
+* branch `powerdesigner`
