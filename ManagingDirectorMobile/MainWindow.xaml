@@ -4,9 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagingDirectorMobile"
+        xmlns:ViewModel="clr-namespace:ManagingDirectorMobile.ViewModel"
+        xmlns:View="clr-namespace:ManagingDirectorMobile.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="750" Width="430">
+
+    <Window.Resources>
+        <DataTemplate x:Name="Menu" DataType="{x:Type ViewModel:MenuViewModel}">
+            <View:MenuView DataContext="{Binding}"></View:MenuView>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Margin="-2,0,2,0">
+        </DockPanel>
+        <DockPanel Background="Azure" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="9">
+        </DockPanel>
+        <Button x:Name="MenuButton" Grid.Column="0" Grid.Row="0" MaxWidth="30" MaxHeight="30" Background="Transparent" Click="MenuView_Clicked">
+            <Image Source="icons8-menu-16.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        </Button>
+
+        <ContentControl Content="{Binding}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="4"/>
     </Grid>
 </Window>
