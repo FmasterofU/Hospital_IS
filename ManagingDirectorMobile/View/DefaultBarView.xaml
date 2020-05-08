@@ -1,12 +1,20 @@
-﻿<UserControl x:Class="ManagingDirectorMobile.View.MenuView"
+﻿<UserControl x:Class="ManagingDirectorMobile.View.DefaultBarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManagingDirectorMobile.View"
+             xmlns:ViewModel="clr-namespace:ManagingDirectorMobile.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
-    <Grid Background="Transparent">
+
+    <UserControl.Resources>
+        <DataTemplate x:Name="MenuDefault" DataType="{x:Type ViewModel:MenuViewModel}">
+            <local:MenuView DataContext="{Binding}"></local:MenuView>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -29,8 +37,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DockPanel Background="Green" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="10">
+        <DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Margin="-2,0,2,0">
         </DockPanel>
-        
+        <Button x:Name="MenuButton" Grid.Column="0" Grid.Row="0" MaxWidth="30" MaxHeight="30" Background="Transparent" Click="MenuButton_Click" >
+            <Image Source="/View/icons/icons8-menu-16.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        </Button>
+
+        <!--ContentControl Content="{Binding}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/-->
     </Grid>
-</UserControl>
+ </UserControl>

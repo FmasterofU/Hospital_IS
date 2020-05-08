@@ -17,16 +17,16 @@ using System.Windows.Shapes;
 namespace ManagingDirectorMobile.View
 {
     /// <summary>
-    /// Interaction logic for MenuView.xaml
+    /// Interaction logic for DefaultBar.xaml
     /// </summary>
-    public partial class MenuView : UserControl
+    public partial class DefaultBarView : UserControl
     {
-        public MenuView()
+        public DefaultBarView()
         {
             InitializeComponent();
         }
 
-        private void MenuView_Clicked(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             DataContext = new MenuViewModel();
         }

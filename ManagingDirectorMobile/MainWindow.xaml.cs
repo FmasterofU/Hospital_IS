@@ -26,9 +26,9 @@ namespace ManagingDirectorMobile
             InitializeComponent();
         }
 
-        private void MenuView_Clicked(object sender, RoutedEventArgs e)
+        private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new MenuViewModel();
+            DataContext = new DefaultBarViewModel();
         }
     }
 }
