@@ -28,7 +28,8 @@ namespace ManagingDirectorMobile
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new DefaultBarViewModel();
+            //DataContext = new DefaultBarViewModel();
+            cntrlZ1.Content = new DefaultBarViewModel();
         }
     }
 }

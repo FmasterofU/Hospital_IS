@@ -28,7 +28,9 @@ namespace ManagingDirectorMobile.View
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new MenuViewModel();
+            //DataContext = new MenuViewModel();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
+            //Application.Current.MainWindow.cntrl.Content = new MenuViewModel();
         }
     }
 }

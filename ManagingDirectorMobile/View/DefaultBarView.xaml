@@ -8,11 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
 
-    <UserControl.Resources>
+    <!--UserControl.Resources>
         <DataTemplate x:Name="MenuDefault" DataType="{x:Type ViewModel:MenuViewModel}">
             <local:MenuView DataContext="{Binding}"></local:MenuView>
-        </DataTemplate>
-    </UserControl.Resources>
+        </DataTemplate-->
 
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
