@@ -24,5 +24,30 @@ namespace AppForDoctor
         {
             InitializeComponent();
         }
+
+        private void logOutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lightButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void darkButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void serbianComboItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void englishComboItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

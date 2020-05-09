@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppForDoctor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="768" Width="1024"
+        Name="MeinWindow"
+        Background="White"
+        ResizeMode="NoResize">
     <Grid>
-        
+        <Label x:Name="mainLabel" HorizontalAlignment="Right" Margin="0,10,200,0" VerticalAlignment="Top" FontSize="35" Foreground="Black">Postovanje, ulogovani Ste kao lekar.</Label>
+        <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="150" FontSize="35" Background="DodgerBlue" 
+                Click="logOutButton_Click">Log out</Button>
+        <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="50,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DeepSkyBlue" 
+                Click="lightButton_Click">Svetlo</Button>
+        <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="170,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" 
+                Click="darkButton_Click">Tamno</Button>
+        <ComboBox x:Name="languageComboBox" HorizontalAlignment="Right" Margin="0,72,25,0" VerticalAlignment="Top" Width="160" FontSize="35">
+            <ComboBoxItem x:Name="serbianComboItem" Content="Srpski" IsSelected="True" Selected="serbianComboItem_Selected"/>
+            <ComboBoxItem x:Name="englishComboItem" Content="Engleski" IsSelected="False" Selected="englishComboItem_Selected"/>
+        </ComboBox>
     </Grid>
 </Window>
