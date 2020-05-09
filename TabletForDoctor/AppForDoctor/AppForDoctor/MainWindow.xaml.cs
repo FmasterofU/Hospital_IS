@@ -20,6 +20,21 @@ namespace AppForDoctor
     /// </summary>
     public partial class MainWindow : Window
     {
+        public enum Language
+        {
+            Serbian,
+            English
+        }
+
+        public enum Theme
+        {
+            Dark,
+            Light
+        }
+
+        private Language language = Language.Serbian;
+        private Theme theme = Theme.Light;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,22 +47,40 @@ namespace AppForDoctor
 
         private void lightButton_Click(object sender, RoutedEventArgs e)
         {
-
+            theme = Theme.Light;
+            MeinWindow.Background = Brushes.White;
+            lightButton.Background = Brushes.DeepSkyBlue;
+            darkButton.Background = Brushes.LightSlateGray;
+            mainLabel.Foreground = Brushes.Black;
         }
 
         private void darkButton_Click(object sender, RoutedEventArgs e)
         {
-
+            theme = Theme.Dark;
+            MeinWindow.Background = Brushes.Black;
+            lightButton.Background = Brushes.LightSlateGray;
+            darkButton.Background = Brushes.DeepSkyBlue;
+            mainLabel.Foreground = Brushes.White;
         }
 
         private void serbianComboItem_Selected(object sender, RoutedEventArgs e)
         {
-
+            language = Language.Serbian;
+            serbianComboItem.Content = "Srpski";
+            if(englishComboItem != null)    englishComboItem.Content = "Engleski";
+            lightButton.Content = "Svetlo";
+            darkButton.Content = "Tamno";
+            mainLabel.Content = "Postovanje, ulogovani Ste kao lekar.";
         }
 
         private void englishComboItem_Selected(object sender, RoutedEventArgs e)
         {
-
+            language = Language.English;
+            serbianComboItem.Content = "Serbian";
+           if(englishComboItem != null) englishComboItem.Content = "English";
+            lightButton.Content = "Light";
+            darkButton.Content = "Dark";
+            mainLabel.Content = "Dear user, you are logged in as doctor.";
         }
     }
 }
