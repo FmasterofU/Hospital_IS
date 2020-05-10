@@ -31,10 +31,18 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
         }
 
-        private void StackPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        private void MenuFunctionsPanel_MouseUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            // No operation - override the grid mouse up event handler
+            // No operation - override the menu grid mouse up event handler
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = null;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ3.Content = null;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ4.Content = null;
         }
     }
 }
