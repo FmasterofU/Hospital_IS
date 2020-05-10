@@ -34,7 +34,11 @@ namespace AppForDoctor
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            if(history != null) history.Hide();
+            if (history != null)
+            {
+                history.Close();
+                history = null;
+            }
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
         }
