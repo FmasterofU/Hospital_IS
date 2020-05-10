@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace ManagingDirectorMobile.View
 {
     /// <summary>
-    /// Interaction logic for DefaultBar.xaml
+    /// Interaction logic for DefaultNotificationView.xaml
     /// </summary>
-    public partial class DefaultBarView : UserControl
+    public partial class DefaultNotificationView : UserControl
     {
-        public DefaultBarView()
+        public DefaultNotificationView()
         {
             InitializeComponent();
         }
@@ -30,7 +30,6 @@ namespace ManagingDirectorMobile.View
         {
             //DataContext = new MenuViewModel();
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
-            //Application.Current.MainWindow.cntrl.Content = new MenuViewModel();
         }
     }
 }

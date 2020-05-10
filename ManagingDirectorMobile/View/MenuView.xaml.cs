@@ -26,9 +26,15 @@ namespace ManagingDirectorMobile.View
             InitializeComponent();
         }
 
-        private void MenuView_Clicked(object sender, RoutedEventArgs e)
+        private void MenuGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            DataContext = new MenuViewModel();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+        }
+
+        private void StackPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            // No operation - override the grid mouse up event handler
         }
     }
 }

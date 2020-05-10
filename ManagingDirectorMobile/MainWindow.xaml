@@ -10,8 +10,8 @@
         Title="MainWindow" Height="750" Width="430">
 
     <Window.Resources>
-        <DataTemplate x:Name="DefaultBar" DataType="{x:Type ViewModel:DefaultBarViewModel}">
-            <View:DefaultBarView DataContext="{Binding}"></View:DefaultBarView>
+        <DataTemplate x:Name="DefaultNotification" DataType="{x:Type ViewModel:DefaultNotificationViewModel}">
+            <View:DefaultNotificationView DataContext="{Binding}"></View:DefaultNotificationView>
         </DataTemplate>
         <DataTemplate x:Name="MenuDefault" DataType="{x:Type ViewModel:MenuViewModel}">
             <View:MenuView DataContext="{Binding}"></View:MenuView>

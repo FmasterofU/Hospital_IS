@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ManagingDirectorMobile.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
-    <Grid Background="Transparent">
+    <Grid Background="Transparent" MouseUp="MenuGrid_MouseUp">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -29,8 +29,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DockPanel Background="Green" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="10">
-        </DockPanel>
+        <StackPanel Background="GreenYellow" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="10" Orientation="Vertical" MouseUp="StackPanel_MouseUp">
+        </StackPanel>
         
     </Grid>
 </UserControl>

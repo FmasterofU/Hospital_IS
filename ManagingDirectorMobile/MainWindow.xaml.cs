@@ -1,6 +1,7 @@
 ﻿using ManagingDirectorMobile.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,8 @@ namespace ManagingDirectorMobile
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
             //DataContext = new DefaultBarViewModel();
-            cntrlZ1.Content = new DefaultBarViewModel();
+            cntrlZ1.Content = new DefaultNotificationViewModel();
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ManagingDirectorMobile.ViewModel
 {
-    class DefaultBarViewModel
+    class DefaultNotificationViewModel
     {
     }
 }

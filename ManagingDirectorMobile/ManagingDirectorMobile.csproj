@@ -55,10 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\DefaultBarViewModel.cs" />
+    <Compile Include="ViewModel\DefaultNotificationViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
-    <Compile Include="View\DefaultBarView.xaml.cs">
-      <DependentUpon>DefaultBarView.xaml</DependentUpon>
+    <Compile Include="View\DefaultNotificationView.xaml.cs">
+      <DependentUpon>DefaultNotificationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -75,7 +75,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\DefaultBarView.xaml">
+    <Page Include="View\DefaultNotificationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
