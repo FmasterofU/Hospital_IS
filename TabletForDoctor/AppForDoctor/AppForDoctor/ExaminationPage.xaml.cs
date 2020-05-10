@@ -20,9 +20,23 @@ namespace AppForDoctor
     /// </summary>
     public partial class ExaminationPage : Page
     {
+        private MedHistory history = null;
         public ExaminationPage()
         {
             InitializeComponent();
+        }
+
+        private void historyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (history == null) history = new MedHistory();
+            history.Show();
+        }
+
+        private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(history != null) history.Hide();
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(1);
         }
     }
 }

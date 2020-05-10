@@ -9,9 +9,9 @@
       Title="MainMenuPage">
 
     <Grid>
-        <Label x:Name="patientID" HorizontalAlignment="Left" Margin="25,152,0,0" VerticalAlignment="Top" FontSize="35">Identifikacioni broj pacijenta:</Label>
-        <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="505,160,0,0" Height="49" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" FontSize="35" 
-                 BorderBrush="Black" Foreground="Black"></TextBox>
+        <Label x:Name="patientID" HorizontalAlignment="Left" Margin="25,152,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black">Identifikacioni broj pacijenta:</Label>
+        <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="505,160,0,0" Height="49" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="35" 
+                 BorderBrush="Black" Foreground="Black" Background="White"></TextBox>
         <Button x:Name="acceptID" HorizontalAlignment="Right" Margin="0,160,25,0" VerticalAlignment="Top" Width="150" FontSize="35" Height="49" Foreground="White" 
                     Background="Green" Click="acceptID_Click">Potvrdi</Button>
     </Grid>
