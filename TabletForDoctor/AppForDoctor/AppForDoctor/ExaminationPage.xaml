@@ -1,0 +1,14 @@
+﻿<Page x:Class="AppForDoctor.ExaminationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForDoctor"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="ExaminationPage">
+
+    <Grid>
+        <Label x:Name="patientName" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" FontSize="35" Width="900">Imenko Prezimenic, ID = 123456:</Label>
+    </Grid>
+</Page>

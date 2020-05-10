@@ -34,15 +34,24 @@ namespace AppForDoctor
 
         private Language language = Language.Serbian;
         private Theme theme = Theme.Light;
+        private static MainWindow instance = null;
 
         public MainWindow()
         {
             InitializeComponent();
+            //TODO: add logIn/register page
+            this.changePage(1);
+            instance = this;
+        }
+
+        public static MainWindow getInstance()
+        {
+            return instance;
         }
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO: implement later
         }
 
         private void lightButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +90,21 @@ namespace AppForDoctor
             lightButton.Content = "Light";
             darkButton.Content = "Dark";
             mainLabel.Content = "Dear user, you are logged in as doctor.";
+        }
+
+        public void changePage(int page)
+        {
+            // 1 - main menu
+            // 2 - examination
+            switch(page)
+            {
+                case 1: 
+                    MainFrame.Content = new MainMenuPage();
+                    break;
+                case 2:
+                    MainFrame.Content = new ExaminationPage();
+                    break;
+            }
         }
     }
 }

@@ -21,5 +21,6 @@
             <ComboBoxItem x:Name="serbianComboItem" Content="Srpski" IsSelected="True" Selected="serbianComboItem_Selected"/>
             <ComboBoxItem x:Name="englishComboItem" Content="Engleski" IsSelected="False" Selected="englishComboItem_Selected"/>
         </ComboBox>
+        <Frame x:Name="MainFrame" Margin="0,0,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
