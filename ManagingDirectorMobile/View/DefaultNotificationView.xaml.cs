@@ -31,5 +31,10 @@ namespace ManagingDirectorMobile.View
             //DataContext = new MenuViewModel();
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
         }
+
+        private void NotificationItem_Click(object sender, RoutedEventArgs e)
+        {
+            ((Button)sender).Content = "kurac1";
+        }
     }
 }

@@ -8,11 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
 
-    <!--UserControl.Resources>
-        <DataTemplate x:Name="MenuDefault" DataType="{x:Type ViewModel:MenuViewModel}">
-            <local:MenuView DataContext="{Binding}"></local:MenuView>
-        </DataTemplate-->
-
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -36,12 +31,31 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Margin="-2,0,2,0">
+        <DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
         </DockPanel>
-        <Button x:Name="MenuButton" Grid.Column="0" Grid.Row="0" MaxWidth="30" MaxHeight="30" Background="Transparent" Click="MenuButton_Click" >
-            <Image Source="/View/icons/icons8-menu-16.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        <Button x:Name="MenuButton" Grid.Column="0" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent" Click="MenuButton_Click" >
+            <Image Source="/View/icons/icons8-menu-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Button>
-
-        <!--ContentControl Content="{Binding}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/-->
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Notifikacije" FontWeight="Bold" FontSize="24"></Label>
+        <DockPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="7">
+            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Broj notifikacija: " FontWeight="DemiBold" FontSize="20"></Label>
+                <Label Content="{Binding NotificationCount}" FontWeight="DemiBold" FontSize="20"></Label>
+            </WrapPanel>
+            <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding notifications}" 
+                          AutoGenerateColumns="False" 
+                          CanUserResizeRows="False" 
+                          CanUserReorderColumns="False" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          HeadersVisibility="None" 
+                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
     </Grid>
  </UserControl>
