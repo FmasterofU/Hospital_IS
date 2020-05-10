@@ -12,17 +12,13 @@
         <Label x:Name="drugsLabel" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" FontSize="35" Width="270" Foreground="Black">Prepisani lekovi:</Label>
         <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="296,152,0,0" VerticalAlignment="Top" Width="203" FontSize="35" Background="White" Foreground="Black"
                  SelectionChanged="drugListBox_SelectionChanged">
-            <ListBoxItem>Prvi</ListBoxItem>
-            <ListBoxItem>Drugi</ListBoxItem>
-            <ListBoxItem>Treci</ListBoxItem>
-            <ListBoxItem>Cetvrti</ListBoxItem>
         </ListBox>
         <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="25,330,0,0" VerticalAlignment="Top" Width="170" FontSize="35" Background="Orange" Foreground="Black" 
-                BorderBrush="Black">Dodaj lek</Button>
+                BorderBrush="Black" Click="addDrugButton_Click">Dodaj lek</Button>
         <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="205,330,0,0" VerticalAlignment="Top" Width="170" FontSize="35" Background="Orange" Foreground="Black" 
-                BorderBrush="Black">Obrisi lek</Button>
-        <Button x:Name="saveDrugsButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="White" Height="55">Sacuvaj</Button>
+                BorderBrush="Black" Click="deleteDrugButton_Click">Obrisi lek</Button>
+        <!--<Button x:Name="saveDrugsButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
+                Background="Green" Foreground="White" Height="55">Sacuvaj</Button>-->
         <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Red" Foreground="White" Height="55" Click="examinationFromDrugsButton_Click">Nazad</Button>
     </Grid>
