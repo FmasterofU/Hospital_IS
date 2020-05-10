@@ -114,10 +114,22 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\icons\icons8-bell-32.png" />
+    <Resource Include="View\icons\icons8-business-report-32.png" />
+    <Resource Include="View\icons\icons8-hospital-32.png" />
+    <Resource Include="View\icons\icons8-medic-32.png" />
+    <Resource Include="View\icons\icons8-medical-doctor-32.png" />
+    <Resource Include="View\icons\icons8-person-32.png" />
+    <Resource Include="View\icons\icons8-room-32.png" />
+    <Resource Include="View\icons\icons8-shutdown-32.png" />
+    <Resource Include="View\icons\icons8-staff-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\icons\icons8-exit-32.png" />
     <Resource Include="View\icons\icons8-menu-16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\icons\icons8-shutdown-16.png" />
+    <Resource Include="View\icons\nmk.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

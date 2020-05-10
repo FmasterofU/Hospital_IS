@@ -8,5 +8,6 @@ namespace ManagingDirectorMobile.ViewModel
 {
     class MenuViewModel
     {
+        public string PersonName { get { return "Gorana"; } }
     }
 }

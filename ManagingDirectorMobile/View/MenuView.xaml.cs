@@ -44,5 +44,16 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ3.Content = null;
             ((MainWindow)Application.Current.MainWindow).cntrlZ4.Content = null;
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).Close();
+        }
+
+        private void NotificationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DefaultNotificationViewModel();
+        }
     }
 }
