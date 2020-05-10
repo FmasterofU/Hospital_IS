@@ -10,24 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AppForDoctor
 {
     /// <summary>
-    /// Interaction logic for MedHistory.xaml
+    /// Interaction logic for DrugsPage.xaml
     /// </summary>
-    public partial class MedHistory : Window
+    public partial class DrugsPage : Page
     {
-        public MedHistory()
+        public DrugsPage()
         {
             InitializeComponent();
         }
 
-        private void MedHistoryWindow_Closed(object sender, EventArgs e)
+        private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: save history in data base
-            ExaminationPage.closeHistory();
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(2);
+        }
+
+        private void drugListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO: implement selection
         }
     }
 }

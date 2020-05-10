@@ -20,27 +20,41 @@ namespace AppForDoctor
     /// </summary>
     public partial class ExaminationPage : Page
     {
-        private MedHistory history = null;
+        private static MedHistory history = null;
         public ExaminationPage()
         {
             InitializeComponent();
         }
 
+        public static void closeHistory()
+        {
+            history = null;
+        }
+
         private void historyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (history == null) history = new MedHistory();
+            if (history == null)    history = new MedHistory();
             history.Show();
         }
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (history != null)
-            {
-                history.Close();
-                history = null;
-            }
+            if (history != null)    history.Close();
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
+        }
+
+        private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: save history in data base
+            if (history != null)    history.historyText.Text += diagnosisText.Text;
+            MessageBox.Show("Sve izmene su sacuvane!");
+        }
+
+        private void drugsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(3);
         }
     }
 }

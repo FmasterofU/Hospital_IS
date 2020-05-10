@@ -96,6 +96,7 @@ namespace AppForDoctor
         {
             // 1 - main menu
             // 2 - examination
+            // 3 - drugs
             switch(page)
             {
                 case 1: 
@@ -103,6 +104,9 @@ namespace AppForDoctor
                     break;
                 case 2:
                     MainFrame.Content = new ExaminationPage();
+                    break;
+                case 3:
+                    MainFrame.Content = new DrugsPage();
                     break;
             }
         }

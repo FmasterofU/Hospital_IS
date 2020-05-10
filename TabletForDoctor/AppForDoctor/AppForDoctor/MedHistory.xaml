@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppForDoctor"
         mc:Ignorable="d"
-        Title="MedHistory" Height="450" Width="800">
+        Title="MedHistory" Height="450" Width="800"
+        x:Name="MedHistoryWindow"
+        Closed="MedHistoryWindow_Closed">
     <Grid>
-        <Label x:Name="historyText" HorizontalAlignment="Left" FontSize="35">Istorija bolesti je trenutno prazna!</Label>
+        <TextBox x:Name="historyText" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="772" FontSize="35"
+                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True" Background="White" Foreground="Black">Istorija bolesti je trenutno prazna!</TextBox>
     </Grid>
 </Window>
