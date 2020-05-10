@@ -120,7 +120,6 @@
     <Resource Include="View\icons\icons8-hospital-32.png" />
     <Resource Include="View\icons\icons8-medic-32.png" />
     <Resource Include="View\icons\icons8-medical-doctor-32.png" />
-    <Resource Include="View\icons\icons8-menu-16.png" />
     <Resource Include="View\icons\icons8-person-32.png" />
     <Resource Include="View\icons\icons8-room-32.png" />
     <Resource Include="View\icons\icons8-shutdown-32.png" />
