@@ -3,11 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:ManagingDirectorMobile.View"
              xmlns:ViewModel="clr-namespace:ManagingDirectorMobile.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
-
+    <UserControl.Resources>
+        <Style x:Key="Body_Content_DataGrid_Centering" 
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -38,22 +52,29 @@
         </Button>
         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Notifikacije" FontWeight="Bold" FontSize="24"></Label>
         <DockPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="7">
-            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
                 <Label Content="Broj notifikacija: " FontWeight="DemiBold" FontSize="20"></Label>
                 <Label Content="{Binding NotificationCount}" FontWeight="DemiBold" FontSize="20"></Label>
             </WrapPanel>
-            <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding notifications}" 
-                          AutoGenerateColumns="False" 
-                          CanUserResizeRows="False" 
-                          CanUserReorderColumns="False" 
-                          IsReadOnly="True" 
-                          SelectionMode="Single" 
-                          HeadersVisibility="None" 
-                          ScrollViewer.CanContentScroll="True" 
-                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid DockPanel.Dock="Bottom" x:Name="NotificationListDG" ItemsSource="{Binding notifications}" SelectionChanged="NotificationListDG_SelectionChanged" 
+                      AutoGenerateColumns="False" 
+                      CanUserResizeRows="False" 
+                      CanUserReorderColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single" 
+                      HeadersVisibility="None" 
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                      EnableRowVirtualization="False"
+                      CellStyle="{StaticResource Body_Content_DataGrid_Centering}">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="35"/>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="*" FontSize="20"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

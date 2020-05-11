@@ -140,5 +140,8 @@
   <ItemGroup>
     <Resource Include="View\icons\icons8-menu-vertical-32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\icons\icons8-search-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

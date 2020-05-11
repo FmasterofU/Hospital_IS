@@ -1,6 +1,7 @@
 ﻿using ManagingDirectorMobile.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,12 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
         }
 
-        private void NotificationItem_Click(object sender, RoutedEventArgs e)
+        private void NotificationListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((Button)sender).Content = "kurac1";
+            DataGrid dg = sender as DataGrid;
+            Notification not = dg.SelectedItem as Notification;
+            Trace.WriteLine(DataContext);
+            (DataContext as DefaultNotificationViewModel).addNotification();
         }
     }
 }

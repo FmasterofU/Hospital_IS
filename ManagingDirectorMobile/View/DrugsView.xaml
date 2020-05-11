@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
              xmlns:local="clr-namespace:ManagingDirectorMobile.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
@@ -76,9 +77,30 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <DockPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="16" Grid.ColumnSpan="12">
-                
-            </DockPanel>
+            <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="16" Grid.ColumnSpan="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" MaxLines="1" HorizontalAlignment="Stretch" FontSize="22" FontStretch="Condensed"></TextBox>
+                    <Button Grid.Column="1" Background="White">
+                        <WrapPanel>
+                            <Image Source="/View/icons/icons8-search-32.png"></Image>
+                            <Label Content="Apply" FontSize="14"></Label>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    
+                </Grid>
+                <Grid Grid.Row="2"></Grid>
+            </Grid>
         </Grid>
         
     </Grid>
