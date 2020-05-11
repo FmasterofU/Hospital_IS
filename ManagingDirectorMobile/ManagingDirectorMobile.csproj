@@ -56,9 +56,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\DefaultNotificationViewModel.cs" />
+    <Compile Include="ViewModel\DrugsViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="View\DefaultNotificationView.xaml.cs">
       <DependentUpon>DefaultNotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DrugsView.xaml.cs">
+      <DependentUpon>DrugsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -76,6 +80,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\DefaultNotificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DrugsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\icons\icons8-menu-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\icons\icons8-menu-vertical-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -55,5 +55,11 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
             ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DefaultNotificationViewModel();
         }
+
+        private void DrugsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DrugsViewModel();
+        }
     }
 }
