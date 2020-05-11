@@ -128,7 +128,7 @@ namespace AppForDoctor
                     MainFrame.Content = ExaminationPage.getInstance();
                     break;
                 case 3:
-                    MainFrame.Content = DrugsPage.getInstance(); ;
+                    MainFrame.Content = DrugsPage.getInstance();
                     break;
             }
         }

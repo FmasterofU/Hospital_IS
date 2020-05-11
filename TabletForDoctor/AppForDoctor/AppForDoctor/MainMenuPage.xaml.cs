@@ -28,7 +28,6 @@ namespace AppForDoctor
             else if(MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
             if(MainWindow.GetTheme() == MainWindow.Theme.Light)    ToLightTheme();
             else if(MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
-            instance = this;
         }
 
         public static MainMenuPage getInstance()
@@ -43,9 +42,7 @@ namespace AppForDoctor
             acceptID.Content = "Potvrdi";
             appointmentsButton.Content = "Pregled termina";
             commentsButton.Content = "Pregled komentara pacijenata";
-            commentsButton.Width = 480;
             pausesButton.Content = "Rukovanje pauzama";
-            pausesButton.Width = 330;
         }
 
         public void ToEnglish()
@@ -54,9 +51,7 @@ namespace AppForDoctor
             acceptID.Content = "Accept";
             appointmentsButton.Content = "Appointments";
             commentsButton.Content = "See patient's comments";
-            commentsButton.Width = 395;
             pausesButton.Content = "Check pauses";
-            pausesButton.Width = 230;
         }
 
         public void ToLightTheme()

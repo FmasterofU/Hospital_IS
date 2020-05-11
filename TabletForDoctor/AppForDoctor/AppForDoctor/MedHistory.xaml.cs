@@ -35,6 +35,7 @@ namespace AppForDoctor
         public static MedHistory getInstance()
         {
             if (instance == null) instance = new MedHistory();
+            instance.centerHistoryToParent();
             return instance;
         }
 
@@ -52,15 +53,20 @@ namespace AppForDoctor
 
         private void MedHistoryWindow_Loaded(object sender, RoutedEventArgs e)
         {
-                MainWindow w = MainWindow.getInstance();
-                this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
-                this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+            centerHistoryToParent();
+        }
+
+        private void centerHistoryToParent()
+        {
+            MainWindow w = MainWindow.getInstance();
+            instance.Left = w.Left + (w.Width - instance.ActualWidth) / 2;
+            instance.Top = w.Top + (w.Height - instance.ActualHeight) / 2;
         }
 
         private void MedHistoryWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //TODO: save history in data base
-            ExaminationPage.closeHistory();
+            //ExaminationPage.closeHistory();
             if (!toClose)
             {
                 e.Cancel = true;

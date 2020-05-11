@@ -21,6 +21,7 @@ namespace AppForDoctor
     public partial class DrugsPage : Page
     {
         private static DeleteDrug delete = null;
+        private static AddDrug add = null;
         private static List<String> drugList = new List<String>();
         private static DrugsPage instance = null;
         private DrugsPage()
@@ -39,7 +40,6 @@ namespace AppForDoctor
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
             else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
-            instance = this;
         }
 
         public static DrugsPage getInstance()
@@ -53,7 +53,6 @@ namespace AppForDoctor
             drugsLabel.Content = "Prepisani lekovi:";
             addDrugButton.Content = "Dodaj lek";
             deleteDrugButton.Content = "Obrisi lek";
-            deleteDrugButton.Width = 170;
             examinationFromDrugsButton.Content = "Nazad";
         }
 
@@ -62,7 +61,6 @@ namespace AppForDoctor
             drugsLabel.Content = "Prescribed drugs:";
             addDrugButton.Content = "Add drug";
             deleteDrugButton.Content = "Delete drug";
-            deleteDrugButton.Width = 200;
             examinationFromDrugsButton.Content = "Back";
         }
 
@@ -94,6 +92,12 @@ namespace AppForDoctor
             drugListBox.Items.RemoveAt(index);
         }
 
+        public void addDrugToList(string adding)
+        {
+            drugList.Add(adding);
+            drugListBox.Items.Add(adding);
+        }
+
         public static List<String> getDrugList()
         {
             return drugList;
@@ -102,6 +106,11 @@ namespace AppForDoctor
         public static void closeDeletion()
         {
             delete = null;
+        }
+
+        public static void closeAdding()
+        {
+            add = null;
         }
 
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
@@ -124,7 +133,8 @@ namespace AppForDoctor
 
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: implement adding new drug to patient
+            add = new AddDrug();
+            add.ShowDialog();
         }
     }
 }

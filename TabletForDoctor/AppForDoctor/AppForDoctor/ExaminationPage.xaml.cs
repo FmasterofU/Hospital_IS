@@ -22,27 +22,27 @@ namespace AppForDoctor
     {
         // load history from database
         //private static MedHistory history = new MedHistory();
-        private static bool historyOpened = false;
+        //private static bool historyOpened = false;
         private static ExaminationPage instance = null;
+        private static string diagnosis = "";
         private ExaminationPage()
         {
             InitializeComponent();
-            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
-            else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
-            instance = this;
         }
 
         public static void closeHistory()
         {
             //history = null;
-            historyOpened = false;
         }
 
         public static ExaminationPage getInstance()
         {
             if (instance == null) instance = new ExaminationPage();
+            instance.diagnosisText.Text = diagnosis;
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
@@ -51,10 +51,8 @@ namespace AppForDoctor
             historyButton.Content = "Pogledaj istoriju bolesti";
             diagnosisBox.Header = "Dijagnoza:";
             drugsButton.Content = "Pregled lekova";
-            drugsButton.Width = 250;
             refferalButton.Content = "Pregled uputa";
             controlReviewButton.Content = "Zakazivanje kontrole";
-            controlReviewButton.Width = 350;
             saveDiagnosisButton.Content = "Sacuvaj";
             menuFromExaminationButton.Content = "Meni";
         }
@@ -64,10 +62,8 @@ namespace AppForDoctor
             historyButton.Content = "Check medical history";
             diagnosisBox.Header = "Diagnosis:";
             drugsButton.Content = "Check drugs";
-            drugsButton.Width = 210;
             refferalButton.Content = "Check refferals";
             controlReviewButton.Content = "Schedule control review";
-            controlReviewButton.Width = 380;
             saveDiagnosisButton.Content = "Save";
             menuFromExaminationButton.Content = "Menu";
         }
@@ -110,10 +106,10 @@ namespace AppForDoctor
         {
             //if (history == null)    history = new MedHistory();
             //history.Show();
-            if (!historyOpened && MedHistory.getInstance() != null)
+            if (MedHistory.getInstance() != null)
             {
                 MedHistory.getInstance().Show();
-                historyOpened = true;
+                MedHistory.getInstance().Focus();
             }
         }
 
@@ -123,6 +119,7 @@ namespace AppForDoctor
             MedHistory.getInstance().toClose = true;
             MedHistory.getInstance().Close();
             instance = null;
+            diagnosis = "";
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
         }
@@ -137,10 +134,9 @@ namespace AppForDoctor
 
         private void drugsButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: save diagnosis text
-            instance = null;
+            //instance = null;
+            diagnosis = instance.diagnosisText.Text;
             MainWindow w = MainWindow.getInstance();
-            //Console.WriteLine(historyOpened);
             w.changePage(3);
         }
     }

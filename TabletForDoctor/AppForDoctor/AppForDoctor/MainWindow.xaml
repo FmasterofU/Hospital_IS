@@ -12,11 +12,11 @@
         Closing="MeinWindow_Closing">
     <Grid>
         <Label x:Name="mainLabel" HorizontalAlignment="Right" Margin="0,10,200,0" VerticalAlignment="Top" FontSize="35" Foreground="Black">Postovanje, ulogovani Ste kao lekar.</Label>
-        <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="150" FontSize="35" Background="DodgerBlue" 
+        <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="160" FontSize="35" Background="DodgerBlue" 
                 Click="logOutButton_Click">Log out</Button>
-        <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="50,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DeepSkyBlue" 
+        <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="25,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DeepSkyBlue" 
                 Click="lightButton_Click">Svetlo</Button>
-        <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="170,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" 
+        <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="145,72,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" 
                 Click="darkButton_Click">Tamno</Button>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Right" Margin="0,72,25,0" VerticalAlignment="Top" Width="160" FontSize="35">
             <ComboBoxItem x:Name="serbianComboItem" Content="Srpski" IsSelected="True" Selected="serbianComboItem_Selected"/>

@@ -25,6 +25,36 @@ namespace AppForDoctor
             List<String> drugList = DrugsPage.getDrugList();
             for(int i = 0; i < drugList.Count; i++) deleteDrugsComboBox.Items.Add(drugList[i]);
             deleteDrugsComboBox.SelectedIndex = 0;
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
+        }
+
+        private void ToSerbian()
+        {
+            deleteDrugButton.Content = "Obrisi";
+            backFromDeleteButton.Content = "Nazad";
+        }
+
+        private void ToEnglish()
+        {
+            deleteDrugButton.Content = "Delete";
+            backFromDeleteButton.Content = "Back";
+        }
+
+        private void ToLightTheme()
+        {
+            DeleteDrugWindow.Background = Brushes.White;
+            deleteDrugButton.BorderBrush = Brushes.Black;
+            backFromDeleteButton.BorderBrush = Brushes.Black;
+        }
+
+        private void ToDarkTheme()
+        {
+            DeleteDrugWindow.Background = Brushes.Black;
+            deleteDrugButton.BorderBrush = Brushes.White;
+            backFromDeleteButton.BorderBrush = Brushes.White;
         }
 
         private void DeleteDrugWindow_Closed(object sender, EventArgs e)
