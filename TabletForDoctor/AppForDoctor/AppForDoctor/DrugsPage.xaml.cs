@@ -127,8 +127,11 @@ namespace AppForDoctor
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            delete = new DeleteDrug();
-            delete.ShowDialog();
+            if (drugList.Count != 0)
+            {
+                delete = new DeleteDrug();
+                delete.ShowDialog();
+            }
         }
 
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
