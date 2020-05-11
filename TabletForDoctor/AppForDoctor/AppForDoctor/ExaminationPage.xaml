@@ -24,8 +24,8 @@
         <Button x:Name="controlReviewButton" HorizontalAlignment="Left" Margin="25,620,0,0" VerticalAlignment="Top" Width="350" FontSize="35" Background="Orange"
                 Foreground="Black" BorderBrush="Black" Height="55">Zakazivanje kontrole</Button>
         <Button x:Name="saveDiagnosisButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="White" Height="55" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
+                Background="Green" Foreground="White" Height="55" BorderBrush="Black" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
         <Button x:Name="menuFromExaminationButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="White" Height="55" Click="menuFromExaminationButton_Click">Meni</Button>
+                Background="Red" Foreground="White" Height="55" BorderBrush="Black" Click="menuFromExaminationButton_Click">Meni</Button>
     </Grid>
 </Page>

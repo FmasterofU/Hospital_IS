@@ -8,7 +8,8 @@
         Title="MainWindow" Height="768" Width="1024"
         Name="MeinWindow"
         Background="White"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Closing="MeinWindow_Closing">
     <Grid>
         <Label x:Name="mainLabel" HorizontalAlignment="Right" Margin="0,10,200,0" VerticalAlignment="Top" FontSize="35" Foreground="Black">Postovanje, ulogovani Ste kao lekar.</Label>
         <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="150" FontSize="35" Background="DodgerBlue" 

@@ -42,5 +42,12 @@ namespace AppForDoctor
             deleteDrugsComboBox.SelectedIndex = 0;
             if (deleteDrugsComboBox.Items.Count == 0)   this.Close();
         }
+
+        private void DeleteDrugWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
+            this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+        }
     }
 }

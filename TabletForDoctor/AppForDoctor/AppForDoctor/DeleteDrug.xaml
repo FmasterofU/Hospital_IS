@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="DeleteDrug" Height="500" Width="500"
         x:Name="DeleteDrugWindow"
-        Closed="DeleteDrugWindow_Closed">
+        Closed="DeleteDrugWindow_Closed"
+        Loaded="DeleteDrugWindow_Loaded">
     <Grid>
         <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Green" Foreground="White" Height="55" Click="deleteDrugButton_Click">Obrisi</Button>

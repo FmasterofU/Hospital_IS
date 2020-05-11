@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MedHistory" Height="450" Width="800"
         x:Name="MedHistoryWindow"
-        Closed="MedHistoryWindow_Closed">
+        Loaded="MedHistoryWindow_Loaded"
+        Closing="MedHistoryWindow_Closing">
     <Grid>
         <TextBox x:Name="historyText" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="772" FontSize="35"
-                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True" Background="White" Foreground="Black">Istorija bolesti je trenutno prazna!</TextBox>
+                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" IsReadOnly="True" Background="White" Foreground="Black"></TextBox>
     </Grid>
 </Window>

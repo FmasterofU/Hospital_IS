@@ -23,7 +23,7 @@ namespace AppForDoctor
         private static DeleteDrug delete = null;
         private static List<String> drugList = new List<String>();
         private static DrugsPage instance = null;
-        public DrugsPage()
+        private DrugsPage()
         {
             InitializeComponent();
             //TODO: load drugs from database
@@ -35,12 +35,57 @@ namespace AppForDoctor
             {
                 drugList.Add(drugListBox.Items[i].ToString());
             }
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
             instance = this;
         }
 
         public static DrugsPage getInstance()
         {
+            if (instance == null) instance = new DrugsPage();
             return instance;
+        }
+
+        public void ToSerbian()
+        {
+            drugsLabel.Content = "Prepisani lekovi:";
+            addDrugButton.Content = "Dodaj lek";
+            deleteDrugButton.Content = "Obrisi lek";
+            deleteDrugButton.Width = 170;
+            examinationFromDrugsButton.Content = "Nazad";
+        }
+
+        public void ToEnglish()
+        {
+            drugsLabel.Content = "Prescribed drugs:";
+            addDrugButton.Content = "Add drug";
+            deleteDrugButton.Content = "Delete drug";
+            deleteDrugButton.Width = 200;
+            examinationFromDrugsButton.Content = "Back";
+        }
+
+        public void ToLightTheme()
+        {
+            drugsLabel.Foreground = Brushes.Black;
+            drugListBox.Background = Brushes.White;
+            drugListBox.Foreground = Brushes.Black;
+            addDrugButton.BorderBrush = Brushes.Black;
+            deleteDrugButton.BorderBrush = Brushes.Black;
+            examinationFromDrugsButton.BorderBrush = Brushes.Black;
+            MedHistory.getInstance().ToLightTheme();
+        }
+
+        public void ToDarkTheme()
+        {
+            drugsLabel.Foreground = Brushes.White;
+            drugListBox.Background = Brushes.Black;
+            drugListBox.Foreground = Brushes.White;
+            addDrugButton.BorderBrush = Brushes.White;
+            deleteDrugButton.BorderBrush = Brushes.White;
+            examinationFromDrugsButton.BorderBrush = Brushes.White;
+            MedHistory.getInstance().ToDarkTheme();
         }
 
         public void deleteDrugFormList(int index)
@@ -61,6 +106,7 @@ namespace AppForDoctor
 
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
+            instance = null;
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
