@@ -7,6 +7,20 @@
              xmlns:local="clr-namespace:ManagingDirectorMobile.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="430">
+    <UserControl.Resources>
+        <Style x:Key="Body_Content_DataGrid_Centering" 
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -83,7 +97,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Margin="0,0,0,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -97,9 +111,88 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    
+                    <DataGrid DockPanel.Dock="Bottom" x:Name="NotificationListDG" ItemsSource="{Binding}"
+                      AutoGenerateColumns="False" 
+                      CanUserResizeRows="False" 
+                      CanUserReorderColumns="False" 
+                      IsReadOnly="True" 
+                      SelectionMode="Single" 
+                      HeadersVisibility="None" 
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                      EnableRowVirtualization="False">
+                        <!--CellStyle="{StaticResource Body_Content_DataGrid_Centering}"-->
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding}" Width="*" FontSize="20"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
-                <Grid Grid.Row="2"></Grid>
+                <Grid Grid.Row="2" Margin="0,20,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Istorijski prikaz stanja" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Content="Nabavka" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Column="0" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <Ellipse Fill="Green"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <WrapPanel Orientation="Vertical">
+                            <Image Source="/View/icons/icons8-plus-24.png" Width="35" Height="35"></Image>
+                            <TextBlock Text="Dodaj Lijek" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </WrapPanel>
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <Ellipse Fill="Red"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <WrapPanel Orientation="Vertical">
+                            <Image Source="/View/icons/icons8-minus-24.png" Width="35" Height="35"></Image>
+                            <TextBlock Text="Ukloni lijek" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
         
