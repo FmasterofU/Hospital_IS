@@ -1,0 +1,82 @@
+﻿<Page x:Class="HCIProjekat.Pages.LogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCIProjekat.Pages"
+      mc:Ignorable="d" d:DesignWidth="900"
+      Title="Registracija" Background="White" Height="638.633">
+
+    <StackPanel Margin="0 15">
+
+
+        <!--Naslov-->
+        <Grid Margin="20 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Dobrodosli u Nasu Malu Kliniku" Grid.Column="1" FontWeight="Bold" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"/>
+        </Grid>
+
+
+        <!--Separator-->
+        <Separator Margin="20 5" />
+
+        <Image Height="140" Margin="20 10" Source="../Images/home_page.jpeg" Stretch="Fill"    />
+
+        <StackPanel x:Name="LoginView">
+            <Label FontSize="15" HorizontalAlignment="Center" Content="Samo ste na par jednostavnih koraka do vrhunske usluge koju vam pruza nasa bolnica"/>
+            <Label FontSize="15" HorizontalAlignment="Center" Content="Sve sto treba da uradite je:"/>
+
+            <!--Ubacivanje iconica -->
+        
+            <Grid Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="0 20 0 0">
+                    <Image Source="../Images/username.png" Width="50"/>
+                    <Label Content="1) prijavi se"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0 20 0 0">
+                    <Image Source="../Images/check_calendar.png" Width="50"/>
+                    <Label Content="2) izaberite termin"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" HorizontalAlignment="Left" Margin="0 20 0 0">
+                    <Image Source="../Images/visit.png" Width="50"/>
+                    <Label Content="3) Dodjite kod nas"/>
+                </StackPanel>
+            </Grid>
+
+            <Button Content="Prijavi se" FontWeight="Bold" FontSize="20" Height="60" Width="200" Margin="0 40 0 0" Click="BtnClickPrijaviSe"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0 10 0 0">
+                <Hyperlink >Kreiraj nalog</Hyperlink> <!--TODO stranica za kreiranje naloga-->
+            </TextBlock>
+        </StackPanel>
+        <Grid Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="center" Margin="0 20 0 0">
+                <WrapPanel >
+                    <Image Source="../Images/telephone.png" Width="24"/>
+                    <Label Content="0213456789" VerticalAlignment="Center" Margin="10 0 0 0 "/>
+                </WrapPanel>
+                <WrapPanel Margin="0 5 0 0">
+                    <Image Source="../Images/interface.png" Width="24"/>
+                    <Label Content="klinika@gmail.com" VerticalAlignment="Center" Margin="10 0 0 0 "/>
+                </WrapPanel>
+                <WrapPanel Margin="0 5 0 0">
+                    <Image Source="../Images/location.png" Width="24"/>
+                    <TextBlock VerticalAlignment="Center" Margin="10 0 0 0 "><Hyperlink> ul Adresa</Hyperlink></TextBlock>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Page>
