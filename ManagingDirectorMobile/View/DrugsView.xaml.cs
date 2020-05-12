@@ -34,7 +34,9 @@ namespace ManagingDirectorMobile.View
 
         private void OptionsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (OptionsPanel.Visibility != Visibility.Visible)
+                OptionsPanel.Visibility = Visibility.Visible;
+            else OptionsPanel.Visibility = Visibility.Hidden;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +67,29 @@ namespace ManagingDirectorMobile.View
         private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
         {
             DrugsViewModel.Drug drug = DrugListDG.SelectedItem as DrugsViewModel.Drug;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsHistoryViewModel(DrugListDG.SelectedItem as DrugsViewModel.Drug);
+        }
 
+        private void DrugListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as DataGrid).SelectedItem != null) ShowHistoricalDataButton.IsEnabled = true;
+            else ShowHistoricalDataButton.IsEnabled = false;
+        }
+
+        private void OptionsButton_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(Report.IsFocused != true && SpecReport.IsFocused != true)
+                OptionsPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void BackgroundGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            OptionsPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void OptionsPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

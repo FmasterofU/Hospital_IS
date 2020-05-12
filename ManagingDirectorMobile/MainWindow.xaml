@@ -19,6 +19,9 @@
         <DataTemplate x:Name="DrugsDefault" DataType="{x:Type ViewModel:DrugsViewModel}">
             <View:DrugsView DataContext="{Binding}"></View:DrugsView>
         </DataTemplate>
+        <DataTemplate x:Name="DrugsHistoryDefault" DataType="{x:Type ViewModel:DrugsHistoryViewModel}">
+            <View:DrugsHistoryView DataContext="{Binding}"></View:DrugsHistoryView>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid Background="Azure">
