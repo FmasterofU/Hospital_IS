@@ -50,7 +50,7 @@
             <Image Source="/View/icons/icons8-menu-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Button>
         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lijekovi" FontWeight="Bold" FontSize="24"></Label>
-        <Button x:Name="OptionsButton" Grid.Column="6" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent">
+        <Button x:Name="OptionsButton" Grid.Column="6" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent" Click="OptionsButton_Click">
             <Image Source="/View/icons/icons8-menu-vertical-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Button>
 
@@ -102,8 +102,31 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" MaxLines="1" HorizontalAlignment="Stretch" FontSize="22" FontStretch="Condensed"></TextBox>
-                    <Button Grid.Column="1" Background="White">
+                    <TextBox Grid.Column="0" MaxLines="1" HorizontalAlignment="Stretch" Name="SearchTexBox" FontSize="22" FontStretch="Condensed" Height="36" VerticalAlignment="Top">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="naziv like 'A%' and minimum &lt;=70" FontSize="16" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Grid.Column="1" Background="White" x:Name="SearchButton" Click="SearchButton_Click">
                         <WrapPanel>
                             <Image Source="/View/icons/icons8-search-32.png"></Image>
                             <Label Content="Primjeni" FontSize="16"></Label>
@@ -111,26 +134,31 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <DataGrid DockPanel.Dock="Bottom" x:Name="NotificationListDG" ItemsSource="{Binding}"
-                      AutoGenerateColumns="False" 
-                      CanUserResizeRows="False" 
-                      CanUserReorderColumns="False" 
-                      IsReadOnly="True" 
-                      SelectionMode="Single" 
-                      HeadersVisibility="None" 
-                      ScrollViewer.CanContentScroll="True" 
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                      EnableRowVirtualization="False">
-                        <!--CellStyle="{StaticResource Body_Content_DataGrid_Centering}"-->
-                        <DataGrid.RowStyle>
+                    <DataGrid DockPanel.Dock="Bottom" x:Name="DrugListDG" ItemsSource="{Binding drugs}" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeRows="False" 
+                              CanUserReorderColumns="False" 
+                              IsReadOnly="True" 
+                              SelectionMode="Single" 
+                              HeadersVisibility="None" 
+                              ScrollViewer.CanContentScroll="True" 
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                              EnableRowVirtualization="False" 
+                              CellStyle="{StaticResource Body_Content_DataGrid_Centering}">
+                        <!--DataGrid.RowStyle>
                             <Style TargetType="DataGridRow">
                                 <Setter Property="Height" Value="35"/>
                             </Style>
-                        </DataGrid.RowStyle>
+                        </DataGrid.RowStyle-->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding}" Width="*" FontSize="20"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Name}" Width="*" FontSize="20"></DataGridTextColumn>
                         </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Details}" FontSize="16"></Label>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
                     </DataGrid>
                 </Grid>
                 <Grid Grid.Row="2" Margin="0,20,0,10">
@@ -143,28 +171,28 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Istorijski prikaz stanja" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="ShowHistoricalDataButton" Content="Istorijski prikaz stanja" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="ShowHistoricalDataButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Content="Nabavka" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" x:Name="SupplyButton" Content="Nabavka" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="SupplyButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="Izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" x:Name="EditButton" Content="Izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="EditButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Column="0" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Grid.Column="0" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="AddButton" Click="AddButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Grid>
@@ -178,7 +206,7 @@
                             <TextBlock Text="Dodaj Lijek" FontWeight="Bold" FontSize="16"></TextBlock>
                         </WrapPanel>
                     </Button>
-                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="RemoveButton" Click="RemoveButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Grid>

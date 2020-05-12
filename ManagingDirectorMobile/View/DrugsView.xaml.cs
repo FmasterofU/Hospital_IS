@@ -28,7 +28,44 @@ namespace ManagingDirectorMobile.View
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
+        }
+
+        private void OptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SupplyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            DrugsViewModel.Drug drug = DrugListDG.SelectedItem as DrugsViewModel.Drug;
+
         }
     }
 }
