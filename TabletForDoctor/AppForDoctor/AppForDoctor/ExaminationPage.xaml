@@ -15,7 +15,7 @@
         <GroupBox x:Name="diagnosisBox" Header="Dijagnoza:" HorizontalAlignment="Left" Height="200" Margin="22,280,0,0" VerticalAlignment="Top" Width="956" FontSize="35" BorderBrush="Black" 
                   Background="White" Foreground="Black">
             <TextBox x:Name="diagnosisText" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="945" FontSize="35" 
-                     AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="White" Foreground="Black"></TextBox>
+                     AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="White" Foreground="Black" TextChanged="diagnosisText_TextChanged"></TextBox>
         </GroupBox>
         <Button x:Name="drugsButton" HorizontalAlignment="Left" Margin="25,490,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange"  Foreground="Black" 
                 BorderBrush="Black" Height="55" Click="drugsButton_Click">Pregled lekova</Button>

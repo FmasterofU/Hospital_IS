@@ -128,8 +128,7 @@ namespace AppForDoctor
         {
             //TODO: save history in data base
             //if (history != null)    
-            MedHistory.getInstance().historyText.Text += diagnosisText.Text;
-            MessageBox.Show("Sve izmene su sacuvane!");
+            MedHistory.getInstance().historyText.Text += diagnosis;
         }
 
         private void drugsButton_Click(object sender, RoutedEventArgs e)
@@ -138,6 +137,11 @@ namespace AppForDoctor
             diagnosis = instance.diagnosisText.Text;
             MainWindow w = MainWindow.getInstance();
             w.changePage(3);
+        }
+
+        private void diagnosisText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            diagnosis = diagnosisText.Text;
         }
     }
 }
