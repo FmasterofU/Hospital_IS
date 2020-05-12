@@ -33,5 +33,29 @@ namespace ManagingDirectorMobile
             cntrlZ1.Content = new DefaultNotificationViewModel();
 
         }
+
+        public void ClearAllUserControls()
+        {
+            cntrlZ1.Content = null;
+            cntrlZ2.Content = null;
+            cntrlZ3.Content = null;
+            cntrlZ4.Content = null;
+        }
+
+        public void ClearFromFirstUserControlUp()
+        {
+            cntrlZ2.Content = null;
+            cntrlZ3.Content = null;
+            cntrlZ4.Content = null;
+        }
+        public void ClearFromSecondUserControlUp()
+        {
+            cntrlZ3.Content = null;
+            cntrlZ4.Content = null;
+        }
+        public void ClearFromThirdUserControlUp()
+        {
+            cntrlZ4.Content = null;
+        }
     }
 }

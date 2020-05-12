@@ -28,7 +28,7 @@ namespace ManagingDirectorMobile.View
 
         private void MenuGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
         }
 
         private void MenuFunctionsPanel_MouseUp(object sender, MouseButtonEventArgs e)
@@ -39,10 +39,7 @@ namespace ManagingDirectorMobile.View
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = null;
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
-            ((MainWindow)Application.Current.MainWindow).cntrlZ3.Content = null;
-            ((MainWindow)Application.Current.MainWindow).cntrlZ4.Content = null;
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -52,13 +49,13 @@ namespace ManagingDirectorMobile.View
 
         private void NotificationsButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
             ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DefaultNotificationViewModel();
         }
 
         private void DrugsButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = null;
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
             ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DrugsViewModel();
         }
     }

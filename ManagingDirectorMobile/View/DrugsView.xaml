@@ -106,7 +106,7 @@
                     <Button Grid.Column="1" Background="White">
                         <WrapPanel>
                             <Image Source="/View/icons/icons8-search-32.png"></Image>
-                            <Label Content="Apply" FontSize="14"></Label>
+                            <Label Content="Primjeni" FontSize="16"></Label>
                         </WrapPanel>
                     </Button>
                 </Grid>

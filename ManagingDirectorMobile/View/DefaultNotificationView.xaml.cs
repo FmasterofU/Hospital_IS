@@ -30,6 +30,7 @@ namespace ManagingDirectorMobile.View
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             //DataContext = new MenuViewModel();
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
         }
 
