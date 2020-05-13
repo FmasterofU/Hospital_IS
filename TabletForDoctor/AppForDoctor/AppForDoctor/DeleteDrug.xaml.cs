@@ -59,8 +59,9 @@ namespace AppForDoctor
 
         private void DeleteDrugWindow_Closed(object sender, EventArgs e)
         {
-            this.Close();
+            deleteDrugsComboBox.Items.Clear();
             DrugsPage.closeDeletion();
+            this.Close();
         }
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
