@@ -24,7 +24,8 @@ namespace AppForDoctor
         //private static MedHistory history = new MedHistory();
         //private static bool historyOpened = false;
         private static ExaminationPage instance = null;
-        private static string diagnosis = "";
+        private string diagnosis = "";
+        private string addedDrugs = "";
         private ExaminationPage()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace AppForDoctor
         public static ExaminationPage getInstance()
         {
             if (instance == null) instance = new ExaminationPage();
-            instance.diagnosisText.Text = diagnosis;
+            instance.diagnosisText.Text = instance.diagnosis;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
@@ -104,8 +105,6 @@ namespace AppForDoctor
 
         private void historyButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (history == null)    history = new MedHistory();
-            //history.Show();
             if (MedHistory.getInstance() != null)
             {
                 MedHistory.getInstance().Show();
@@ -115,11 +114,10 @@ namespace AppForDoctor
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (history != null)    history.Close();
             MedHistory.getInstance().toClose = true;
             MedHistory.getInstance().Close();
+            DrugsPage.clearInstance();
             instance = null;
-            diagnosis = "";
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
         }
@@ -127,14 +125,14 @@ namespace AppForDoctor
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            //if (history != null)    
-            MedHistory.getInstance().historyText.Text += diagnosis;
+            string toHistory = diagnosis + "\n" + addedDrugs;
+            MedHistory.getInstance().historyText.Text = toHistory;
+            saveDiagnosisButton.IsEnabled = false;
         }
 
         private void drugsButton_Click(object sender, RoutedEventArgs e)
         {
-            //instance = null;
-            diagnosis = instance.diagnosisText.Text;
+            //diagnosis = instance.diagnosisText.Text;
             MainWindow w = MainWindow.getInstance();
             w.changePage(3);
         }
@@ -142,6 +140,25 @@ namespace AppForDoctor
         private void diagnosisText_TextChanged(object sender, TextChangedEventArgs e)
         {
             diagnosis = diagnosisText.Text;
+            saveDiagnosisButton.IsEnabled = true;
+        }
+
+        public void saveAddedDrugs(List<string> input)
+        {
+            string newDrugs = "";
+            if(input.Count != 0)
+            {
+                for(int i = 0; i < input.Count; i++)
+                {
+                    newDrugs += input[i];
+                    if (i != input.Count - 1) newDrugs += ", ";
+                }
+            }
+            if(!newDrugs.Equals(addedDrugs))
+            {
+                saveDiagnosisButton.IsEnabled = true;
+                addedDrugs = newDrugs;
+            }
         }
     }
 }

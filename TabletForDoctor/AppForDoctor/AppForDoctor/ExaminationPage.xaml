@@ -16,7 +16,7 @@
             <GroupBox x:Name="diagnosisBox" Header="Dijagnoza:" HorizontalAlignment="Left" Height="200" Margin="0,10,0,0" VerticalAlignment="Top" Width="956" FontSize="35" BorderBrush="Black" 
                   Background="White" Foreground="Black">
                 <TextBox x:Name="diagnosisText" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="945" FontSize="35" 
-                     AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="White" Foreground="Black" TextChanged="diagnosisText_TextChanged"></TextBox>
+                     AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Background="White" Foreground="Black" x:FieldModifier="private" TextChanged="diagnosisText_TextChanged"></TextBox>
             </GroupBox>
             <Button x:Name="drugsButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange"  Foreground="Black" 
                     BorderBrush="Black" Height="55" Click="drugsButton_Click">Pregled lekova</Button>
@@ -26,8 +26,8 @@
                     Foreground="Black" BorderBrush="Black" Height="55">Zakazivanje kontrole</Button>
         </StackPanel>
         <Button x:Name="saveDiagnosisButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="White" Height="55" BorderBrush="Black" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
+                Background="Green" Foreground="Black" Height="55" BorderBrush="Black" IsEnabled="False" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
         <Button x:Name="menuFromExaminationButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="White" Height="55" BorderBrush="Black" Click="menuFromExaminationButton_Click">Meni</Button>
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="menuFromExaminationButton_Click">Meni</Button>
     </Grid>
 </Page>

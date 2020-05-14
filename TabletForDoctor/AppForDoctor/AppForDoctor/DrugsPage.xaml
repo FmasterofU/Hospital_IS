@@ -20,6 +20,6 @@
         <!--<Button x:Name="saveDrugsButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Green" Foreground="White" Height="55">Sacuvaj</Button>-->
         <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="White" Height="55" BorderBrush="Black" Click="examinationFromDrugsButton_Click">Nazad</Button>
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="examinationFromDrugsButton_Click">Nazad</Button>
     </Grid>
 </Page>

@@ -22,29 +22,35 @@ namespace AppForDoctor
     {
         private static DeleteDrug delete = null;
         private static AddDrug add = null;
-        private static List<String> drugList = new List<String>();
+        private static List<string> drugList = new List<string>();
         private static DrugsPage instance = null;
         private DrugsPage()
         {
             InitializeComponent();
             //TODO: load drugs from database
-            drugListBox.Items.Add("Prvi");
-            drugListBox.Items.Add("Drugi");
-            drugListBox.Items.Add("Treci");
-            drugListBox.Items.Add("Cetvrti");
-            for (int i = 0; i < drugListBox.Items.Count; i++)
+            /*for (int i = 0; i < drugListBox.Items.Count; i++)
             {
                 drugList.Add(drugListBox.Items[i].ToString());
             }
+            if (drugList.Count == 0) deleteDrugButton.IsEnabled = false;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();*/
+            for (int i = 0; i < drugList.Count; i++)
+            {
+                drugListBox.Items.Add(drugList[i]);
+            }
         }
 
         public static DrugsPage getInstance()
         {
             if (instance == null) instance = new DrugsPage();
+            if (drugList.Count == 0) instance.deleteDrugButton.IsEnabled = false;
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
@@ -90,15 +96,17 @@ namespace AppForDoctor
         {
             drugList.RemoveAt(index);
             drugListBox.Items.RemoveAt(index);
+            if (drugList.Count == 0) deleteDrugButton.IsEnabled = false;
         }
 
         public void addDrugToList(string adding)
         {
             drugList.Add(adding);
             drugListBox.Items.Add(adding);
+            if (drugList.Count != 0) deleteDrugButton.IsEnabled = true;
         }
 
-        public static List<String> getDrugList()
+        public static List<string> getDrugList()
         {
             return drugList;
         }
@@ -115,7 +123,7 @@ namespace AppForDoctor
 
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
-            instance = null;
+            ExaminationPage.getInstance().saveAddedDrugs(drugList);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
@@ -138,6 +146,12 @@ namespace AppForDoctor
         {
             add = new AddDrug();
             add.ShowDialog();
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
+            drugList = new List<String>();
         }
     }
 }
