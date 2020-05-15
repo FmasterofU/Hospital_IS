@@ -19,9 +19,53 @@ namespace AppForDoctor
     /// </summary>
     public partial class ControlReview : Window
     {
+        private DateTime? selDate;
+
         public ControlReview()
         {
             InitializeComponent();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
+        }
+
+        private void ToLightTheme()
+        {
+            ControlReviewWindow.Background = Brushes.White;
+            calendar.Background = Brushes.White;
+        }
+
+        private void ToDarkTheme()
+        {
+            ControlReviewWindow.Background = Brushes.Black;
+            calendar.Background = Brushes.Black;
+        }
+
+        private void ControlReviewWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
+            this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+        }
+
+        private void backFromControlButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveControlButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
+            this.Close();
+        }
+
+        private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selDate = calendar.SelectedDate;
+        }
+
+        public void setInitialDate(DateTime? initial)
+        {
+            calendar.SelectedDate = initial;
         }
     }
 }

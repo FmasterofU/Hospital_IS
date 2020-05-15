@@ -26,6 +26,7 @@ namespace AppForDoctor
         private static ExaminationPage instance = null;
         private string diagnosis = "";
         private string addedDrugs = "";
+        private DateTime? controlReviewDate = default;
         private ExaminationPage()
         {
             InitializeComponent();
@@ -125,7 +126,7 @@ namespace AppForDoctor
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            string toHistory = diagnosis + "\n" + addedDrugs;
+            string toHistory = diagnosis + "\n" + addedDrugs + "\n" + controlReviewDate.ToString();
             MedHistory.getInstance().historyText.Text = toHistory;
             saveDiagnosisButton.IsEnabled = false;
         }
@@ -164,7 +165,17 @@ namespace AppForDoctor
         private void controlReviewButton_Click(object sender, RoutedEventArgs e)
         {
             ControlReview r = new ControlReview();
-            r.Show();
+            if (controlReviewDate != default) r.setInitialDate(controlReviewDate);
+            r.ShowDialog();
+        }
+
+        public void setControlDate(DateTime? input)
+        {
+            if (input != controlReviewDate)
+            {
+                controlReviewDate = input;
+                saveDiagnosisButton.IsEnabled = true;
+            }
         }
     }
 }

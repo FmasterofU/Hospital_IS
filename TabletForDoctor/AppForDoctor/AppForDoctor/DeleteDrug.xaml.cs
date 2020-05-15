@@ -57,13 +57,6 @@ namespace AppForDoctor
             backFromDeleteButton.BorderBrush = Brushes.White;
         }
 
-        private void DeleteDrugWindow_Closed(object sender, EventArgs e)
-        {
-            deleteDrugsComboBox.Items.Clear();
-            DrugsPage.closeDeletion();
-            this.Close();
-        }
-
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
         {
             int index = deleteDrugsComboBox.SelectedIndex;
@@ -72,6 +65,11 @@ namespace AppForDoctor
             d.deleteDrugFormList(index);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (deleteDrugsComboBox.Items.Count == 0)   this.Close();
+        }
+
+        private void backFromDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void DeleteDrugWindow_Loaded(object sender, RoutedEventArgs e)

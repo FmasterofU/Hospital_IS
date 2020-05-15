@@ -7,19 +7,21 @@
         mc:Ignorable="d"
         Title="ControlReview" Height="500" Width="500"
         x:Name="ControlReviewWindow"
-        Background="White">
+        Background="White"
+        Loaded="ControlReviewWindow_Loaded">
     <Window.Resources>
         <Style x:Key="styleCalendar" TargetType="DatePicker">
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="White"/>
         </Style>
     </Window.Resources>
     <Grid>
-        <Viewbox VerticalAlignment="Center" Height="346" Margin="96,0,96,200" >
-            <DatePicker Style="{StaticResource ResourceKey=styleCalendar}"/>
+        <Viewbox VerticalAlignment="Center" Height="146" Margin="96,0,96,200" >
+            <DatePicker Name="calendar" Style="{StaticResource ResourceKey=styleCalendar}" SelectedDateChanged="calendar_SelectedDateChanged" />
         </Viewbox>
         <Button x:Name="saveControlButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="Black" Height="55" BorderBrush="Black">Sacuvaj</Button>
+                Background="Green" Foreground="Black" Height="55" BorderBrush="Black" Click="saveControlButton_Click">Sacuvaj</Button>
         <Button x:Name="backFromControlButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="Black" Height="55" BorderBrush="Black">Nazad</Button>
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromControlButton_Click">Nazad</Button>
     </Grid>
 </Window>

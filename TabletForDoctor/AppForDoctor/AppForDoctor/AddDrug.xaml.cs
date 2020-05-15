@@ -62,10 +62,9 @@ namespace AppForDoctor
             backFromAddButton.BorderBrush = Brushes.White;
         }
 
-        private void AddDrugWindow_Closed(object sender, EventArgs e)
+        private void backFromAddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            DrugsPage.closeAdding();
         }
 
         private void AddDrugWindow_Loaded(object sender, RoutedEventArgs e)

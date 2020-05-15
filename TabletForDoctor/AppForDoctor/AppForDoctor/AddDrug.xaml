@@ -8,13 +8,12 @@
         Title="AddDrug" Height="500" Width="500"
         x:Name="AddDrugWindow"
         Background="White"
-        Closed="AddDrugWindow_Closed"
         Loaded="AddDrugWindow_Loaded">
     <Grid>
         <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Green" Foreground="Black" Height="55" BorderBrush="Black" Click="addDrugButton_Click">Dodaj</Button>
         <Button x:Name="backFromAddButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="AddDrugWindow_Closed">Nazad</Button>
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromAddButton_Click">Nazad</Button>
         <ComboBox x:Name="addDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,315" Foreground="Black"/>
     </Grid>
 </Window>

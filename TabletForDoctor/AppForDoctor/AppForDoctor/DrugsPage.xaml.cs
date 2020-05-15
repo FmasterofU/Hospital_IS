@@ -20,23 +20,12 @@ namespace AppForDoctor
     /// </summary>
     public partial class DrugsPage : Page
     {
-        private static DeleteDrug delete = null;
-        private static AddDrug add = null;
         private static List<string> drugList = new List<string>();
         private static DrugsPage instance = null;
         private DrugsPage()
         {
             InitializeComponent();
             //TODO: load drugs from database
-            /*for (int i = 0; i < drugListBox.Items.Count; i++)
-            {
-                drugList.Add(drugListBox.Items[i].ToString());
-            }
-            if (drugList.Count == 0) deleteDrugButton.IsEnabled = false;
-            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
-            else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();*/
             for (int i = 0; i < drugList.Count; i++)
             {
                 drugListBox.Items.Add(drugList[i]);
@@ -111,16 +100,6 @@ namespace AppForDoctor
             return drugList;
         }
 
-        public static void closeDeletion()
-        {
-            delete = null;
-        }
-
-        public static void closeAdding()
-        {
-            add = null;
-        }
-
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
             ExaminationPage.getInstance().saveAddedDrugs(drugList);
@@ -137,14 +116,14 @@ namespace AppForDoctor
         {
             if (drugList.Count != 0)
             {
-                delete = new DeleteDrug();
+                DeleteDrug delete = new DeleteDrug();
                 delete.ShowDialog();
             }
         }
 
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            add = new AddDrug();
+            AddDrug add = new AddDrug();
             add.ShowDialog();
         }
 
