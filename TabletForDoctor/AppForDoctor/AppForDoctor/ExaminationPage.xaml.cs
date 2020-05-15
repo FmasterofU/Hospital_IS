@@ -160,5 +160,11 @@ namespace AppForDoctor
                 addedDrugs = newDrugs;
             }
         }
+
+        private void controlReviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            ControlReview r = new ControlReview();
+            r.Show();
+        }
     }
 }

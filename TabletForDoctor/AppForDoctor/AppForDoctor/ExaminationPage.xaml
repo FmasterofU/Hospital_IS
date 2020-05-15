@@ -23,7 +23,7 @@
             <Button x:Name="refferalButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange" Foreground="Black" 
                     BorderBrush="Black" Height="55">Pregled uputa</Button>
             <Button x:Name="controlReviewButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange"
-                    Foreground="Black" BorderBrush="Black" Height="55">Zakazivanje kontrole</Button>
+                    Foreground="Black" BorderBrush="Black" Height="55" Click="controlReviewButton_Click">Zakazivanje kontrole</Button>
         </StackPanel>
         <Button x:Name="saveDiagnosisButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Green" Foreground="Black" Height="55" BorderBrush="Black" IsEnabled="False" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
