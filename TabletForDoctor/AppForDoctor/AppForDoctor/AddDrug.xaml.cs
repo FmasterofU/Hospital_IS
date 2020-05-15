@@ -23,12 +23,15 @@ namespace AppForDoctor
         {
             InitializeComponent();
             //TODO: load all medicaments in hospital
-            addDrugsComboBox.Items.Add("Novi");
-            addDrugsComboBox.Items.Add("Nnovi");
-            addDrugsComboBox.Items.Add("Noovi");
-            addDrugsComboBox.Items.Add("Novvi");
-            addDrugsComboBox.Items.Add("Novii");
-            addDrugsComboBox.Items.Add("Novio");
+            HashSet<string> drugSet = new HashSet<string>();
+            drugSet.Add("Novi");
+            drugSet.Add("Nnovi");
+            drugSet.Add("Noovi");
+            drugSet.Add("Novvi");
+            drugSet.Add("Novii");
+            drugSet.Add("Novio");
+            drugSet.ExceptWith(DrugsPage.getDrugSet());
+            foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
             addDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
@@ -76,12 +79,16 @@ namespace AppForDoctor
 
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = addDrugsComboBox.SelectedIndex;
+            string item = addDrugsComboBox.SelectedItem.ToString();
             DrugsPage d = DrugsPage.getInstance();
-            d.addDrugToList(addDrugsComboBox.Items[index].ToString());
-            addDrugsComboBox.Items.RemoveAt(index);
+            d.addDrugToSet(item);
+            addDrugsComboBox.Items.Remove(item);
             addDrugsComboBox.SelectedIndex = 0;
-            if (addDrugsComboBox.Items.Count == 0) this.Close();
+            if (addDrugsComboBox.Items.Count == 0)
+            {
+                DrugsPage.getInstance().disableAddButton();
+                this.Close();
+            }
         }
     }
 }

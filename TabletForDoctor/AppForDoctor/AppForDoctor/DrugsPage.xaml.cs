@@ -20,22 +20,22 @@ namespace AppForDoctor
     /// </summary>
     public partial class DrugsPage : Page
     {
-        private static List<string> drugList = new List<string>();
+        private static HashSet<string> drugSet = new HashSet<string>();
         private static DrugsPage instance = null;
         private DrugsPage()
         {
             InitializeComponent();
             //TODO: load drugs from database
-            for (int i = 0; i < drugList.Count; i++)
+            foreach(string s in drugSet)
             {
-                drugListBox.Items.Add(drugList[i]);
+                drugListBox.Items.Add(s);
             }
         }
 
         public static DrugsPage getInstance()
         {
             if (instance == null) instance = new DrugsPage();
-            if (drugList.Count == 0) instance.deleteDrugButton.IsEnabled = false;
+            if (drugSet.Count == 0) instance.deleteDrugButton.IsEnabled = false;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
@@ -81,28 +81,29 @@ namespace AppForDoctor
             MedHistory.getInstance().ToDarkTheme();
         }
 
-        public void deleteDrugFormList(int index)
+        public void deleteDrugFromSet(string item)
         {
-            drugList.RemoveAt(index);
-            drugListBox.Items.RemoveAt(index);
-            if (drugList.Count == 0) deleteDrugButton.IsEnabled = false;
+            drugSet.Remove(item);
+            drugListBox.Items.Remove(item);
+            if (drugSet.Count == 0) deleteDrugButton.IsEnabled = false;
+            if(!addDrugButton.IsEnabled)    addDrugButton.IsEnabled = true;
         }
 
-        public void addDrugToList(string adding)
+        public void addDrugToSet(string adding)
         {
-            drugList.Add(adding);
+            drugSet.Add(adding);
             drugListBox.Items.Add(adding);
-            if (drugList.Count != 0) deleteDrugButton.IsEnabled = true;
+            if (!deleteDrugButton.IsEnabled) deleteDrugButton.IsEnabled = true;
         }
 
-        public static List<string> getDrugList()
+        public static HashSet<string> getDrugSet()
         {
-            return drugList;
+            return drugSet;
         }
 
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
-            ExaminationPage.getInstance().saveAddedDrugs(drugList);
+            ExaminationPage.getInstance().saveAddedDrugs(drugSet);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
@@ -114,7 +115,7 @@ namespace AppForDoctor
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            if (drugList.Count != 0)
+            if(drugSet.Count != 0)
             {
                 DeleteDrug delete = new DeleteDrug();
                 delete.ShowDialog();
@@ -130,7 +131,12 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
-            drugList = new List<String>();
+            drugSet = new HashSet<string>();
+        }
+
+        public void disableAddButton()
+        {
+            addDrugButton.IsEnabled = false;
         }
     }
 }

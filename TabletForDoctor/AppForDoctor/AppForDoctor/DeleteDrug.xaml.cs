@@ -22,8 +22,8 @@ namespace AppForDoctor
         public DeleteDrug()
         {
             InitializeComponent();
-            List<String> drugList = DrugsPage.getDrugList();
-            for(int i = 0; i < drugList.Count; i++) deleteDrugsComboBox.Items.Add(drugList[i]);
+            HashSet<string> drugSet = DrugsPage.getDrugSet();
+            foreach (string s in drugSet) deleteDrugsComboBox.Items.Add(s);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
@@ -59,10 +59,10 @@ namespace AppForDoctor
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = deleteDrugsComboBox.SelectedIndex;
-            deleteDrugsComboBox.Items.RemoveAt(index);
+            string item = deleteDrugsComboBox.SelectedItem.ToString();
+            deleteDrugsComboBox.Items.Remove(item);
             DrugsPage d = DrugsPage.getInstance();
-            d.deleteDrugFormList(index);
+            d.deleteDrugFromSet(item);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (deleteDrugsComboBox.Items.Count == 0)   this.Close();
         }

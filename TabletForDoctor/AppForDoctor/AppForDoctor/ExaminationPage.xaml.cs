@@ -21,11 +21,9 @@ namespace AppForDoctor
     public partial class ExaminationPage : Page
     {
         // load history from database
-        //private static MedHistory history = new MedHistory();
-        //private static bool historyOpened = false;
         private static ExaminationPage instance = null;
         private string diagnosis = "";
-        private string addedDrugs = "";
+        private HashSet<string> addedDrugs = new HashSet<string>();
         private DateTime? controlReviewDate = default;
         private ExaminationPage()
         {
@@ -126,14 +124,13 @@ namespace AppForDoctor
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            string toHistory = diagnosis + "\n" + addedDrugs + "\n" + controlReviewDate.ToString();
+            string toHistory = diagnosis + "\n" + hashSetToString(addedDrugs) + "\n" + controlReviewDate.ToString();
             MedHistory.getInstance().historyText.Text = toHistory;
             saveDiagnosisButton.IsEnabled = false;
         }
 
         private void drugsButton_Click(object sender, RoutedEventArgs e)
         {
-            //diagnosis = instance.diagnosisText.Text;
             MainWindow w = MainWindow.getInstance();
             w.changePage(3);
         }
@@ -144,22 +141,10 @@ namespace AppForDoctor
             saveDiagnosisButton.IsEnabled = true;
         }
 
-        public void saveAddedDrugs(List<string> input)
+        public void saveAddedDrugs(HashSet<string> input)
         {
-            string newDrugs = "";
-            if(input.Count != 0)
-            {
-                for(int i = 0; i < input.Count; i++)
-                {
-                    newDrugs += input[i];
-                    if (i != input.Count - 1) newDrugs += ", ";
-                }
-            }
-            if(!newDrugs.Equals(addedDrugs))
-            {
-                saveDiagnosisButton.IsEnabled = true;
-                addedDrugs = newDrugs;
-            }
+            saveDiagnosisButton.IsEnabled = true;
+            addedDrugs = input;
         }
 
         private void controlReviewButton_Click(object sender, RoutedEventArgs e)
@@ -176,6 +161,17 @@ namespace AppForDoctor
                 controlReviewDate = input;
                 saveDiagnosisButton.IsEnabled = true;
             }
+        }
+
+        public static string hashSetToString(HashSet<string> input)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in input)
+            {
+                sb.Append(s);
+                sb.Append(", ");
+            }
+            return sb.ToString(0, sb.Length - 2);
         }
     }
 }
