@@ -22,7 +22,7 @@ namespace AppForDoctor
         public DeleteDrug()
         {
             InitializeComponent();
-            HashSet<string> drugSet = DrugsPage.getDrugSet();
+            HashSet<string> drugSet = DrugsPage.getInstance().getDrugSet();
             foreach (string s in drugSet) deleteDrugsComboBox.Items.Add(s);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();

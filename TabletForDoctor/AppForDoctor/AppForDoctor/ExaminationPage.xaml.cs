@@ -143,8 +143,15 @@ namespace AppForDoctor
 
         public void saveAddedDrugs(HashSet<string> input)
         {
-            saveDiagnosisButton.IsEnabled = true;
-            addedDrugs = input;
+            if (!input.SetEquals(addedDrugs))
+            {
+                addedDrugs.Clear();
+                saveDiagnosisButton.IsEnabled = true;
+                foreach (string s in input)
+                {
+                    addedDrugs.Add(s);
+                }
+            }
         }
 
         private void controlReviewButton_Click(object sender, RoutedEventArgs e)
@@ -171,7 +178,11 @@ namespace AppForDoctor
                 sb.Append(s);
                 sb.Append(", ");
             }
-            return sb.ToString(0, sb.Length - 2);
+            if (sb.Length > 2) return sb.ToString(0, sb.Length - 2);
+            else
+            {
+                return "";
+            }
         }
     }
 }

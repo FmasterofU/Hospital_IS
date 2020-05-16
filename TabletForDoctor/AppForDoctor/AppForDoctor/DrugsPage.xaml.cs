@@ -20,7 +20,7 @@ namespace AppForDoctor
     /// </summary>
     public partial class DrugsPage : Page
     {
-        private static HashSet<string> drugSet = new HashSet<string>();
+        private HashSet<string> drugSet = new HashSet<string>();
         private static DrugsPage instance = null;
         private DrugsPage()
         {
@@ -35,7 +35,7 @@ namespace AppForDoctor
         public static DrugsPage getInstance()
         {
             if (instance == null) instance = new DrugsPage();
-            if (drugSet.Count == 0) instance.deleteDrugButton.IsEnabled = false;
+            if (instance.drugSet.Count == 0) instance.deleteDrugButton.IsEnabled = false;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
@@ -96,7 +96,7 @@ namespace AppForDoctor
             if (!deleteDrugButton.IsEnabled) deleteDrugButton.IsEnabled = true;
         }
 
-        public static HashSet<string> getDrugSet()
+        public HashSet<string> getDrugSet()
         {
             return drugSet;
         }
@@ -131,7 +131,7 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
-            drugSet = new HashSet<string>();
+            //drugSet = new HashSet<string>();
         }
 
         public void disableAddButton()

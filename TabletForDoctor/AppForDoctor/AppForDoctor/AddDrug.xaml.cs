@@ -30,7 +30,7 @@ namespace AppForDoctor
             drugSet.Add("Novvi");
             drugSet.Add("Novii");
             drugSet.Add("Novio");
-            drugSet.ExceptWith(DrugsPage.getDrugSet());
+            drugSet.ExceptWith(DrugsPage.getInstance().getDrugSet());
             foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
             addDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
