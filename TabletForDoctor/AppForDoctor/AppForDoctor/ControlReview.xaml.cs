@@ -61,11 +61,13 @@ namespace AppForDoctor
         private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             selDate = calendar.SelectedDate;
+            if (!saveControlButton.IsEnabled) saveControlButton.IsEnabled = true;
         }
 
         public void setInitialDate(DateTime? initial)
         {
             calendar.SelectedDate = initial;
+            saveControlButton.IsEnabled = true;
         }
     }
 }
