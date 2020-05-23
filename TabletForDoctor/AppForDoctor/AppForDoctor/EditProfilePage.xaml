@@ -1,0 +1,33 @@
+﻿<Page x:Class="AppForDoctor.EditProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForDoctor"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="EditProfilePage">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="25,152,800,0">
+            <Label x:Name="nameLabel" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Ime:</Label>
+            <Label x:Name="surnameLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Prezime:</Label>
+            <Label x:Name="adressLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Adresa:</Label>
+            <Label x:Name="mailLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">E-mail:</Label>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="230,152,0,0">
+            <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Foreground="Black" Background="White">Elena</TextBox>
+            <TextBox x:Name="surnameTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Foreground="Black" Background="White">Elenic</TextBox>
+            <TextBox x:Name="adressTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Foreground="Black" Background="White">Adresa 01</TextBox>
+            <TextBox x:Name="mailTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Foreground="Black" Background="White" Text="elena@mail.com"/>
+        </StackPanel>
+        <Button x:Name="saveProfile" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
+                Background="Green" Foreground="Black" Height="55" BorderBrush="Black">Sacuvaj</Button>
+        <Button x:Name="backFromEditProfile" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromEditProfile_Click">Nazad</Button>
+    </Grid>
+</Page>

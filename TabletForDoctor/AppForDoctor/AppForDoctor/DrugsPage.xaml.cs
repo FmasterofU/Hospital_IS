@@ -131,7 +131,6 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
-            //drugSet = new HashSet<string>();
         }
 
         public void disableAddButton()

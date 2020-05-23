@@ -24,8 +24,22 @@ namespace AppForDoctor
         public ControlReview()
         {
             InitializeComponent();
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
             else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
+        }
+
+        private void ToSerbian()
+        {
+            saveControlButton.Content = "Sacuvaj";
+            backFromControlButton.Content = "Nazad";
+        }
+
+        private void ToEnglish()
+        {
+            saveControlButton.Content = "Save";
+            backFromControlButton.Content = "Back";
         }
 
         private void ToLightTheme()

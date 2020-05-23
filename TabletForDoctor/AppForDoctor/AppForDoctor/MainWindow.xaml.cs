@@ -78,6 +78,8 @@ namespace AppForDoctor
             lightButton.Background = Brushes.DeepSkyBlue;
             darkButton.Background = Brushes.LightSlateGray;
             mainLabel.Foreground = Brushes.Black;
+            editProfileButton.BorderBrush = Brushes.Black;
+            logOutButton.BorderBrush = Brushes.Black;
             changeActivePageToLightTheme();
         }
 
@@ -88,6 +90,8 @@ namespace AppForDoctor
             lightButton.Background = Brushes.LightSlateGray;
             darkButton.Background = Brushes.DeepSkyBlue;
             mainLabel.Foreground = Brushes.White;
+            editProfileButton.BorderBrush = Brushes.White;
+            logOutButton.BorderBrush = Brushes.White;
             changeActivePageToDarkTheme();
         }
 
@@ -99,6 +103,7 @@ namespace AppForDoctor
             lightButton.Content = "Svetlo";
             darkButton.Content = "Tamno";
             mainLabel.Content = "Postovanje, ulogovani Ste kao lekar.";
+            editProfileButton.Content = "Uredi profil";
             changeActivePageToSerbian();
         }
 
@@ -110,7 +115,13 @@ namespace AppForDoctor
             lightButton.Content = "Light";
             darkButton.Content = "Dark";
             mainLabel.Content = "Dear user, you are logged in as doctor.";
+            editProfileButton.Content = "Edit profile";
             changeActivePageToEnglish();
+        }
+
+        private void editProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.changePage(4);
         }
 
         public void changePage(int page)
@@ -118,7 +129,8 @@ namespace AppForDoctor
             // 1 - main menu
             // 2 - examination
             // 3 - drugs
-            this.activePage = page;
+            // 4 - edit profile
+            if (editProfileButton.Visibility == Visibility.Hidden) editProfileButton.Visibility = Visibility.Visible;
             switch(page)
             {
                 case 1: 
@@ -130,7 +142,12 @@ namespace AppForDoctor
                 case 3:
                     MainFrame.Content = DrugsPage.getInstance();
                     break;
+                case 4:
+                    MainFrame.Content = EditProfilePage.getInstance(activePage);
+                    editProfileButton.Visibility = Visibility.Hidden;
+                    break;
             }
+            this.activePage = page;
         }
 
         private void changeActivePageToSerbian()
@@ -148,6 +165,10 @@ namespace AppForDoctor
                 case 3:
                     DrugsPage d = DrugsPage.getInstance();
                     d.ToSerbian();
+                    break;
+                case 4:
+                    EditProfilePage p = EditProfilePage.getInstance();
+                    p.ToSerbian();
                     break;
             }
         }
@@ -168,6 +189,10 @@ namespace AppForDoctor
                     DrugsPage d = DrugsPage.getInstance();
                     d.ToEnglish();
                     break;
+                case 4:
+                    EditProfilePage p = EditProfilePage.getInstance();
+                    p.ToEnglish();
+                    break;
             }
         }
 
@@ -187,6 +212,10 @@ namespace AppForDoctor
                     DrugsPage d = DrugsPage.getInstance();
                     d.ToLightTheme();
                     break;
+                case 4:
+                    EditProfilePage p = EditProfilePage.getInstance();
+                    p.ToLightTheme();
+                    break;
             }
         }
 
@@ -205,6 +234,10 @@ namespace AppForDoctor
                 case 3:
                     DrugsPage d = DrugsPage.getInstance();
                     d.ToDarkTheme();
+                    break;
+                case 4:
+                    EditProfilePage p = EditProfilePage.getInstance();
+                    p.ToDarkTheme();
                     break;
             }
         }

@@ -38,7 +38,7 @@ namespace AppForDoctor
         public static ExaminationPage getInstance()
         {
             if (instance == null) instance = new ExaminationPage();
-            instance.diagnosisText.Text = instance.diagnosis;
+            //instance.diagnosisText.Text = instance.diagnosis;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
             if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
