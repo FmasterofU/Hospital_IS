@@ -13,7 +13,7 @@
     <Grid>
         <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Red"
                 Foreground="Black" BorderBrush="Black" Click="editProfileButton_Click">Uredi profil</Button>
-        <Label x:Name="mainLabel" HorizontalAlignment="Right" Margin="0,10,200,0" VerticalAlignment="Top" FontSize="35" Foreground="Black">Postovanje, ulogovani Ste kao lekar.</Label>
+        <Label x:Name="mainLabel" HorizontalAlignment="Right" Margin="0,10,200,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}">Postovanje, ulogovani Ste kao lekar.</Label>
         <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="160" FontSize="35" Background="DodgerBlue" 
                 BorderBrush="Black" Click="logOutButton_Click">Log out</Button>
         <StackPanel Margin="25,72,700,600" Orientation="Horizontal">

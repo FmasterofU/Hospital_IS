@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:AppForDoctor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="foregroundColor" Color="Black"/>
+        <SolidColorBrush x:Key="backgroundColor" Color="White"/>
+        <Style x:Key="sizeStyle" TargetType="Control">
+            <Setter Property="FontSize" Value="35" />
+        </Style>
+        <Style x:Key="labelStyle" TargetType="Control" BasedOn="{StaticResource sizeStyle}">
+            <Setter Property="Foreground" Value="{DynamicResource foregroundColor}"/>
+        </Style>
     </Application.Resources>
 </Application>

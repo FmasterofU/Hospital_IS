@@ -73,7 +73,7 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0,0,0));
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             nameTextBox.Background = Brushes.White;
             surnameTextBox.Background = Brushes.White;
             adressTextBox.Background = Brushes.White;

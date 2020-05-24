@@ -61,7 +61,7 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            drugsLabel.Foreground = Brushes.Black;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             drugListBox.Background = Brushes.White;
             drugListBox.Foreground = Brushes.Black;
             addDrugButton.BorderBrush = Brushes.Black;
@@ -72,7 +72,7 @@ namespace AppForDoctor
 
         public void ToDarkTheme()
         {
-            drugsLabel.Foreground = Brushes.White;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             drugListBox.Background = Brushes.Black;
             drugListBox.Foreground = Brushes.White;
             addDrugButton.BorderBrush = Brushes.White;

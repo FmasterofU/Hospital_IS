@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel Orientation="Vertical" Margin="25,150,40,0">
-            <Label x:Name="patientName" HorizontalAlignment="Left" Margin="-3,2,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Foreground="Black">Imenko Prezimenic, ID = 123456:</Label>
+            <Label x:Name="patientName" HorizontalAlignment="Left" Margin="-3,2,0,0" VerticalAlignment="Top" Width="Auto" Style="{StaticResource labelStyle}">Imenko Prezimenic, ID = 123456:</Label>
             <Button x:Name="historyButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange" Foreground="Black"
                 BorderBrush="Black" Click="historyButton_Click">Pogledaj istoriju bolesti</Button>
             <GroupBox x:Name="diagnosisBox" Header="Dijagnoza:" HorizontalAlignment="Left" Height="200" Margin="0,10,0,0" VerticalAlignment="Top" Width="956" FontSize="35" BorderBrush="Black" 

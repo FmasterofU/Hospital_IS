@@ -65,7 +65,7 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            patientName.Foreground = Brushes.Black;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             historyButton.BorderBrush = Brushes.Black;
             diagnosisBox.BorderBrush = Brushes.Black;
             diagnosisBox.Background = Brushes.White;
@@ -82,7 +82,7 @@ namespace AppForDoctor
 
         public void ToDarkTheme()
         {
-            patientName.Foreground = Brushes.White;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             historyButton.BorderBrush = Brushes.White;
             diagnosisBox.BorderBrush = Brushes.White;
             diagnosisBox.Background = Brushes.Black;

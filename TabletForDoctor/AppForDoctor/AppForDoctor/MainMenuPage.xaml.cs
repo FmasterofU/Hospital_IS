@@ -56,9 +56,8 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            patientID.Foreground = Brushes.Black;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             patientIDText.BorderBrush = Brushes.Black;
-            patientIDText.Foreground = Brushes.Black;
             patientIDText.Background = Brushes.White;
             acceptID.BorderBrush = Brushes.Black;
             appointmentsButton.BorderBrush = Brushes.Black;
@@ -68,9 +67,8 @@ namespace AppForDoctor
 
         public void ToDarkTheme()
         {
-            patientID.Foreground = Brushes.White;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             patientIDText.BorderBrush = Brushes.White;
-            patientIDText.Foreground = Brushes.White;
             patientIDText.Background = Brushes.Black;
             acceptID.BorderBrush = Brushes.White;
             appointmentsButton.BorderBrush = Brushes.White;

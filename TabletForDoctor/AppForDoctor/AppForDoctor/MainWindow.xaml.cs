@@ -74,10 +74,10 @@ namespace AppForDoctor
         private void lightButton_Click(object sender, RoutedEventArgs e)
         {
             theme = Theme.Light;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             MeinWindow.Background = Brushes.White;
             lightButton.Background = Brushes.DeepSkyBlue;
             darkButton.Background = Brushes.LightSlateGray;
-            mainLabel.Foreground = Brushes.Black;
             editProfileButton.BorderBrush = Brushes.Black;
             logOutButton.BorderBrush = Brushes.Black;
             changeActivePageToLightTheme();
@@ -86,10 +86,10 @@ namespace AppForDoctor
         private void darkButton_Click(object sender, RoutedEventArgs e)
         {
             theme = Theme.Dark;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             MeinWindow.Background = Brushes.Black;
             lightButton.Background = Brushes.LightSlateGray;
             darkButton.Background = Brushes.DeepSkyBlue;
-            mainLabel.Foreground = Brushes.White;
             editProfileButton.BorderBrush = Brushes.White;
             logOutButton.BorderBrush = Brushes.White;
             changeActivePageToDarkTheme();
@@ -99,7 +99,7 @@ namespace AppForDoctor
         {
             language = Language.Serbian;
             serbianComboItem.Content = "Srpski";
-            if(englishComboItem != null)    englishComboItem.Content = "Engleski";
+            if (englishComboItem != null) englishComboItem.Content = "Engleski";
             lightButton.Content = "Svetlo";
             darkButton.Content = "Tamno";
             mainLabel.Content = "Postovanje, ulogovani Ste kao lekar.";
@@ -111,7 +111,7 @@ namespace AppForDoctor
         {
             language = Language.English;
             serbianComboItem.Content = "Serbian";
-           if(englishComboItem != null) englishComboItem.Content = "English";
+            if (englishComboItem != null) englishComboItem.Content = "English";
             lightButton.Content = "Light";
             darkButton.Content = "Dark";
             mainLabel.Content = "Dear user, you are logged in as doctor.";
