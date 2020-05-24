@@ -7,27 +7,43 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1024"
       Title="EditProfilePage">
+    <Page.Resources>
+        <SolidColorBrush x:Key="foregroundColor" Color="Black"/>
+        <SolidColorBrush x:Key="backgroundColor" Color="White"/>
+        <Style x:Key="testStyle" TargetType="Control">
+            <Setter Property="Foreground" Value="{DynamicResource foregroundColor}"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="25,152,800,0">
-            <Label x:Name="nameLabel" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Ime:</Label>
-            <Label x:Name="surnameLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Prezime:</Label>
-            <Label x:Name="adressLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">Adresa:</Label>
-            <Label x:Name="mailLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Width="Auto" Height="55">E-mail:</Label>
+        <Button x:Name="saveProfileButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
+                Background="Green" Foreground="Black" Height="55" BorderBrush="Black" Click="saveProfileButton_Click">Sacuvaj</Button>
+        <Button x:Name="backFromEditProfileButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
+                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromEditProfileButton_Click">Nazad</Button>
+        <StackPanel Orientation="Vertical" Margin="25,152,650,0">
+            <Label x:Name="nameLabel" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Ime:</Label>
+            <Label x:Name="surnameLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Prezime:</Label>
+            <Label x:Name="adressLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Adresa:</Label>
+            <Label x:Name="mailLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">E-mail:</Label>
+            <Label x:Name="passwordLabel" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Trenutna lozinka:</Label>
+            <Label x:Name="newPasswordLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Nova lozinka:</Label>
+            <Label x:Name="newPassword2Label" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="35" Width="Auto" Height="55" Style="{StaticResource testStyle}">Ponovi novu lozinku:</Label>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="230,152,0,0">
             <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
-                     FontSize="35" Foreground="Black" Background="White">Elena</TextBox>
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" TextChanged="nameTextBox_TextChanged"/>
             <TextBox x:Name="surnameTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
-                     FontSize="35" Foreground="Black" Background="White">Elenic</TextBox>
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" TextChanged="surnameTextBox_TextChanged"/>
             <TextBox x:Name="adressTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
-                     FontSize="35" Foreground="Black" Background="White">Adresa 01</TextBox>
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" TextChanged="adressTextBox_TextChanged"/>
             <TextBox x:Name="mailTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
-                     FontSize="35" Foreground="Black" Background="White" Text="elena@mail.com"/>
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" TextChanged="mailTextBox_TextChanged"/>
+            <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="150,30,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}"/>
+            <TextBox x:Name="newPasswordTextBox" HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" IsEnabled="False"/>
+            <TextBox x:Name="newPassword2TextBox" HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" Height="55"
+                     FontSize="35" Background="White" Style="{StaticResource testStyle}" IsEnabled="False"/>
         </StackPanel>
-        <Button x:Name="saveProfile" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="Black" Height="55" BorderBrush="Black">Sacuvaj</Button>
-        <Button x:Name="backFromEditProfile" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromEditProfile_Click">Nazad</Button>
     </Grid>
 </Page>

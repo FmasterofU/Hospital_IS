@@ -30,11 +30,6 @@ namespace AppForDoctor
             InitializeComponent();
         }
 
-        public static void closeHistory()
-        {
-            //history = null;
-        }
-
         public static ExaminationPage getInstance()
         {
             if (instance == null) instance = new ExaminationPage();

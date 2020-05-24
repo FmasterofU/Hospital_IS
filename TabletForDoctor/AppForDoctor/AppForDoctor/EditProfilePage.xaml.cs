@@ -22,10 +22,18 @@ namespace AppForDoctor
     {
         private static EditProfilePage instance = null;
         private int previousPage = 0;
+        private string name = "Elena";
+        private string surname = "Elenic";
+        private string adress = "Adresa 01";
+        private string mail = "elena@mail.com";
         private EditProfilePage()
         {
             InitializeComponent();
-            //TODO: read all profile date from database
+            //TODO: read all profile data from database
+            nameTextBox.Text = name;
+            surnameTextBox.Text = surname;
+            adressTextBox.Text = adress;
+            mailTextBox.Text = mail;
         }
 
         public static EditProfilePage getInstance()
@@ -50,8 +58,8 @@ namespace AppForDoctor
             nameLabel.Content = "Ime:";
             surnameLabel.Content = "Prezime:";
             adressLabel.Content = "Adresa:";
-            saveProfile.Content = "Sacuvaj";
-            backFromEditProfile.Content = "Nazad";
+            saveProfileButton.Content = "Sacuvaj";
+            backFromEditProfileButton.Content = "Nazad";
         }
 
         public void ToEnglish()
@@ -59,51 +67,77 @@ namespace AppForDoctor
             nameLabel.Content = "Name:";
             surnameLabel.Content = "Surname:";
             adressLabel.Content = "Adress:";
-            saveProfile.Content = "Save";
-            backFromEditProfile.Content = "Back";
+            saveProfileButton.Content = "Save";
+            backFromEditProfileButton.Content = "Back";
         }
 
         public void ToLightTheme()
         {
-            nameLabel.Foreground = Brushes.Black;
-            surnameLabel.Foreground = Brushes.Black;
-            adressLabel.Foreground = Brushes.Black;
-            mailLabel.Foreground = Brushes.Black;
-            nameTextBox.Foreground = Brushes.Black;
-            surnameTextBox.Foreground = Brushes.Black;
-            adressTextBox.Foreground = Brushes.Black;
-            mailTextBox.Foreground = Brushes.Black;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0,0,0));
             nameTextBox.Background = Brushes.White;
             surnameTextBox.Background = Brushes.White;
             adressTextBox.Background = Brushes.White;
             mailTextBox.Background = Brushes.White;
-            saveProfile.BorderBrush = Brushes.Black;
-            backFromEditProfile.BorderBrush = Brushes.Black;
+            passwordTextBox.Background = Brushes.White;
+            newPasswordTextBox.Background = Brushes.White;
+            newPassword2TextBox.Background = Brushes.White;
+            saveProfileButton.BorderBrush = Brushes.Black;
+            backFromEditProfileButton.BorderBrush = Brushes.Black;
         }
 
         public void ToDarkTheme()
         {
-            nameLabel.Foreground = Brushes.White;
-            surnameLabel.Foreground = Brushes.White;
-            adressLabel.Foreground = Brushes.White;
-            mailLabel.Foreground = Brushes.White;
-            nameTextBox.Foreground = Brushes.White;
-            surnameTextBox.Foreground = Brushes.White;
-            adressTextBox.Foreground = Brushes.White;
-            mailTextBox.Foreground = Brushes.White;
+            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             nameTextBox.Background = Brushes.Black;
             surnameTextBox.Background = Brushes.Black;
             adressTextBox.Background = Brushes.Black;
             mailTextBox.Background = Brushes.Black;
-            saveProfile.BorderBrush = Brushes.White;
-            backFromEditProfile.BorderBrush = Brushes.White;
+            passwordTextBox.Background = Brushes.Black;
+            newPasswordTextBox.Background = Brushes.Black;
+            newPassword2TextBox.Background = Brushes.Black;
+            saveProfileButton.BorderBrush = Brushes.White;
+            backFromEditProfileButton.BorderBrush = Brushes.White;
         }
 
-        private void backFromEditProfile_Click(object sender, RoutedEventArgs e)
+        private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!name.Equals(nameTextBox.Text)) saveProfileButton.IsEnabled = true;
+            else if (surname.Equals(surnameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+        }
+
+        private void surnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!surname.Equals(surnameTextBox.Text)) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+        }
+
+        private void adressTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!adress.Equals(adressTextBox.Text)) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && surname.Equals(surnameTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+        }
+
+        private void mailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && surname.Equals(surnameTextBox.Text)) saveProfileButton.IsEnabled = false;
+        }
+
+        private void backFromEditProfileButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow w = MainWindow.getInstance();
             w.changePage(previousPage);
-            instance = null;
+            //instance = null;
+        }
+
+        private void saveProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            name = nameTextBox.Text;
+            surname = surnameTextBox.Text;
+            adress = adressTextBox.Text;
+            mail = mailTextBox.Text;
+            saveProfileButton.IsEnabled = false;
+            //TODO: save changes to database
         }
     }
 }

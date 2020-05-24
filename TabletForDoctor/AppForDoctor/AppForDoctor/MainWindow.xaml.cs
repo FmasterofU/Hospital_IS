@@ -68,7 +68,7 @@ namespace AppForDoctor
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: implement later
+            //TODO: implement logOut
         }
 
         private void lightButton_Click(object sender, RoutedEventArgs e)
@@ -159,16 +159,14 @@ namespace AppForDoctor
                     m.ToSerbian();
                     break;
                 case 2:
-                    ExaminationPage e = ExaminationPage.getInstance();
-                    e.ToSerbian();
+                    ExaminationPage.getInstance();
+                    //e.ToSerbian();
                     break;
                 case 3:
-                    DrugsPage d = DrugsPage.getInstance();
-                    d.ToSerbian();
+                    DrugsPage.getInstance();
                     break;
                 case 4:
-                    EditProfilePage p = EditProfilePage.getInstance();
-                    p.ToSerbian();
+                    EditProfilePage.getInstance();
                     break;
             }
         }
@@ -182,16 +180,14 @@ namespace AppForDoctor
                     m.ToEnglish();
                     break;
                 case 2:
-                    ExaminationPage e = ExaminationPage.getInstance();
-                    e.ToEnglish();
+                    ExaminationPage.getInstance();
+                    //e.ToEnglish();
                     break;
                 case 3:
-                    DrugsPage d = DrugsPage.getInstance();
-                    d.ToEnglish();
+                    DrugsPage.getInstance();
                     break;
                 case 4:
-                    EditProfilePage p = EditProfilePage.getInstance();
-                    p.ToEnglish();
+                    EditProfilePage.getInstance();
                     break;
             }
         }
@@ -205,16 +201,14 @@ namespace AppForDoctor
                     m.ToLightTheme();
                     break;
                 case 2:
-                    ExaminationPage e = ExaminationPage.getInstance();
-                    e.ToLightTheme();
+                    ExaminationPage.getInstance();
+                    //e.ToLightTheme();
                     break;
                 case 3:
-                    DrugsPage d = DrugsPage.getInstance();
-                    d.ToLightTheme();
+                    DrugsPage.getInstance();
                     break;
                 case 4:
-                    EditProfilePage p = EditProfilePage.getInstance();
-                    p.ToLightTheme();
+                    EditProfilePage.getInstance();
                     break;
             }
         }
@@ -228,16 +222,14 @@ namespace AppForDoctor
                     m.ToDarkTheme();
                     break;
                 case 2:
-                    ExaminationPage e = ExaminationPage.getInstance();
-                    e.ToDarkTheme();
+                    ExaminationPage.getInstance();
+                    //e.ToDarkTheme();
                     break;
                 case 3:
-                    DrugsPage d = DrugsPage.getInstance();
-                    d.ToDarkTheme();
+                    DrugsPage.getInstance();
                     break;
                 case 4:
-                    EditProfilePage p = EditProfilePage.getInstance();
-                    p.ToDarkTheme();
+                    EditProfilePage.getInstance();
                     break;
             }
         }
