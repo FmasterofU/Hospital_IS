@@ -73,30 +73,12 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            nameTextBox.Background = Brushes.White;
-            surnameTextBox.Background = Brushes.White;
-            adressTextBox.Background = Brushes.White;
-            mailTextBox.Background = Brushes.White;
-            passwordTextBox.Background = Brushes.White;
-            newPasswordTextBox.Background = Brushes.White;
-            newPassword2TextBox.Background = Brushes.White;
-            saveProfileButton.BorderBrush = Brushes.Black;
-            backFromEditProfileButton.BorderBrush = Brushes.Black;
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }
 
         public void ToDarkTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            nameTextBox.Background = Brushes.Black;
-            surnameTextBox.Background = Brushes.Black;
-            adressTextBox.Background = Brushes.Black;
-            mailTextBox.Background = Brushes.Black;
-            passwordTextBox.Background = Brushes.Black;
-            newPasswordTextBox.Background = Brushes.Black;
-            newPassword2TextBox.Background = Brushes.Black;
-            saveProfileButton.BorderBrush = Brushes.White;
-            backFromEditProfileButton.BorderBrush = Brushes.White;
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)

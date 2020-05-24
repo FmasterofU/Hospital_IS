@@ -65,35 +65,23 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            historyButton.BorderBrush = Brushes.Black;
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             diagnosisBox.BorderBrush = Brushes.Black;
             diagnosisBox.Background = Brushes.White;
             diagnosisBox.Foreground = Brushes.Black;
             diagnosisText.Background = Brushes.White;
             diagnosisText.Foreground = Brushes.Black;
-            drugsButton.BorderBrush = Brushes.Black;
-            refferalButton.BorderBrush = Brushes.Black;
-            controlReviewButton.BorderBrush = Brushes.Black;
-            saveDiagnosisButton.BorderBrush = Brushes.Black;
-            menuFromExaminationButton.BorderBrush = Brushes.Black;
             MedHistory.getInstance().ToLightTheme();
         }
 
         public void ToDarkTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            historyButton.BorderBrush = Brushes.White;
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             diagnosisBox.BorderBrush = Brushes.White;
             diagnosisBox.Background = Brushes.Black;
             diagnosisBox.Foreground = Brushes.White;
             diagnosisText.Background = Brushes.Black;
             diagnosisText.Foreground = Brushes.White;
-            drugsButton.BorderBrush = Brushes.White;
-            refferalButton.BorderBrush = Brushes.White;
-            controlReviewButton.BorderBrush = Brushes.White;
-            saveDiagnosisButton.BorderBrush = Brushes.White;
-            menuFromExaminationButton.BorderBrush = Brushes.White;
             MedHistory.getInstance().ToDarkTheme();
         }
 

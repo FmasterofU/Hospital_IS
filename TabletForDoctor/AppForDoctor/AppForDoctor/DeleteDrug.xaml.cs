@@ -46,15 +46,11 @@ namespace AppForDoctor
         private void ToLightTheme()
         {
             DeleteDrugWindow.Background = Brushes.White;
-            deleteDrugButton.BorderBrush = Brushes.Black;
-            backFromDeleteButton.BorderBrush = Brushes.Black;
         }
 
         private void ToDarkTheme()
         {
             DeleteDrugWindow.Background = Brushes.Black;
-            deleteDrugButton.BorderBrush = Brushes.White;
-            backFromDeleteButton.BorderBrush = Brushes.White;
         }
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)

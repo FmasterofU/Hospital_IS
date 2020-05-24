@@ -54,15 +54,11 @@ namespace AppForDoctor
         private void ToLightTheme()
         {
             AddDrugWindow.Background = Brushes.White;
-            addDrugButton.BorderBrush = Brushes.Black;
-            backFromAddButton.BorderBrush = Brushes.Black;
         }
 
         private void ToDarkTheme()
         {
             AddDrugWindow.Background = Brushes.Black;
-            addDrugButton.BorderBrush = Brushes.White;
-            backFromAddButton.BorderBrush = Brushes.White;
         }
 
         private void backFromAddButton_Click(object sender, RoutedEventArgs e)

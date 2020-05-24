@@ -74,24 +74,24 @@ namespace AppForDoctor
         private void lightButton_Click(object sender, RoutedEventArgs e)
         {
             theme = Theme.Light;
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             MeinWindow.Background = Brushes.White;
             lightButton.Background = Brushes.DeepSkyBlue;
             darkButton.Background = Brushes.LightSlateGray;
-            editProfileButton.BorderBrush = Brushes.Black;
-            logOutButton.BorderBrush = Brushes.Black;
             changeActivePageToLightTheme();
         }
 
         private void darkButton_Click(object sender, RoutedEventArgs e)
         {
             theme = Theme.Dark;
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             MeinWindow.Background = Brushes.Black;
             lightButton.Background = Brushes.LightSlateGray;
             darkButton.Background = Brushes.DeepSkyBlue;
-            editProfileButton.BorderBrush = Brushes.White;
-            logOutButton.BorderBrush = Brushes.White;
             changeActivePageToDarkTheme();
         }
 

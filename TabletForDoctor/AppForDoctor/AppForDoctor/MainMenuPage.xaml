@@ -11,14 +11,14 @@
     <Grid>
         <Label x:Name="patientID" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}">Identifikacioni broj pacijenta:</Label>
         <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="502,160,0,0" Height="49" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" BorderBrush="Black" 
-                 Background="White" Style="{StaticResource labelStyle}"></TextBox>
-        <Button x:Name="acceptID" HorizontalAlignment="Right" Margin="0,160,25,0" VerticalAlignment="Top" Width="153" FontSize="35" Height="49" Foreground="White" 
-                    Background="Green" BorderBrush="Black" Click="acceptID_Click">Potvrdi</Button>
-        <Button x:Name="appointmentsButton" HorizontalAlignment="Left" Margin="25,215,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Foreground="Black" Background="Orange" 
-                Height="60" BorderBrush="Black">Pregled termina</Button>
-        <Button x:Name="commentsButton" HorizontalAlignment="Left" Margin="25,285,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Foreground="Black" Background="Orange" 
-                Height="60" BorderBrush="Black">Pregled komentara pacijenata</Button>
-        <Button x:Name="pausesButton" HorizontalAlignment="Left" Margin="25,355,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Foreground="Black" Background="Orange" 
-                Height="60" BorderBrush="Black">Rukovanje pauzama</Button>
+                 Style="{StaticResource textBoxStyle}"></TextBox>
+        <Button x:Name="acceptID" HorizontalAlignment="Right" Margin="0,160,25,0" VerticalAlignment="Top" Width="153" Height="49" Style="{StaticResource buttonStyle}"
+                    Background="Green" Click="acceptID_Click">Potvrdi</Button>
+        <Button x:Name="appointmentsButton" HorizontalAlignment="Left" Margin="25,215,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
+                Height="60" >Pregled termina</Button>
+        <Button x:Name="commentsButton" HorizontalAlignment="Left" Margin="25,285,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
+                Height="60" >Pregled komentara pacijenata</Button>
+        <Button x:Name="pausesButton" HorizontalAlignment="Left" Margin="25,355,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
+                Height="60" >Rukovanje pauzama</Button>
     </Grid>
 </Page>

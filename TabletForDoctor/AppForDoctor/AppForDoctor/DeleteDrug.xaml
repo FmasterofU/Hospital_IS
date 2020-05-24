@@ -10,10 +10,10 @@
         Loaded="DeleteDrugWindow_Loaded"
         Background="White">
     <Grid>
-        <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="Black" Height="55" BorderBrush="Black" Click="deleteDrugButton_Click">Obrisi</Button>
-        <Button x:Name="backFromDeleteButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="backFromDeleteButton_Click">Nazad</Button>
+        <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
+                Background="Green" Height="55" Click="deleteDrugButton_Click">Obrisi</Button>
+        <Button x:Name="backFromDeleteButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
+                Background="Red" Height="55" Click="backFromDeleteButton_Click">Nazad</Button>
         <ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,315" Foreground="Black"/>
     </Grid>
 </Window>

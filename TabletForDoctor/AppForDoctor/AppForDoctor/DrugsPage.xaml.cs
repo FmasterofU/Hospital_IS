@@ -61,23 +61,17 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             drugListBox.Background = Brushes.White;
             drugListBox.Foreground = Brushes.Black;
-            addDrugButton.BorderBrush = Brushes.Black;
-            deleteDrugButton.BorderBrush = Brushes.Black;
-            examinationFromDrugsButton.BorderBrush = Brushes.Black;
             MedHistory.getInstance().ToLightTheme();
         }
 
         public void ToDarkTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             drugListBox.Background = Brushes.Black;
             drugListBox.Foreground = Brushes.White;
-            addDrugButton.BorderBrush = Brushes.White;
-            deleteDrugButton.BorderBrush = Brushes.White;
-            examinationFromDrugsButton.BorderBrush = Brushes.White;
             MedHistory.getInstance().ToDarkTheme();
         }
 

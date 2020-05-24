@@ -13,13 +13,13 @@
         <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="203" FontSize="35" Background="White" Foreground="Black"
                  SelectionChanged="drugListBox_SelectionChanged">
         </ListBox>
-        <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="25,330,0,0" VerticalAlignment="Top" Width="170" FontSize="35" Background="Orange" Foreground="Black" 
-                BorderBrush="Black" Click="addDrugButton_Click">Dodaj lek</Button>
-        <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="205,330,0,0" VerticalAlignment="Top" Width="Auto" FontSize="35" Background="Orange" Foreground="Black" 
-                BorderBrush="Black" Click="deleteDrugButton_Click">Obrisi lek</Button>
+        <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="25,330,0,0" VerticalAlignment="Top" Width="170" Background="Orange" Style="{StaticResource buttonStyle}" 
+                Click="addDrugButton_Click">Dodaj lek</Button>
+        <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="205,330,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
+                Click="deleteDrugButton_Click">Obrisi lek</Button>
         <!--<Button x:Name="saveDrugsButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
                 Background="Green" Foreground="White" Height="55">Sacuvaj</Button>-->
-        <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Red" Foreground="Black" Height="55" BorderBrush="Black" Click="examinationFromDrugsButton_Click">Nazad</Button>
+        <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}"
+                Background="Red" Height="55" Click="examinationFromDrugsButton_Click">Nazad</Button>
     </Grid>
 </Page>

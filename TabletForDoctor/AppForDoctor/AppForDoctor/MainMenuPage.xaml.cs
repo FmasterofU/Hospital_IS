@@ -56,24 +56,16 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             patientIDText.BorderBrush = Brushes.Black;
             patientIDText.Background = Brushes.White;
-            acceptID.BorderBrush = Brushes.Black;
-            appointmentsButton.BorderBrush = Brushes.Black;
-            commentsButton.BorderBrush = Brushes.Black;
-            pausesButton.BorderBrush = Brushes.Black;
         }
 
         public void ToDarkTheme()
         {
-            this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             patientIDText.BorderBrush = Brushes.White;
             patientIDText.Background = Brushes.Black;
-            acceptID.BorderBrush = Brushes.White;
-            appointmentsButton.BorderBrush = Brushes.White;
-            commentsButton.BorderBrush = Brushes.White;
-            pausesButton.BorderBrush = Brushes.White;
         }
 
         private void acceptID_Click(object sender, RoutedEventArgs e)
