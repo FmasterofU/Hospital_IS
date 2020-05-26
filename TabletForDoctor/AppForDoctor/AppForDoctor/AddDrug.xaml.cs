@@ -19,11 +19,11 @@ namespace AppForDoctor
     /// </summary>
     public partial class AddDrug : Window
     {
+        private HashSet<string> drugSet = new HashSet<string>();
         public AddDrug()
         {
             InitializeComponent();
             //TODO: load all medicaments in hospital
-            HashSet<string> drugSet = new HashSet<string>();
             drugSet.Add("Novi");
             drugSet.Add("Nnovi");
             drugSet.Add("Noovi");
@@ -78,13 +78,34 @@ namespace AppForDoctor
             string item = addDrugsComboBox.SelectedItem.ToString();
             DrugsPage d = DrugsPage.getInstance();
             d.addDrugToSet(item);
+            drugSet.Remove(item);
             addDrugsComboBox.Items.Remove(item);
             addDrugsComboBox.SelectedIndex = 0;
-            if (addDrugsComboBox.Items.Count == 0)
+            if (drugSet.Count == 0)
             {
                 DrugsPage.getInstance().disableAddButton();
                 this.Close();
             }
+            else if (addDrugsComboBox.Items.Count == 0) addDrugButton.IsEnabled = false;
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string input = searchInput.Text.ToLower();
+            addDrugsComboBox.Items.Clear();
+            foreach (string s in drugSet)
+            {
+                if (s.ToLower().Contains(input))
+                {
+                    addDrugsComboBox.Items.Add(s);
+                }
+            }
+            if (addDrugsComboBox.Items.Count != 0)
+            {
+                addDrugsComboBox.SelectedIndex = 0;
+                addDrugButton.IsEnabled = true;
+            }
+            else addDrugButton.IsEnabled = false;
         }
     }
 }

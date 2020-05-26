@@ -19,10 +19,11 @@ namespace AppForDoctor
     /// </summary>
     public partial class DeleteDrug : Window
     {
+        private HashSet<String> drugSet = new HashSet<string>();
         public DeleteDrug()
         {
             InitializeComponent();
-            HashSet<string> drugSet = DrugsPage.getInstance().getDrugSet();
+            drugSet = DrugsPage.getInstance().getDrugSet();
             foreach (string s in drugSet) deleteDrugsComboBox.Items.Add(s);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
@@ -53,16 +54,6 @@ namespace AppForDoctor
             DeleteDrugWindow.Background = Brushes.Black;
         }
 
-        private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
-        {
-            string item = deleteDrugsComboBox.SelectedItem.ToString();
-            deleteDrugsComboBox.Items.Remove(item);
-            DrugsPage d = DrugsPage.getInstance();
-            d.deleteDrugFromSet(item);
-            deleteDrugsComboBox.SelectedIndex = 0;
-            if (deleteDrugsComboBox.Items.Count == 0)   this.Close();
-        }
-
         private void backFromDeleteButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -73,6 +64,37 @@ namespace AppForDoctor
             MainWindow w = MainWindow.getInstance();
             this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
             this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+        }
+
+        private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
+        {
+            string item = deleteDrugsComboBox.SelectedItem.ToString();
+            deleteDrugsComboBox.Items.Remove(item);
+            DrugsPage d = DrugsPage.getInstance();
+            d.deleteDrugFromSet(item);
+            drugSet.Remove(item);
+            deleteDrugsComboBox.SelectedIndex = 0;
+            if (drugSet.Count == 0) this.Close();
+            else if (deleteDrugsComboBox.Items.Count == 0) deleteDrugButton.IsEnabled = false;
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string input = searchInput.Text.ToLower();
+            deleteDrugsComboBox.Items.Clear();
+            foreach (string s in drugSet)
+            {
+                if (s.ToLower().Contains(input))
+                {
+                    deleteDrugsComboBox.Items.Add(s);
+                }
+            }
+            if (deleteDrugsComboBox.Items.Count != 0)
+            {
+                deleteDrugsComboBox.SelectedIndex = 0;
+                deleteDrugButton.IsEnabled = true;
+            }
+            else deleteDrugButton.IsEnabled = false;
         }
     }
 }

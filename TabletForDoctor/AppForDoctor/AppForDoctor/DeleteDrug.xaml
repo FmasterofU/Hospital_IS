@@ -14,6 +14,13 @@
                 Background="Green" Height="55" Click="deleteDrugButton_Click">Obrisi</Button>
         <Button x:Name="backFromDeleteButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromDeleteButton_Click">Nazad</Button>
-        <ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,315" Foreground="Black"/>
+        <!--<ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,315" Foreground="Black"/>-->
+        <StackPanel Margin="121,50,121,250" Orientation="Vertical" Width="240">
+            <StackPanel Orientation="Horizontal" Height="55">
+                <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput"></TextBox>
+                <Button Style="{StaticResource buttonStyle}" Width="40" Content="s" x:Name="searchButton" Click="searchButton_Click"/>
+            </StackPanel>
+            <ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="0,5,0,0" Foreground="Black"/>
+        </StackPanel>
     </Grid>
 </Window>
