@@ -13,9 +13,11 @@
         <Viewbox VerticalAlignment="Center" Height="146" Margin="96,0,96,200" >
             <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" />
         </Viewbox>
-        <Button x:Name="saveControlButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
-                Background="Green" Height="55" IsEnabled="False" Click="saveControlButton_Click">Sacuvaj</Button>
-        <Button x:Name="backFromControlButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,394,10,15">
+            <Button x:Name="backFromControlButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromControlButton_Click">Nazad</Button>
+            <Button x:Name="saveControlButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
+                Background="Green" Height="55" IsEnabled="False" Click="saveControlButton_Click">Sacuvaj</Button>
+        </StackPanel>
     </Grid>
 </Window>

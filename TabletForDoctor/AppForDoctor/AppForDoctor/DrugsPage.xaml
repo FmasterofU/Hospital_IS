@@ -17,9 +17,9 @@
                 Click="addDrugButton_Click">Dodaj lek</Button>
         <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="205,330,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                 Click="deleteDrugButton_Click">Obrisi lek</Button>
-        <!--<Button x:Name="saveDrugsButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" FontSize="35"
-                Background="Green" Foreground="White" Height="55">Sacuvaj</Button>-->
-        <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}"
-                Background="Red" Height="55" Click="examinationFromDrugsButton_Click">Nazad</Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
+            <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Right" Margin="0,0,160,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Red" Height="55" Click="examinationFromDrugsButton_Click">Nazad</Button>
+        </StackPanel>
     </Grid>
 </Page>

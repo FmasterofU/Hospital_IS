@@ -10,11 +10,12 @@
         Style="{StaticResource windowStyle}"
         Loaded="DeleteDrugWindow_Loaded">
     <Grid>
-        <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
-                Background="Green" Height="55" Click="deleteDrugButton_Click">Obrisi</Button>
-        <Button x:Name="backFromDeleteButton" HorizontalAlignment="Left" Margin="170,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,394,10,15">
+            <Button x:Name="backFromDeleteButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromDeleteButton_Click">Nazad</Button>
-        <!--<ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,315" Foreground="Black"/>-->
+            <Button x:Name="deleteDrugButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
+                Background="Green" Height="55" Click="deleteDrugButton_Click">Obrisi</Button>
+        </StackPanel>
         <StackPanel Margin="121,50,121,250" Orientation="Vertical" Width="240">
             <StackPanel Orientation="Horizontal" Height="55">
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>

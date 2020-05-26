@@ -24,9 +24,11 @@
             <Button x:Name="controlReviewButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Height="55" Click="controlReviewButton_Click">Zakazivanje kontrole</Button>
         </StackPanel>
-        <Button x:Name="saveDiagnosisButton" HorizontalAlignment="Left" Margin="828,656,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}"
-                Background="Green" Height="55" IsEnabled="False" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
-        <Button x:Name="menuFromExaminationButton" HorizontalAlignment="Left" Margin="670,656,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}"
-                Background="Red" Height="55" Click="menuFromExaminationButton_Click">Meni</Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
+            <Button x:Name="menuFromExaminationButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Red" Height="55" Click="menuFromExaminationButton_Click">Meni</Button>
+            <Button x:Name="saveDiagnosisButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Green" Height="55" IsEnabled="False" Click="saveDiagnosisButton_Click">Sacuvaj</Button>
+        </StackPanel>
     </Grid>
 </Page>
