@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddDrug" Height="500" Width="500"
         x:Name="AddDrugWindow"
-        Background="White"
+        Style="{StaticResource windowStyle}"
         Loaded="AddDrugWindow_Loaded">
     <Grid>
         <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="330,400,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
@@ -16,7 +16,7 @@
                 Background="Red" Height="55" Click="backFromAddButton_Click">Nazad</Button>
         <StackPanel Margin="121,50,121,250" Orientation="Vertical" Width="240">
             <StackPanel Orientation="Horizontal" Height="55">
-                <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput"></TextBox>
+                <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
                 <Button Style="{StaticResource buttonStyle}" Width="40" Content="s" x:Name="searchButton" Click="searchButton_Click"/>
             </StackPanel>
             <ComboBox x:Name="addDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="0,5,0,0" Foreground="Black"/>

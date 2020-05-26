@@ -66,23 +66,13 @@ namespace AppForDoctor
         public void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            diagnosisBox.BorderBrush = Brushes.Black;
-            diagnosisBox.Background = Brushes.White;
-            diagnosisBox.Foreground = Brushes.Black;
-            diagnosisText.Background = Brushes.White;
-            diagnosisText.Foreground = Brushes.Black;
-            MedHistory.getInstance().ToLightTheme();
+            //MedHistory.getInstance().ToLightTheme();
         }
 
         public void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            diagnosisBox.BorderBrush = Brushes.White;
-            diagnosisBox.Background = Brushes.Black;
-            diagnosisBox.Foreground = Brushes.White;
-            diagnosisText.Background = Brushes.Black;
-            diagnosisText.Foreground = Brushes.White;
-            MedHistory.getInstance().ToDarkTheme();
+            //MedHistory.getInstance().ToDarkTheme();
         }
 
         private void historyButton_Click(object sender, RoutedEventArgs e)

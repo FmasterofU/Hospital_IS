@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -53,12 +54,10 @@ namespace AppForDoctor
 
         private void ToLightTheme()
         {
-            AddDrugWindow.Background = Brushes.White;
         }
 
         private void ToDarkTheme()
         {
-            AddDrugWindow.Background = Brushes.Black;
         }
 
         private void backFromAddButton_Click(object sender, RoutedEventArgs e)
@@ -106,6 +105,11 @@ namespace AppForDoctor
                 addDrugButton.IsEnabled = true;
             }
             else addDrugButton.IsEnabled = false;
+        }
+
+        private void searchInput_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
         }
     }
 }

@@ -41,14 +41,10 @@ namespace AppForDoctor
 
         public void ToLightTheme()
         {
-            historyText.Foreground = Brushes.Black;
-            historyText.Background = Brushes.White;
         }
 
         public void ToDarkTheme()
         {
-            historyText.Foreground = Brushes.White;
-            historyText.Background = Brushes.Black;
         }
 
         private void MedHistoryWindow_Loaded(object sender, RoutedEventArgs e)

@@ -10,8 +10,7 @@
 
     <Grid>
         <Label x:Name="patientID" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}">Identifikacioni broj pacijenta:</Label>
-        <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="502,160,0,0" Height="49" TextWrapping="NoWrap" VerticalAlignment="Top" Width="300" BorderBrush="Black" 
-                 Style="{StaticResource textBoxStyle}"></TextBox>
+        <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="502,160,0,0" Height="49" VerticalAlignment="Top" Width="300" Style="{StaticResource textBoxStyle}"></TextBox>
         <Button x:Name="acceptID" HorizontalAlignment="Right" Margin="0,160,25,0" VerticalAlignment="Top" Width="153" Height="49" Style="{StaticResource buttonStyle}"
                     Background="Green" Click="acceptID_Click">Potvrdi</Button>
         <Button x:Name="appointmentsButton" HorizontalAlignment="Left" Margin="25,215,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"

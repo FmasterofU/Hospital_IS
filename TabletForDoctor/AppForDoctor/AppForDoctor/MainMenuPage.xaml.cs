@@ -57,15 +57,11 @@ namespace AppForDoctor
         public void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            patientIDText.BorderBrush = Brushes.Black;
-            patientIDText.Background = Brushes.White;
         }
 
         public void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            patientIDText.BorderBrush = Brushes.White;
-            patientIDText.Background = Brushes.Black;
         }
 
         private void acceptID_Click(object sender, RoutedEventArgs e)

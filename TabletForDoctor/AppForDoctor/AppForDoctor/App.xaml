@@ -14,10 +14,25 @@
         </Style>
         <Style x:Key="textBoxStyle" TargetType="TextBox" BasedOn="{StaticResource labelStyle}">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
         </Style>
         <Style x:Key="buttonStyle" TargetType="Button" BasedOn="{StaticResource sizeStyle}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
+        </Style>
+        <Style x:Key="windowStyle" TargetType="Window">
+            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+        </Style>
+        <Style x:Key="groupBoxStyle" TargetType="GroupBox" BasedOn="{StaticResource labelStyle}">
+            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
+        </Style>
+        <Style x:Key="calendarStyle" TargetType="DatePicker">
+            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+        </Style>
+        <Style x:Key="listBoxStyle" TargetType="ListBox" BasedOn="{StaticResource labelStyle}">
+            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
         </Style>
     </Application.Resources>
 </Application>

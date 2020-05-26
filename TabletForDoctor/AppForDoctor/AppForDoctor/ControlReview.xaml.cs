@@ -44,14 +44,10 @@ namespace AppForDoctor
 
         private void ToLightTheme()
         {
-            ControlReviewWindow.Background = Brushes.White;
-            calendar.Background = Brushes.White;
         }
 
         private void ToDarkTheme()
         {
-            ControlReviewWindow.Background = Brushes.Black;
-            calendar.Background = Brushes.Black;
         }
 
         private void ControlReviewWindow_Loaded(object sender, RoutedEventArgs e)

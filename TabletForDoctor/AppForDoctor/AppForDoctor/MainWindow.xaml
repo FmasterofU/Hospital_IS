@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024"
         Name="MeinWindow"
-        Background="White"
+        Style="{StaticResource windowStyle}"
         ResizeMode="NoResize"
         Closing="MeinWindow_Closing">
     <Grid>

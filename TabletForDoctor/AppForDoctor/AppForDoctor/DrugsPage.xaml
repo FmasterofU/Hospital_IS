@@ -10,7 +10,7 @@
 
     <Grid>
         <Label x:Name="drugsLabel" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource labelStyle}">Prepisani lekovi:</Label>
-        <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="203" FontSize="35" Background="White" Foreground="Black"
+        <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="203" Style="{StaticResource listBoxStyle}"
                  SelectionChanged="drugListBox_SelectionChanged">
         </ListBox>
         <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="25,330,0,0" VerticalAlignment="Top" Width="170" Background="Orange" Style="{StaticResource buttonStyle}" 

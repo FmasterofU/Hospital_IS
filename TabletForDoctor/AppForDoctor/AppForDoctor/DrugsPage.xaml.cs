@@ -62,17 +62,11 @@ namespace AppForDoctor
         public void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            drugListBox.Background = Brushes.White;
-            drugListBox.Foreground = Brushes.Black;
-            MedHistory.getInstance().ToLightTheme();
         }
 
         public void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            drugListBox.Background = Brushes.Black;
-            drugListBox.Foreground = Brushes.White;
-            MedHistory.getInstance().ToDarkTheme();
         }
 
         public void deleteDrugFromSet(string item)
