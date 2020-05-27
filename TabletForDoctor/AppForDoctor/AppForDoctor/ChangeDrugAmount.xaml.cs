@@ -72,7 +72,7 @@ namespace AppForDoctor
                 string choice = changeAmountComboBox.SelectedItem.ToString();
                 amountText.Text = drugDict[choice].ToString();
             }
-            else amountText.Text = "0";
+            //else amountText.Text = "0";
         }
 
         private void searchInput_KeyUp(object sender, KeyEventArgs e)
@@ -92,8 +92,17 @@ namespace AppForDoctor
             {
                 changeAmountComboBox.SelectedIndex = 0;
                 changeAmountButton.IsEnabled = true;
+                plusButton.IsEnabled = true;
+                if (amount > 1) minusButton.IsEnabled = true;
+                amountText.IsEnabled = true;
             }
-            else changeAmountButton.IsEnabled = false;
+            else
+            {
+                changeAmountButton.IsEnabled = false;
+                amountText.IsEnabled = false;
+                plusButton.IsEnabled = false;
+                minusButton.IsEnabled = false;
+            }
         }
 
         private void amountText_TextChanged(object sender, TextChangedEventArgs e)

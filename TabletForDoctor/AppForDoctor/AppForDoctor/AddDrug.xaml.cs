@@ -89,7 +89,7 @@ namespace AppForDoctor
                 DrugsPage.getInstance().disableAddButton();
                 this.Close();
             }
-            else if (addDrugsComboBox.Items.Count == 0) addDrugButton.IsEnabled = false;
+            else if (addDrugsComboBox.Items.Count == 0) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -105,8 +105,17 @@ namespace AppForDoctor
             {
                 addDrugsComboBox.SelectedIndex = 0;
                 addDrugButton.IsEnabled = true;
+                plusButton.IsEnabled = true;
+                amountText.Text = "1";
+                amountText.IsEnabled = true;
             }
-            else addDrugButton.IsEnabled = false;
+            else
+            {
+                addDrugButton.IsEnabled = false;
+                amountText.IsEnabled = false;
+                plusButton.IsEnabled = false;
+                minusButton.IsEnabled = false;
+            }
         }
 
         private void searchInput_KeyUp(object sender, KeyEventArgs e)
