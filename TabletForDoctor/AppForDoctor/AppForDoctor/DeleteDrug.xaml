@@ -10,7 +10,7 @@
         Style="{StaticResource windowStyle}"
         Loaded="DeleteDrugWindow_Loaded">
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,394,10,15">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
             <Button x:Name="backFromDeleteButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromDeleteButton_Click">Nazad</Button>
             <Button x:Name="deleteDrugButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
@@ -21,7 +21,8 @@
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
                 <Button Style="{StaticResource buttonStyle}" Width="40" Content="s" x:Name="searchButton" Click="searchButton_Click"/>
             </StackPanel>
-            <ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="0,5,0,0" Foreground="Black"/>
+            <ComboBox x:Name="deleteDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="0,20,0,0" Foreground="Black" 
+                      MaxDropDownHeight="200"/>
         </StackPanel>
     </Grid>
 </Window>

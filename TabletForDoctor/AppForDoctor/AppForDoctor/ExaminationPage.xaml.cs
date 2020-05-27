@@ -23,7 +23,8 @@ namespace AppForDoctor
         // load history from database
         private static ExaminationPage instance = null;
         private string diagnosis = "";
-        private HashSet<string> addedDrugs = new HashSet<string>();
+        //private HashSet<string> addedDrugs = new HashSet<string>();
+        private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
         private DateTime? controlReviewDate = default;
         private ExaminationPage()
         {
@@ -97,7 +98,7 @@ namespace AppForDoctor
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            string toHistory = diagnosis + "\n" + hashSetToString(addedDrugs) + "\n" + controlReviewDate.ToString();
+            string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + controlReviewDate.ToString();
             MedHistory.getInstance().historyText.Text = toHistory;
             saveDiagnosisButton.IsEnabled = false;
         }
@@ -114,15 +115,15 @@ namespace AppForDoctor
             saveDiagnosisButton.IsEnabled = true;
         }
 
-        public void saveAddedDrugs(HashSet<string> input)
+        public void saveAddedDrugs(Dictionary<string, int> d)
         {
-            if (!input.SetEquals(addedDrugs))
+            if (d.Count != addedDrugsDict.Count || d.Except(addedDrugsDict).Any())
             {
-                addedDrugs.Clear();
+                addedDrugsDict.Clear();
                 saveDiagnosisButton.IsEnabled = true;
-                foreach (string s in input)
+                foreach (KeyValuePair<string, int> pair in d)
                 {
-                    addedDrugs.Add(s);
+                    addedDrugsDict.Add(pair.Key, pair.Value);
                 }
             }
         }
@@ -143,12 +144,14 @@ namespace AppForDoctor
             }
         }
 
-        public static string hashSetToString(HashSet<string> input)
+        public static string DictToString(Dictionary<string, int> input)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (string s in input)
+            foreach (KeyValuePair<string, int> pair in input)
             {
-                sb.Append(s);
+                sb.Append(pair.Key);
+                sb.Append(" *");
+                sb.Append(pair.Value.ToString());
                 sb.Append(", ");
             }
             if (sb.Length > 2) return sb.ToString(0, sb.Length - 2);

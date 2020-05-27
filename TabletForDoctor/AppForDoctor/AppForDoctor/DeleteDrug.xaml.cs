@@ -70,7 +70,7 @@ namespace AppForDoctor
             string item = deleteDrugsComboBox.SelectedItem.ToString();
             deleteDrugsComboBox.Items.Remove(item);
             DrugsPage d = DrugsPage.getInstance();
-            d.deleteDrugFromSet(item);
+            d.DeleteDrugFromDict(item);
             drugSet.Remove(item);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (drugSet.Count == 0) this.Close();
@@ -83,10 +83,7 @@ namespace AppForDoctor
             deleteDrugsComboBox.Items.Clear();
             foreach (string s in drugSet)
             {
-                if (s.ToLower().Contains(input))
-                {
-                    deleteDrugsComboBox.Items.Add(s);
-                }
+                if (s.ToLower().Contains(input)) deleteDrugsComboBox.Items.Add(s);
             }
             if (deleteDrugsComboBox.Items.Count != 0)
             {

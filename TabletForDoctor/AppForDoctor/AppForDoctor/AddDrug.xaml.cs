@@ -21,9 +21,11 @@ namespace AppForDoctor
     public partial class AddDrug : Window
     {
         private HashSet<string> drugSet = new HashSet<string>();
+        private int amount = 1;
         public AddDrug()
         {
             InitializeComponent();
+            amountText.Text = "1";
             //TODO: load all medicaments in hospital
             drugSet.Add("Novi");
             drugSet.Add("Nnovi");
@@ -76,10 +78,12 @@ namespace AppForDoctor
         {
             string item = addDrugsComboBox.SelectedItem.ToString();
             DrugsPage d = DrugsPage.getInstance();
-            d.addDrugToSet(item);
+            d.AddDrugToDict(item, amount);
             drugSet.Remove(item);
             addDrugsComboBox.Items.Remove(item);
             addDrugsComboBox.SelectedIndex = 0;
+            amountText.Text = "1";
+            minusButton.IsEnabled = false;
             if (drugSet.Count == 0)
             {
                 DrugsPage.getInstance().disableAddButton();
@@ -94,10 +98,8 @@ namespace AppForDoctor
             addDrugsComboBox.Items.Clear();
             foreach (string s in drugSet)
             {
-                if (s.ToLower().Contains(input))
-                {
-                    addDrugsComboBox.Items.Add(s);
-                }
+                if (s.ToLower().Contains(input)) addDrugsComboBox.Items.Add(s);
+
             }
             if (addDrugsComboBox.Items.Count != 0)
             {
@@ -110,6 +112,49 @@ namespace AppForDoctor
         private void searchInput_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return || e.Key == Key.Enter) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+        }
+
+        private void amountText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Int32.TryParse(amountText.Text, out amount))
+            {
+                if(amount <= 0)
+                {
+                    addDrugButton.IsEnabled = false;
+                    plusButton.IsEnabled = false;
+                    minusButton.IsEnabled = false;
+                }
+                else if(amount == 1)
+                {
+                    addDrugButton.IsEnabled = true;
+                    plusButton.IsEnabled = true;
+                    minusButton.IsEnabled = false;
+                }
+                else
+                {
+                    addDrugButton.IsEnabled = true;
+                    plusButton.IsEnabled = true;
+                    minusButton.IsEnabled = true;
+                }
+            }
+            else
+            {
+                addDrugButton.IsEnabled = false;
+                plusButton.IsEnabled = false;
+                minusButton.IsEnabled = false;
+            }
+        }
+
+        private void plusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amountText.Text = (++amount).ToString();
+            minusButton.IsEnabled = true;
+        }
+
+        private void minusButton_Click(object sender, RoutedEventArgs e)
+        {
+            amountText.Text = (--amount).ToString();
+            if (amount == 1) minusButton.IsEnabled = false;
         }
     }
 }
