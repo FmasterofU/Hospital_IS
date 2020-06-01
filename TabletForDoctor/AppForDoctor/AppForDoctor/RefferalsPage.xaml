@@ -1,0 +1,23 @@
+﻿<Page x:Class="AppForDoctor.RefferalsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForDoctor"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="RefferalsPage">
+    <Grid>
+        <Label x:Name="refferalsBefore" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource labelStyle}">Dosadasnji uputi:</Label>
+        <ListBox x:Name="refferalsListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="500" Style="{StaticResource listBoxStyle}">
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Margin="25,330,0,0">
+            <Button x:Name="addRefferalButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}">Dodaj uput</Button>
+            <Button x:Name="deleteRefferalButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}">Obrisi uput</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
+            <Button x:Name="examinationFromRefferalsButton" HorizontalAlignment="Right" Margin="0,0,160,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Red" Height="55" Click="examinationFromRefferalsButton_Click">Nazad</Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -26,6 +27,8 @@ namespace AppForDoctor
         private string surname = "Elenic";
         private string adress = "Adresa 01";
         private string mail = "elena@mail.com";
+        private string password = "123456";
+        private bool passChanged = false;
         private EditProfilePage()
         {
             InitializeComponent();
@@ -53,7 +56,7 @@ namespace AppForDoctor
             return instance;
         }
 
-        public void ToSerbian()
+        private void ToSerbian()
         {
             nameLabel.Content = "Ime:";
             surnameLabel.Content = "Prezime:";
@@ -62,7 +65,7 @@ namespace AppForDoctor
             backFromEditProfileButton.Content = "Nazad";
         }
 
-        public void ToEnglish()
+        private void ToEnglish()
         {
             nameLabel.Content = "Name:";
             surnameLabel.Content = "Surname:";
@@ -71,12 +74,12 @@ namespace AppForDoctor
             backFromEditProfileButton.Content = "Back";
         }
 
-        public void ToLightTheme()
+        private void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }
 
-        public void ToDarkTheme()
+        private void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
@@ -119,7 +122,66 @@ namespace AppForDoctor
             adress = adressTextBox.Text;
             mail = mailTextBox.Text;
             saveProfileButton.IsEnabled = false;
+            if (passChanged) password = newPasswordTextBox.Password;
             //TODO: save changes to database
+        }
+
+        private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            disableNewPasswords();
+        }
+
+        private void disableNewPasswords()
+        {
+            newPasswordTextBox.IsEnabled = false;
+            newPasswordTextBox.Password = "";
+            newPassword2TextBox.IsEnabled = false;
+            newPassword2TextBox.Password = "";
+            passChanged = false;
+        }
+
+        private void passwordTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter) checkPasswordButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+        }
+
+        private void newPasswordTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter)
+            {
+                if (newPasswordTextBox.Password.Equals(newPassword2TextBox.Password) && passwordTextBox.Password.Equals(password))
+                {
+                    saveProfileButton.IsEnabled = true;
+                    passChanged = true;
+                }
+                else
+                {
+                    saveProfileButton.IsEnabled = false;
+                    passChanged = false;
+                }
+            }
+        }
+
+        private void newPasswordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            passChanged = false;
+        }
+
+        private void checkPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (passwordTextBox.Password.Equals(password))
+            {
+                newPasswordTextBox.IsEnabled = true;
+                newPassword2TextBox.IsEnabled = true;
+                Style style = this.FindResource("passwordBoxStyle") as Style;
+                passwordTextBox.Style = style;
+            }
+            else
+            {
+                disableNewPasswords();
+                Style style = this.FindResource("passwordBoxIncorectStyle") as Style;
+                passwordTextBox.Style = style;
+            }
         }
     }
 }

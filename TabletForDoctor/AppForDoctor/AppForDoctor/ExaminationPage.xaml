@@ -20,7 +20,7 @@
             <Button x:Name="drugsButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Height="55" Click="drugsButton_Click">Pregled lekova</Button>
             <Button x:Name="refferalButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
-                    Height="55">Pregled uputa</Button>
+                    Height="55" Click="refferalButton_Click">Pregled uputa</Button>
             <Button x:Name="controlReviewButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Height="55" Click="controlReviewButton_Click">Zakazivanje kontrole</Button>
         </StackPanel>

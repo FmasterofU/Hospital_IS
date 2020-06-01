@@ -90,6 +90,7 @@ namespace AppForDoctor
             MedHistory.getInstance().toClose = true;
             MedHistory.getInstance().Close();
             DrugsPage.clearInstance();
+            RefferalsPage.clearInstance();
             instance = null;
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
@@ -133,6 +134,12 @@ namespace AppForDoctor
             ControlReview r = new ControlReview();
             if (controlReviewDate != default) r.setInitialDate(controlReviewDate);
             r.ShowDialog();
+        }
+
+        private void refferalButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(5);
         }
 
         public void setControlDate(DateTime? input)

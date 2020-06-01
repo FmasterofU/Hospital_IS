@@ -9,7 +9,7 @@
       Title="DrugsPage">
     <Grid>
         <Label x:Name="drugsLabel" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource labelStyle}">Prepisani lekovi:</Label>
-        <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="203" Style="{StaticResource listBoxStyle}"
+        <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="210" Style="{StaticResource listBoxStyle}"
                  SelectionChanged="drugListBox_SelectionChanged">
         </ListBox>
         <StackPanel Orientation="Horizontal" Margin="25,330,0,0">

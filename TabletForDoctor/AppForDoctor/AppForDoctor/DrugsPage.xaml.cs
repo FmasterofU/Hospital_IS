@@ -48,7 +48,7 @@ namespace AppForDoctor
             return instance;
         }
 
-        public void ToSerbian()
+        private void ToSerbian()
         {
             drugsLabel.Content = "Prepisani lekovi:";
             addDrugButton.Content = "Dodaj lek";
@@ -57,7 +57,7 @@ namespace AppForDoctor
             examinationFromDrugsButton.Content = "Nazad";
         }
 
-        public void ToEnglish()
+        private void ToEnglish()
         {
             drugsLabel.Content = "Prescribed drugs:";
             addDrugButton.Content = "Add drug";
@@ -66,12 +66,12 @@ namespace AppForDoctor
             examinationFromDrugsButton.Content = "Back";
         }
 
-        public void ToLightTheme()
+        private void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }
 
-        public void ToDarkTheme()
+        private void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }

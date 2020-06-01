@@ -24,19 +24,19 @@ namespace AppForDoctor
         private MainMenuPage()
         {
             InitializeComponent();
-            if(MainWindow.GetLanguage() == MainWindow.Language.Serbian)  ToSerbian();
-            else if(MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
-            if(MainWindow.GetTheme() == MainWindow.Theme.Light)    ToLightTheme();
-            else if(MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
         }
 
         public static MainMenuPage getInstance()
         {
             if (instance == null) instance = new MainMenuPage();
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
+            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
+            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
-        public void ToSerbian()
+        private void ToSerbian()
         {
             patientID.Content = "Identifikacioni broj pacijenta:";
             acceptID.Content = "Potvrdi";
@@ -45,7 +45,7 @@ namespace AppForDoctor
             pausesButton.Content = "Rukovanje pauzama";
         }
 
-        public void ToEnglish()
+        private void ToEnglish()
         {
             patientID.Content = "Patient identification number:";
             acceptID.Content = "Accept";
@@ -54,12 +54,12 @@ namespace AppForDoctor
             pausesButton.Content = "Check pauses";
         }
 
-        public void ToLightTheme()
+        private void ToLightTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }
 
-        public void ToDarkTheme()
+        private void ToDarkTheme()
         {
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
