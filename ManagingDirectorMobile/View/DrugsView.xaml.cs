@@ -32,12 +32,6 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
         }
 
-        private void OptionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (OptionsPanel.Visibility != Visibility.Visible)
-                OptionsPanel.Visibility = Visibility.Visible;
-            else OptionsPanel.Visibility = Visibility.Hidden;
-        }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -51,17 +45,17 @@ namespace ManagingDirectorMobile.View
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsAddViewModel();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsChangeViewModel();
         }
 
         private void SupplyButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
@@ -76,20 +70,11 @@ namespace ManagingDirectorMobile.View
             else ShowHistoricalDataButton.IsEnabled = false;
         }
 
-        private void OptionsButton_LostFocus(object sender, RoutedEventArgs e)
+
+        private void Report_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(Report.IsFocused != true && SpecReport.IsFocused != true)
-                OptionsPanel.Visibility = Visibility.Hidden;
+            //;
         }
 
-        private void BackgroundGrid_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            OptionsPanel.Visibility = Visibility.Hidden;
-        }
-
-        private void OptionsPanel_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            e.Handled = true;
-        }
     }
 }

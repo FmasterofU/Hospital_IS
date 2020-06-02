@@ -21,7 +21,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Background="Azure" x:Name="BackgroundGrid" MouseUp="BackgroundGrid_MouseUp">
+    <Grid Background="Azure" x:Name="BackgroundGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -50,16 +50,16 @@
             <Image Source="/View/icons/icons8-menu-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
         </Button>
         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Lijekovi" FontWeight="Bold" FontSize="24"></Label>
-        <Button x:Name="OptionsButton" Grid.Column="6" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent" Click="OptionsButton_Click" LostFocus="OptionsButton_LostFocus">
-            <Image Source="/View/icons/icons8-menu-vertical-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
-        </Button>
-        <StackPanel x:Name="OptionsPanel" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" Grid.RowSpan="2" Panel.ZIndex="1" Visibility="Hidden" MouseUp="OptionsPanel_MouseUp" >
-            <ListBox Background="Orange" FontSize="16" FontWeight="DemiBold" Foreground="DarkSlateGray">
-                <ListBoxItem x:Name="Report">Izvještaj - trenutno stanje</ListBoxItem>
-                <Separator></Separator>
-                <ListBoxItem x:Name="SpecReport">Prilagođeni izvještaj</ListBoxItem>
-            </ListBox>
-        </StackPanel>
+        <Menu Grid.Column="6" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent">
+            <MenuItem FlowDirection="RightToLeft" HorizontalContentAlignment="Right">
+                <MenuItem.Icon>
+                    <Image Source="/View/icons/icons8-menu-vertical-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                </MenuItem.Icon>
+                <MenuItem FlowDirection="RightToLeft" x:Name="Report" MouseDown="Report_MouseDown" Header="Izvještaj - trenutno stanje"></MenuItem>
+                <MenuItem FlowDirection="RightToLeft" x:Name="SpecReport" Header="Prilagođeni izvještaj"></MenuItem>
+            </MenuItem>
+        </Menu>
+        
 
         <Grid Grid.Row="1" Grid.RowSpan="9" Grid.Column="0" Grid.ColumnSpan="7">
             <Grid.ColumnDefinitions>
@@ -115,7 +115,7 @@
                                 <Style.Resources>
                                     <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                         <VisualBrush.Visual>
-                                            <Label Content="naziv like 'A%' and minimum &lt;=70" FontSize="16" Foreground="Gray" />
+                                            <Label Content="pretraga po nazivu" FontSize="16" Foreground="Gray" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </Style.Resources>
@@ -185,14 +185,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" x:Name="SupplyButton" Content="Nabavka" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="SupplyButton_Click">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="5"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" x:Name="EditButton" Content="Izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="EditButton_Click">
+                    <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="EditButton" Content="Nabavka i izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="EditButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
