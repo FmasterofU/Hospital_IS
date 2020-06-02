@@ -69,5 +69,11 @@ namespace AppForDoctor
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
+
+        private void pausesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Pauses p = new Pauses();
+            p.ShowDialog();
+        }
     }
 }

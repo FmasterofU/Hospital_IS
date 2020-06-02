@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppForDoctor"
         mc:Ignorable="d"
-        Title="AddRefferal" Height="500" Width="500"
+        Title="AddReferral" Height="500" Width="500"
         x:Name="AddReferralWindow"
         Style="{StaticResource windowStyle}"
         Loaded="AddReferralWindow_Loaded">

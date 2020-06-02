@@ -32,12 +32,14 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-
+            backFromAddButton.Content = "Nazad";
+            addReferralButton.Content = "Dodaj";
         }
 
         private void ToEnglish()
         {
-
+            backFromAddButton.Content = "Back";
+            addReferralButton.Content = "Add";
         }
 
         private void AddReferralWindow_Loaded(object sender, RoutedEventArgs e)

@@ -46,12 +46,14 @@ namespace AppForDoctor
         {
             addDrugButton.Content = "Dodaj";
             backFromAddButton.Content = "Nazad";
+            usageGroupBox.Header = "Upotreba:";
         }
 
         private void ToEnglish()
         {
             addDrugButton.Content = "Add";
             backFromAddButton.Content = "Back";
+            usageGroupBox.Header = "Usage:";
         }
 
         private void ToLightTheme()
