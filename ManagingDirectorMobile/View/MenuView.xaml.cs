@@ -58,5 +58,32 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
             ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new DrugsViewModel();
         }
+
+        private void DoctorsWorkButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new WorkStatViewModel();
+        }
+
+        private void RoomsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MedEqButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new MedEquipmentViewModel();
+        }
+
+        private void StaffButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ReportsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

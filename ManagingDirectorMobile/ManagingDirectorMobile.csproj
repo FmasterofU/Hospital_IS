@@ -68,7 +68,9 @@
     <Compile Include="ViewModel\DrugsChangeViewModel.cs" />
     <Compile Include="ViewModel\DrugsHistoryViewModel.cs" />
     <Compile Include="ViewModel\DrugsViewModel.cs" />
+    <Compile Include="ViewModel\MedEquipmentViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\WorkStatViewModel.cs" />
     <Compile Include="View\DefaultNotificationView.xaml.cs">
       <DependentUpon>DefaultNotificationView.xaml</DependentUpon>
     </Compile>
@@ -84,8 +86,14 @@
     <Compile Include="View\DrugsView.xaml.cs">
       <DependentUpon>DrugsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MedEquipmentView.xaml.cs">
+      <DependentUpon>MedEquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkStatView.xaml.cs">
+      <DependentUpon>WorkStatView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,7 +127,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\MedEquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkStatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

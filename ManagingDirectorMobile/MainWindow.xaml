@@ -28,6 +28,15 @@
         <DataTemplate x:Name="DrugsChangeDefault" DataType="{x:Type ViewModel:DrugsChangeViewModel}">
             <View:DrugsChangeView DataContext="{Binding}"></View:DrugsChangeView>
         </DataTemplate>
+        <DataTemplate x:Name="WorkStatDefault" DataType="{x:Type ViewModel:WorkStatViewModel}">
+            <View:WorkStatView DataContext="{Binding}"></View:WorkStatView>
+        </DataTemplate>
+        <DataTemplate x:Name="MedEquipmentDefault" DataType="{x:Type ViewModel:MedEquipmentViewModel}">
+            <View:MedEquipmentView DataContext="{Binding}"></View:MedEquipmentView>
+        </DataTemplate>
+        <DataTemplate x:Name="MedEquipmentAddDefault" DataType="{x:Type ViewModel:MedEquipmentAddViewModel}">
+            <View:MedEquipmentAddView DataContext="{Binding}"></View:MedEquipmentAddView>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid Background="Azure">

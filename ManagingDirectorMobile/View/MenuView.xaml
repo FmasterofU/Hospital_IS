@@ -43,32 +43,32 @@
                         <Label Margin="10,0,0,0">Lijekovi</Label>
                     </StackPanel>
                 </Button>
-                <Button x:Name="DoctorsWorkButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18">
+                <Button x:Name="DoctorsWorkButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18" Click="DoctorsWorkButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/View/icons/icons8-medical-doctor-32.png"></Image>
                         <Label Margin="10,0,0,0">Rad ljekara</Label>
                     </StackPanel>
                 </Button>
-                <Button x:Name="RoomsButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18">
+                <Button x:Name="RoomsButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18" Click="RoomsButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/View/icons/icons8-room-32.png"></Image>
                         <Label Margin="10,0,0,0">Prostorije</Label>
                     </StackPanel>
                 </Button>
-                <Button x:Name="MedEqButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18">
+                <Button x:Name="MedEqButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18" Click="MedEqButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/View/icons/icons8-hospital-32.png"></Image>
                         <Label Margin="10,0,0,0">Medicinska oprema</Label>
                     </StackPanel>
                 </Button>
-                <Button x:Name="StaffButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18">
+                <Button x:Name="StaffButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18" Click="StaffButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/View/icons/icons8-staff-32.png"></Image>
                         <Label Margin="10,0,0,0">Zaposleni</Label>
                     </StackPanel>
                 </Button>
                 <Separator Margin="0"></Separator>
-                <Button x:Name="ReportsButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18">
+                <Button x:Name="ReportsButton" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" FontWeight="Bold" FontSize="18" Click="ReportsButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/View/icons/icons8-business-report-32.png"></Image>
                         <Label Margin="10,0,0,0">Izvještaji</Label>
