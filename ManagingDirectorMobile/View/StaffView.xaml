@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="ManagingDirectorMobile.View.StaffView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagingDirectorMobile.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="430">
+    <UserControl.Resources>
+        <Style x:Key="Body_Content_DataGrid_Centering" 
+               TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Azure" x:Name="BackgroundGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+        </DockPanel>
+        <Button x:Name="MenuButton" Grid.Column="0" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent" Click="MenuButton_Click" >
+            <Image Source="/View/icons/icons8-menu-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+        </Button>
+        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Zaposleni" FontWeight="Bold" FontSize="24"></Label>
+        <Menu Grid.Column="6" Grid.Row="0" BorderBrush="Transparent" MaxWidth="32" MaxHeight="32" Background="Transparent">
+            <MenuItem FlowDirection="RightToLeft" HorizontalContentAlignment="Right">
+                <MenuItem.Icon>
+                    <Image Source="/View/icons/icons8-menu-vertical-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                </MenuItem.Icon>
+                <MenuItem FlowDirection="RightToLeft" x:Name="Report" Header="Izvještaj - trenutno stanje"></MenuItem>
+                <MenuItem FlowDirection="RightToLeft" x:Name="SpecReport" Header="Prilagođeni izvještaj"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid Grid.Row="1" Grid.RowSpan="9" Grid.Column="0" Grid.ColumnSpan="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="16" Grid.ColumnSpan="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" MaxLines="1" HorizontalAlignment="Stretch" Name="SearchTexBox" FontSize="22" FontStretch="Condensed" Height="36" VerticalAlignment="Top">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="pretraga po nazivu" FontSize="16" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Grid.Column="1" Background="White" x:Name="SearchButton" Click="SearchButton_Click">
+                        <WrapPanel>
+                            <Image Source="/View/icons/icons8-search-32.png"></Image>
+                            <Label Content="Primjeni" FontSize="16"></Label>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <DataGrid DockPanel.Dock="Bottom" x:Name="StaffListDG" ItemsSource="{Binding staffs}" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeRows="False" 
+                              CanUserReorderColumns="False" 
+                              IsReadOnly="True" 
+                              SelectionMode="Single" 
+                              HeadersVisibility="None" 
+                              ScrollViewer.CanContentScroll="True" 
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                              EnableRowVirtualization="False" 
+                              CellStyle="{StaticResource Body_Content_DataGrid_Centering}" SelectionChanged="StaffListDG_SelectionChanged">
+                        <!--DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.RowStyle-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Width="*" FontSize="20"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Details}" FontSize="16"></Label>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </Grid>
+                <Grid Grid.Row="2" Margin="0,20,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="ShowHistoricalDataButton" Content="Istorijski prikaz stanja" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" IsEnabled="False">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="EditButton" Content="Nabavka i izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Column="0" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="AddButton" Click="AddButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <Ellipse Fill="Green"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <WrapPanel Orientation="Vertical">
+                            <Image Source="/View/icons/icons8-plus-24.png" Width="35" Height="35"></Image>
+                            <TextBlock Text="Zaposleni" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </WrapPanel>
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="RemoveButton" Click="RemoveButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Grid>
+                                    <Ellipse Fill="Red"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <WrapPanel Orientation="Vertical">
+                            <Image Source="/View/icons/icons8-minus-24.png" Width="35" Height="35"></Image>
+                            <TextBlock Text="Zaposleni" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

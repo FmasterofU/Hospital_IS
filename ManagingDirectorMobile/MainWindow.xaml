@@ -37,6 +37,9 @@
         <DataTemplate x:Name="MedEquipmentAddDefault" DataType="{x:Type ViewModel:MedEquipmentAddViewModel}">
             <View:MedEquipmentAddView DataContext="{Binding}"></View:MedEquipmentAddView>
         </DataTemplate>
+        <DataTemplate x:Name="StaffDefault" DataType="{x:Type ViewModel:StaffViewModel}">
+            <View:StaffView DataContext="{Binding}"></View:StaffView>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid Background="Azure">

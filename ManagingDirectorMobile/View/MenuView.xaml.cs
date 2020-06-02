@@ -78,7 +78,8 @@ namespace ManagingDirectorMobile.View
 
         private void StaffButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new StaffViewModel();
         }
 
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
