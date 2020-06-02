@@ -69,9 +69,7 @@ namespace AppForDoctor
 
         private void AddDrugWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWindow w = MainWindow.getInstance();
-            this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
-            this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+            MainWindow.CenterDialog(this);
         }
 
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +82,7 @@ namespace AppForDoctor
             addDrugsComboBox.SelectedIndex = 0;
             amountText.Text = "1";
             minusButton.IsEnabled = false;
+            usageTextBox.Text = "";
             if (drugSet.Count == 0)
             {
                 DrugsPage.getInstance().disableAddButton();
@@ -104,10 +103,11 @@ namespace AppForDoctor
             if (addDrugsComboBox.Items.Count != 0)
             {
                 addDrugsComboBox.SelectedIndex = 0;
-                addDrugButton.IsEnabled = true;
+                if (!usageTextBox.Text.Trim().Equals("")) addDrugButton.IsEnabled = true;
                 plusButton.IsEnabled = true;
                 amountText.Text = "1";
                 amountText.IsEnabled = true;
+                usageTextBox.IsEnabled = true;
             }
             else
             {
@@ -115,6 +115,7 @@ namespace AppForDoctor
                 amountText.IsEnabled = false;
                 plusButton.IsEnabled = false;
                 minusButton.IsEnabled = false;
+                usageTextBox.IsEnabled = false;
             }
         }
 
@@ -125,7 +126,22 @@ namespace AppForDoctor
 
         private void amountText_TextChanged(object sender, TextChangedEventArgs e)
         {
+            addDrugButton.IsEnabled = false;
+            plusButton.IsEnabled = false;
+            minusButton.IsEnabled = false;
+            usageTextBox.IsEnabled = false;
+
             if (Int32.TryParse(amountText.Text, out amount))
+            {
+                if (amount >= 1)
+                {
+                    if (!usageTextBox.Text.Trim().Equals("")) addDrugButton.IsEnabled = true;
+                    plusButton.IsEnabled = true;
+                    usageTextBox.IsEnabled = true;
+                    if (amount > 1) minusButton.IsEnabled = true;
+                }
+            }
+            /*if (Int32.TryParse(amountText.Text, out amount))
             {
                 if(amount <= 0)
                 {
@@ -151,7 +167,7 @@ namespace AppForDoctor
                 addDrugButton.IsEnabled = false;
                 plusButton.IsEnabled = false;
                 minusButton.IsEnabled = false;
-            }
+            }*/
         }
 
         private void plusButton_Click(object sender, RoutedEventArgs e)
@@ -164,6 +180,12 @@ namespace AppForDoctor
         {
             amountText.Text = (--amount).ToString();
             if (amount == 1) minusButton.IsEnabled = false;
+        }
+
+        private void usageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (usageTextBox.Text.Trim().Equals("")) addDrugButton.IsEnabled = false;
+            else addDrugButton.IsEnabled = true;
         }
     }
 }

@@ -58,7 +58,7 @@ namespace AppForDoctor
             historyButton.Content = "Check medical history";
             diagnosisBox.Header = "Diagnosis:";
             drugsButton.Content = "Check drugs";
-            refferalButton.Content = "Check refferals";
+            refferalButton.Content = "Check referrals";
             controlReviewButton.Content = "Schedule control review";
             saveDiagnosisButton.Content = "Save";
             menuFromExaminationButton.Content = "Menu";

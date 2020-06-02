@@ -26,12 +26,6 @@ namespace AppForDoctor
             InitializeComponent();
         }
 
-        /*private void MedHistoryWindow_Closed(object sender, EventArgs e)
-        {
-            //TODO: save history in data base
-            ExaminationPage.closeHistory();
-        }*/
-
         public static MedHistory getInstance()
         {
             if (instance == null) instance = new MedHistory();
@@ -54,15 +48,12 @@ namespace AppForDoctor
 
         private void centerHistoryToParent()
         {
-            MainWindow w = MainWindow.getInstance();
-            instance.Left = w.Left + (w.Width - instance.ActualWidth) / 2;
-            instance.Top = w.Top + (w.Height - instance.ActualHeight) / 2;
+            MainWindow.CenterDialog(this);
         }
 
         private void MedHistoryWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //TODO: save history in data base
-            //ExaminationPage.closeHistory();
             if (!toClose)
             {
                 e.Cancel = true;

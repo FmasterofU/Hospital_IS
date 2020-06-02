@@ -41,7 +41,6 @@ namespace AppForDoctor
             patientID.Content = "Identifikacioni broj pacijenta:";
             acceptID.Content = "Potvrdi";
             appointmentsButton.Content = "Pregled termina";
-            commentsButton.Content = "Pregled komentara pacijenata";
             pausesButton.Content = "Rukovanje pauzama";
         }
 
@@ -50,7 +49,6 @@ namespace AppForDoctor
             patientID.Content = "Patient identification number:";
             acceptID.Content = "Accept";
             appointmentsButton.Content = "Appointments";
-            commentsButton.Content = "See patient's comments";
             pausesButton.Content = "Check pauses";
         }
 

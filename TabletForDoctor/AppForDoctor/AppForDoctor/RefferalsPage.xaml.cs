@@ -45,8 +45,8 @@ namespace AppForDoctor
         private void ToEnglish()
         {
             refferalsBefore.Content = "Current refferals:";
-            addRefferalButton.Content = "Add refferal";
-            deleteRefferalButton.Content = "Delete refferal";
+            addRefferalButton.Content = "Add referral";
+            deleteRefferalButton.Content = "Delete referral";
             examinationFromRefferalsButton.Content = "Back";
         }
 
@@ -59,6 +59,12 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
+        }
+
+        private void addRefferalButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddReferral a = new AddReferral();
+            a.ShowDialog();
         }
     }
 }

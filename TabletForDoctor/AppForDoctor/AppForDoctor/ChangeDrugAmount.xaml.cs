@@ -47,9 +47,7 @@ namespace AppForDoctor
 
         private void ChangeDrugAmountWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWindow w = MainWindow.getInstance();
-            this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
-            this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+            MainWindow.CenterDialog(this);
         }
 
         private void backFromChangeAmountButton_Click(object sender, RoutedEventArgs e)
@@ -107,32 +105,18 @@ namespace AppForDoctor
 
         private void amountText_TextChanged(object sender, TextChangedEventArgs e)
         {
+            changeAmountButton.IsEnabled = false;
+            plusButton.IsEnabled = false;
+            minusButton.IsEnabled = false;
+
             if (Int32.TryParse(amountText.Text, out amount))
             {
-                if (amount <= 0)
-                {
-                    changeAmountButton.IsEnabled = false;
-                    plusButton.IsEnabled = false;
-                    minusButton.IsEnabled = false;
-                }
-                else if (amount == 1)
+                if (amount >= 1)
                 {
                     changeAmountButton.IsEnabled = true;
                     plusButton.IsEnabled = true;
-                    minusButton.IsEnabled = false;
+                    if (amount > 1) minusButton.IsEnabled = true;
                 }
-                else
-                {
-                    changeAmountButton.IsEnabled = true;
-                    plusButton.IsEnabled = true;
-                    minusButton.IsEnabled = true;
-                }
-            }
-            else
-            {
-                changeAmountButton.IsEnabled = false;
-                plusButton.IsEnabled = false;
-                minusButton.IsEnabled = false;
             }
         }
 

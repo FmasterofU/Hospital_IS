@@ -16,8 +16,8 @@
             <Button x:Name="changeAmountButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" Click="changeAmountButton_Click">Promeni</Button>
         </StackPanel>
-        <StackPanel Margin="121,50,121,200" Orientation="Vertical" Width="240">
-            <StackPanel Orientation="Horizontal" Height="55">
+        <StackPanel Margin="25,10,25,100" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
                 <Button Style="{StaticResource buttonStyle}" Width="40" x:Name="searchButton" Click="searchButton_Click">
                     <Image Source="search-32.png" Width="37" Height="55"/>
@@ -27,8 +27,8 @@
                       SelectionChanged="changeAmountComboBox_SelectionChanged"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox x:Name="amountText" Margin="0,20,0,0" Width="65" Style="{StaticResource textBoxStyle}" TextChanged="amountText_TextChanged"/>
-                <Button x:Name="plusButton" Margin="5,20,0,0" Content="+" Width="30" Style="{StaticResource buttonStyle}" Click="plusButton_Click"/>
-                <Button x:Name="minusButton" Margin="0,20,0,0"  Content="-" Width="30" IsEnabled="False" Style="{StaticResource buttonStyle}" Click="minusButton_Click"/>
+                <Button x:Name="plusButton" Margin="5,20,0,0" Content="+" Width="30" Style="{StaticResource buttonStyle}" Background="Orange" Click="plusButton_Click"/>
+                <Button x:Name="minusButton" Margin="0,20,0,0"  Content="-" Width="30" IsEnabled="False" Style="{StaticResource buttonStyle}" Background="Orange" Click="minusButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

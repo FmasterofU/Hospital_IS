@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddReferral.xaml.cs">
+      <DependentUpon>AddReferral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RefferalsPage.xaml.cs">
       <DependentUpon>RefferalsPage.xaml</DependentUpon>
     </Compile>
     <Page Include="AddDrug.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddReferral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

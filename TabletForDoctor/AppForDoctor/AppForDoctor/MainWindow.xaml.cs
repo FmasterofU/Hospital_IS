@@ -267,6 +267,12 @@ namespace AppForDoctor
             }
         }
 
+        public static void CenterDialog(Window w)
+        {
+            w.Left = instance.Left + (instance.Width - w.ActualWidth) / 2;
+            w.Top = instance.Top + (instance.Height - w.ActualHeight) / 2;
+        }
+
         private void MeinWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();

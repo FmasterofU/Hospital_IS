@@ -12,7 +12,8 @@
         <ListBox x:Name="refferalsListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="500" Style="{StaticResource listBoxStyle}">
         </ListBox>
         <StackPanel Orientation="Horizontal" Margin="25,330,0,0">
-            <Button x:Name="addRefferalButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}">Dodaj uput</Button>
+            <Button x:Name="addRefferalButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
+                    Click="addRefferalButton_Click">Dodaj uput</Button>
             <Button x:Name="deleteRefferalButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}">Obrisi uput</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">

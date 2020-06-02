@@ -52,9 +52,7 @@ namespace AppForDoctor
 
         private void ControlReviewWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            MainWindow w = MainWindow.getInstance();
-            this.Left = w.Left + (w.Width - this.ActualWidth) / 2;
-            this.Top = w.Top + (w.Height - this.ActualHeight) / 2;
+            MainWindow.CenterDialog(this);
         }
 
         private void backFromControlButton_Click(object sender, RoutedEventArgs e)
