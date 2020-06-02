@@ -68,6 +68,7 @@
     <Compile Include="ViewModel\DrugsChangeViewModel.cs" />
     <Compile Include="ViewModel\DrugsHistoryViewModel.cs" />
     <Compile Include="ViewModel\DrugsViewModel.cs" />
+    <Compile Include="ViewModel\MedEquipmentAddViewModel.cs" />
     <Compile Include="ViewModel\MedEquipmentViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\WorkStatViewModel.cs" />
@@ -85,6 +86,9 @@
     </Compile>
     <Compile Include="View\DrugsView.xaml.cs">
       <DependentUpon>DrugsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MedEquipmentAddView.xaml.cs">
+      <DependentUpon>MedEquipmentAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MedEquipmentView.xaml.cs">
       <DependentUpon>MedEquipmentView.xaml</DependentUpon>
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DrugsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MedEquipmentAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

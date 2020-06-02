@@ -24,5 +24,15 @@ namespace ManagingDirectorMobile.View
         {
             InitializeComponent();
         }
+
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
+        }
+
+        private void PanelGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
