@@ -72,6 +72,7 @@
     <Compile Include="ViewModel\MedEquipmentViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\StaffWorkTimeViewModel.cs" />
     <Compile Include="ViewModel\WorkStatViewModel.cs" />
     <Compile Include="View\DefaultNotificationView.xaml.cs">
       <DependentUpon>DefaultNotificationView.xaml</DependentUpon>
@@ -99,6 +100,9 @@
     </Compile>
     <Compile Include="View\StaffView.xaml.cs">
       <DependentUpon>StaffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffWorkTimeView.xaml.cs">
+      <DependentUpon>StaffWorkTimeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkStatView.xaml.cs">
       <DependentUpon>WorkStatView.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffWorkTimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

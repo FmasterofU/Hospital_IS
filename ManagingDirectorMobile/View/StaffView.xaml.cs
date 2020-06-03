@@ -51,5 +51,10 @@ namespace ManagingDirectorMobile.View
         {
 
         }
+
+        private void WorkTimeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new StaffWorkTimeViewModel();
+        }
     }
 }

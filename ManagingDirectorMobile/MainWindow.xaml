@@ -40,6 +40,9 @@
         <DataTemplate x:Name="StaffDefault" DataType="{x:Type ViewModel:StaffViewModel}">
             <View:StaffView DataContext="{Binding}"></View:StaffView>
         </DataTemplate>
+        <DataTemplate x:Name="StaffWorkTimeDefault" DataType="{x:Type ViewModel:StaffWorkTimeViewModel}">
+            <View:StaffWorkTimeView DataContext="{Binding}"></View:StaffWorkTimeView>
+        </DataTemplate>
     </Window.Resources>
     
     <Grid Background="Azure">
