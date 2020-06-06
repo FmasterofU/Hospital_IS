@@ -19,7 +19,7 @@
         <StackPanel Margin="25,10,25,80" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
-                <Button Style="{StaticResource buttonStyle}" Width="40" x:Name="searchButton" Click="searchButton_Click">
+                <Button Width="40" x:Name="searchButton" Click="searchButton_Click">
                     <Image Source="search-32.png" Width="37" Height="55"/>
                 </Button>
             </StackPanel>

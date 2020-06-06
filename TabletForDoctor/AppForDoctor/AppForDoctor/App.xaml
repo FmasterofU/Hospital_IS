@@ -26,10 +26,10 @@
             <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
             <Setter Property="Foreground" Value="Red"/>
         </Style>
-        <Style x:Key="buttonStyle" TargetType="Button" BasedOn="{StaticResource sizeStyle}">
+        <!--<Style x:Key="buttonStyle" TargetType="Button" BasedOn="{StaticResource sizeStyle}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
-        </Style>
+        </Style>-->
         <Style x:Key="windowStyle" TargetType="Window">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
         </Style>
@@ -47,5 +47,26 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="MaxDropDownHeight" Value="200"/>
         </Style>
+
+        <Style x:Key="buttonStyle" TargetType="Button" BasedOn="{StaticResource sizeStyle}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+        	<Setter.Value>
+        		<ControlTemplate TargetType="Button">
+                        <Border Name="buttonSettings" BorderThickness="1.5" CornerRadius="10" BorderBrush="{DynamicResource foregroundColor}" Background="{TemplateBinding Background}">
+                        <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="buttonSettings" Property="Background" Value="LightSlateGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+        		</ControlTemplate>
+        	</Setter.Value>
+        </Setter>
+    </Style>
     </Application.Resources>
 </Application>

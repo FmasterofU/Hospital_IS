@@ -77,7 +77,7 @@ namespace AppForDoctor
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            lightButton.Background = Brushes.DeepSkyBlue;
+            lightButton.Background = Brushes.DodgerBlue;
             darkButton.Background = Brushes.LightSlateGray;
             UpdateActivePage();
         }
@@ -89,7 +89,7 @@ namespace AppForDoctor
             Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             lightButton.Background = Brushes.LightSlateGray;
-            darkButton.Background = Brushes.DeepSkyBlue;
+            darkButton.Background = Brushes.DodgerBlue;
             UpdateActivePage();
         }
 
