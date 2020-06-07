@@ -32,7 +32,7 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-            saveControlButton.Content = "Sacuvaj";
+            saveControlButton.Content = "Sačuvaj";
             backFromControlButton.Content = "Nazad";
         }
 

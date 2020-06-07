@@ -31,6 +31,12 @@ namespace AppForDoctor
             {
                 drugListBox.Items.Add(pair.Key + " *" + pair.Value);
             }
+            oldDrugsListBox.Items.Add("Stari");
+            oldDrugsListBox.Items.Add("Sstari");
+            oldDrugsListBox.Items.Add("Sttari");
+            oldDrugsListBox.Items.Add("Staari");
+            oldDrugsListBox.Items.Add("Starri");
+            oldDrugsListBox.Items.Add("Starii");
         }
 
         public static DrugsPage getInstance()
@@ -52,9 +58,10 @@ namespace AppForDoctor
         {
             drugsLabel.Content = "Prepisani lekovi:";
             addDrugButton.Content = "Dodaj lek";
-            deleteDrugButton.Content = "Obrisi lek";
-            changeAmountButton.Content = "Izmeni kolicinu";
+            deleteDrugButton.Content = "Obriši lek";
+            changeAmountButton.Content = "Izmeni količinu";
             examinationFromDrugsButton.Content = "Nazad";
+            oldDrugsLabel.Content = "Ranije korišćeni lekovi:";
         }
 
         private void ToEnglish()
@@ -64,6 +71,7 @@ namespace AppForDoctor
             deleteDrugButton.Content = "Delete drug";
             changeAmountButton.Content = "Change amount";
             examinationFromDrugsButton.Content = "Back";
+            oldDrugsLabel.Content = "Drugs used before:";
         }
 
         private void ToLightTheme()

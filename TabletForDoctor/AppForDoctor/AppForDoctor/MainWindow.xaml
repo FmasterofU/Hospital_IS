@@ -8,7 +8,6 @@
         Title="MainWindow" Height="768" Width="1024"
         Name="MeinWindow"
         Style="{StaticResource windowStyle}"
-        ResizeMode="NoResize"
         Closing="MeinWindow_Closing">
     <Grid>
         <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Red" Style="{StaticResource buttonStyle}" 
@@ -17,9 +16,9 @@
         <Button x:Name="logOutButton" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="160" Background="DodgerBlue" Style="{StaticResource buttonStyle}" 
                 Click="logOutButton_Click">Log out</Button>
         <StackPanel Margin="25,72,700,600" Orientation="Horizontal">
-            <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DodgerBlue" 
+            <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DodgerBlue" FontWeight="DemiBold" BorderThickness="0"
                     Height="55" Click="lightButton_Click">Svetlo</Button>
-            <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" 
+            <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" FontWeight="DemiBold" BorderThickness="0"
                     Height="55" Click="darkButton_Click">Tamno</Button>
         </StackPanel>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Right" Margin="0,72,25,0" VerticalAlignment="Top" Width="160" FontSize="35" Height="55">

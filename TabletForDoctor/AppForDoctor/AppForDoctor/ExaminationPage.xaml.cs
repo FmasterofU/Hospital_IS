@@ -49,7 +49,7 @@ namespace AppForDoctor
             drugsButton.Content = "Pregled lekova";
             refferalButton.Content = "Pregled uputa";
             controlReviewButton.Content = "Zakazivanje kontrole";
-            saveDiagnosisButton.Content = "Sacuvaj";
+            saveDiagnosisButton.Content = "Sačuvaj";
             menuFromExaminationButton.Content = "Meni";
         }
 

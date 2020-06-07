@@ -100,7 +100,7 @@ namespace AppForDoctor
             if (englishComboItem != null) englishComboItem.Content = "Engleski";
             lightButton.Content = "Svetlo";
             darkButton.Content = "Tamno";
-            mainLabel.Content = "Postovanje, ulogovani Ste kao lekar.";
+            mainLabel.Content = "Poštovanje, ulogovani Ste kao lekar.";
             editProfileButton.Content = "Uredi profil";
             UpdateActivePage();
         }

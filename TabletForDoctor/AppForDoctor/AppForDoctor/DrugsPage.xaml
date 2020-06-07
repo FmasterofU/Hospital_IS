@@ -8,17 +8,26 @@
       d:DesignHeight="768" d:DesignWidth="1024"
       Title="DrugsPage">
     <Grid>
-        <Label x:Name="drugsLabel" HorizontalAlignment="Left" Margin="21,152,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource labelStyle}">Prepisani lekovi:</Label>
-        <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="310,152,0,0" VerticalAlignment="Top" Width="210" Style="{StaticResource listBoxStyle}"
-                 SelectionChanged="drugListBox_SelectionChanged">
-        </ListBox>
-        <StackPanel Orientation="Horizontal" Margin="25,330,0,0">
-            <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
+        <StackPanel Orientation="Vertical" Margin="25,152,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Label x:Name="oldDrugsLabel" HorizontalAlignment="Left" Margin="-3,0,0,0" VerticalAlignment="Top" Width="360" Style="{StaticResource labelStyle}">Ranije korisceni lekovi:</Label>
+                <ListBox x:Name="oldDrugsListBox" HorizontalAlignment="Left" Height="156" Margin="10,0,0,0" VerticalAlignment="Top" Width="300" Style="{StaticResource listBoxStyle}">
+                </ListBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                <Label x:Name="drugsLabel" HorizontalAlignment="Left" Margin="-3,0,0,0" VerticalAlignment="Top" Width="360" Style="{StaticResource labelStyle}">Prepisani lekovi:</Label>
+                <ListBox x:Name="drugListBox" HorizontalAlignment="Left" Height="156" Margin="10,0,0,0" VerticalAlignment="Top" Width="300" Style="{StaticResource listBoxStyle}" 
+                         SelectionChanged="drugListBox_SelectionChanged">
+                </ListBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                <Button x:Name="addDrugButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Click="addDrugButton_Click">Dodaj lek</Button>
-            <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
+                <Button x:Name="deleteDrugButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Click="deleteDrugButton_Click">Obrisi lek</Button>
-            <Button x:Name="changeAmountButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
+                <Button x:Name="changeAmountButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Click="changeAmountButton_Click">Izmeni kolicinu</Button>
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
             <Button x:Name="examinationFromDrugsButton" HorizontalAlignment="Right" Margin="0,0,160,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"

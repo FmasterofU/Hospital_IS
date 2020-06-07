@@ -36,9 +36,9 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-            refferalsBefore.Content = "Dosadasnji uputi:";
+            refferalsBefore.Content = "Dosadašnji uputi:";
             addRefferalButton.Content = "Dodaj uput";
-            deleteRefferalButton.Content = "Obrisi uput";
+            deleteRefferalButton.Content = "Obriši uput";
             examinationFromRefferalsButton.Content = "Nazad";
         }
 

@@ -14,7 +14,7 @@
             <Button x:Name="saveProfileButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
                     Background="Green" Height="55" IsEnabled="False" Click="saveProfileButton_Click">Sacuvaj</Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Margin="25,152,650,0">
+        <StackPanel Orientation="Vertical" Margin="25,152,625,0">
             <Label x:Name="nameLabel" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="55" Style="{StaticResource labelStyle}">Ime:</Label>
             <Label x:Name="surnameLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Height="55" Style="{StaticResource labelStyle}">Prezime:</Label>
             <Label x:Name="adressLabel" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Height="55" Style="{StaticResource labelStyle}">Adresa:</Label>
@@ -32,15 +32,15 @@
                      Style="{StaticResource textBoxStyle}" TextChanged="adressTextBox_TextChanged"/>
             <TextBox x:Name="mailTextBox" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="300" Height="55"
                      Style="{StaticResource textBoxStyle}" TextChanged="mailTextBox_TextChanged"/>
-            <StackPanel Margin="150,30,0,0" Orientation="Horizontal">
+            <StackPanel Margin="160,30,0,0" Orientation="Horizontal">
                 <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="300" Height="55" 
                          Style="{StaticResource passwordBoxStyle}" KeyUp="passwordTextBox_KeyUp" PasswordChanged="passwordTextBox_PasswordChanged"/>
                 <Button x:Name="checkPasswordButton" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Orange" Height="55" Click="checkPasswordButton_Click">Proveri</Button>
             </StackPanel>
-            <PasswordBox x:Name="newPasswordTextBox" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="300" Height="55"
+            <PasswordBox x:Name="newPasswordTextBox" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="300" Height="55"
                      Style="{StaticResource passwordBoxStyle}" IsEnabled="False" KeyUp="newPasswordTextBox_KeyUp" PasswordChanged="newPasswordTextBox_PasswordChanged"/>
-            <PasswordBox x:Name="newPassword2TextBox" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="300" Height="55"
+            <PasswordBox x:Name="newPassword2TextBox" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="300" Height="55"
                      Style="{StaticResource passwordBoxStyle}" IsEnabled="False" KeyUp="newPasswordTextBox_KeyUp" PasswordChanged="newPasswordTextBox_PasswordChanged"/>
         </StackPanel>
     </Grid>

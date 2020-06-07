@@ -61,17 +61,23 @@ namespace AppForDoctor
             nameLabel.Content = "Ime:";
             surnameLabel.Content = "Prezime:";
             adressLabel.Content = "Adresa:";
-            saveProfileButton.Content = "Sacuvaj";
+            saveProfileButton.Content = "Sačuvaj";
             backFromEditProfileButton.Content = "Nazad";
+            passwordLabel.Content = "Trenutna lozinka:";
+            newPasswordLabel.Content = "Nova lozinka:";
+            newPassword2Label.Content = "Ponovi novu lozinku:";
         }
 
         private void ToEnglish()
         {
             nameLabel.Content = "Name:";
             surnameLabel.Content = "Surname:";
-            adressLabel.Content = "Adress:";
+            adressLabel.Content = "Address:";
             saveProfileButton.Content = "Save";
             backFromEditProfileButton.Content = "Back";
+            passwordLabel.Content = "Password:";
+            newPasswordLabel.Content = "New password:";
+            newPassword2Label.Content = "Retype new password:";
         }
 
         private void ToLightTheme()

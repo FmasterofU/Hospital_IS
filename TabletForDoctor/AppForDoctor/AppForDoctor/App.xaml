@@ -32,6 +32,7 @@
         </Style>-->
         <Style x:Key="windowStyle" TargetType="Window">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+            <Setter Property="ResizeMode" Value="CanMinimize"/>
         </Style>
         <Style x:Key="groupBoxStyle" TargetType="GroupBox" BasedOn="{StaticResource labelStyle}">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
@@ -53,14 +54,14 @@
             <Setter Property="Template">
         	<Setter.Value>
         		<ControlTemplate TargetType="Button">
-                        <Border Name="buttonSettings" BorderThickness="1.5" CornerRadius="10" BorderBrush="{DynamicResource foregroundColor}" Background="{TemplateBinding Background}">
+                    <Border Name="buttonSettings" BorderThickness="1.5" CornerRadius="10" BorderBrush="{DynamicResource foregroundColor}" Background="{TemplateBinding Background}">
                         <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="White"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="buttonSettings" Property="Background" Value="LightSlateGray"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

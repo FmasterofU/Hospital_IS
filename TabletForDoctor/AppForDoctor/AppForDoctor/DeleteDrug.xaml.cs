@@ -35,7 +35,7 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-            deleteDrugButton.Content = "Obrisi";
+            deleteDrugButton.Content = "Obriši";
             backFromDeleteButton.Content = "Nazad";
         }
 

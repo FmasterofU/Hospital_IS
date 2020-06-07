@@ -31,7 +31,7 @@
                 <Button x:Name="minusButton" Margin="0,20,0,0"  Content="-" Width="30" IsEnabled="False" Style="{StaticResource buttonStyle}" Background="Orange" Click="minusButton_Click"/>
             </StackPanel>
             <GroupBox x:Name="usageGroupBox" Margin="0,15,0,0" Header="Upotreba:" Style="{StaticResource groupBoxStyle}">
-            <TextBox x:Name="usageTextBox" Margin="0,0,0,0" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="100" Style="{StaticResource textBoxStyle}" 
+                <TextBox x:Name="usageTextBox" Margin="0,0,0,0" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="100" Style="{StaticResource textBoxStyle}" 
                          TextChanged="usageTextBox_TextChanged"/>
             </GroupBox>
         </StackPanel>
