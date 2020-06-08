@@ -19,7 +19,8 @@ namespace AppForDoctor
     /// </summary>
     public partial class ControlReview : Window
     {
-        private DateTime? selDate;
+        private DateTime selDate;
+        private DateTime selTime;
 
         public ControlReview()
         {
@@ -62,13 +63,18 @@ namespace AppForDoctor
 
         private void saveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            if(!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
+            selDate = selDate.AddTicks(selTime.TimeOfDay.Ticks);
+            if (!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
             this.Close();
         }
 
         private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            selDate = calendar.SelectedDate;
+            DateTime? date = calendar.SelectedDate;
+            if (date != null)
+            {
+                selDate = date.Value;
+            }
             if (!selDate.ToString().Equals("")) saveControlButton.IsEnabled = true;
             else saveControlButton.IsEnabled = false;
         }
@@ -76,7 +82,17 @@ namespace AppForDoctor
         public void setInitialDate(DateTime? initial)
         {
             calendar.SelectedDate = initial;
+            timePicker.Value = initial;
             saveControlButton.IsEnabled = true;
+        }
+
+        private void TimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            DateTime? time = timePicker.Value;
+            if (time != null)
+            {
+                selTime = time.Value;
+            }
         }
     }
 }

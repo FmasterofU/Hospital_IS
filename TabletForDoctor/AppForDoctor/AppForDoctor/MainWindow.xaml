@@ -17,9 +17,9 @@
                 Click="logOutButton_Click">Log out</Button>
         <StackPanel Margin="25,72,700,600" Orientation="Horizontal">
             <Button x:Name="lightButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="DodgerBlue" FontWeight="DemiBold" BorderThickness="0"
-                    Height="55" Click="lightButton_Click">Svetlo</Button>
+                    Height="55" Style="{StaticResource buttonStyle}" Click="lightButton_Click">Svetlo</Button>
             <Button x:Name="darkButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="120" FontSize="35" Background="LightSlateGray" FontWeight="DemiBold" BorderThickness="0"
-                    Height="55" Click="darkButton_Click">Tamno</Button>
+                    Height="55" Style="{StaticResource buttonStyle}" Click="darkButton_Click">Tamno</Button>
         </StackPanel>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Right" Margin="0,72,25,0" VerticalAlignment="Top" Width="160" FontSize="35" Height="55">
             <ComboBoxItem x:Name="serbianComboItem" Content="Srpski" IsSelected="True" Selected="serbianComboItem_Selected"/>

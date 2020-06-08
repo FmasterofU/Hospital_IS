@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:AppForDoctor"
         mc:Ignorable="d"
         Title="ControlReview" Height="500" Width="500"
@@ -11,15 +12,28 @@
         Style="{StaticResource windowStyle}"
         Loaded="ControlReviewWindow_Loaded">
     <Grid>
-        <Viewbox VerticalAlignment="Center" Height="146" Margin="96,0,96,200">
-            <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" DisplayDateStart="{x:Static sys:DateTime.Now}">
-            </DatePicker>
-        </Viewbox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
             <Button x:Name="backFromControlButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromControlButton_Click">Nazad</Button>
             <Button x:Name="saveControlButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" IsEnabled="False" Click="saveControlButton_Click">Sacuvaj</Button>
+        </StackPanel>
+        <StackPanel Margin="96,50,96,91" Orientation="Vertical">
+            <Viewbox VerticalAlignment="Center" Height="80" Margin="0,0,0,0">
+                <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" SelectedDate="{x:Static sys:DateTime.Now}" 
+                            DisplayDateStart="{x:Static sys:DateTime.Now}" FirstDayOfWeek="Monday">
+                    <DatePicker.Resources>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </Viewbox>
+            <Viewbox VerticalAlignment="Center" Height="80" Margin="0,20,0,0">
+                <xctk:TimePicker x:Name="timePicker" Margin="0,0,0,0" Value="00:00:00" AllowTextInput="False" MaxDropDownHeight="70" ValueChanged="TimePicker_ValueChanged" FontSize="8" 
+                             Background="{DynamicResource backgroundColor}" Foreground="{DynamicResource foregroundColor}"/>
+            </Viewbox>
         </StackPanel>
     </Grid>
 </Window>
