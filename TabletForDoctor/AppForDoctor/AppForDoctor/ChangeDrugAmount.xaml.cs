@@ -25,7 +25,6 @@ namespace AppForDoctor
         public ChangeDrugAmount()
         {
             InitializeComponent();
-            amountText.Text = "1";
             drugDict = DrugsPage.getInstance().getDrugDict();
             foreach (string s in drugDict.Keys) changeAmountComboBox.Items.Add(s);
             changeAmountComboBox.SelectedIndex = 0;
@@ -82,6 +81,8 @@ namespace AppForDoctor
         {
             string input = searchInput.Text.ToLower();
             changeAmountComboBox.Items.Clear();
+            changeAmountButton.IsEnabled = false;
+
             foreach (string s in drugDict.Keys)
             {
                 if (s.ToLower().Contains(input)) changeAmountComboBox.Items.Add(s);
@@ -89,14 +90,12 @@ namespace AppForDoctor
             if (changeAmountComboBox.Items.Count != 0)
             {
                 changeAmountComboBox.SelectedIndex = 0;
-                changeAmountButton.IsEnabled = true;
                 plusButton.IsEnabled = true;
                 if (amount > 1) minusButton.IsEnabled = true;
                 amountText.IsEnabled = true;
             }
             else
             {
-                changeAmountButton.IsEnabled = false;
                 amountText.IsEnabled = false;
                 plusButton.IsEnabled = false;
                 minusButton.IsEnabled = false;
@@ -108,12 +107,13 @@ namespace AppForDoctor
             changeAmountButton.IsEnabled = false;
             plusButton.IsEnabled = false;
             minusButton.IsEnabled = false;
+            string choice = changeAmountComboBox.SelectedItem.ToString();
 
             if (Int32.TryParse(amountText.Text, out amount))
             {
                 if (amount >= 1)
                 {
-                    changeAmountButton.IsEnabled = true;
+                    if (amount != drugDict[choice]) changeAmountButton.IsEnabled = true;
                     plusButton.IsEnabled = true;
                     if (amount > 1) minusButton.IsEnabled = true;
                 }

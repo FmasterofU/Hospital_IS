@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:AppForDoctor"
         mc:Ignorable="d"
         Title="ControlReview" Height="500" Width="500"
@@ -10,8 +11,9 @@
         Style="{StaticResource windowStyle}"
         Loaded="ControlReviewWindow_Loaded">
     <Grid>
-        <Viewbox VerticalAlignment="Center" Height="146" Margin="96,0,96,200" >
-            <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" />
+        <Viewbox VerticalAlignment="Center" Height="146" Margin="96,0,96,200">
+            <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" DisplayDateStart="{x:Static sys:DateTime.Now}">
+            </DatePicker>
         </Viewbox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
             <Button x:Name="backFromControlButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 

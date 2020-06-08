@@ -73,6 +73,7 @@ namespace AppForDoctor
 
         private void lightButton_Click(object sender, RoutedEventArgs e)
         {
+            if (theme == Theme.Light) return;
             theme = Theme.Light;
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
@@ -84,6 +85,7 @@ namespace AppForDoctor
 
         private void darkButton_Click(object sender, RoutedEventArgs e)
         {
+            if (theme == Theme.Dark) return;
             theme = Theme.Dark;
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
@@ -95,6 +97,7 @@ namespace AppForDoctor
 
         private void serbianComboItem_Selected(object sender, RoutedEventArgs e)
         {
+            if (language == Language.Serbian) return;
             language = Language.Serbian;
             serbianComboItem.Content = "Srpski";
             if (englishComboItem != null) englishComboItem.Content = "Engleski";
@@ -107,6 +110,7 @@ namespace AppForDoctor
 
         private void englishComboItem_Selected(object sender, RoutedEventArgs e)
         {
+            if (language == Language.English) return;
             language = Language.English;
             serbianComboItem.Content = "Serbian";
             if (englishComboItem != null) englishComboItem.Content = "English";

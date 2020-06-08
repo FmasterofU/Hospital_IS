@@ -36,7 +36,8 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-            refferalsBefore.Content = "Dosadašnji uputi:";
+            referralsBefore.Content = "Dosadašnji uputi:";
+            referralsNow.Content = "Dodati uputi:";
             addRefferalButton.Content = "Dodaj uput";
             deleteRefferalButton.Content = "Obriši uput";
             examinationFromRefferalsButton.Content = "Nazad";
@@ -44,7 +45,8 @@ namespace AppForDoctor
 
         private void ToEnglish()
         {
-            refferalsBefore.Content = "Current refferals:";
+            referralsBefore.Content = "Current referrals:";
+            referralsNow.Content = "Added referrals:";
             addRefferalButton.Content = "Add referral";
             deleteRefferalButton.Content = "Delete referral";
             examinationFromRefferalsButton.Content = "Back";

@@ -83,12 +83,53 @@ namespace AppForDoctor
 
         private void referralsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ClearEnteredData();
+            string option = referralsCombo.SelectedItem.ToString();
+            if (option.Contains("laborator")) laboratoryPanel.Visibility = Visibility.Visible;
+            else if (option.Contains("pomagalo") || option.Contains("accessory")) accessoryPanel.Visibility = Visibility.Visible;
+            else if (option.Contains("bolni") || option.Contains("hospital")) hospitalCarePanel.Visibility = Visibility.Visible;
+        }
+
+        private void ClearEnteredData()
+        {
             laboratoryPanel.Visibility = Visibility.Hidden;
             accessoryPanel.Visibility = Visibility.Hidden;
             hospitalCarePanel.Visibility = Visibility.Hidden;
-            if (referralsCombo.SelectedIndex == 1) laboratoryPanel.Visibility = Visibility.Visible;
-            else if (referralsCombo.SelectedIndex == 2) accessoryPanel.Visibility = Visibility.Visible;
-            else if (referralsCombo.SelectedIndex == 3) hospitalCarePanel.Visibility = Visibility.Visible;
+
+            labAnalysisTypeTextBox.Text = "";
+            causeForLabText.Text = "";
+
+            accessoryTypeTextBox.Text = "";
+            causeForAccessoryText.Text = "";
+
+            causeForHospitalText.Text = "";
+        }
+
+        private bool CanISaveReferral()
+        {
+            string option = referralsCombo.SelectedItem.ToString();
+            if (option.Contains("laborator"))
+            {
+                if (!labAnalysisTypeTextBox.Text.Trim().Equals("") && !causeForLabText.Text.Trim().Equals("")) return true;
+                else return false;
+            }
+            else if (option.Contains("pomagalo") || option.Contains("accessory"))
+            {
+                if (!accessoryTypeTextBox.Text.Trim().Equals("") && !causeForAccessoryText.Text.Trim().Equals("")) return true;
+                else return false;
+            }
+            else if (option.Contains("bolni") || option.Contains("hospital"))
+            {
+                if (!causeForHospitalText.Text.Trim().Equals("")) return true;
+                else return false;
+            }
+            return false;
+        }
+
+        private void InputTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CanISaveReferral()) addReferralButton.IsEnabled = true;
+            else addReferralButton.IsEnabled = false;
         }
     }
 }
