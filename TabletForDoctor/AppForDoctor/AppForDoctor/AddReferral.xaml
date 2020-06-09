@@ -14,7 +14,7 @@
             <Button x:Name="backFromAddButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Red" Height="55" Click="backFromAddButton_Click">Nazad</Button>
             <Button x:Name="addReferralButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
-                Background="Green" Height="55" IsEnabled="False">Dodaj</Button>
+                Background="Green" Height="55" IsEnabled="False" Click="addReferralButton_Click">Dodaj</Button>
         </StackPanel>
         <StackPanel Margin="25,10,25,100" Orientation="Vertical">
             <ComboBox x:Name="referralsCombo" HorizontalAlignment="Center" VerticalAlignment="Center" Width="430" Height="55" Margin="0,0,0,0" Style="{StaticResource comboboxStyle}"

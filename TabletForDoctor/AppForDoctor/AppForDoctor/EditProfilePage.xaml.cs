@@ -44,8 +44,6 @@ namespace AppForDoctor
             if (instance == null) instance = new EditProfilePage();
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
@@ -78,16 +76,6 @@ namespace AppForDoctor
             passwordLabel.Content = "Password:";
             newPasswordLabel.Content = "New password:";
             newPassword2Label.Content = "Retype new password:";
-        }
-
-        private void ToLightTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        }
-
-        private void ToDarkTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -129,6 +117,7 @@ namespace AppForDoctor
             mail = mailTextBox.Text;
             saveProfileButton.IsEnabled = false;
             if (passChanged) password = newPasswordTextBox.Password;
+            passChanged = false;
             //TODO: save changes to database
         }
 

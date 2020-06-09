@@ -25,6 +25,7 @@ namespace AppForDoctor
         private string diagnosis = "";
         //private HashSet<string> addedDrugs = new HashSet<string>();
         private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
+        private HashSet<string> addedReferralsSet = new HashSet<string>();
         private DateTime? controlReviewDate = default;
         private ExaminationPage()
         {
@@ -37,8 +38,6 @@ namespace AppForDoctor
             //instance.diagnosisText.Text = instance.diagnosis;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
@@ -64,31 +63,15 @@ namespace AppForDoctor
             menuFromExaminationButton.Content = "Menu";
         }
 
-        public void ToLightTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            //MedHistory.getInstance().ToLightTheme();
-        }
-
-        public void ToDarkTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            //MedHistory.getInstance().ToDarkTheme();
-        }
-
         private void historyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MedHistory.getInstance() != null)
-            {
-                MedHistory.getInstance().Show();
-                MedHistory.getInstance().Focus();
-            }
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(6);
         }
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            MedHistory.getInstance().toClose = true;
-            MedHistory.getInstance().Close();
+            MedHistoryPage.clearInstance();
             DrugsPage.clearInstance();
             RefferalsPage.clearInstance();
             instance = null;
@@ -99,8 +82,8 @@ namespace AppForDoctor
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + controlReviewDate.ToString();
-            MedHistory.getInstance().historyText.Text = toHistory;
+            string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + HashsetToString(addedReferralsSet) + "\n" + controlReviewDate.ToString();
+            MedHistoryPage.getInstance().historyText.Text = toHistory;
             saveDiagnosisButton.IsEnabled = false;
         }
 
@@ -125,6 +108,19 @@ namespace AppForDoctor
                 foreach (KeyValuePair<string, int> pair in d)
                 {
                     addedDrugsDict.Add(pair.Key, pair.Value);
+                }
+            }
+        }
+
+        public void saveAddedReferrals(HashSet<string> set)
+        {
+            if(!addedReferralsSet.SetEquals(set))
+            {
+                addedReferralsSet.Clear();
+                saveDiagnosisButton.IsEnabled = true;
+                foreach(string s in set)
+                {
+                    addedReferralsSet.Add(s);
                 }
             }
         }
@@ -159,6 +155,22 @@ namespace AppForDoctor
                 sb.Append(pair.Key);
                 sb.Append(" *");
                 sb.Append(pair.Value.ToString());
+                sb.Append(", ");
+            }
+            if (sb.Length > 2) return sb.ToString(0, sb.Length - 2);
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string HashsetToString(HashSet<string> input)
+        {
+            if (input.Count == 0) return "";
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in input)
+            {
+                sb.Append(s);
                 sb.Append(", ");
             }
             if (sb.Length > 2) return sb.ToString(0, sb.Length - 2);

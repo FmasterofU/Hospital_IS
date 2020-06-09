@@ -20,12 +20,18 @@
         </StackPanel>
         <StackPanel Margin="96,50,96,91" Orientation="Vertical">
             <Viewbox VerticalAlignment="Center" Height="80" Margin="0,0,0,0">
-                <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" SelectedDate="{x:Static sys:DateTime.Now}" 
+                <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" SelectedDate="{x:Static sys:DateTime.Now}"
                             DisplayDateStart="{x:Static sys:DateTime.Now}" FirstDayOfWeek="Monday">
                     <DatePicker.Resources>
                         <Style TargetType="DatePickerTextBox">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <TextBox x:Name="calendarTextBox" Text="{Binding Path=SelectedDate, StringFormat='dd.MM.yyyy.', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                                                 Background="{DynamicResource backgroundColor}" IsReadOnly="True" Foreground="{DynamicResource foregroundColor}" BorderThickness="0"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </DatePicker.Resources>
                 </DatePicker>

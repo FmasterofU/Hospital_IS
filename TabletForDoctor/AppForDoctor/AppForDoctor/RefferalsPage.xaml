@@ -16,7 +16,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                 <Label x:Name="referralsNow" HorizontalAlignment="Left" Margin="-3,0,0,0" VerticalAlignment="Top" Width="280" Style="{StaticResource labelStyle}">Dodati uputi:</Label>
-                <ListBox x:Name="refferalsNowListBox" HorizontalAlignment="Left" Height="156" Margin="10,0,0,0" VerticalAlignment="Top" Width="500" Style="{StaticResource listBoxStyle}">
+                <ListBox x:Name="referralsNowListBox" HorizontalAlignment="Left" Height="156" Margin="10,0,0,0" VerticalAlignment="Top" Width="500" Style="{StaticResource listBoxStyle}">
                 </ListBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">

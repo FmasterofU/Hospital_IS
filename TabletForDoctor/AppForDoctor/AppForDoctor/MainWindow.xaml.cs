@@ -133,6 +133,7 @@ namespace AppForDoctor
             // 3 - drugs
             // 4 - edit profile
             // 5 - refferals
+            // 6 - medical history
             if (editProfileButton.Visibility == Visibility.Hidden) editProfileButton.Visibility = Visibility.Visible;
             switch(page)
             {
@@ -151,6 +152,9 @@ namespace AppForDoctor
                     break;
                 case 5:
                     MainFrame.Content = RefferalsPage.getInstance();
+                    break;
+                case 6:
+                    MainFrame.Content = MedHistoryPage.getInstance();
                     break;
             }
             this.activePage = page;
@@ -257,7 +261,6 @@ namespace AppForDoctor
                     break;
                 case 2:
                     ExaminationPage.getInstance();
-                    //e.ToSerbian();
                     break;
                 case 3:
                     DrugsPage.getInstance();
@@ -267,6 +270,9 @@ namespace AppForDoctor
                     break;
                 case 5:
                     RefferalsPage.getInstance();
+                    break;
+                case 6:
+                    MedHistoryPage.getInstance();
                     break;
             }
         }

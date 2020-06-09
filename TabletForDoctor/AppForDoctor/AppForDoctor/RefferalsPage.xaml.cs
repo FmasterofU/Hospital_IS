@@ -21,6 +21,7 @@ namespace AppForDoctor
     public partial class RefferalsPage : Page
     {
         public static RefferalsPage instance = null;
+        private HashSet<string> refSet = new HashSet<string>();
         private RefferalsPage()
         {
             InitializeComponent();
@@ -54,6 +55,7 @@ namespace AppForDoctor
 
         private void examinationFromRefferalsButton_Click(object sender, RoutedEventArgs e)
         {
+            ExaminationPage.getInstance().saveAddedReferrals(refSet);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
@@ -67,6 +69,23 @@ namespace AppForDoctor
         {
             AddReferral a = new AddReferral();
             a.ShowDialog();
+        }
+
+        public void AddReferralToSet(string refType, string refName)
+        {
+            refSet.Add(refType);
+            referralsNowListBox.Items.Add(refName);
+            deleteRefferalButton.IsEnabled = true;
+        }
+
+        public void disableAddButton()
+        {
+            addRefferalButton.IsEnabled = false;
+        }
+
+        public HashSet<string> getRefSet()
+        {
+            return refSet;
         }
     }
 }

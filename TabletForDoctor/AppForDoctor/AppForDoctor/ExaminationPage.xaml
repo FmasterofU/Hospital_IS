@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1024"
       Title="ExaminationPage">
-
     <Grid>
         <StackPanel Orientation="Vertical" Margin="25,150,40,0">
             <Label x:Name="patientName" HorizontalAlignment="Left" Margin="-3,2,0,0" VerticalAlignment="Top" Width="Auto" Style="{StaticResource labelStyle}">Imenko Prezimenic, ID = 123456:</Label>

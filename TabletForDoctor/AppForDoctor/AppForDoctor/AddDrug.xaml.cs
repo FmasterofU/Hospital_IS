@@ -34,12 +34,10 @@ namespace AppForDoctor
             drugSet.Add("Novii");
             drugSet.Add("Novio");
             drugSet.ExceptWith(DrugsPage.getInstance().getDrugSet());
-            foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
-            addDrugsComboBox.SelectedIndex = 0;
+            //foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
+            //addDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) ToDarkTheme();
         }
 
         private void ToSerbian()
@@ -54,14 +52,6 @@ namespace AppForDoctor
             addDrugButton.Content = "Add";
             backFromAddButton.Content = "Back";
             usageGroupBox.Header = "Usage:";
-        }
-
-        private void ToLightTheme()
-        {
-        }
-
-        private void ToDarkTheme()
-        {
         }
 
         private void backFromAddButton_Click(object sender, RoutedEventArgs e)
@@ -100,7 +90,6 @@ namespace AppForDoctor
             foreach (string s in drugSet)
             {
                 if (s.ToLower().Contains(input)) addDrugsComboBox.Items.Add(s);
-
             }
             if (addDrugsComboBox.Items.Count != 0)
             {
@@ -186,7 +175,7 @@ namespace AppForDoctor
 
         private void usageTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (usageTextBox.Text.Trim().Equals("")) addDrugButton.IsEnabled = false;
+            if (usageTextBox.Text.Trim().Equals("") || addDrugsComboBox.SelectedIndex < 0) addDrugButton.IsEnabled = false;
             else addDrugButton.IsEnabled = true;
         }
     }

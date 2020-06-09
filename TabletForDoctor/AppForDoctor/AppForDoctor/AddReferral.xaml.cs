@@ -21,6 +21,7 @@ namespace AppForDoctor
     {
         //TODO: read isSpecialist from database
         private bool isSpecialist = true;
+        private HashSet<string> refSet = new HashSet<string>();
         public AddReferral()
         {
             InitializeComponent();
@@ -64,19 +65,31 @@ namespace AppForDoctor
 
         private void AddAlowedReferrals()
         {
-            if(MainWindow.GetLanguage() == MainWindow.Language.Serbian)
+            refSet.Add("specialist");
+            refSet.Add("lab");
+            refSet.Add("accessory");
+            if (isSpecialist) refSet.Add("hospital");
+            refSet.ExceptWith(RefferalsPage.getInstance().getRefSet());
+
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {
-                referralsCombo.Items.Add("Uput lekaru specijalisti");
-                referralsCombo.Items.Add("Uput za laboratoriju");
-                referralsCombo.Items.Add("Uput za pomagalo");
-                if (isSpecialist) referralsCombo.Items.Add("Uput za bolničko lečenje");
+                foreach(string s in refSet)
+                {
+                    if (s.Equals("specialist")) referralsCombo.Items.Add("Uput lekaru specijalisti");
+                    else if (s.Equals("lab")) referralsCombo.Items.Add("Uput za laboratoriju");
+                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Uput za pomagalo");
+                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Uput za bolničko lečenje");
+                }
             }
             else if (MainWindow.GetLanguage() == MainWindow.Language.English)
             {
-                referralsCombo.Items.Add("Referral to specialist");
-                referralsCombo.Items.Add("Referral for laboratory");
-                referralsCombo.Items.Add("Referral for accessory");
-                if (isSpecialist) referralsCombo.Items.Add("Referral for hospital care");
+                foreach (string s in refSet)
+                {
+                    if (s.Equals("specialist")) referralsCombo.Items.Add("Referral to specialist");
+                    else if (s.Equals("lab")) referralsCombo.Items.Add("Referral for laboratory");
+                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Referral for accessory");
+                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Referral for hospital care");
+                }
             }
             referralsCombo.SelectedIndex = -1;
         }
@@ -84,10 +97,13 @@ namespace AppForDoctor
         private void referralsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearEnteredData();
-            string option = referralsCombo.SelectedItem.ToString();
-            if (option.Contains("laborator")) laboratoryPanel.Visibility = Visibility.Visible;
-            else if (option.Contains("pomagalo") || option.Contains("accessory")) accessoryPanel.Visibility = Visibility.Visible;
-            else if (option.Contains("bolni") || option.Contains("hospital")) hospitalCarePanel.Visibility = Visibility.Visible;
+            if (referralsCombo.SelectedIndex >= 0)
+            {
+                string option = referralsCombo.SelectedItem.ToString();
+                if (option.Contains("laborator")) laboratoryPanel.Visibility = Visibility.Visible;
+                else if (option.Contains("pomagalo") || option.Contains("accessory")) accessoryPanel.Visibility = Visibility.Visible;
+                else if (option.Contains("bolni") || option.Contains("hospital")) hospitalCarePanel.Visibility = Visibility.Visible;
+            }
         }
 
         private void ClearEnteredData()
@@ -107,21 +123,25 @@ namespace AppForDoctor
 
         private bool CanISaveReferral()
         {
-            string option = referralsCombo.SelectedItem.ToString();
-            if (option.Contains("laborator"))
+            if (referralsCombo.SelectedIndex >= 0)
             {
-                if (!labAnalysisTypeTextBox.Text.Trim().Equals("") && !causeForLabText.Text.Trim().Equals("")) return true;
-                else return false;
-            }
-            else if (option.Contains("pomagalo") || option.Contains("accessory"))
-            {
-                if (!accessoryTypeTextBox.Text.Trim().Equals("") && !causeForAccessoryText.Text.Trim().Equals("")) return true;
-                else return false;
-            }
-            else if (option.Contains("bolni") || option.Contains("hospital"))
-            {
-                if (!causeForHospitalText.Text.Trim().Equals("")) return true;
-                else return false;
+                string option = referralsCombo.SelectedItem.ToString();
+                if (option.Contains("laborator"))
+                {
+                    if (!labAnalysisTypeTextBox.Text.Trim().Equals("") && !causeForLabText.Text.Trim().Equals("")) return true;
+                    else return false;
+                }
+                else if (option.Contains("pomagalo") || option.Contains("accessory"))
+                {
+                    if (!accessoryTypeTextBox.Text.Trim().Equals("") && !causeForAccessoryText.Text.Trim().Equals("")) return true;
+                    else return false;
+                }
+                else if (option.Contains("bolni") || option.Contains("hospital"))
+                {
+                    if (!causeForHospitalText.Text.Trim().Equals("")) return true;
+                    else return false;
+                }
+                return false;
             }
             return false;
         }
@@ -130,6 +150,30 @@ namespace AppForDoctor
         {
             if (CanISaveReferral()) addReferralButton.IsEnabled = true;
             else addReferralButton.IsEnabled = false;
+        }
+
+        private string GetSelectedRefType()
+        {
+            string option = referralsCombo.SelectedItem.ToString();
+            if (option.Contains("laborator")) return "lab";
+            else if (option.Contains("pomagalo") || option.Contains("accessory")) return "accessory";
+            else if (option.Contains("bolni") || option.Contains("hospital")) return "hospital";
+            return "";
+        }
+
+        private void addReferralButton_Click(object sender, RoutedEventArgs e)
+        {
+            string selected = referralsCombo.SelectedItem.ToString();
+            string type = GetSelectedRefType();
+            RefferalsPage r = RefferalsPage.getInstance();
+            r.AddReferralToSet(type, selected);
+            refSet.Remove(type);
+            referralsCombo.Items.Remove(selected);
+            if (refSet.Count == 0)
+            {
+                RefferalsPage.getInstance().disableAddButton();
+                this.Close();
+            }
         }
     }
 }
