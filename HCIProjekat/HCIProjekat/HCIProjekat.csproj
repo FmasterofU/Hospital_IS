@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Validacija\ValidacijaEmaila.cs" />
+    <Compile Include="Validacija\ValidacijaLozinke.cs" />
     <Compile Include="View\CestaPitanja.xaml.cs">
       <DependentUpon>CestaPitanja.xaml</DependentUpon>
     </Compile>
@@ -72,6 +74,12 @@
     </Compile>
     <Compile Include="View\ONama.xaml.cs">
       <DependentUpon>ONama.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Registracija.xaml.cs">
+      <DependentUpon>Registracija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Zakazi.xaml.cs">
+      <DependentUpon>Zakazi.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +114,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ONama.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Registracija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Zakazi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

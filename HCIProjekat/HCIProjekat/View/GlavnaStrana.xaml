@@ -60,9 +60,10 @@
             </MenuItem>
             <MenuItem Header="Odjavi se" Click="OdjaviSe_Click" FontSize="20"></MenuItem>
         </Menu>
-        
+
         <Image Source="/View/Slike/logo.png" Margin="0 30 15 0" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top"></Image>
 
         <Frame x:Name="glavnaStranica" Margin="0 30 0 0" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch"></Frame>
     </Grid>
+
 </Window>

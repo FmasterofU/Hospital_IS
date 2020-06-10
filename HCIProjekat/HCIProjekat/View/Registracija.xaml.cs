@@ -15,27 +15,15 @@ using System.Windows.Shapes;
 namespace HCIProjekat.View
 {
 	/// <summary>
-	/// Interaction logic for Odjava.xaml
+	/// Interaction logic for Registracija.xaml
 	/// </summary>
-	public partial class Odjava : Window
+	public partial class Registracija : Window
 	{
-		public Odjava()
+		public Registracija()
 		{
 			InitializeComponent();
 			this.Left = (System.Windows.SystemParameters.PrimaryScreenWidth / 2) - (this.Width / 2);
 			this.Top = (System.Windows.SystemParameters.PrimaryScreenHeight / 2) - (this.Height / 2);
-		}
-
-		private void OdjaviMe_Click(object sender, RoutedEventArgs e)
-		{
-			this.Close();
-			var s = new MainWindow();
-			s.Show();
-		}
-
-		private void Otkazi_Click(object sender, RoutedEventArgs e)
-		{
-			this.Close();
 		}
 	}
 }

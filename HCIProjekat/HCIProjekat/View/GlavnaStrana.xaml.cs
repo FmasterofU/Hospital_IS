@@ -22,6 +22,8 @@ namespace HCIProjekat.View
 		public GlavnaStrana()
 		{
 			InitializeComponent();
+			this.Left = (System.Windows.SystemParameters.PrimaryScreenWidth / 2) - (this.Width / 2);
+			this.Top = (System.Windows.SystemParameters.PrimaryScreenHeight / 2) - (this.Height / 2);
 		}
 
 		private void Cenovnik_Click(object sender, RoutedEventArgs e)
@@ -52,7 +54,7 @@ namespace HCIProjekat.View
 
 		private void Zakazi_Click(object sender, RoutedEventArgs e)
 		{
-
+			glavnaStranica.Content = new Zakazi();
 		}
 
 		private void Promeni_Click(object sender, RoutedEventArgs e)
