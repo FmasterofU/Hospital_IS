@@ -135,6 +135,7 @@ namespace AppForDoctor
             // 5 - refferals
             // 6 - medical history
             // 7 - blog
+            // 8 - pauses
             if (editProfileButton.Visibility == Visibility.Hidden) editProfileButton.Visibility = Visibility.Visible;
             switch(page)
             {
@@ -159,6 +160,9 @@ namespace AppForDoctor
                     break;
                 case 7:
                     MainFrame.Content = BlogPage.getInstance();
+                    break;
+                case 8:
+                    MainFrame.Content = PausesPage.getInstance();
                     break;
             }
             this.activePage = page;
@@ -280,6 +284,9 @@ namespace AppForDoctor
                     break;
                 case 7:
                     BlogPage.getInstance();
+                    break;
+                case 8:
+                    PausesPage.getInstance();
                     break;
             }
         }

@@ -25,7 +25,6 @@ namespace AppForDoctor
         public AddDrug()
         {
             InitializeComponent();
-            amountText.Text = "1";
             //TODO: load all medicaments in hospital
             drugSet.Add("Novi");
             drugSet.Add("Nnovi");

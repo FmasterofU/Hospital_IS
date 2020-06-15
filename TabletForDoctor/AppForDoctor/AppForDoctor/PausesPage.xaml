@@ -1,0 +1,92 @@
+﻿<Page x:Class="AppForDoctor.PausesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppForDoctor"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="PausesPage">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
+            <Button x:Name="menuFromPausesButton" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Red" Height="55" Click="menuFromPausesButton_Click">Meni</Button>
+            <Button x:Name="savePausesButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}"
+                    Background="Green" Height="55" IsEnabled="False">Sacuvaj</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="25,152,100,0">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label x:Name="mondayLabel" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Ponedeljak:</Label>
+                <ComboBox x:Name="monhfCombo" Width="65" Height="50" Margin="10,0,0,0" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="monmfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="monhsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="monmsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Button x:Name="oneForAllButton" Margin="30,0,0,0" Height="50" Width="Auto" Background="Orange" IsEnabled="False" Style="{StaticResource buttonStyle}" 
+                        Click="oneForAllButton_Click">Svaki dan isto</Button>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="tuesdayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Utorak:</Label>
+                <ComboBox x:Name="tuehfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="tuemfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="tuehsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="tuemsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="wednesdayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Sreda:</Label>
+                <ComboBox x:Name="wedhfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="wedmfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="wedhsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="wedmsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel  Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="thursdayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Cetvrtak:</Label>
+                <ComboBox x:Name="thuhfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="thumfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="thuhsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="thumsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="fridayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Petak:</Label>
+                <ComboBox x:Name="frihfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="frimfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="frihsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="frimsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="saturdayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Subota:</Label>
+                <ComboBox x:Name="sathfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="satmfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="sathsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="satmsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                <Label x:Name="sundayLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Height="60" Style="{StaticResource labelStyle}">Nedelja:</Label>
+                <ComboBox x:Name="sunhfCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="sunmfCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">-</Label>
+                <ComboBox x:Name="sunhsCombo" Margin="10,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+                <Label HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Height="60" Style="{StaticResource labelStyle}">:</Label>
+                <ComboBox x:Name="sunmsCombo" Margin="0,0,0,0" Width="65" Height="50" Style="{StaticResource comboboxStyle}" SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -30,16 +30,16 @@ namespace AppForDoctor
         {
             backFromAddButton.Content = "Nazad";
             addArticleButton.Content = "Dodaj";
-            titleLabel.Content = "Naslov";
-            contentGroupBox.Header = "Sadržaj";
+            titleLabel.Content = "Naslov:";
+            contentGroupBox.Header = "Sadržaj:";
         }
 
         private void ToEnglish()
         {
             backFromAddButton.Content = "Back";
             addArticleButton.Content = "Add";
-            titleLabel.Content = "Title";
-            contentGroupBox.Header = "Content";
+            titleLabel.Content = "Title:";
+            contentGroupBox.Header = "Content:";
         }
 
         private void AddArticleWindow_Loaded(object sender, RoutedEventArgs e)

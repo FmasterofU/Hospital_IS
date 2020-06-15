@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddDrug" Height="500" Width="500"
         x:Name="AddDrugWindow"
-        Style="{StaticResource windowStyle}"
+        Style="{StaticResource dialogStyle}"
         Loaded="AddDrugWindow_Loaded">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
@@ -16,7 +16,7 @@
             <Button x:Name="addDrugButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" IsEnabled="False" Click="addDrugButton_Click">Dodaj</Button>
         </StackPanel>
-        <StackPanel Margin="25,10,25,80" Orientation="Vertical">
+        <StackPanel Margin="25,30,25,80" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
                 <Button Width="40" x:Name="searchButton" Click="searchButton_Click">
@@ -26,13 +26,13 @@
             <ComboBox x:Name="addDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" Height="55" Margin="0,20,0,0" Style="{StaticResource comboboxStyle}"/>
             <!--<ComboBox x:Name="addDrugsComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" FontSize="35" Height="55" Margin="121,80,121,250" Foreground="Black"/>-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBox x:Name="amountText" Margin="0,20,0,0" Width="65" Style="{StaticResource textBoxStyle}" TextChanged="amountText_TextChanged"/>
-                <Button x:Name="plusButton" Margin="5,20,0,0" Content="+" Width="30" Style="{StaticResource buttonStyle}" Background="Orange" Click="plusButton_Click"/>
+                <TextBox x:Name="amountText" Margin="0,20,0,0" Width="65" Style="{StaticResource textBoxStyle}" IsEnabled="False" TextChanged="amountText_TextChanged"/>
+                <Button x:Name="plusButton" Margin="5,20,0,0" Content="+" Width="30" IsEnabled="False" Style="{StaticResource buttonStyle}" Background="Orange" Click="plusButton_Click"/>
                 <Button x:Name="minusButton" Margin="0,20,0,0"  Content="-" Width="30" IsEnabled="False" Style="{StaticResource buttonStyle}" Background="Orange" Click="minusButton_Click"/>
             </StackPanel>
             <GroupBox x:Name="usageGroupBox" Margin="0,15,0,0" Header="Upotreba:" Style="{StaticResource groupBoxStyle}">
                 <TextBox x:Name="usageTextBox" Margin="0,0,0,0" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="100" Style="{StaticResource textBoxStyle}" 
-                         TextChanged="usageTextBox_TextChanged"/>
+                         IsEnabled="False" TextChanged="usageTextBox_TextChanged"/>
             </GroupBox>
         </StackPanel>
     </Grid>

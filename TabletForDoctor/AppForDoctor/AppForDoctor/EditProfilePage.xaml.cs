@@ -64,6 +64,7 @@ namespace AppForDoctor
             passwordLabel.Content = "Trenutna lozinka:";
             newPasswordLabel.Content = "Nova lozinka:";
             newPassword2Label.Content = "Ponovi novu lozinku:";
+            checkPasswordButton.Content = "Proveri lozinku";
         }
 
         private void ToEnglish()
@@ -76,6 +77,7 @@ namespace AppForDoctor
             passwordLabel.Content = "Password:";
             newPasswordLabel.Content = "New password:";
             newPassword2Label.Content = "Retype new password:";
+            checkPasswordButton.Content = "Check password";
         }
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)

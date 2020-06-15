@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="ControlReview" Height="500" Width="500"
         x:Name="ControlReviewWindow"
-        Style="{StaticResource windowStyle}"
+        Style="{StaticResource dialogStyle}"
         Loaded="ControlReviewWindow_Loaded">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
@@ -18,7 +18,7 @@
             <Button x:Name="saveControlButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" IsEnabled="False" Click="saveControlButton_Click">Sacuvaj</Button>
         </StackPanel>
-        <StackPanel Margin="96,50,96,91" Orientation="Vertical">
+        <StackPanel Margin="96,60,96,91" Orientation="Vertical">
             <Viewbox VerticalAlignment="Center" Height="80" Margin="0,0,0,0">
                 <DatePicker Name="calendar" Style="{StaticResource calendarStyle}" SelectedDateChanged="calendar_SelectedDateChanged" SelectedDate="{x:Static sys:DateTime.Now}"
                             DisplayDateStart="{x:Static sys:DateTime.Now}" FirstDayOfWeek="Monday">

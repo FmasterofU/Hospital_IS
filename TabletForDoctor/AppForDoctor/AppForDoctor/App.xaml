@@ -33,6 +33,12 @@
         <Style x:Key="windowStyle" TargetType="Window">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
             <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="WindowStyle" Value="ToolWindow"/>
+        </Style>
+        <Style x:Key="dialogStyle" TargetType="Window" BasedOn="{StaticResource windowStyle}">
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
         </Style>
         <Style x:Key="groupBoxStyle" TargetType="GroupBox" BasedOn="{StaticResource labelStyle}">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>

@@ -60,8 +60,8 @@ namespace AppForDoctor
 
         private void pausesButton_Click(object sender, RoutedEventArgs e)
         {
-            Pauses p = new Pauses();
-            p.ShowDialog();
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(8);
         }
 
         private void blogButton_Click(object sender, RoutedEventArgs e)

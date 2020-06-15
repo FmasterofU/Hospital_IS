@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddArticle" Height="500" Width="500"
         x:Name="AddArticleWindow"
-        Style="{StaticResource windowStyle}"
+        Style="{StaticResource dialogStyle}"
         Loaded="AddArticleWindow_Loaded">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
@@ -16,13 +16,13 @@
             <Button x:Name="addArticleButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" IsEnabled="False" Click="addArticleButton_Click">Dodaj</Button>
         </StackPanel>
-        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+        <StackPanel Margin="0,30,0,0" Orientation="Vertical">
             <Label x:Name="titleLabel" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="Auto" 
                    Style="{StaticResource labelStyle}">Naslov:</Label>
             <TextBox x:Name="titleTextBox" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Center" Width="460" Height="55" Style="{StaticResource textBoxStyle}" 
                      TextChanged="TextChanged"/>
             <GroupBox x:Name="contentGroupBox" Margin="10,20,10,0" Header="Sadrzaj:" Style="{StaticResource groupBoxStyle}" Height="223">
-                <TextBox x:Name="contentText" Margin="0,10,0,0" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Style="{StaticResource textBoxStyle}" 
+                <TextBox x:Name="contentText" Margin="0,10,0,0" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Style="{StaticResource textBoxStyle}" 
                          TextChanged="TextChanged"/>
             </GroupBox>
         </StackPanel>

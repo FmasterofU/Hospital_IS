@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ChangeDrugAmount" Height="500" Width="500"
         x:Name="ChangeDrugAmountWindow"
-        Style="{StaticResource windowStyle}"
+        Style="{StaticResource dialogStyle}"
         Loaded="ChangeDrugAmountWindow_Loaded">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,380,10,15">
@@ -16,7 +16,7 @@
             <Button x:Name="changeAmountButton" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="150" Style="{StaticResource buttonStyle}" 
                 Background="Green" Height="55" Click="changeAmountButton_Click">Promeni</Button>
         </StackPanel>
-        <StackPanel Margin="25,10,25,100" Orientation="Vertical">
+        <StackPanel Margin="25,30,25,100" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
                 <TextBox Style="{StaticResource textBoxStyle}" Width="200" x:Name="searchInput" KeyUp="searchInput_KeyUp"></TextBox>
                 <Button Width="40" x:Name="searchButton" Click="searchButton_Click">

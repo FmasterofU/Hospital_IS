@@ -12,7 +12,7 @@
             <Label x:Name="patientName" HorizontalAlignment="Left" Margin="-3,2,0,0" VerticalAlignment="Top" Width="Auto" Style="{StaticResource labelStyle}">Imenko Prezimenic, ID = 123456:</Label>
             <Button x:Name="historyButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Click="historyButton_Click">Pogledaj istoriju bolesti</Button>
-            <GroupBox x:Name="diagnosisBox" Header="Dijagnoza:" HorizontalAlignment="Left" Height="200" Margin="0,10,-20,0" VerticalAlignment="Top" Width="956" Style="{StaticResource groupBoxStyle}" >
+            <GroupBox x:Name="diagnosisBox" Header="Anamneza:" HorizontalAlignment="Left" Height="200" Margin="0,10,-20,0" VerticalAlignment="Top" Width="956" Style="{StaticResource groupBoxStyle}" >
                 <!--<TextBox x:Name="diagnosisText" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" Width="945" AcceptsReturn="True" TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Visible" x:FieldModifier="private" TextChanged="diagnosisText_TextChanged" Style="{StaticResource textBoxStyle}"></TextBox>-->
                 <TextBox x:Name="diagnosisText" Margin="0,0,0,0" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Height="140" Style="{StaticResource textBoxStyle}" 

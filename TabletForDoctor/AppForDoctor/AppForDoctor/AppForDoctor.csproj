@@ -86,8 +86,8 @@
     <Compile Include="MedHistoryPage.xaml.cs">
       <DependentUpon>MedHistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pauses.xaml.cs">
-      <DependentUpon>Pauses.xaml</DependentUpon>
+    <Compile Include="PausesPage.xaml.cs">
+      <DependentUpon>PausesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RefferalsPage.xaml.cs">
       <DependentUpon>RefferalsPage.xaml</DependentUpon>
@@ -180,7 +180,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pauses.xaml">
+    <Page Include="PausesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -85,6 +85,11 @@ namespace AppForDoctor
             addRefferalButton.IsEnabled = false;
         }
 
+        public void disableDeleteButton()
+        {
+            deleteRefferalButton.IsEnabled = false;
+        }
+
         public HashSet<string> getRefSet()
         {
             return refSet;
@@ -152,6 +157,13 @@ namespace AppForDoctor
                     referralsNowListBox.Items.Insert(iHospital, "Referral for hospital care");
                 }
             }
+        }
+
+        public void DeleteReferralFromSet(string refType, string refName)
+        {
+            refSet.Remove(refType);
+            referralsNowListBox.Items.Remove(refName);
+            addRefferalButton.IsEnabled = true;
         }
     }
 }
