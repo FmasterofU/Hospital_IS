@@ -20,7 +20,7 @@ namespace AppForDoctor
     /// </summary>
     public partial class RefferalsPage : Page
     {
-        public static RefferalsPage instance = null;
+        private static RefferalsPage instance = null;
         private HashSet<string> refSet = new HashSet<string>();
         private RefferalsPage()
         {
@@ -42,6 +42,7 @@ namespace AppForDoctor
             addRefferalButton.Content = "Dodaj uput";
             deleteRefferalButton.Content = "Obriši uput";
             examinationFromRefferalsButton.Content = "Nazad";
+            ChangeLanguageInList(true);
         }
 
         private void ToEnglish()
@@ -51,6 +52,7 @@ namespace AppForDoctor
             addRefferalButton.Content = "Add referral";
             deleteRefferalButton.Content = "Delete referral";
             examinationFromRefferalsButton.Content = "Back";
+            ChangeLanguageInList(false);
         }
 
         private void examinationFromRefferalsButton_Click(object sender, RoutedEventArgs e)
@@ -86,6 +88,70 @@ namespace AppForDoctor
         public HashSet<string> getRefSet()
         {
             return refSet;
+        }
+
+        private void deleteRefferalButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteReferral d = new DeleteReferral();
+            d.ShowDialog();
+        }
+
+        private void ChangeLanguageInList(bool toSerbian)
+        {
+            if(toSerbian)
+            {
+                int iLab = referralsNowListBox.Items.IndexOf("Referral for laboratory");
+                int iAccessory = referralsNowListBox.Items.IndexOf("Referral for accessory");
+                int iSpec = referralsNowListBox.Items.IndexOf("Referral to specialist");
+                int iHospital = referralsNowListBox.Items.IndexOf("Referral for hospital care");
+                if(iLab >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iLab);
+                    referralsNowListBox.Items.Insert(iLab, "Uput za laboratoriju");
+                }
+                if(iAccessory >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iAccessory);
+                    referralsNowListBox.Items.Insert(iAccessory, "Uput za pomagalo");
+                }
+                if(iSpec >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iSpec);
+                    referralsNowListBox.Items.Insert(iSpec, "Uput lekaru specijalisti");
+                }
+                if(iHospital >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iHospital);
+                    referralsNowListBox.Items.Insert(iHospital, "Uput za bolničko lečenje");
+                }
+            }
+            else
+            {
+                int iLab = referralsNowListBox.Items.IndexOf("Uput za laboratoriju");
+                int iAccessory = referralsNowListBox.Items.IndexOf("Uput za pomagalo");
+                int iSpec = referralsNowListBox.Items.IndexOf("Uput lekaru specijalisti");
+                int iHospital = referralsNowListBox.Items.IndexOf("Uput za bolničko lečenje");
+                if (iLab >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iLab);
+                    referralsNowListBox.Items.Insert(iLab, "Referral for laboratory");
+                }
+                if (iAccessory >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iAccessory);
+                    referralsNowListBox.Items.Insert(iAccessory, "Referral for accessory");
+                }
+                if (iSpec >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iSpec);
+                    referralsNowListBox.Items.Insert(iSpec, "Referral to specialist");
+                }
+                if (iHospital >= 0)
+                {
+                    referralsNowListBox.Items.RemoveAt(iHospital);
+                    referralsNowListBox.Items.Insert(iHospital, "Referral for hospital care");
+                }
+            }
         }
     }
 }

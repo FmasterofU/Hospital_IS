@@ -31,8 +31,6 @@ namespace AppForDoctor
             if (instance == null) instance = new MainMenuPage();
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
-            if (MainWindow.GetTheme() == MainWindow.Theme.Light) instance.ToLightTheme();
-            else if (MainWindow.GetTheme() == MainWindow.Theme.Dark) instance.ToDarkTheme();
             return instance;
         }
 
@@ -52,16 +50,6 @@ namespace AppForDoctor
             pausesButton.Content = "Check pauses";
         }
 
-        private void ToLightTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-        }
-
-        private void ToDarkTheme()
-        {
-            //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-        }
-
         private void acceptID_Click(object sender, RoutedEventArgs e)
         {
             //TODO: validation
@@ -74,6 +62,12 @@ namespace AppForDoctor
         {
             Pauses p = new Pauses();
             p.ShowDialog();
+        }
+
+        private void blogButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(7);
         }
     }
 }

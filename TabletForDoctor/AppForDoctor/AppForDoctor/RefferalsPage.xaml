@@ -23,7 +23,7 @@
                 <Button x:Name="addRefferalButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
                     Click="addRefferalButton_Click">Dodaj uput</Button>
                 <Button x:Name="deleteRefferalButton" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}" 
-                    IsEnabled="False">Obrisi uput</Button>
+                    IsEnabled="False" Click="deleteRefferalButton_Click">Obrisi uput</Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,643,25,25">
