@@ -43,8 +43,17 @@
         <DataTemplate x:Name="StaffWorkTimeDefault" DataType="{x:Type ViewModel:StaffWorkTimeViewModel}">
             <View:StaffWorkTimeView DataContext="{Binding}"></View:StaffWorkTimeView>
         </DataTemplate>
+        <DataTemplate x:Name="RemovalDefault" DataType="{x:Type ViewModel:RemovalViewModel}">
+            <View:RemovalView DataContext="{Binding}"></View:RemovalView>
+        </DataTemplate>
+        <DataTemplate x:Name="LeaveEditDefault" DataType="{x:Type ViewModel:LeaveEditViewModel}">
+            <View:LeaveEditView DataContext="{Binding}"></View:LeaveEditView>
+        </DataTemplate>
+        <DataTemplate x:Name="ReportDefault" DataType="{x:Type ViewModel:ReportViewModel}">
+            <View:ReportView DataContext="{Binding}"></View:ReportView>
+        </DataTemplate>
     </Window.Resources>
-    
+
     <Grid Background="Azure">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -67,9 +76,71 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Button x:Name="LogInButton" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2" MaxHeight="30" Background="Red" Content="LogIn" Click="LogInButton_Click">
-        </Button>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+            <Image Source="/View/icons/nmk.png" MaxWidth="200" MaxHeight="200"></Image>
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="1" MaxLines="1" MinWidth="200" HorizontalAlignment="Center" Name="UsernameTextBox" FontSize="22" FontStretch="Condensed" Height="36" VerticalAlignment="Center">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="korisničko ime" FontSize="16" Foreground="Gray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <PasswordBox Grid.Row="3" MinWidth="200" HorizontalAlignment="Center" Name="PasswordTextBox" FontSize="22" FontStretch="Condensed" Height="36" VerticalAlignment="Center">
+                <PasswordBox.Style>
+                    <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type PasswordBox}">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="lozinka" Foreground="Gray" FontSize="16" Padding="10"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Password}" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </DataTrigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </PasswordBox.Style>
+            </PasswordBox>
+            <Button x:Name="LogInButton" Grid.Row="5" HorizontalAlignment="Center" MaxHeight="30" MinWidth="100" Background="OrangeRed" Content="LogIn" Click="LogInButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
 
         <ContentControl x:Name="cntrlZ1" x:FieldModifier="public" Panel.ZIndex="1" Content="{Binding}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/>
         <ContentControl x:Name="cntrlZ2" x:FieldModifier="public" Panel.ZIndex="2" Content="{Binding}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="7"/>

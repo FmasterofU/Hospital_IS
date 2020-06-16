@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Schema;
 
 namespace ManagingDirectorMobile
 {
@@ -30,7 +31,23 @@ namespace ManagingDirectorMobile
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
             //DataContext = new DefaultBarViewModel();
-            cntrlZ1.Content = new DefaultNotificationViewModel();
+            String username = UsernameTextBox.Text;
+            String password = PasswordTextBox.Password;
+            if (username.Equals("igor") && password.Equals("nijenormalan"))
+            {
+                cntrlZ1.Content = new DefaultNotificationViewModel();
+                UsernameTextBox.BorderBrush = Brushes.Gray;
+                PasswordTextBox.BorderBrush = Brushes.Gray;
+                UsernameTextBox.Clear();
+                PasswordTextBox.Clear();
+            }
+            else
+            {
+                UsernameTextBox.BorderBrush = Brushes.Red;
+                PasswordTextBox.BorderBrush = Brushes.Red;
+                UsernameTextBox.Clear();
+                PasswordTextBox.Clear();
+            }
 
         }
 
@@ -58,4 +75,5 @@ namespace ManagingDirectorMobile
             cntrlZ4.Content = null;
         }
     }
+
 }

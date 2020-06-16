@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace ManagingDirectorMobile.View
 {
     /// <summary>
-    /// Interaction logic for StaffView.xaml
+    /// Interaction logic for ReportView.xaml
     /// </summary>
-    public partial class StaffView : UserControl
+    public partial class ReportView : UserControl
     {
-        public StaffView()
+        public ReportView()
         {
             InitializeComponent();
         }
@@ -32,34 +32,29 @@ namespace ManagingDirectorMobile.View
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MenuViewModel();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void DrugsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void StaffListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void StaffButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        private void RoomsButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Božidar Arsić" + " kao zaposlenog");
+
         }
 
-        private void WorkTimeButton_Click(object sender, RoutedEventArgs e)
+        private void EquipmentButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new StaffWorkTimeViewModel();
-        }
 
-        private void LeaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new LeaveEditViewModel();
         }
     }
 }

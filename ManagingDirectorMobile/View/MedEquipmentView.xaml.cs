@@ -44,7 +44,7 @@ namespace ManagingDirectorMobile.View
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Ultrazvuk" + " iz upotrebe");
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

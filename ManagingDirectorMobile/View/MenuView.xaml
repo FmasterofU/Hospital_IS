@@ -13,14 +13,14 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid Background="GreenYellow" Grid.Row="0" Grid.ColumnSpan="2" MouseUp="MenuFunctionsPanel_MouseUp">
+        <Grid Background="PowderBlue" Grid.Row="0" Grid.ColumnSpan="2" MouseUp="MenuFunctionsPanel_MouseUp">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical">
-                <Grid Background="AntiqueWhite">
+                <Grid Background="WhiteSmoke">
                     <Image Source="/View/icons/nmk.png" MaxWidth="200" MaxHeight="200"></Image>
                 </Grid>
                 <Separator Margin="0"></Separator>
