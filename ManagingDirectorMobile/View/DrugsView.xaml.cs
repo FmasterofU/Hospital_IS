@@ -1,4 +1,5 @@
-﻿using ManagingDirectorMobile.ViewModel;
+﻿using ManagingDirectorMobile.Model;
+using ManagingDirectorMobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,12 @@ namespace ManagingDirectorMobile.View
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DrugListDG.ItemsSource = null;
+            if (SearchTexBox.Text.Equals(""))
+                ((DrugsViewModel)this.DataContext).Search();
+            else
+                ((DrugsViewModel)this.DataContext).Search(SearchTexBox.Text);
+            DrugListDG.ItemsSource = ((DrugsViewModel)this.DataContext).drugs;
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
@@ -60,8 +66,8 @@ namespace ManagingDirectorMobile.View
 
         private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
         {
-            DrugsViewModel.Drug drug = DrugListDG.SelectedItem as DrugsViewModel.Drug;
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsHistoryViewModel(DrugListDG.SelectedItem as DrugsViewModel.Drug);
+            Drug drug = DrugListDG.SelectedItem as Drug;
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsHistoryViewModel(DrugListDG.SelectedItem as Drug);
         }
 
         private void DrugListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

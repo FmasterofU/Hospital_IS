@@ -37,9 +37,12 @@ namespace ManagingDirectorMobile.View
         private void NotificationListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid dg = sender as DataGrid;
-            Notification not = dg.SelectedItem as Notification;
-            Trace.WriteLine(DataContext);
-            (DataContext as DefaultNotificationViewModel).addNotification();
+            var context = new DrugsViewModel();
+            context.Search((dg.SelectedItem as Notification).Name);
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = context;
+            //Notification not = dg.SelectedItem as Notification;
+            //Trace.WriteLine(DataContext);
+            //(DataContext as DefaultNotificationViewModel).addNotification();
         }
     }
 }

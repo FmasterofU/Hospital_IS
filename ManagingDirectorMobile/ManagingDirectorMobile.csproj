@@ -35,15 +35,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MigraDoc.DocumentObjectModel-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.DocumentObjectModel-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.Rendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\MigraDoc.RtfRendering-gdi.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
     <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
       <HintPath>packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-gdi, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>packages\PDFsharp-MigraDoc-gdi.1.50.5147\lib\net20\PdfSharp.Charting-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="RandomSolutions.ArrayToPdf, Version=1.0.1.0, Culture=neutral, PublicKeyToken=20b3093802e1a466, processorArchitecture=MSIL">
+      <HintPath>packages\ArrayToPdf.1.0.1\lib\net45\RandomSolutions.ArrayToPdf.dll</HintPath>
+    </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,17 +82,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Drug.cs" />
     <Compile Include="ViewModel\DefaultNotificationViewModel.cs" />
     <Compile Include="ViewModel\DrugsAddViewModel.cs" />
     <Compile Include="ViewModel\DrugsChangeViewModel.cs" />
     <Compile Include="ViewModel\DrugsHistoryViewModel.cs" />
     <Compile Include="ViewModel\DrugsViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentRelocationViewModel.cs" />
     <Compile Include="ViewModel\LeaveEditViewModel.cs" />
     <Compile Include="ViewModel\MedEquipmentAddViewModel.cs" />
+    <Compile Include="ViewModel\MedEquipmentItemAddViewModel.cs" />
     <Compile Include="ViewModel\MedEquipmentViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\RemovalViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\RoomAddViewModel.cs" />
+    <Compile Include="ViewModel\RoomEquipmentViewModel.cs" />
+    <Compile Include="ViewModel\RoomOccupancyHistoryViewModel.cs" />
+    <Compile Include="ViewModel\RoomsViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffWorkTimeViewModel.cs" />
     <Compile Include="ViewModel\WorkStatViewModel.cs" />
@@ -92,11 +118,17 @@
     <Compile Include="View\DrugsView.xaml.cs">
       <DependentUpon>DrugsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EquipmentRelocationView.xaml.cs">
+      <DependentUpon>EquipmentRelocationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LeaveEditView.xaml.cs">
       <DependentUpon>LeaveEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MedEquipmentAddView.xaml.cs">
       <DependentUpon>MedEquipmentAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MedEquipmentItemAddView.xaml.cs">
+      <DependentUpon>MedEquipmentItemAddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MedEquipmentView.xaml.cs">
       <DependentUpon>MedEquipmentView.xaml</DependentUpon>
@@ -109,6 +141,18 @@
     </Compile>
     <Compile Include="View\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoomAddView.xaml.cs">
+      <DependentUpon>RoomAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoomEquipmentView.xaml.cs">
+      <DependentUpon>RoomEquipmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoomOccupancyHistoryView.xaml.cs">
+      <DependentUpon>RoomOccupancyHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RoomsView.xaml.cs">
+      <DependentUpon>RoomsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffView.xaml.cs">
       <DependentUpon>StaffView.xaml</DependentUpon>
@@ -151,11 +195,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EquipmentRelocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LeaveEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MedEquipmentAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MedEquipmentItemAddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +224,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoomAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoomEquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoomOccupancyHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RoomsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,9 +283,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\icons\icons8-bell-32.png" />
     <Resource Include="View\icons\icons8-business-report-32.png" />

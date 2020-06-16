@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingDirectorMobile.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,37 +23,9 @@ namespace ManagingDirectorMobile.ViewModel
         public DefaultNotificationViewModel()
         {
             notifications = new ObservableCollection<Notification>();
-            var kurac = new Notification();
-            kurac.Name = "Hydroxychloroquine";
-            kurac.Type = -2;
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(new Notification() { Name = "rat", Type=0});
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(new Notification() { Name = "rat", Type = 0 });
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
-            notifications.Add(kurac);
+            foreach (Drug drug in Drug.GetDrugList())
+                if (drug.Number < drug.Threshold)
+                    notifications.Add(new Notification() { Name = drug.Name, Type = 0 });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -64,7 +37,7 @@ namespace ManagingDirectorMobile.ViewModel
 
         public void addNotification()
         {
-            notifications.Add(new Notification() { Name = "OH NO", Type = 3 });
+            //notifications.Add(new Notification() { Name = "OH NO", Type = 3 });
             OnPropertyChanged("NotificationCount");
         }
     }

@@ -34,7 +34,7 @@ namespace ManagingDirectorMobile.View
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new MedEquipmentItemAddViewModel();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

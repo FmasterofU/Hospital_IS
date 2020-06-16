@@ -67,7 +67,8 @@ namespace ManagingDirectorMobile.View
 
         private void RoomsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ((MainWindow)Application.Current.MainWindow).ClearAllUserControls();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ1.Content = new RoomsViewModel();
         }
 
         private void MedEqButton_Click(object sender, RoutedEventArgs e)

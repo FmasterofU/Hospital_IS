@@ -52,6 +52,24 @@
         <DataTemplate x:Name="ReportDefault" DataType="{x:Type ViewModel:ReportViewModel}">
             <View:ReportView DataContext="{Binding}"></View:ReportView>
         </DataTemplate>
+        <DataTemplate x:Name="RoomsDefault" DataType="{x:Type ViewModel:RoomsViewModel}">
+            <View:RoomsView DataContext="{Binding}"></View:RoomsView>
+        </DataTemplate>
+        <DataTemplate x:Name="RoomOccupancyHistoryDefault" DataType="{x:Type ViewModel:RoomOccupancyHistoryViewModel}">
+            <View:RoomOccupancyHistoryView DataContext="{Binding}"></View:RoomOccupancyHistoryView>
+        </DataTemplate>
+        <DataTemplate x:Name="RoomEquipmentDefault" DataType="{x:Type ViewModel:RoomEquipmentViewModel}">
+            <View:RoomEquipmentView DataContext="{Binding}"></View:RoomEquipmentView>
+        </DataTemplate>
+        <DataTemplate x:Name="RoomAddDefault" DataType="{x:Type ViewModel:RoomAddViewModel}">
+            <View:RoomAddView DataContext="{Binding}"></View:RoomAddView>
+        </DataTemplate>
+        <DataTemplate x:Name="EquipmentRelocationDefault" DataType="{x:Type ViewModel:EquipmentRelocationViewModel}">
+            <View:EquipmentRelocationView DataContext="{Binding}"></View:EquipmentRelocationView>
+        </DataTemplate>
+        <DataTemplate x:Name="MedEquipmentItemAddDefault" DataType="{x:Type ViewModel:MedEquipmentItemAddViewModel}">
+            <View:MedEquipmentItemAddView DataContext="{Binding}"></View:MedEquipmentItemAddView>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="Azure">
