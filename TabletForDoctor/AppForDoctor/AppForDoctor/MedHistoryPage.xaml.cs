@@ -21,9 +21,37 @@ namespace AppForDoctor
     public partial class MedHistoryPage : Page
     {
         private static MedHistoryPage instance = null;
+        private StringBuilder history = new StringBuilder();
         private MedHistoryPage()
         {
             InitializeComponent();
+            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+            history = new StringBuilder();
+            foreach(Examination e in mr.Examinations)
+            {
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Anamneza: ");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Anamnesis: ");
+                history.Append(e.Anamnesis + "\n");
+
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Lekovi: ");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Drugs: ");
+
+                foreach (Prescription p in e.Prescriptions)
+                {
+                    history.Append(p.Drug.Name + " *" + p.Drug.Amount + " : " + p.Usage + "\n");
+                }
+
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Uputi: \n");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Referrals: \n");
+
+                foreach(Referral r in e.Referrals)
+                {
+                    history.Append(r.RefType + " : " + r.Note + "\n");
+                }
+                history.Append("**********************************\n\n");
+            }
+
+            historyText.Text = history.ToString();
         }
 
         public static MedHistoryPage getInstance()
@@ -53,6 +81,11 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
+        }
+
+        public StringBuilder getHistory()
+        {
+            return history;
         }
     }
 }

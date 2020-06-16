@@ -240,5 +240,10 @@ namespace AppForDoctor
                 && sunhfCombo.SelectedIndex >= 0 && sunhsCombo.SelectedIndex >= 0 && sunmfCombo.SelectedIndex >= 0 && sunmsCombo.SelectedIndex >= 0)
                 return true;*/
         }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
     }
 }

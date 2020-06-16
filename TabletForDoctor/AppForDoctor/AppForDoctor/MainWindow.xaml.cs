@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace AppForDoctor
 {
@@ -46,9 +50,22 @@ namespace AppForDoctor
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
-            //TODO: add logIn/register page
             instance = this;
-            this.changePage(1);
+            this.changePage(9);
+
+            /*using (PdfDocument document = new PdfDocument())
+            {
+                PdfPage page = document.Pages.Add();
+                PdfGraphics graphics = page.Graphics;
+                PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 35);
+                PdfStringFormat format = new PdfStringFormat();
+                format.Alignment = PdfTextAlignment.Left;
+                format.LineAlignment = PdfVerticalAlignment.Top;
+                //graphics.DrawString("Hello world!", font, PdfPens.Black, PdfBrushes.Green, new RectangleF(20, 20, 200, 20), format);
+                graphics.DrawString("Hello World!!!", font, PdfBrushes.Black, new PointF(0, 0));
+                document.Save("Sample.pdf");
+                document.Close(true);
+            }*/
         }
 
         public static MainWindow getInstance()
@@ -68,7 +85,15 @@ namespace AppForDoctor
 
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: implement logOut
+            MainMenuPage.clearInstance();
+            ExaminationPage.clearInstance();
+            DrugsPage.clearInstance();
+            EditProfilePage.clearInstance();
+            RefferalsPage.clearInstance();
+            MedHistoryPage.clearInstance();
+            BlogPage.clearInstance();
+            PausesPage.clearInstance();
+            changePage(9);
         }
 
         private void lightButton_Click(object sender, RoutedEventArgs e)
@@ -76,10 +101,10 @@ namespace AppForDoctor
             if (theme == Theme.Light) return;
             theme = Theme.Light;
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            lightButton.Background = Brushes.DodgerBlue;
-            darkButton.Background = Brushes.LightSlateGray;
+            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0));
+            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            lightButton.Background = System.Windows.Media.Brushes.DodgerBlue;
+            darkButton.Background = System.Windows.Media.Brushes.LightSlateGray;
             UpdateActivePage();
         }
 
@@ -88,10 +113,10 @@ namespace AppForDoctor
             if (theme == Theme.Dark) return;
             theme = Theme.Dark;
             //this.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            lightButton.Background = Brushes.LightSlateGray;
-            darkButton.Background = Brushes.DodgerBlue;
+            Application.Current.Resources["foregroundColor"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            Application.Current.Resources["backgroundColor"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0));
+            lightButton.Background = System.Windows.Media.Brushes.LightSlateGray;
+            darkButton.Background = System.Windows.Media.Brushes.DodgerBlue;
             UpdateActivePage();
         }
 
@@ -103,7 +128,8 @@ namespace AppForDoctor
             if (englishComboItem != null) englishComboItem.Content = "Engleski";
             lightButton.Content = "Svetlo";
             darkButton.Content = "Tamno";
-            mainLabel.Content = "Poštovanje, ulogovani Ste kao lekar.";
+            if (activePage != 9) mainLabel.Content = "Poštovanje, ulogovani Ste kao lekar.";
+            else mainLabel.Content = "Trenutno niste ulogovani.";
             editProfileButton.Content = "Uredi profil";
             UpdateActivePage();
         }
@@ -116,7 +142,8 @@ namespace AppForDoctor
             if (englishComboItem != null) englishComboItem.Content = "English";
             lightButton.Content = "Light";
             darkButton.Content = "Dark";
-            mainLabel.Content = "Dear user, you are logged in as doctor.";
+            if(activePage != 9) mainLabel.Content = "Dear user, you are logged in as doctor.";
+            else mainLabel.Content = "You are not logged in.";
             editProfileButton.Content = "Edit profile";
             UpdateActivePage();
         }
@@ -136,6 +163,17 @@ namespace AppForDoctor
             // 6 - medical history
             // 7 - blog
             // 8 - pauses
+            // 9 - login
+            if (language == Language.Serbian)
+            {
+                if (page != 9) mainLabel.Content = "Poštovanje, ulogovani Ste kao lekar.";
+                else mainLabel.Content = "Trenutno niste ulogovani.";
+            }
+            else
+            {
+                if (page != 9) mainLabel.Content = "Dear user, you are logged in as doctor.";
+                else mainLabel.Content = "You are not logged in.";
+            }
             if (editProfileButton.Visibility == Visibility.Hidden) editProfileButton.Visibility = Visibility.Visible;
             switch(page)
             {
@@ -163,6 +201,10 @@ namespace AppForDoctor
                     break;
                 case 8:
                     MainFrame.Content = PausesPage.getInstance();
+                    break;
+                case 9:
+                    MainFrame.Content = LoginPage.getInstance();
+                    editProfileButton.Visibility = Visibility.Hidden;
                     break;
             }
             this.activePage = page;
@@ -288,6 +330,9 @@ namespace AppForDoctor
                 case 8:
                     PausesPage.getInstance();
                     break;
+                case 9:
+                    MainFrame.Content = LoginPage.getInstance();
+                    break;
             }
         }
 
@@ -300,6 +345,55 @@ namespace AppForDoctor
         private void MeinWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public void GenerateReports(List<StringBuilder> srb, List<StringBuilder> eng)
+        {
+            StringBuilder srbsb = new StringBuilder();
+            srbsb.Append("--------------------------------------------\n");
+            foreach(StringBuilder sb in srb)
+            {
+                srbsb.Append(sb.ToString());
+                srbsb.Append("--------------------------------------------\n\n");
+            }
+
+            StringBuilder engsb = new StringBuilder();
+            engsb.Append("--------------------------------------------\n");
+            foreach (StringBuilder sb in eng)
+            {
+                engsb.Append(sb.ToString());
+                engsb.Append("--------------------------------------------\n\n");
+            }
+
+            try
+            {
+                using (PdfDocument document = new PdfDocument())
+                {
+                    PdfPage page = document.Pages.Add();
+                    PdfGraphics graphics = page.Graphics;
+                    PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 35);
+                    PdfStringFormat format = new PdfStringFormat();
+                    format.Alignment = PdfTextAlignment.Left;
+                    format.LineAlignment = PdfVerticalAlignment.Top;
+                    graphics.DrawString(srbsb.ToString(), font, PdfBrushes.Black, new PointF(0, 0));
+                    document.Save("Srpski.pdf");
+                    document.Close(true);
+                }
+
+                using (PdfDocument document = new PdfDocument())
+                {
+                    PdfPage page = document.Pages.Add();
+                    PdfGraphics graphics = page.Graphics;
+                    PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 35);
+                    PdfStringFormat format = new PdfStringFormat();
+                    format.Alignment = PdfTextAlignment.Left;
+                    format.LineAlignment = PdfVerticalAlignment.Top;
+                    graphics.DrawString(engsb.ToString(), font, PdfBrushes.Black, new PointF(0, 0));
+                    document.Save("English.pdf");
+                    document.Close(true);
+                }
+            }
+            catch (Exception e) { }
         }
     }
 }

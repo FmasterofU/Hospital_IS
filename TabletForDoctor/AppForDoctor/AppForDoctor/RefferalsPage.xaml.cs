@@ -25,6 +25,7 @@ namespace AppForDoctor
         private RefferalsPage()
         {
             InitializeComponent();
+            AddOldReferrals();
         }
 
         public static RefferalsPage getInstance()
@@ -47,7 +48,7 @@ namespace AppForDoctor
 
         private void ToEnglish()
         {
-            referralsBefore.Content = "Current referrals:";
+            referralsBefore.Content = "Previous referrals:";
             referralsNow.Content = "Added referrals:";
             addRefferalButton.Content = "Add referral";
             deleteRefferalButton.Content = "Delete referral";
@@ -95,6 +96,38 @@ namespace AppForDoctor
             return refSet;
         }
 
+        private void AddOldReferrals()
+        {
+            HashSet<string> old = new HashSet<string>();
+            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+
+            foreach(Examination e in mr.Examinations)
+            {
+                foreach (Referral r in e.Referrals) old.Add(r.RefType);
+            }
+
+            if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
+            {
+                foreach (string s in old)
+                {
+                    if (s.Equals("specialist")) referralsBeforeListBox.Items.Add("Uput lekaru specijalisti");
+                    else if (s.Equals("lab")) referralsBeforeListBox.Items.Add("Uput za laboratoriju");
+                    else if (s.Equals("accessory")) referralsBeforeListBox.Items.Add("Uput za pomagalo");
+                    else if (s.Equals("hospital")) referralsBeforeListBox.Items.Add("Uput za bolničko lečenje");
+                }
+            }
+            else if (MainWindow.GetLanguage() == MainWindow.Language.English)
+            {
+                foreach (string s in old)
+                {
+                    if (s.Equals("specialist")) referralsBeforeListBox.Items.Add("Referral to specialist");
+                    else if (s.Equals("lab")) referralsBeforeListBox.Items.Add("Referral for laboratory");
+                    else if (s.Equals("accessory")) referralsBeforeListBox.Items.Add("Referral for accessory");
+                    else if (s.Equals("hospital")) referralsBeforeListBox.Items.Add("Referral for hospital care");
+                }
+            }
+        }
+
         private void deleteRefferalButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteReferral d = new DeleteReferral();
@@ -109,7 +142,13 @@ namespace AppForDoctor
                 int iAccessory = referralsNowListBox.Items.IndexOf("Referral for accessory");
                 int iSpec = referralsNowListBox.Items.IndexOf("Referral to specialist");
                 int iHospital = referralsNowListBox.Items.IndexOf("Referral for hospital care");
-                if(iLab >= 0)
+
+                int oILab = referralsBeforeListBox.Items.IndexOf("Referral for laboratory");
+                int oIAccessory = referralsBeforeListBox.Items.IndexOf("Referral for accessory");
+                int oISpec = referralsBeforeListBox.Items.IndexOf("Referral to specialist");
+                int oIHospital = referralsBeforeListBox.Items.IndexOf("Referral for hospital care");
+
+                if (iLab >= 0)
                 {
                     referralsNowListBox.Items.RemoveAt(iLab);
                     referralsNowListBox.Items.Insert(iLab, "Uput za laboratoriju");
@@ -129,6 +168,26 @@ namespace AppForDoctor
                     referralsNowListBox.Items.RemoveAt(iHospital);
                     referralsNowListBox.Items.Insert(iHospital, "Uput za bolničko lečenje");
                 }
+                if (oILab >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oILab);
+                    referralsBeforeListBox.Items.Insert(oILab, "Uput za laboratoriju");
+                }
+                if (oIAccessory >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oIAccessory);
+                    referralsBeforeListBox.Items.Insert(oIAccessory, "Uput za pomagalo");
+                }
+                if (oISpec >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oISpec);
+                    referralsBeforeListBox.Items.Insert(oISpec, "Uput lekaru specijalisti");
+                }
+                if (oIHospital >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oIHospital);
+                    referralsBeforeListBox.Items.Insert(oIHospital, "Uput za bolničko lečenje");
+                }
             }
             else
             {
@@ -136,6 +195,12 @@ namespace AppForDoctor
                 int iAccessory = referralsNowListBox.Items.IndexOf("Uput za pomagalo");
                 int iSpec = referralsNowListBox.Items.IndexOf("Uput lekaru specijalisti");
                 int iHospital = referralsNowListBox.Items.IndexOf("Uput za bolničko lečenje");
+
+                int oILab = referralsBeforeListBox.Items.IndexOf("Uput za laboratoriju");
+                int oIAccessory = referralsBeforeListBox.Items.IndexOf("Uput za pomagalo");
+                int oISpec = referralsBeforeListBox.Items.IndexOf("Uput lekaru specijalisti");
+                int oIHospital = referralsBeforeListBox.Items.IndexOf("Uput za bolničko lečenje");
+
                 if (iLab >= 0)
                 {
                     referralsNowListBox.Items.RemoveAt(iLab);
@@ -155,6 +220,26 @@ namespace AppForDoctor
                 {
                     referralsNowListBox.Items.RemoveAt(iHospital);
                     referralsNowListBox.Items.Insert(iHospital, "Referral for hospital care");
+                }
+                if (oILab >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oILab);
+                    referralsBeforeListBox.Items.Insert(oILab, "Referral for laboratory");
+                }
+                if (oIAccessory >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oIAccessory);
+                    referralsBeforeListBox.Items.Insert(oIAccessory, "Referral for accessory");
+                }
+                if (oISpec >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oISpec);
+                    referralsBeforeListBox.Items.Insert(oISpec, "Referral to specialist");
+                }
+                if (oIHospital >= 0)
+                {
+                    referralsBeforeListBox.Items.RemoveAt(oIHospital);
+                    referralsBeforeListBox.Items.Insert(oIHospital, "Referral for hospital care");
                 }
             }
         }

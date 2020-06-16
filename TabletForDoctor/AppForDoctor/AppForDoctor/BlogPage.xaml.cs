@@ -21,9 +21,12 @@ namespace AppForDoctor
     public partial class BlogPage : Page
     {
         private static BlogPage instance = null;
+        private ArticleList list;
         private BlogPage()
         {
             InitializeComponent();
+            list = new ArticleList();
+            foreach (Article a in list.Articles) blogsList.Items.Add("\t\t" + a.Title + "\n" + a.Content);
         }
 
         public static BlogPage getInstance()
@@ -48,6 +51,7 @@ namespace AppForDoctor
 
         private void menuFromBlog_Click(object sender, RoutedEventArgs e)
         {
+            //list.SerializeNow();
             instance = null;
             MainWindow w = MainWindow.getInstance();
             w.changePage(1);
@@ -62,6 +66,12 @@ namespace AppForDoctor
         public void AddArticle(string title, string content)
         {
             blogsList.Items.Insert(0, "\t\t" + title + "\n" + content);
+            list.Articles.Insert(0, new Article(title, content));
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
         }
     }
 }

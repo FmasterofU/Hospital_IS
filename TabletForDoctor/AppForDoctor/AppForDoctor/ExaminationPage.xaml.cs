@@ -27,6 +27,7 @@ namespace AppForDoctor
         private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
         private HashSet<string> addedReferralsSet = new HashSet<string>();
         private DateTime? controlReviewDate = default;
+        private MedRecord medRecord = null;
         private ExaminationPage()
         {
             InitializeComponent();
@@ -38,6 +39,15 @@ namespace AppForDoctor
             //instance.diagnosisText.Text = instance.diagnosis;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) instance.ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) instance.ToEnglish();
+            return instance;
+        }
+
+        public static ExaminationPage getInstance(MedRecord mr)
+        {
+            instance = getInstance();
+            instance.medRecord = mr;
+            User patient = UserList.getByID(mr.PatientID);
+            instance.patientName.Content = patient.Name + " " + patient.Surname + ", ID = " + patient.PatientID;
             return instance;
         }
 
@@ -71,19 +81,21 @@ namespace AppForDoctor
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            MedHistoryPage.clearInstance();
+            SaveExamination ee = new SaveExamination();
+            ee.ShowDialog();
+            /*MedHistoryPage.clearInstance();
             DrugsPage.clearInstance();
             RefferalsPage.clearInstance();
             instance = null;
             MainWindow w = MainWindow.getInstance();
-            w.changePage(1);
+            w.changePage(1);*/
         }
 
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: save history in data base
-            string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + HashsetToString(addedReferralsSet) + "\n" + controlReviewDate.ToString();
-            MedHistoryPage.getInstance().historyText.Text = toHistory;
+            //string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + HashsetToString(addedReferralsSet) + "\n" + controlReviewDate.ToString();
+            //MedHistoryPage.getInstance().historyText.Text = toHistory + MedHistoryPage.getInstance().getHistory().ToString();
             saveDiagnosisButton.IsEnabled = false;
         }
 
@@ -152,12 +164,13 @@ namespace AppForDoctor
             StringBuilder sb = new StringBuilder();
             foreach (KeyValuePair<string, int> pair in input)
             {
+                sb.Append("\t");
                 sb.Append(pair.Key);
                 sb.Append(" *");
                 sb.Append(pair.Value.ToString());
-                sb.Append(", ");
+                sb.Append("\n");
             }
-            if (sb.Length > 2) return sb.ToString(0, sb.Length - 2);
+            if (sb.Length > 2) return sb.ToString();
             else
             {
                 return "";
@@ -178,6 +191,26 @@ namespace AppForDoctor
             {
                 return "";
             }
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
+
+        public MedRecord getMedRecord()
+        {
+            return medRecord;
+        }
+
+        public string getDiagnosis()
+        {
+            return diagnosisText.Text;
+        }
+
+        public Dictionary<string, int> getRecipes()
+        {
+            return addedDrugsDict;
         }
     }
 }

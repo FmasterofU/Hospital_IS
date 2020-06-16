@@ -36,26 +36,18 @@ namespace AppForDoctor
 
         private void ToSerbian()
         {
-            patientID.Content = "Identifikacioni broj pacijenta:";
-            acceptID.Content = "Potvrdi";
             appointmentsButton.Content = "Pregled termina";
             pausesButton.Content = "Rukovanje pauzama";
+            reportsButton.Content = "Generiši izveštaje";
+            examinationButton.Content = "Pristupi pregledu";
         }
 
         private void ToEnglish()
         {
-            patientID.Content = "Patient identification number:";
-            acceptID.Content = "Accept";
             appointmentsButton.Content = "Appointments";
             pausesButton.Content = "Check pauses";
-        }
-
-        private void acceptID_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: validation
-            instance = null;
-            MainWindow w = MainWindow.getInstance();
-            w.changePage(2);
+            reportsButton.Content = "Generate reports";
+            examinationButton.Content = "Go to examination";
         }
 
         private void pausesButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +60,23 @@ namespace AppForDoctor
         {
             MainWindow w = MainWindow.getInstance();
             w.changePage(7);
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
+
+        private void reportsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.GenerateReports(EditProfilePage.getInstance().getReportsSrb(), EditProfilePage.getInstance().getReportsEng());
+        }
+
+        private void examinationButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenExamination o = new OpenExamination();
+            o.ShowDialog();
         }
     }
 }

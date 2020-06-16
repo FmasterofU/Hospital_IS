@@ -12,6 +12,13 @@
         <Style x:Key="labelStyle" TargetType="Control" BasedOn="{StaticResource sizeStyle}">
             <Setter Property="Foreground" Value="{DynamicResource foregroundColor}"/>
         </Style>
+        <Style x:Key="textBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="Foreground" Value="{DynamicResource foregroundColor}"/>
+        </Style>
+        <Style x:Key="incorectLabelStyle" TargetType="Control" BasedOn="{StaticResource sizeStyle}">
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
         <Style x:Key="textBoxStyle" TargetType="TextBox" BasedOn="{StaticResource labelStyle}">
             <Setter Property="Background" Value="{DynamicResource backgroundColor}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource foregroundColor}"/>

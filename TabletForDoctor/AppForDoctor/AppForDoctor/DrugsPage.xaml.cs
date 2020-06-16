@@ -31,12 +31,23 @@ namespace AppForDoctor
             {
                 drugListBox.Items.Add(pair.Key + " *" + pair.Value);
             }
-            oldDrugsListBox.Items.Add("Stari");
+            /*oldDrugsListBox.Items.Add("Stari");
             oldDrugsListBox.Items.Add("Sstari");
             oldDrugsListBox.Items.Add("Sttari");
             oldDrugsListBox.Items.Add("Staari");
             oldDrugsListBox.Items.Add("Starri");
-            oldDrugsListBox.Items.Add("Starii");
+            oldDrugsListBox.Items.Add("Starii");*/
+            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+            HashSet<string> drugs = new HashSet<string>();
+            foreach(Examination e in mr.Examinations)
+            {
+                foreach(Prescription p in e.Prescriptions)
+                {
+                    drugs.Add(p.Drug.Name);
+                }
+            }
+
+            foreach (string s in drugs) oldDrugsListBox.Items.Add(s);
         }
 
         public static DrugsPage getInstance()

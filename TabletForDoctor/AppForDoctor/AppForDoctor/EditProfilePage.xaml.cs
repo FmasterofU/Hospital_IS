@@ -23,20 +23,23 @@ namespace AppForDoctor
     {
         private static EditProfilePage instance = null;
         private int previousPage = 0;
+        private User user = null;
         private string name = "Elena";
         private string surname = "Elenic";
         private string adress = "Adresa 01";
         private string mail = "elena@mail.com";
         private string password = "123456";
         private bool passChanged = false;
+        private List<StringBuilder> reportsForPdfSrb = new List<StringBuilder>();
+        private List<StringBuilder> reportsForPdfEng = new List<StringBuilder>();
         private EditProfilePage()
         {
             InitializeComponent();
             //TODO: read all profile data from database
-            nameTextBox.Text = name;
+            /*nameTextBox.Text = name;
             surnameTextBox.Text = surname;
             adressTextBox.Text = adress;
-            mailTextBox.Text = mail;
+            mailTextBox.Text = mail;*/
         }
 
         public static EditProfilePage getInstance()
@@ -51,6 +54,22 @@ namespace AppForDoctor
         {
             instance = getInstance();
             instance.previousPage = previousPage;
+            return instance;
+        }
+
+        public static EditProfilePage getInstance(User user)
+        {
+            instance = getInstance();
+            instance.user = user;
+            instance.nameTextBox.Text = instance.user.Name;
+            instance.name = instance.user.Name;
+            instance.surnameTextBox.Text = instance.user.Surname;
+            instance.surname = instance.user.Surname;
+            instance.adressTextBox.Text = instance.user.Adress;
+            instance.adress = instance.user.Adress;
+            instance.mailTextBox.Text = instance.user.Mail;
+            instance.mail = instance.user.Mail;
+            instance.password = instance.user.Password;
             return instance;
         }
 
@@ -171,14 +190,48 @@ namespace AppForDoctor
                 newPasswordTextBox.IsEnabled = true;
                 newPassword2TextBox.IsEnabled = true;
                 Style style = this.FindResource("passwordBoxStyle") as Style;
+                Style stylee = this.FindResource("labelStyle") as Style;
                 passwordTextBox.Style = style;
+                passwordLabel.Style = stylee;
             }
             else
             {
                 disableNewPasswords();
                 Style style = this.FindResource("passwordBoxIncorectStyle") as Style;
+                Style stylee = this.FindResource("incorectLabelStyle") as Style;
                 passwordTextBox.Style = style;
+                passwordLabel.Style = stylee;
             }
+        }
+
+        public static void clearInstance()
+        {
+            instance = null;
+        }
+
+        public void AddReportSrb(StringBuilder report)
+        {
+            reportsForPdfSrb.Add(report);
+        }
+
+        public void AddReportEng(StringBuilder report)
+        {
+            reportsForPdfEng.Add(report);
+        }
+
+        public List<StringBuilder> getReportsSrb()
+        {
+            return reportsForPdfSrb;
+        }
+
+        public List<StringBuilder> getReportsEng()
+        {
+            return reportsForPdfEng;
+        }
+
+        public User getUser()
+        {
+            return user;
         }
     }
 }

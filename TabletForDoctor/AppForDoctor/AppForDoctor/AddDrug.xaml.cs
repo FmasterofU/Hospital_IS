@@ -26,12 +26,13 @@ namespace AppForDoctor
         {
             InitializeComponent();
             //TODO: load all medicaments in hospital
-            drugSet.Add("Novi");
+            /*drugSet.Add("Novi");
             drugSet.Add("Nnovi");
             drugSet.Add("Noovi");
             drugSet.Add("Novvi");
             drugSet.Add("Novii");
-            drugSet.Add("Novio");
+            drugSet.Add("Novio");*/
+            drugSet = DrugList.ContainsInName("");
             drugSet.ExceptWith(DrugsPage.getInstance().getDrugSet());
             //foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
             //addDrugsComboBox.SelectedIndex = 0;
