@@ -177,7 +177,7 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="ShowHistoricalDataButton" Content="Istorijski prikaz zauzetosti" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="ShowHistoricalDataButton_Click" IsEnabled="False">
+                    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="ShowHistoricalDataButton" Content="Istorijski prikaz zauzetosti" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="ShowHistoricalDataButton_Click" IsEnabled="True">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
