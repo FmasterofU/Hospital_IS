@@ -102,6 +102,11 @@ namespace AppForDoctor
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (IsInputEmpty())
+            {
+                saveProfileButton.IsEnabled = false;
+                return;
+            }
             Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
             if (!name.Equals(nameTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
             else if (surname.Equals(surnameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
@@ -109,6 +114,11 @@ namespace AppForDoctor
 
         private void surnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (IsInputEmpty())
+            {
+                saveProfileButton.IsEnabled = false;
+                return;
+            }
             Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
             if (!surname.Equals(surnameTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
             else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
@@ -116,6 +126,11 @@ namespace AppForDoctor
 
         private void adressTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (IsInputEmpty())
+            {
+                saveProfileButton.IsEnabled = false;
+                return;
+            }
             Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
             if (!adress.Equals(adressTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
             else if (name.Equals(nameTextBox.Text) && surname.Equals(surnameTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
@@ -123,9 +138,20 @@ namespace AppForDoctor
 
         private void mailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (IsInputEmpty())
+            {
+                saveProfileButton.IsEnabled = false;
+                return;
+            }
             Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
             if (!mail.Equals(mailTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
             else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && surname.Equals(surnameTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
+        }
+
+        private bool IsInputEmpty()
+        {
+            if (mailTextBox.Text.Trim().Equals("") || nameTextBox.Text.Trim().Equals("") || surnameTextBox.Text.Trim().Equals("") || adressTextBox.Text.Trim().Equals("")) return true;
+            else return false;
         }
 
         private void backFromEditProfileButton_Click(object sender, RoutedEventArgs e)
@@ -172,7 +198,8 @@ namespace AppForDoctor
             {
                 if (newPasswordTextBox.Password.Equals(newPassword2TextBox.Password) && passwordTextBox.Password.Equals(password))
                 {
-                    saveProfileButton.IsEnabled = true;
+                    if(!IsInputEmpty())
+                        saveProfileButton.IsEnabled = true;
                     passChanged = true;
                 }
                 else
