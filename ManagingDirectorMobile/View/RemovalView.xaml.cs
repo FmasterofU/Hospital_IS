@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingDirectorMobile.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,17 @@ namespace ManagingDirectorMobile.View
         private void PanelGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as RemovalViewModel).Remove();
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
         }
     }
 }

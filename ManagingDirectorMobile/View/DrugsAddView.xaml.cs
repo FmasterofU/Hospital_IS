@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingDirectorMobile.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,5 +36,21 @@ namespace ManagingDirectorMobile.View
             e.Handled = true;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int num;
+            if (NameTextBox.Text.Length != 0 && Int32.TryParse(ThresholdTextBox.Text, out num))
+            {
+                DrugsAddViewModel.Add(NameTextBox.Text, num);
+                ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
+            }
+            else
+            {
+                if(NameTextBox.Text.Length != 0)
+                    NameTextBox.BorderBrush = Brushes.Red;
+                if(Int32.TryParse(ThresholdTextBox.Text, out num))
+                    ThresholdTextBox.BorderBrush = Brushes.Red;
+            }
+        }
     }
 }

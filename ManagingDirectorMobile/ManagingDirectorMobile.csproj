@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Drug.cs" />
+    <Compile Include="Model\DrugBatch.cs" />
     <Compile Include="ViewModel\DefaultNotificationViewModel.cs" />
     <Compile Include="ViewModel\DrugsAddViewModel.cs" />
     <Compile Include="ViewModel\DrugsChangeViewModel.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="View\EquipmentRelocationView.xaml.cs">
       <DependentUpon>EquipmentRelocationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\IRemoveSelection.cs" />
     <Compile Include="View\LeaveEditView.xaml.cs">
       <DependentUpon>LeaveEditView.xaml</DependentUpon>
     </Compile>
@@ -283,7 +285,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="View\icons\icons8-bell-32.png" />
     <Resource Include="View\icons\icons8-business-report-32.png" />

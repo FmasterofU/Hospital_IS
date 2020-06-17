@@ -20,7 +20,7 @@ namespace ManagingDirectorMobile.View
     /// <summary>
     /// Interaction logic for DrugsView.xaml
     /// </summary>
-    public partial class DrugsView : UserControl
+    public partial class DrugsView : UserControl, IRemoveSelection
     {
         public DrugsView()
         {
@@ -46,7 +46,12 @@ namespace ManagingDirectorMobile.View
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Hydroxychloroquine" + " iz upotrebe");
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Hydroxychloroquine" + " iz upotrebe", this);
+        }
+
+        public void RemoveSelectedItem()
+        {
+            ((DrugsViewModel)this.DataContext).drugs.Remove(DrugListDG.SelectedItem as Drug);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +61,7 @@ namespace ManagingDirectorMobile.View
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsChangeViewModel();
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsChangeViewModel(DrugListDG.SelectedItem as Drug);
         }
 
         private void SupplyButton_Click(object sender, RoutedEventArgs e)
@@ -72,8 +77,18 @@ namespace ManagingDirectorMobile.View
 
         private void DrugListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((sender as DataGrid).SelectedItem != null) ShowHistoricalDataButton.IsEnabled = true;
-            else ShowHistoricalDataButton.IsEnabled = false;
+            if ((sender as DataGrid).SelectedItem != null)
+            {
+                ShowHistoricalDataButton.IsEnabled = true;
+                EditButton.IsEnabled = true;
+                RemoveButton.IsEnabled = true;
+            }
+            else
+            {
+                ShowHistoricalDataButton.IsEnabled = false;
+                EditButton.IsEnabled = false;
+                RemoveButton.IsEnabled = false;
+            }
         }
 
 
@@ -82,5 +97,9 @@ namespace ManagingDirectorMobile.View
             //;
         }
 
+        private void Report_Click(object sender, RoutedEventArgs e)
+        {
+            ReportViewModel.DrugsReport();
+        }
     }
 }

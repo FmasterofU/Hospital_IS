@@ -44,7 +44,7 @@ namespace ManagingDirectorMobile.View
 
         private void StaffButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportViewModel.DrugsReport();
         }
 
         private void RoomsButton_Click(object sender, RoutedEventArgs e)

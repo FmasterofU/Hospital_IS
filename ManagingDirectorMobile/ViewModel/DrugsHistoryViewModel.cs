@@ -15,7 +15,11 @@ namespace ManagingDirectorMobile.ViewModel
         public DrugsHistoryViewModel(Drug drug)
         {
             this.MyModel = new PlotModel { Title = drug.Name };
-            this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "stanje"));
+            var area = new AreaSeries();
+            for(int i=0; i<drug.drugHistory.Count; i++)
+                area.Points.Add(new DataPoint(-DateTime.Now.Subtract(drug.drugHistory[i].Item1).Days, drug.drugHistory[i].Item2));
+            this.MyModel.Series.Add(area);
+            //this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "stanje"));
         }
 
         public PlotModel MyModel { get; private set; }

@@ -70,7 +70,7 @@
                     <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding DrugName}" FontWeight="DemiBold" FontSize="18" Panel.ZIndex="1"></Label>
                     <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{Binding DrugQuantity}" FontWeight="DemiBold" FontSize="20"></Label>
                     <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" Content="{Binding DrugMinimumFormString}"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" MinWidth="60"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="12" MinWidth="60" Name="ThresholdTextBox"></TextBox>
                     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -91,30 +91,30 @@
                               CellStyle="{StaticResource Body_Content_DataGrid_Centering}"
                               SelectionChanged="DrugBatchListDG_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Name}" Width="*" FontSize="20"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Code}" Width="*" FontSize="20"></DataGridTextColumn>
                             </DataGrid.Columns>
                             <DataGrid.RowDetailsTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Details}" FontSize="16"></Label>
+                                    <Label Content="{Binding Quantity}" FontSize="16"></Label>
                                 </DataTemplate>
                             </DataGrid.RowDetailsTemplate>
                         </DataGrid>
                     </Grid>
                     <WrapPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                         <StackPanel VerticalAlignment="Center">
-                            <TextBox FontSize="12" MinWidth="50" Margin="0,0,10,0"></TextBox>
+                            <TextBox FontSize="12" MinWidth="50" Margin="0,0,10,0" Name="CodeTextBox"></TextBox>
                         </StackPanel>
                         <Label Content="Nova količina:"></Label>
                     </WrapPanel>
-                    <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="60" MinHeight="16"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="60" MinHeight="16" Name="NewQuantity"></TextBox>
                     <WrapPanel Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                         <Label Margin="0,0,10,0">EXP:</Label>
-                        <Label Content="{Binding EXPDate}" Margin="0,0,0,20"></Label>
+                        <Label Content="{Binding EXPDate}" Margin="0,0,0,20" Name="EXPLabel"></Label>
                         <StackPanel>
-                            <DatePicker></DatePicker>
+                            <DatePicker Name="DatePicker"></DatePicker>
                         </StackPanel>
                     </WrapPanel>
-                    <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Potvrda" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" >
+                    <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Potvrda" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" Name="ProceedButton" Click="ProceedButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

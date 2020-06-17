@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManagingDirectorMobile.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,17 @@ namespace ManagingDirectorMobile.ViewModel
     {
         public String RemovalQuestion { get; set; }
 
-        public RemovalViewModel(String diffString)
+        private IRemoveSelection rem;
+
+        public RemovalViewModel(String diffString, IRemoveSelection removalobject)
         {
             RemovalQuestion = "Da li ste sigurni da želite da uklonite " + diffString + "?";
+            rem = removalobject;
+        }
+
+        public void Remove()
+        {
+            rem.RemoveSelectedItem();
         }
     }
 }

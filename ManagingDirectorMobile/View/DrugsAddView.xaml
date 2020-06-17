@@ -56,10 +56,10 @@
                         <Label FontWeight="Bold" FontSize="12">Minimalno stanje:</Label>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBox FontWeight="Bold" FontSize="12" Margin="0,0,0,20" MinWidth="75"></TextBox>
-                        <TextBox FontWeight="Bold" FontSize="12"></TextBox>
+                        <TextBox x:Name="NameTextBox" FontWeight="Bold" FontSize="12" Margin="0,0,0,20" MinWidth="75"></TextBox>
+                        <TextBox x:Name="ThresholdTextBox" FontWeight="Bold" FontSize="12"></TextBox>
                     </StackPanel>
-                    <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Potvrda" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" >
+                    <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Potvrda" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" Click="Button_Click" >
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

@@ -55,7 +55,7 @@
                 <MenuItem.Icon>
                     <Image Source="/View/icons/icons8-menu-vertical-32.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
                 </MenuItem.Icon>
-                <MenuItem FlowDirection="RightToLeft" x:Name="Report" MouseDown="Report_MouseDown" Header="Izvještaj - trenutno stanje"></MenuItem>
+                <MenuItem FlowDirection="RightToLeft" x:Name="Report" MouseDown="Report_MouseDown" Header="Izvještaj - trenutno stanje" Click="Report_Click"></MenuItem>
                 <MenuItem FlowDirection="RightToLeft" x:Name="SpecReport" Header="Prilagođeni izvještaj"></MenuItem>
             </MenuItem>
         </Menu>
@@ -185,7 +185,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="EditButton" Content="Nabavka i izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="EditButton_Click">
+                    <Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="EditButton" Content="Nabavka i izmjena" Margin="0,0,0,20" Background="Moccasin" FontWeight="DemiBold" FontSize="14" Height="30" Click="EditButton_Click" IsEnabled="False">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -206,7 +206,7 @@
                             <TextBlock Text="Dodaj Lijek" FontWeight="Bold" FontSize="16"></TextBlock>
                         </WrapPanel>
                     </Button>
-                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="RemoveButton" Click="RemoveButton_Click">
+                    <Button Grid.Column="1" Grid.Row="2" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="RemoveButton" Click="RemoveButton_Click" IsEnabled="False">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Grid>

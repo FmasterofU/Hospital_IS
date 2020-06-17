@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ManagingDirectorMobile.Model;
+using ManagingDirectorMobile.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +39,23 @@ namespace ManagingDirectorMobile.View
 
         private void DrugBatchListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if ((sender as DataGrid).SelectedItem != null)
+            {
+                CodeTextBox.Text = ((sender as DataGrid).SelectedItem as DrugBatch).Code;
+                (DataContext as DrugsChangeViewModel).EXPDate = ((sender as DataGrid).SelectedItem as DrugBatch).StringifyEXP();
+            }
+        }
 
+        private void ProceedButton_Click(object sender, RoutedEventArgs e)
+        {
+            var EXP = DatePicker.SelectedDate;
+            int threshold, quantity;
+            if (!Int32.TryParse(ThresholdTextBox.Text, out threshold)) threshold = -1;
+            if (!Int32.TryParse(NewQuantity.Text, out quantity)) quantity = -1;
+            String code = CodeTextBox.Text;
+            if (code.Equals("")) code = null;
+            (DataContext as DrugsChangeViewModel).Save(threshold, EXP, code, quantity);
+            ((MainWindow)Application.Current.MainWindow).ClearFromFirstUserControlUp();
         }
     }
 }

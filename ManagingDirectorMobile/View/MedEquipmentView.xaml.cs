@@ -19,7 +19,7 @@ namespace ManagingDirectorMobile.View
     /// <summary>
     /// Interaction logic for MedEquipmentView.xaml
     /// </summary>
-    public partial class MedEquipmentView : UserControl
+    public partial class MedEquipmentView : UserControl, IRemoveSelection
     {
         public MedEquipmentView()
         {
@@ -44,7 +44,7 @@ namespace ManagingDirectorMobile.View
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Ultrazvuk" + " iz upotrebe");
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Ultrazvuk" + " iz upotrebe", this);
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -55,6 +55,11 @@ namespace ManagingDirectorMobile.View
         private void MedEqTypesListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        public void RemoveSelectedItem()
+        {
+            throw new NotImplementedException();
         }
     }
 }

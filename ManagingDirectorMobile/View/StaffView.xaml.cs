@@ -19,7 +19,7 @@ namespace ManagingDirectorMobile.View
     /// <summary>
     /// Interaction logic for StaffView.xaml
     /// </summary>
-    public partial class StaffView : UserControl
+    public partial class StaffView : UserControl, IRemoveSelection
     {
         public StaffView()
         {
@@ -49,7 +49,7 @@ namespace ManagingDirectorMobile.View
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Božidar Arsić" + " kao zaposlenog");
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("Božidar Arsić" + " kao zaposlenog", this);
         }
 
         private void WorkTimeButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +60,11 @@ namespace ManagingDirectorMobile.View
         private void LeaveButton_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new LeaveEditViewModel();
+        }
+
+        public void RemoveSelectedItem()
+        {
+            throw new NotImplementedException();
         }
     }
 }

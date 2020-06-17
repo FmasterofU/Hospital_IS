@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,11 @@ namespace ManagingDirectorMobile.Model
         {
             if (drugs.Count == 0)
             {
-                drugs.Add(new Drug() { Name = "Hydroxychloroquine", Code = "AXEL", Number = 69, Threshold = 70 });
+                var temp = new Drug() { Name = "Hydroxychloroquine", Code = "AXEL", Number = 69, Threshold = 70 };
+                temp.drugHistory.AddRange(historydummy());
+                foreach (DrugBatch db in drugbatchesdummy())
+                    temp.drugBatches.Add(db);
+                drugs.Add(temp);
                 drugs.Add(new Drug() { Name = "Antiretroviral", Code = "FROG", Number = 70, Threshold = 69 });
                 drugs.Add(new Drug() { Name = "Amoksicilin", Code = "MAX", Number = 70, Threshold = 69 });
                 drugs.Add(new Drug() { Name = "Sumamaed", Code = "RETARD", Number = 70, Threshold = 69 });
@@ -39,6 +44,30 @@ namespace ManagingDirectorMobile.Model
                 drugs.Add(new Drug() { Name = "Aspirin", Code = "ASP", Number = 130, Threshold = 1410 });
             }
             return drugs;
+        }
+
+        public List<Tuple<DateTime, int>> drugHistory = new List<Tuple<DateTime, int>>();
+
+        public static List<Tuple<DateTime, int>> historydummy()
+        {
+            var ret = new List<Tuple<DateTime, int>>();
+            ret.Insert(0, new Tuple<DateTime, int>(DateTime.Today.AddDays(-5), 32));
+            ret.Insert(0, new Tuple<DateTime, int>(DateTime.Today.AddDays(-3), 75));
+            ret.Insert(0, new Tuple<DateTime, int>(DateTime.Today.AddDays(-2), 60));
+            ret.Insert(0, new Tuple<DateTime, int>(DateTime.Today, 69));
+            return ret;
+        }
+
+        public ObservableCollection<DrugBatch> drugBatches = new ObservableCollection<DrugBatch>();
+
+        public static ObservableCollection<DrugBatch> drugbatchesdummy()
+        {
+            var ret = new ObservableCollection<DrugBatch>();
+            ret.Add(new DrugBatch() { EXP = DateTime.Today, Quantity = 32, Code = "NES1" });
+            ret.Add(new DrugBatch() { EXP = DateTime.Today.AddDays(30), Quantity = 12, Code = "YAS30" });
+            ret.Add(new DrugBatch() { EXP = DateTime.Today.AddDays(73), Quantity = 15, Code = "NYAE" });
+            ret.Add(new DrugBatch() { EXP = DateTime.Today.AddDays(180), Quantity = 10, Code = "STAGOD" });
+            return ret;
         }
     }
 }

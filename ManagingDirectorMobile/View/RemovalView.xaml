@@ -54,14 +54,14 @@
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="16" Text="{Binding RemovalQuestion}"></TextBlock>
                     </StackPanel>
-                    <Button Grid.Row="2" Grid.Column="0" Content="Ne" MinWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Red" FontSize="16" FontWeight="Bold" >
+                    <Button Grid.Row="2" Grid.Column="0" Name="NoButton" Content="Ne" MinWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Red" FontSize="16" FontWeight="Bold" Click="NoButton_Click" >
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="2" Grid.Column="1" Content="Da" MinWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" >
+                    <Button Grid.Row="2" Grid.Column="1" Name="YesButton" Content="Da" MinWidth="75" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Background="Green" FontSize="16" FontWeight="Bold" Click="YesButton_Click" >
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

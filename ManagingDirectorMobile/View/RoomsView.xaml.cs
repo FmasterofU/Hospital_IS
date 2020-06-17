@@ -19,7 +19,7 @@ namespace ManagingDirectorMobile.View
     /// <summary>
     /// Interaction logic for RoomsView.xaml
     /// </summary>
-    public partial class RoomsView : UserControl
+    public partial class RoomsView : UserControl, IRemoveSelection
     {
         public RoomsView()
         {
@@ -40,7 +40,7 @@ namespace ManagingDirectorMobile.View
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("prostoriju " + "Hirurgija 1");
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RemovalViewModel("prostoriju " + "Hirurgija 1", this);
         }
 
         private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +73,11 @@ namespace ManagingDirectorMobile.View
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new RoomAddViewModel();
+        }
+
+        public void RemoveSelectedItem()
+        {
+            throw new NotImplementedException();
         }
     }
 }
