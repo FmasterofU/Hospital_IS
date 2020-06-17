@@ -54,7 +54,7 @@ namespace AppForDoctor
         public void ToSerbian()
         {
             historyButton.Content = "Pogledaj istoriju bolesti";
-            diagnosisBox.Header = "Anamneza:";
+            diagnosisBox.Header = "Dijagnoza:";
             drugsButton.Content = "Pregled lekova";
             refferalButton.Content = "Pregled uputa";
             controlReviewButton.Content = "Zakazivanje kontrole";
@@ -65,7 +65,7 @@ namespace AppForDoctor
         public void ToEnglish()
         {
             historyButton.Content = "Check medical history";
-            diagnosisBox.Header = "Anamnesis:";
+            diagnosisBox.Header = "Diagnosis:";
             drugsButton.Content = "Check drugs";
             refferalButton.Content = "Check referrals";
             controlReviewButton.Content = "Schedule control review";

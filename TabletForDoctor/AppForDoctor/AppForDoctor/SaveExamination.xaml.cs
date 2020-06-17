@@ -87,7 +87,7 @@ namespace AppForDoctor
             StringBuilder retEng = new StringBuilder();
             StringBuilder retSrb = new StringBuilder();
 
-            retSrb.Append("Pregled odrzan: ");
+            retSrb.Append("Pregled održan: ");
             retEng.Append("Examination: ");
             retSrb.Append(DateTime.Now.ToString() + "\n");
             retEng.Append(DateTime.Now.ToString() + "\n");

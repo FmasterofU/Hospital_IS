@@ -90,6 +90,9 @@
     <Compile Include="BlogPage.xaml.cs">
       <DependentUpon>BlogPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommentsPage.xaml.cs">
+      <DependentUpon>CommentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DeleteReferral.xaml.cs">
       <DependentUpon>DeleteReferral.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="MedHistoryPage.xaml.cs">
       <DependentUpon>MedHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MySchedulePage.xaml.cs">
+      <DependentUpon>MySchedulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="OpenExamination.xaml.cs">
       <DependentUpon>OpenExamination.xaml</DependentUpon>
@@ -129,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangeDrugAmount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +211,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MedHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MySchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

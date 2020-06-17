@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1024"
       Title="MainMenuPage">
-
     <Grid>
         <!--<Label x:Name="patientID" HorizontalAlignment="Left" Margin="22,152,0,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}">Identifikacioni broj pacijenta:</Label>
         <TextBox x:Name="patientIDText" HorizontalAlignment="Left" Margin="502,160,0,0" Height="49" VerticalAlignment="Top" Width="300" Style="{StaticResource textBoxStyle}"></TextBox>
@@ -17,7 +16,7 @@
             <Button x:Name="examinationButton" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
                 Height="55" Click="examinationButton_Click">Pristupi pregledu</Button>
             <Button x:Name="appointmentsButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
-                Height="55">Pregled termina</Button>
+                Height="55" Click="appointmentsButton_Click">Pregled termina</Button>
             <Button x:Name="pausesButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"
                 Height="55" Click="pausesButton_Click">Rukovanje pauzama</Button>
             <Button x:Name="blogButton" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="Auto" Background="Orange" Style="{StaticResource buttonStyle}"

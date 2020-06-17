@@ -63,7 +63,7 @@ namespace AppForDoctor
         {
             patientsComboBox.Items.Clear();
             patientsComboBox.SelectedIndex = -1;
-            List<User> users = UserList.getPatientByName(nameText.Text);
+            List<User> users = UserList.getPatientByName(nameText.Text.ToLower());
             if (users.Count == 0) return;
             
             foreach(User u in users)

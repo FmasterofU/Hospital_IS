@@ -41,12 +41,14 @@ namespace AppForDoctor
         {
             menuFromBlog.Content = "Meni";
             addArticleButton.Content = "Dodaj članak";
+            commentsButton.Content = "Pogledaj komentare";
         }
 
         private void ToEnglish()
         {
             menuFromBlog.Content = "Menu";
             addArticleButton.Content = "Add article";
+            commentsButton.Content = "See comments";
         }
 
         private void menuFromBlog_Click(object sender, RoutedEventArgs e)
@@ -72,6 +74,12 @@ namespace AppForDoctor
         public static void clearInstance()
         {
             instance = null;
+        }
+
+        private void commentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(11);
         }
     }
 }

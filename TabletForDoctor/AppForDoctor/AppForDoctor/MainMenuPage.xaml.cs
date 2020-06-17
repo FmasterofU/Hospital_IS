@@ -78,5 +78,11 @@ namespace AppForDoctor
             OpenExamination o = new OpenExamination();
             o.ShowDialog();
         }
+
+        private void appointmentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = MainWindow.getInstance();
+            w.changePage(10);
+        }
     }
 }

@@ -309,6 +309,74 @@ namespace AppForDoctor
     }
 
     [Serializable]
+    public class Appointment
+    {
+        private DateTime date;
+        private string patientID;
+        private string room;
+
+        public Appointment(DateTime date, string patientID, string room)
+        {
+            this.date = date;
+            this.patientID = patientID;
+            this.room = room;
+        }
+
+        public string PatientID
+        {
+            get { return patientID; }
+            set { patientID = value; }
+        }
+
+        public DateTime Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+
+        public string Room
+        {
+            get { return room; }
+            set { room = value; }
+        }
+    }
+
+    [Serializable]
+    public class AppointmentList
+    {
+        List<Appointment> appointments = new List<Appointment>();
+
+        public AppointmentList()
+        {
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 18, 10, 0, 0), "111111", "Soba2"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 17, 14, 0, 0), "222222", "Soba1"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 19, 10, 0, 0), "333333", "Soba1"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 18, 11, 0, 0), "333333", "Soba2"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 20, 19, 0, 0), "111111", "Soba1"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 18, 12, 0, 0), "222222", "Soba2"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 17, 16, 0, 0), "111111", "Soba1"));
+            this.appointments.Add(new Appointment(new DateTime(2020, 6, 21, 10, 0, 0), "222222", "Soba1"));
+        }
+
+        public List<Appointment> Appointments
+        {
+            get { return appointments; }
+            set { appointments = value; }
+        }
+
+        public static List<Appointment> getByDate(DateTime date)
+        {
+            AppointmentList list = new AppointmentList();
+            List<Appointment> ret = new List<Appointment>();
+            foreach(Appointment a in list.Appointments)
+            {
+                if (date.Year.Equals(a.Date.Year) && date.Month.Equals(a.Date.Month) && date.Day.Equals(a.Date.Day)) ret.Add(a);
+            }
+            return ret;
+        }
+    }
+
+    [Serializable]
     public class ArticleList
     {
         private List<Article> articles = new List<Article>();
@@ -317,7 +385,7 @@ namespace AppForDoctor
         {
             this.articles = new List<Article>();
             this.articles.Add(new Article("Nove prostorije", "Prošle nedelje naša klinika je dobila 4 nove spavaće sobe!"));
-            this.articles.Add(new Article("Doniranje krvi", "Svake srede od 7 do 11 prepodne zainteresovani građani mogu donirati krv\nna našoj klinici."));
+            this.articles.Add(new Article("Doniranje krvi", "Svake srede od 7 do 11 prepodne zainteresovani građani\nmogu donirati krv na našoj klinici."));
             //DeSerializeNow();
         }
 
@@ -451,7 +519,7 @@ namespace AppForDoctor
             List<User> ret = new List<User>();
             foreach(User u in list.AllUsers)
             {
-                if (u.Name.Contains(name) && u.UserType == 2) ret.Add(u);
+                if (u.Name.ToLower().Contains(name) && u.UserType == 2) ret.Add(u);
             }
             return ret;
         }

@@ -20,8 +20,12 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="addArticleButton" HorizontalAlignment="Left" Style="{StaticResource buttonStyle}" Background="Orange" Height="55" Width="Auto" Margin="0,20,0,0" 
-                    Click="addArticleButton_Click">Dodaj clanak</Button>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0" >
+                <Button x:Name="addArticleButton" HorizontalAlignment="Left" Style="{StaticResource buttonStyle}" Background="Orange" Height="55" Width="Auto" Margin="0,0,0,0" 
+                        Click="addArticleButton_Click">Dodaj clanak</Button>
+                <Button x:Name="commentsButton" HorizontalAlignment="Left" Style="{StaticResource buttonStyle}" Background="Orange" Height="55" Width="Auto" Margin="10,0,0,0" 
+                        Click="commentsButton_Click">Pogledaj komentare</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

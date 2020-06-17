@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace AppForDoctor
 {
@@ -101,26 +102,30 @@ namespace AppForDoctor
 
         private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!name.Equals(nameTextBox.Text)) saveProfileButton.IsEnabled = true;
-            else if (surname.Equals(surnameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+            Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
+            if (!name.Equals(nameTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
+            else if (surname.Equals(surnameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
         }
 
         private void surnameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!surname.Equals(surnameTextBox.Text)) saveProfileButton.IsEnabled = true;
-            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+            Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
+            if (!surname.Equals(surnameTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
         }
 
         private void adressTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!adress.Equals(adressTextBox.Text)) saveProfileButton.IsEnabled = true;
-            else if (name.Equals(nameTextBox.Text) && surname.Equals(surnameTextBox.Text) && mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = false;
+            Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
+            if (!adress.Equals(adressTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && surname.Equals(surnameTextBox.Text) && mail.Equals(mailTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
         }
 
         private void mailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!mail.Equals(mailTextBox.Text)) saveProfileButton.IsEnabled = true;
-            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && surname.Equals(surnameTextBox.Text)) saveProfileButton.IsEnabled = false;
+            Match m = Regex.Match(mailTextBox.Text, "([a-zA-Z0-9]+\\.?)*[a-zA-Z0-9]@[a-z0-9]+(\\.[a-z]{2,3})+");
+            if (!mail.Equals(mailTextBox.Text) && m.Success) saveProfileButton.IsEnabled = true;
+            else if (name.Equals(nameTextBox.Text) && adress.Equals(adressTextBox.Text) && surname.Equals(surnameTextBox.Text) || !m.Success) saveProfileButton.IsEnabled = false;
         }
 
         private void backFromEditProfileButton_Click(object sender, RoutedEventArgs e)

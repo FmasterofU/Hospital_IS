@@ -93,6 +93,7 @@ namespace AppForDoctor
             MedHistoryPage.clearInstance();
             BlogPage.clearInstance();
             PausesPage.clearInstance();
+            MySchedulePage.clearInstance();
             changePage(9);
         }
 
@@ -164,6 +165,8 @@ namespace AppForDoctor
             // 7 - blog
             // 8 - pauses
             // 9 - login
+            // 10 - schedule
+            // 11 - comments
             if (language == Language.Serbian)
             {
                 if (page != 9) mainLabel.Content = "Poštovanje, ulogovani Ste kao lekar.";
@@ -175,6 +178,7 @@ namespace AppForDoctor
                 else mainLabel.Content = "You are not logged in.";
             }
             if (editProfileButton.Visibility == Visibility.Hidden) editProfileButton.Visibility = Visibility.Visible;
+            if (logOutButton.IsEnabled == false) logOutButton.IsEnabled = true;
             switch(page)
             {
                 case 1: 
@@ -205,6 +209,13 @@ namespace AppForDoctor
                 case 9:
                     MainFrame.Content = LoginPage.getInstance();
                     editProfileButton.Visibility = Visibility.Hidden;
+                    logOutButton.IsEnabled = false;
+                    break;
+                case 10:
+                    MainFrame.Content = MySchedulePage.getInstance();
+                    break;
+                case 11:
+                    MainFrame.Content = CommentsPage.getInstance();
                     break;
             }
             this.activePage = page;
@@ -331,7 +342,13 @@ namespace AppForDoctor
                     PausesPage.getInstance();
                     break;
                 case 9:
-                    MainFrame.Content = LoginPage.getInstance();
+                    LoginPage.getInstance();
+                    break;
+                case 10:
+                    MySchedulePage.getInstance();
+                    break;
+                case 11:
+                    CommentsPage.getInstance();
                     break;
             }
         }
