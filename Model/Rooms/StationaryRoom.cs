@@ -1,0 +1,91 @@
+// File:    StationaryRoom.cs
+// Author:  fmaster
+// Created: Thursday, May 21, 2020 10:21:32 PM
+// Purpose: Definition of Class StationaryRoom
+
+using Model.Roles;
+using System;
+
+namespace Model.Rooms
+{
+   public class StationaryRoom : Room
+   {
+      private int capacity;
+      
+      public int Capacity
+      {
+         get
+         {
+            return capacity;
+         }
+         set
+         {
+            this.capacity = value;
+         }
+      }
+      
+      public System.Collections.Generic.List<Patient> patient;
+      
+      /// <summary>
+      /// Property for collection of Model.Roles.Patient
+      /// </summary>
+      /// <pdGenerated>Default opposite class collection property</pdGenerated>
+      public System.Collections.Generic.List<Patient> Patient
+      {
+         get
+         {
+            if (patient == null)
+               patient = new System.Collections.Generic.List<Patient>();
+            return patient;
+         }
+         set
+         {
+            RemoveAllPatient();
+            if (value != null)
+            {
+               foreach (Model.Roles.Patient oPatient in value)
+                  AddPatient(oPatient);
+            }
+         }
+      }
+      
+      /// <summary>
+      /// Add a new Model.Roles.Patient in the collection
+      /// </summary>
+      /// <pdGenerated>Default Add</pdGenerated>
+      public void AddPatient(Model.Roles.Patient newPatient)
+      {
+         if (newPatient == null)
+            return;
+         if (this.patient == null)
+            this.patient = new System.Collections.Generic.List<Patient>();
+         if (!this.patient.Contains(newPatient))
+            this.patient.Add(newPatient);
+      }
+      
+      /// <summary>
+      /// Remove an existing Model.Roles.Patient from the collection
+      /// </summary>
+      /// <pdGenerated>Default Remove</pdGenerated>
+      public void RemovePatient(Model.Roles.Patient oldPatient)
+      {
+         if (oldPatient == null)
+            return;
+         if (this.patient != null)
+            if (this.patient.Contains(oldPatient))
+               this.patient.Remove(oldPatient);
+      }
+      
+      /// <summary>
+      /// Remove all instances of Model.Roles.Patient from the collection
+      /// </summary>
+      /// <pdGenerated>Default removeAll</pdGenerated>
+      public void RemoveAllPatient()
+      {
+         if (patient != null)
+            patient.Clear();
+      }
+      public StationaryRoomPatientsState stationaryRoomPatientsState;
+   
+   }
+}
