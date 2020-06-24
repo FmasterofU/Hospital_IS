@@ -12,11 +12,14 @@ namespace Repository.Roomsninventory
    public class MedEquipmentTypeRepository : Repository.IRepositoryCRUD<MedEquipmentType, uint>
    {
       private string path;
-      private MedEquipmentTypeRepository instance;
+      private static MedEquipmentTypeRepository instance = null;
+
+        private MedEquipmentTypeRepository() {}
       
       public static MedEquipmentTypeRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new MedEquipmentTypeRepository();
+            return instance;
       }
 
         public bool Delete(uint id)
@@ -43,8 +46,5 @@ namespace Repository.Roomsninventory
         {
             throw new NotImplementedException();
         }
-
-        public MedEquipmentTypeRepository medEquipmentTypeRepositoryB;
-   
    }
 }

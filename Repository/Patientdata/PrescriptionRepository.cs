@@ -12,11 +12,14 @@ namespace Repository.Patientdata
    public class PrescriptionRepository : Repository.IRepositoryCRUD<Prescription, uint>
    {
       private string path;
-      private PrescriptionRepository instance;
+      private static PrescriptionRepository instance = null;
+
+        private PrescriptionRepository() {}
       
       public static PrescriptionRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new PrescriptionRepository();
+            return instance;
       }
 
         public bool Delete(uint id)
@@ -43,8 +46,5 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
-
-        public PrescriptionRepository prescriptionRepositoryB;
-   
    }
 }
