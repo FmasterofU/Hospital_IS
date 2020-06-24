@@ -12,11 +12,14 @@ namespace Repository.Medicine
    public class SideEffectRepository : Repository.IRepositoryCRUD<SideEffect, uint>
    {
       private string path;
-      private SideEffectRepository instance;
+      private static SideEffectRepository instance = null;
+
+        private SideEffectRepository() {}
       
       public static SideEffectRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new SideEffectRepository();
+            return instance;
       }
 
         public bool Delete(uint id)
@@ -43,8 +46,5 @@ namespace Repository.Medicine
         {
             throw new NotImplementedException();
         }
-
-        public SideEffectRepository sideEffectRepositoryB;
-   
    }
 }

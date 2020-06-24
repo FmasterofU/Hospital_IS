@@ -12,11 +12,14 @@ namespace Repository.Medicine
    public class DrugStateChangeRepository : IDrugStateChangeRepository
    {
       private string path;
-      private DrugStateChangeRepository instance;
+      private static DrugStateChangeRepository instance = null;
+
+        private DrugStateChangeRepository() {}
       
       public static DrugStateChangeRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new DrugStateChangeRepository();
+            return instance;
       }
 
         public List<DrugStateChange> GetAllByDrug()
@@ -48,8 +51,5 @@ namespace Repository.Medicine
         {
             throw new NotImplementedException();
         }
-
-        public DrugStateChangeRepository drugStateChangeRepositoryB;
-   
    }
 }

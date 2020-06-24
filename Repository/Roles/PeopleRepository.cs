@@ -12,11 +12,14 @@ namespace Repository.Roles
    public class PeopleRepository : IPersonRepository
    {
       private string path;
-      private PeopleRepository instance;
+      private static PeopleRepository instance = null;
+
+        private PeopleRepository() {}
       
       public static PeopleRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new PeopleRepository();
+            return instance;
       }
 
         public int GetId(string username, string password)
@@ -113,8 +116,5 @@ namespace Repository.Roles
         {
             throw new NotImplementedException();
         }
-
-        public PeopleRepository peopleRepositoryB;
-   
    }
 }
