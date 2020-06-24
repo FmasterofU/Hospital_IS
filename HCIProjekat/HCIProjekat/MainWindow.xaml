@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCIProjekat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="960" WindowStartupLocation="CenterScreen" Background="White" Loaded="OnLoad" ResizeMode="NoResize">
+        Title="MainWindow" Height="720" Width="960" WindowStartupLocation="CenterScreen" Background="White" Loaded="OnLoad" ResizeMode="NoResize" >
 
-    <Frame x:Name="FullMainWindow"  Padding="10" x:FieldModifier="public" NavigationUIVisibility="Visible"/>
+    <Frame x:Name="FullMainWindow"   x:FieldModifier="public" NavigationUIVisibility="Visible" Margin="0 5"/>
     <!--Pri pokretanju ucitava se uvek prvo HomePage ili neka druga po izboru-->
 </Window>

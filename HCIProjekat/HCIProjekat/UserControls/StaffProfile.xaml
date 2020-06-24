@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="HCIProjekat.UserControls.StaffProfile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCIProjekat.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="900" Loaded="UserControl_Loaded">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+        <Border Height="180" Width="180"  CornerRadius="200" Margin="20">
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="../Images/doctorImage.jpg"/>
+            </Border.Background>
+        </Border>
+        <Label x:Name="lbl_status" Content="Status: Aktivan" FontSize="15" HorizontalAlignment="Center"/>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Grid.Row="0"  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
+        <Label Content="Id:" FontSize="15" />
+        <Label Content="Ime:" FontSize="15"/>
+        <Label Content="Prezime:" FontSize="15"/>
+        <Label  Content="Pozicija:" FontSize="15"/>
+        <Label Content="Datum rodjenja:" FontSize="15"/>
+        <Label Content="Pol:" FontSize="15"/>
+        <Separator/>
+        <Label Content="Adresa:" FontSize="15"/>
+        <Label Content="Email:" FontSize="15"/>
+        <Label Content="Telefon:" FontSize="15"/>
+
+    </StackPanel>
+    <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <Label x:Name="lbl_id" Content="123456789" FontSize="15"/>
+        <Label x:Name="lbl_ime" Content="Marko" FontSize="15"/>
+        <Label x:Name="lbl_prezime" Content="Markovic" FontSize="15"/>
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lbl_tip" FontSize="15"/>
+                <Label x:Name="lbl_zvanje" Content="Hirurg" FontSize="15" Margin="10 0"/>
+                
+            </StackPanel>
+        <Label x:Name="lbl_datum" Content="23.12.1993"  FontSize="15"/>
+        <Label x:Name="lbl_pol" Content="M" FontSize="15"/>
+        <Separator/>
+        <Label x:Name="lbl_adresa" Content="Ulica bez broja" FontSize="15"/>
+        <Label x:Name="lbl_email" Content="MarkoMarkovic@gmail.com" FontSize="15"/>
+        <Label x:Name="lbl_telefon" Content="123456" FontSize="15"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

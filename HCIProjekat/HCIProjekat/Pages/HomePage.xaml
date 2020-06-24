@@ -9,7 +9,7 @@
       d:DesignHeight="700" d:DesignWidth="900"
       Title="HomePage">
 
-    <StackPanel Margin="0 15">
+    <StackPanel Margin="0 3">
 
         <!--Naslov-->
         <Grid Margin="20 0">
@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
 
             <WrapPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -27,7 +27,7 @@
                 <Button Content="Demo" MinWidth="70" />
             </WrapPanel>
 
-            <TextBlock Text="Pocetna strana" Grid.Column="1" FontWeight="Bold" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"/>
+            <TextBlock Text="Pocetna strana" Grid.Column="1" FontWeight="Bold" TextAlignment="Center" FontSize="28" VerticalAlignment="Center"/>
 
             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Image Source="../Images/interface.png" Width="20" Height="20" />
@@ -52,6 +52,9 @@
         <!--Separator-->
         <Separator Margin="20 5" />
 
+
+    
+        
         <Image Height="140" Margin="20 10" Source="../Images/home_page.jpeg" Stretch="Fill"    />
 
         <Grid Margin="20 10" >
@@ -67,7 +70,7 @@
             </Grid.RowDefinitions>
 
             <!--Glavni dugmici-->
-            <Button Grid.Column="0"  Margin="0 0 5 0" >
+            <Button Grid.Column="0"  Margin="0 0 5 0" Tag="" Click="BtnTermini_Click"  >
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock Text="Termini" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     <Image Source="../Images/calendar.png" Margin="10 0" Width="24" Height="24"/>
@@ -84,7 +87,7 @@
             </Button>
 
 
-            <materialDesign:PopupBox  PlacementMode="BottomAndAlignCentres" StaysOpen="False" Grid.Column="1"  materialDesign:RippleAssist.Feedback="Transparent">
+            <materialDesign:PopupBox  PlacementMode="BottomAndAlignCentres" StaysOpen="False" Grid.Column="1" materialDesign:RippleAssist.Feedback="Transparent" >
                 <materialDesign:PopupBox.ToggleContent>
                     <WrapPanel MinWidth="285" MinHeight="34"  >
                         <TextBlock Text=""/>
@@ -92,7 +95,7 @@
                 </materialDesign:PopupBox.ToggleContent>
                 <StackPanel MinWidth="270">
                     <Button Content="Kreiraj nalog" Click="KreirajNalogClick"/>
-                    <Button Content="Svi pacijenti"/>
+                    <Button Content="Svi pacijenti" Click="BtnSviPacijenti"/>
                 </StackPanel>
             </materialDesign:PopupBox>
 
@@ -113,42 +116,21 @@
                     </WrapPanel>
                 </materialDesign:PopupBox.ToggleContent>
                 <StackPanel MinWidth="270">
-                    <Button Content="Lekari"/>
+                    <Button Content="Zaposleni" Click="BtnZaposleni_Click"/>
                     <Button Content="Prostorije"/>
                     <Button Content="Pregledi i operacije"/>
                 </StackPanel>
             </materialDesign:PopupBox>
             
-            
+           
             <!--Obavestenja-->
-            <Border Grid.Row="1" CornerRadius="8" Grid.Column="0" Grid.ColumnSpan="3" Background="#3399ff" MinHeight="400" Margin="0 10 0 0" >
-                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-                    <TextBlock Text="Obavestenja:"  FontWeight="Bold" FontSize="20" Padding="10 10 0 0" Foreground="Black"/>
-                    <Separator/>
-                    <!--<ListView>
-                        --><!--Tu ce stajati lista obavestenja u odgovarajucem formatu--><!--
-                        <ListItem></ListItem>
-                        
-                    </ListView>-->
-                    <Grid Margin="10 5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition  Width="5*" />
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0"> 203 nece biti u funkciji od 23.5 do 23.6 zbog planiranog renoviranja</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" >Upravnik Igor</TextBlock>
-                        <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" >20.5.2020</TextBlock>
-                    </Grid>
-                </StackPanel>
-            </Border>
+            <GroupBox Grid.Row="1" Header="Obavestenja:" FontSize="20" Grid.Column="0" Grid.ColumnSpan="3"  Background="#FF9DD9F3" MinHeight="400" Margin="0 10 0 0" >
+                <ListBox>
+                    <!--TODO spisak obavestenja sekretara-->
+                    
+                </ListBox>
+            </GroupBox>
         </Grid>
-
+        
     </StackPanel>
 </Page>

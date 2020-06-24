@@ -1,0 +1,89 @@
+﻿<Window x:Class="HCIProjekat.Dialogs.ChoseDate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCIProjekat.Dialogs"
+        mc:Ignorable="d"
+        Title="Izbor vremenskog perioda" Height="246.936" Width="300" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Border Padding="0 10 0 0">
+        <StackPanel>
+            <Label Content="Vremenski period" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Separator Margin="20 0"/>
+            <Grid MinHeight="155" Margin="0 0 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <RadioButton x:Name="rb_godina" Content="godina" Checked="RbDate_Checked" Unchecked="RbDate_Unchecked" Margin="0 3"/>
+                    <RadioButton x:Name="rb_mesec" Content="mesec" Checked="RbDate_Checked" Unchecked="RbDate_Unchecked" Margin="0 3"/>
+                    <RadioButton x:Name="rb_dan" Content="dan" Checked="RbDate_Checked" Unchecked="RbDate_Unchecked" Margin="0 3"/>
+                    <RadioButton x:Name="rb_datum" Content="datum" Checked="RbDate_Checked" Unchecked="RbDate_Unchecked" Margin="0 3"/>
+                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 20 0">
+                    <ComboBox x:Name="cmb_godina" SelectedIndex="1" Visibility="Hidden" MaxDropDownHeight="100">
+                        <ComboBoxItem>2021</ComboBoxItem>
+                        <ComboBoxItem>2020</ComboBoxItem>
+                        <ComboBoxItem>2019</ComboBoxItem>
+                        <ComboBoxItem>2018</ComboBoxItem>
+                        <ComboBoxItem>2017</ComboBoxItem>
+                    </ComboBox>
+
+                    <Grid x:Name="grid_mesec" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="cmb_mesec" Grid.Column="0" SelectedIndex="1" MaxDropDownHeight="100" Margin="0 0 5 0">
+                            <ComboBoxItem>Jan</ComboBoxItem>
+                            <ComboBoxItem>Feb</ComboBoxItem>
+                            <ComboBoxItem>Mart</ComboBoxItem>
+                            <ComboBoxItem>Apr</ComboBoxItem>
+                            <ComboBoxItem>Maj</ComboBoxItem>
+                            <ComboBoxItem>Jun</ComboBoxItem>
+                            <ComboBoxItem>Jul</ComboBoxItem>
+                            <ComboBoxItem>Aug</ComboBoxItem>
+                            <ComboBoxItem>Sep</ComboBoxItem>
+                            <ComboBoxItem>Okt</ComboBoxItem>
+                            <ComboBoxItem>Nov</ComboBoxItem>
+                            <ComboBoxItem>Dec</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" x:Name="cmb_godina2" SelectedIndex="1" MaxDropDownHeight="100" Margin="5 0 0 0">
+                            <ComboBoxItem>2021</ComboBoxItem>
+                            <ComboBoxItem>2020</ComboBoxItem>
+                            <ComboBoxItem>2019</ComboBoxItem>
+                            <ComboBoxItem>2018</ComboBoxItem>
+                            <ComboBoxItem>2017</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <DatePicker x:Name="dp_dan" Visibility="Hidden"/>
+
+                    <Grid x:Name="grid_datum" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="od: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
+                        <Label Content="do: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+
+                        <DatePicker x:Name="dp_datum_od" Grid.Column="1" Grid.Row="0" Margin="0 0 10 3"/>
+                        <DatePicker x:Name="dp_datum_do" Grid.Column="1" Grid.Row="1" Margin="0 3 10 0"/>
+                    </Grid>
+                </Grid>
+
+                <Button Content="Potvrdi" Margin="10 0" Grid.Row="1" Grid.Column="0" Click="BtnPotvrdi_Click"/>
+                <Button Content="Odustani" Margin="10 0" Grid.Row="1" Grid.Column="1" Click="BtnOdustani_Click" />
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>

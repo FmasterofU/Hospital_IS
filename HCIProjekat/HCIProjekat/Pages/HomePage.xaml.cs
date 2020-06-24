@@ -27,8 +27,22 @@ namespace HCIProjekat.Pages
 
         private void KreirajNalogClick(object sender, RoutedEventArgs e)
         {
-            Dialogs.KreirajNalogDialog dijalog = new Dialogs.KreirajNalogDialog();
-            dijalog.Show();
+            Dialogs.KreirajNalogDialog dijalog = new Dialogs.KreirajNalogDialog(true);
+            dijalog.ShowDialog();
+        }
+        private void BtnSviPacijenti(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).FullMainWindow.Content = new AllPatients();
+        }
+
+        private void BtnZaposleni_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).FullMainWindow.Content = new AllStaff();
+        }
+
+        private void BtnTermini_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).FullMainWindow.Content = new Terms();
         }
     }
 }

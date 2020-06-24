@@ -5,17 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCIProjekat.Pages"
       mc:Ignorable="d" d:DesignWidth="900"
-      Title="Registracija" Background="White" Height="638.633">
+      Title="Registracija" Background="White" Height="700">
 
-    <StackPanel Margin="0 15">
+    <StackPanel Margin="0 3">
 
 
         <!--Naslov-->
         <Grid Margin="20 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Dobrodosli u Nasu Malu Kliniku" Grid.Column="1" FontWeight="Bold" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"/>
+            <TextBlock Text="Dobrodosli u Nasu Malu Kliniku" Grid.Column="1" FontWeight="Bold" TextAlignment="Center" FontSize="28" VerticalAlignment="Center"/>
         </Grid>
 
 
@@ -51,8 +51,8 @@
             </Grid>
 
             <Button Content="Prijavi se" FontWeight="Bold" FontSize="20" Height="60" Width="200" Margin="0 40 0 0" Click="BtnClickPrijaviSe"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0 10 0 0">
-                <Hyperlink >Kreiraj nalog</Hyperlink> <!--TODO stranica za kreiranje naloga-->
+            <TextBlock HorizontalAlignment="Center" Margin="0 10 0 0" >
+                <Hyperlink Click="HyperlinkKreirajNalog_Click">Kreiraj nalog</Hyperlink> <!--TODO stranica za kreiranje naloga-->
             </TextBlock>
         </StackPanel>
         <Grid Margin="0 10 0 0">

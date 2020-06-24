@@ -1,0 +1,54 @@
+﻿<Window x:Class="HCIProjekat.Dialogs.KreirajLozinkuDijalog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCIProjekat.Dialogs"
+        mc:Ignorable="d"
+        Title="Kreiraj lozinku" Height="239.5" Width="400" WindowStartupLocation="CenterScreen">
+    <Border Padding="0 10 0 0">
+        <StackPanel>
+            <Label Content="Kreiranje lozinke" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Separator Margin="20 0"/>
+            <Grid Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!--Labele-->
+                <Label Grid.Row="0" Grid.Column="0" Content="Lozinka:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="15" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Ponovi lozinku:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="15" />
+            
+                <!--Unos podataka-->
+                <PasswordBox Grid.Row="0" Grid.Column="1"  Margin="10 0"  VerticalAlignment="Center" FontSize="13" x:Name="pass_lozinka"/>
+                <PasswordBox Grid.Row="1" Grid.Column="1"  Margin="10 0"  VerticalAlignment="Center" FontSize="13" x:Name="pass_potvrda_lozinke"/>
+                <TextBox Grid.Row="0" Grid.Column="1"  Margin="10 0"  VerticalAlignment="Center" FontSize="13" x:Name="txt_lozinka" Visibility="Hidden" />
+                <TextBox Grid.Row="1" Grid.Column="1"  Margin="10 0"  VerticalAlignment="Center" FontSize="13" x:Name="txt_potvrda_lozinke" Visibility="Hidden" />
+
+                <!--Prikaz sifre-->
+                
+                <Button  Grid.RowSpan="2" Grid.Row="0"  Grid.Column="2" x:Name="prikaziSifru"  VerticalAlignment="Center" Margin="3,14,10,10" Click="BtnVisible_Click" >
+                    <Image Source="../Images/eye2.png" Width="20"/>
+                </Button>
+                
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="12" Margin="0 30" Grid.ColumnSpan="4"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Margin="10 0" Content="Potvrdi"  Grid.Column="0" Click="BtnPotvrdiLozinku_Click" />
+                <Button Margin="10 0" Content="Odustani"  Grid.Column="1" Click="BtnOdustani_Click"  />
+
+            </Grid>
+
+        </StackPanel>
+    </Border>
+
+</Window>

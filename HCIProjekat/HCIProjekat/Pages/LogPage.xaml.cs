@@ -32,5 +32,11 @@ namespace HCIProjekat.Pages
             LoginView.Children.Add(lguc);
             
         }
+
+        private void HyperlinkKreirajNalog_Click(object sender, RoutedEventArgs e)
+        {
+            Dialogs.KreirajNalogDialog dijalog = new Dialogs.KreirajNalogDialog(false);
+            dijalog.ShowDialog();
+        }
     }
 }
