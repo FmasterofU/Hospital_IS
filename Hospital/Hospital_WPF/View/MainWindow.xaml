@@ -1,0 +1,43 @@
+﻿<Window x:Class="Hospital_WPF.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital_WPF.View"
+        mc:Ignorable="d"
+        Title="Nasa mala klinika" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Gesture="CTRL+D" Command="{Binding Path=OdjavaCommand}"/>
+    </Window.InputBindings>
+    <Grid>
+
+        <TabControl Height="509" Margin="10,52,10,0" VerticalAlignment="Top">
+            <TabItem Header="_Termini">
+                <local:Termini/>
+            </TabItem>
+            <TabItem Header="_Moj Profil">
+                <local:MojProfil/>
+            </TabItem>
+            <TabItem Header="_O Nama">
+                <local:ONama  />
+            </TabItem>
+            <TabItem Header="_Pitanja">
+                <local:CestaPitanja  />
+            </TabItem>
+            <TabItem Header="_Cenovnik">
+                <local:Cenovnik  />
+            </TabItem>
+            <TabItem Header="_Kontakt">
+                <local:Kontakt  />
+            </TabItem>
+            <TabItem Header="_Info">
+                <local:PreciceInfo  />
+            </TabItem>
+
+        </TabControl>
+        <Label Content="{Binding KorisnickoIme}" FontSize="20" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="714,10,0,0" VerticalAlignment="Top" Width="166" Height="37"/>
+        <Button Content="Odjava" Command="{Binding OdjavaCommand}" Margin="905,10,10,0" Background="LightGray" VerticalAlignment="Top" Height="33"/>
+        <Image Source="/Slike/logo.png" Height="53" Margin="465,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="53"/>
+
+    </Grid>
+</Window>

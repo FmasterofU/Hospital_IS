@@ -1,0 +1,27 @@
+﻿<Window x:Class="Hospital_WPF.View.Prijava"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hospital_WPF.View"
+        mc:Ignorable="d"
+        Title="Prijava" Height="547.633" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Gesture="CTRL+R" Command="{Binding Path=RegistracijaCommand}"/>
+
+    </Window.InputBindings>
+    <Grid>
+        <Label Content="Prijava" FontSize="40" HorizontalContentAlignment="Center" Margin="10,38,10,0" VerticalAlignment="Top"/>
+
+        <Label Content="Korisnicko Ime" FontSize="20" HorizontalContentAlignment="Center" Margin="10,134,10,0" VerticalAlignment="Top" Width="422"/>
+        <TextBox FontSize="20" Text="{Binding Prijava.KorisnickoIme}" TextAlignment="Center" BorderThickness="1" Margin="10,176,10,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+
+
+        <Label Content="Lozinka" FontSize="20" HorizontalContentAlignment="Center" Margin="10,251,10,0" VerticalAlignment="Top" Width="422"/>
+        <TextBox FontSize="20" Text="{Binding Prijava.Lozinka}" TextAlignment="Center" BorderThickness="1" Margin="10,293,10,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <Label Content="{Binding Prijava.ValidationErrors[Greska]}" FontSize="15" Foreground="DarkRed" HorizontalContentAlignment="Center" Margin="10,327,10,0" VerticalAlignment="Top"/>
+        <Button Content="Prijavi se" Command="{Binding PrijavaCommand}" FontSize="40" Margin="136,395,136,0" VerticalAlignment="Top" Height="66" />
+        <Button Content="Registracija" Command="{Binding RegistracijaCommand}" Background="Transparent" BorderThickness="0" FontSize="15" Margin="346,10,10,0" VerticalAlignment="Top" Height="28" />
+
+    </Grid>
+</Window>

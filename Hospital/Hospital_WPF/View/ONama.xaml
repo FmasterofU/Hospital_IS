@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Hospital_WPF.View.ONama"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hospital_WPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="950">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="44,24,-24,-4" Text="O nama" Grid.ColumnSpan="5" Grid.RowSpan="5" FontWeight="Normal" FontSize="30"></TextBlock>
+        <TextBlock TextWrapping="Wrap" Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="20,0,20,52" Height="138" VerticalAlignment="Bottom"> Naša mala klinika predstavlja privatnu bolnicu koja je počela sa radom u januaru 2019. godine. Nalazi se u ulici Trg Dositeja Obradovića br. 6 u Novom Sadu u objektu koji je urađen prema najsavremenijim svetskim standardima za zdravstvene ustanove i koji se prostire se na 6000 m2. Zahvaljujući vrhunskim stručnjacima i najsavremenijoj opremi bolnica korisnicima pruža najkvalitetnije medicinske usluge i zauzima lidersko mesto u Srbiji.<LineBreak/> <LineBreak/>U okviru bolnice nalazi se moderno opremljena, akreditovana laboratorija sa preko 850 analiza, dijagnostički centar sa najsavremenijom opremom, poliklinika sa dnevnom bolnicom, hirurgija sa najzastupljenijim hirurškim granama, kao i najveće privatno porodilište u Srbiji sa neonatološkom jedinicom opremljenom najsavremenijom tehnologijom. Sa 4 operacione sale, 2 sale za porođaj, 2 endoskopske i 1 angio salom i više od 70 postelja, NMK je najveća privatna bolnica u Srbiji.</TextBlock>
+        <Image Source="/Slike/onama.png" Margin="-3,27,143,40"/>
+        <Image Source="/Slike/ustanova.jpg" Margin="0,38,0,10" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+    </Grid>
+</UserControl>

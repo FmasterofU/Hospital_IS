@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDoktor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Doktor>
+    <Id>0</Id>
+    <ImePrezime>Doktor 1</ImePrezime>
+  </Doktor>
+  <Doktor>
+    <Id>1</Id>
+    <ImePrezime>Doktor 2</ImePrezime>
+  </Doktor>
+  <Doktor>
+    <Id>2</Id>
+    <ImePrezime>Doktor 3</ImePrezime>
+  </Doktor>
+  <Doktor>
+    <Id>3</Id>
+    <ImePrezime>Doktor 4</ImePrezime>
+  </Doktor>
+  <Doktor>
+    <Id>4</Id>
+    <ImePrezime>Doktor 5</ImePrezime>
+  </Doktor>
+  <Doktor>
+    <Id>5</Id>
+    <ImePrezime>Doktor 6</ImePrezime>
+  </Doktor>
+</ArrayOfDoktor>

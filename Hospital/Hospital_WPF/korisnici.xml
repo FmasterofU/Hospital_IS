@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Korisnik>
+    <KorisnickoIme>perap</KorisnickoIme>
+    <Ime>pera</Ime>
+    <Prezime>peric</Prezime>
+    <Lozinka>perap123</Lozinka>
+    <Jmbg>1231231231231</Jmbg>
+    <Adresa>perina 1</Adresa>
+    <BrojTelefona>0123123123</BrojTelefona>
+    <DatumRodjenja>2020-06-14T02:49:55.1514305+02:00</DatumRodjenja>
+  </Korisnik>
+  <Korisnik>
+    <KorisnickoIme>korisnickoIme</KorisnickoIme>
+    <Ime>Ime</Ime>
+    <Prezime>Prezime</Prezime>
+    <Lozinka>nemabroj98</Lozinka>
+    <Jmbg>1231231231231</Jmbg>
+    <Adresa>adresa1</Adresa>
+    <BrojTelefona>123123123</BrojTelefona>
+    <DatumRodjenja>2020-06-14T15:37:21.1574163+02:00</DatumRodjenja>
+  </Korisnik>
+  <Korisnik>
+    <KorisnickoIme>sandra</KorisnickoIme>
+    <Ime>Aleksandra</Ime>
+    <Prezime>Stamenkovic</Prezime>
+    <Lozinka>beska123</Lozinka>
+    <Jmbg>0612998805096</Jmbg>
+    <DatumRodjenja>1998-12-06T00:00:00</DatumRodjenja>
+  </Korisnik>
+</ArrayOfKorisnik>
