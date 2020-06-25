@@ -12,14 +12,11 @@ namespace Repository.Blognfeedback
    public class AppFeedbackRepository : Repository.IRepositoryCRUD<AppFeedback, uint>
    {
       private string path;
-      private static AppFeedbackRepository instance = null;
-
-        private AppFeedbackRepository() {}
+      private AppFeedbackRepository instance;
       
       public static AppFeedbackRepository GetInstance()
       {
-            if (instance == null) instance = new AppFeedbackRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -46,5 +43,8 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
+
+        public AppFeedbackRepository appFeedbackRepositoryB;
+   
    }
 }

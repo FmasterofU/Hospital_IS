@@ -12,14 +12,11 @@ namespace Repository.Roomsninventory
    public class StationaryRoomPatientsStateRepository : IStationaryRoomPatientsStateRepository
    {
       private string path;
-      private static StationaryRoomPatientsStateRepository instance = null;
-
-        private StationaryRoomPatientsStateRepository() {}
+      private StationaryRoomPatientsStateRepository instance;
       
       public static StationaryRoomPatientsStateRepository GetInstance()
       {
-            if (instance == null) instance = new StationaryRoomPatientsStateRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public List<StationaryRoomPatientsState> GetAllByRoom(StationaryRoom room)
@@ -51,5 +48,8 @@ namespace Repository.Roomsninventory
         {
             throw new NotImplementedException();
         }
+
+        public StationaryRoomPatientsStateRepository stationaryRoomPatientsStateRepositoryB;
+   
    }
 }

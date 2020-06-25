@@ -3,7 +3,6 @@
 // Created: Saturday, May 30, 2020 10:02:48 PM
 // Purpose: Definition of Class MedicalRecordRepository
 
-using Class_Diagram.Repository;
 using Model.Medicalrecord;
 using System;
 using System.Collections.Generic;
@@ -13,14 +12,11 @@ namespace Repository.Patientdata
    public class MedicalRecordRepository : Repository.IRepositoryCRUD<MedicalRecord, uint>
    {
       private string path;
-      private static MedicalRecordRepository instance = null;
-
-        private MedicalRecordRepository() {}
+      private MedicalRecordRepository instance;
       
       public static MedicalRecordRepository GetInstance()
       {
-            if (instance == null) instance = new MedicalRecordRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -35,23 +31,20 @@ namespace Repository.Patientdata
 
         public MedicalRecord Read(uint id)
         {
-            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
-            //TODO: parse strings and get medRecord object
-            return new MedicalRecord();
+            throw new NotImplementedException();
         }
 
         public MedicalRecord Update(MedicalRecord item)
         {
-            //TODO: put all data in string
-            string[] data = { };
-            bool isUpdated = Persistence.EditEntry(path, data);
-            if (isUpdated) return new MedicalRecord();
-            else return null;
+            throw new NotImplementedException();
         }
 
         public List<MedicalRecord> GetAll()
         {
             throw new NotImplementedException();
         }
+
+        public MedicalRecordRepository medicalRecordRepositoryB;
+   
    }
 }

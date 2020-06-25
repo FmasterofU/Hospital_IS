@@ -12,14 +12,11 @@ namespace Repository.Roles
    public class LeaveRepository : ILeaveRepository
    {
       private string path;
-      private static LeaveRepository instance = null;
-
-        private LeaveRepository() {}
+      private LeaveRepository instance;
       
       public static LeaveRepository GetInstance()
       {
-            if (instance == null) instance = new LeaveRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public List<Leave> GetAllByStaff(Staff staff)
@@ -51,5 +48,8 @@ namespace Repository.Roles
         {
             throw new NotImplementedException();
         }
+
+        public LeaveRepository leaveRepositoryB;
+   
    }
 }

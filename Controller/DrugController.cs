@@ -4,7 +4,6 @@
 // Purpose: Definition of Class DrugController
 
 using Model.Medicine;
-using Service;
 using System;
 using System.Collections.Generic;
 
@@ -71,13 +70,7 @@ namespace Controller
 
         public List<Drug> SearchDrugs(string query)
         {
-            query = query.Trim();
-            if(!query.Equals(""))
-            {
-                List<Drug> ret = ((DrugService)iDrugService).SearchDrugs(query);
-                return ret;
-            }
-            return new List<Drug>();
+            throw new NotImplementedException();
         }
     }
 }
