@@ -7,6 +7,7 @@ using Model.Appointments;
 using Model.Examination;
 using Model.Medicalrecord;
 using Model.Roles;
+using Service;
 using System;
 
 namespace Controller
@@ -22,7 +23,8 @@ namespace Controller
 
         public bool AppendExamination(Examination examination, MedicalRecord medicalRecord)
         {
-            throw new NotImplementedException();
+            bool ret = ((MedicalRecordService)iMedicalRecordService).AppendExamination(examination, medicalRecord);
+            return ret;
         }
 
         public bool EditInsurance(InsurancePolicy insurance)
@@ -32,7 +34,8 @@ namespace Controller
 
         public MedicalRecord GetMedicalRecordByAppointment(Appointment appoinment)
         {
-            throw new NotImplementedException();
+            MedicalRecord medicalRecord = ((MedicalRecordService)iMedicalRecordService).GetMedicalRecordByAppointment(appoinment);
+            return medicalRecord;
         }
 
         public MedicalRecord GetMedicalRecordByPatient(Patient patient)
