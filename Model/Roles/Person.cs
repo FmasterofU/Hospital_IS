@@ -19,8 +19,22 @@ namespace Model.Roles
       private string username;
       private string password;
       private UserType userType = UserType.None;
-      
-      public string Name
+
+        protected Person(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType)
+        {
+            this.id = 0;
+            this.name = name;
+            this.surname = surname;
+            this.phone = phone;
+            this.email = email;
+            this.sex = sex;
+            this.jmbg = jmbg;
+            this.username = username;
+            this.password = password;
+            this.userType = userType;
+        }
+
+        public string Name
       {
          get
          {

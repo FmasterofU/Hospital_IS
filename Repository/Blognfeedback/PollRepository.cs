@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Blognfeedback
 {
    public class PollRepository : Repository.IRepositoryCRUD<Poll, uint>
-   {
-      private string path;
-      private static PollRepository instance = null;
+
+        //Id,Questions,Answers,PatientId
+
+    {
+        private string path = @"../../Data/poll.csv";
+        private static PollRepository instance = null;
 
         private PollRepository() {}
       

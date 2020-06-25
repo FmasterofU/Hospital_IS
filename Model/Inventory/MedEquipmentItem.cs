@@ -12,8 +12,17 @@ namespace Model.Inventory
       private uint id;
       private uint typeId;
       private uint roomId;
-      
-      public uint TypeId
+
+        //TODO: maybe refactor constructor (type and type id)
+        public MedEquipmentItem(uint typeId, uint roomId, MedEquipmentType medEquipmentType)
+        {
+            this.id = 0;
+            this.typeId = typeId;
+            this.roomId = roomId;
+            this.medEquipmentType = medEquipmentType;
+        }
+
+        public uint TypeId
       {
          get
          {

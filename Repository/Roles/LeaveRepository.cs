@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Roles
 {
    public class LeaveRepository : ILeaveRepository
-   {
-      private string path;
-      private static LeaveRepository instance = null;
+
+        //Id,StaffId,Type,Start,End
+
+    {
+        private string path = @"../../Data/leave.csv";
+        private static LeaveRepository instance = null;
 
         private LeaveRepository() {}
       

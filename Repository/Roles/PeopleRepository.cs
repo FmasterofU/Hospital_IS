@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Roles
 {
    public class PeopleRepository : IPersonRepository
-   {
-      private string path;
-      private static PeopleRepository instance = null;
+
+        //Id,UserType,Jmbg,Name,Surname,Phone,Email,Sex,Username,Password,MedRecordId,Address,BirthDate,Deceased,ParentName,AlergensIds,Contract,IsActive,Specialization
+
+    {
+        private string path = @"../../Data/people.csv";
+        private static PeopleRepository instance = null;
 
         private PeopleRepository() {}
       

@@ -27,10 +27,14 @@ namespace Service
             {
                 DrugStateChange oldState = p.drug.drugStateChange;
                 //TODO: generate id(last argument)
-                DrugStateChange newState = new DrugStateChange(DateTime.Now, oldState.TotalNumber - (int)p.Number, oldState.Threshold, oldState.DrugId, 69);
+                DrugStateChange newState = new DrugStateChange(DateTime.Now, oldState.TotalNumber - (int)p.Number, oldState.Threshold, oldState.DrugId);
                 DrugStateChangeRepository.GetInstance().Create(newState);
                 p.drug.drugStateChange = newState;
+                DrugRepository.GetInstance().Update(p.drug);
+                PrescriptionRepository.GetInstance().Create(p);
             }
+
+            foreach (Referral r in examination.Referral) ReferralRepository.GetInstance().Create(r);
 
             medicalRecord.AddExamination(examination);
             MedicalRecordRepository.GetInstance().Update(medicalRecord);

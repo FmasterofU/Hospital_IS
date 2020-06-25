@@ -5,6 +5,7 @@
 
 using Model.Medicine;
 using System;
+using System.Collections.Generic;
 
 namespace Model.Roles
 {
@@ -15,8 +16,19 @@ namespace Model.Roles
       private bool deceased = false;
       private string parentName;
       private uint medRecordId;
-      
-      public string Address
+
+        public Patient(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, string address, DateTime birthDate, bool deceased, 
+                string parentName, uint medRecordId, List<Ingridient> alergens) : base(name, surname, phone, email, sex, jmbg, username, password, userType)
+        {
+            this.address = address;
+            this.birthDate = birthDate;
+            this.deceased = deceased;
+            this.parentName = parentName;
+            this.medRecordId = medRecordId;
+            this.alergens = alergens;
+        }
+
+        public string Address
       {
          get
          {

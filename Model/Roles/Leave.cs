@@ -14,8 +14,18 @@ namespace Model.Roles
       private DateTime end;
       private uint idStaff;
       private uint id;
-      
-      public LeaveType Type
+
+        public Leave(LeaveType type, DateTime start, DateTime end, uint idStaff, Staff staff)
+        {
+            this.type = type;
+            this.start = start;
+            this.end = end;
+            this.idStaff = idStaff;
+            this.id = 0;
+            this.staff = staff;
+        }
+
+        public LeaveType Type
       {
          get
          {

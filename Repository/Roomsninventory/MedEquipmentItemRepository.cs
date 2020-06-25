@@ -11,9 +11,12 @@ using System.Collections.Generic;
 namespace Repository.Roomsninventory
 {
    public class MedEquipmentItemRepository : IMedEquipmentItemRepository
-   {
-      private string path;
-      private static MedEquipmentItemRepository instance = null;
+
+        //Id,TypeId,RoomId
+
+    {
+        private string path = @"../../Data/med_equipment_item.csv";
+        private static MedEquipmentItemRepository instance = null;
 
         private MedEquipmentItemRepository() {}
       

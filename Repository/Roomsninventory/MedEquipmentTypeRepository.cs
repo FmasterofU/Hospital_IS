@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Roomsninventory
 {
    public class MedEquipmentTypeRepository : Repository.IRepositoryCRUD<MedEquipmentType, uint>
-   {
-      private string path;
-      private static MedEquipmentTypeRepository instance = null;
+
+        //Id,Name,Number
+
+    {
+        private string path = @"../../Data/med_equipment_type.csv";
+        private static MedEquipmentTypeRepository instance = null;
 
         private MedEquipmentTypeRepository() {}
       

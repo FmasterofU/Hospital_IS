@@ -3,6 +3,7 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class BlogPost
 
+using Model.Roles;
 using System;
 
 namespace Model.Blognfeedback
@@ -12,8 +13,16 @@ namespace Model.Blognfeedback
       private DateTime time;
       private string text;
       private uint id;
-      
-      public DateTime Time
+
+        public BlogPost(DateTime time, string text, Staff author)
+        {
+            this.time = time;
+            this.text = text;
+            this.id = 0;
+            this.author = author;
+        }
+
+        public DateTime Time
       {
          get
          {

@@ -5,6 +5,7 @@
 
 using Model.Roles;
 using System;
+using System.Collections.Generic;
 
 namespace Model.Examination
 {
@@ -14,8 +15,18 @@ namespace Model.Examination
       private string diagnosis;
       private Doctor doctor;
       private uint id;
-      
-      public DateTime Time
+
+        public Examination(DateTime time, string diagnosis, Doctor doctor, List<Prescription> prescription, List<Referral> referral)
+        {
+            this.time = time;
+            this.diagnosis = diagnosis;
+            this.doctor = doctor;
+            this.id = 0;
+            this.prescription = prescription;
+            this.referral = referral;
+        }
+
+        public DateTime Time
       {
          get
          {

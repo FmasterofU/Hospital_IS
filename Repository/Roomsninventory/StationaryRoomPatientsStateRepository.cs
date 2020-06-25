@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Roomsninventory
 {
    public class StationaryRoomPatientsStateRepository : IStationaryRoomPatientsStateRepository
-   {
-      private string path;
-      private static StationaryRoomPatientsStateRepository instance = null;
+
+        //Id,RoomId,PatientsNumber,Timestamp
+
+    {
+        private string path = @"../../Data/stationary_room_patients_state.csv";
+        private static StationaryRoomPatientsStateRepository instance = null;
 
         private StationaryRoomPatientsStateRepository() {}
       

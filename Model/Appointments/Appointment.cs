@@ -4,6 +4,8 @@
 // Purpose: Definition of Class Appointment
 
 using Model.Blognfeedback;
+using Model.Roles;
+using Model.Rooms;
 using System;
 
 namespace Model.Appointments
@@ -14,8 +16,19 @@ namespace Model.Appointments
       private DateTime endTime;
       private uint id;
       private uint medicalRecordId;
-      
-      public DateTime StartTime
+
+        public Appointment(DateTime startTime, DateTime endTime, uint medicalRecordId, Doctor doctor, Room room, ServiceComment serviceComment = null)
+        {
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.id = 0;
+            this.medicalRecordId = medicalRecordId;
+            this.doctor = doctor;
+            this.room = room;
+            this.serviceComment = serviceComment;
+        }
+
+        public DateTime StartTime
       {
          get
          {

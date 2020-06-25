@@ -14,8 +14,18 @@ namespace Model.Roles
       private DateTime endTime;
       private uint idStaff;
       private uint id;
-      
-      public DateTime Timestamp
+
+        public WorkingTime(DateTime timestamp, DateTime startTime, DateTime endTime, uint idStaff, Staff staff)
+        {
+            this.timestamp = timestamp;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.idStaff = idStaff;
+            this.id = 0;
+            this.staff = staff;
+        }
+
+        public DateTime Timestamp
       {
          get
          {

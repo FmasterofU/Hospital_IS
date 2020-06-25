@@ -5,14 +5,23 @@
 
 using Model.Roles;
 using System;
+using System.Collections.Generic;
 
 namespace Model.Rooms
 {
    public class StationaryRoom : Room
    {
       private int capacity;
-      
-      public int Capacity
+
+        public StationaryRoom(RoomType type, string name, List<ItemCount> itemCount, int capacity, List<Patient> patient, 
+                StationaryRoomPatientsState stationaryRoomPatientsState) : base(type, name, itemCount)
+        {
+            this.capacity = capacity;
+            this.patient = patient;
+            this.stationaryRoomPatientsState = stationaryRoomPatientsState;
+        }
+
+        public int Capacity
       {
          get
          {

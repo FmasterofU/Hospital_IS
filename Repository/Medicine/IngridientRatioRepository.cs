@@ -9,9 +9,12 @@ using System;
 namespace Repository.Medicine
 {
    public class IngridientRatioRepository : Repository.IRepositoryCRUD<IngridientRatio, uint>
-   {
-      private string path;
-      private static IngridientRatioRepository instance = null;
+
+        //Id,IngridientId,DrugId,Ratio
+
+    {
+        private string path = @"../../Data/ingridient_ratio.csv";
+        private static IngridientRatioRepository instance = null;
 
         private IngridientRatioRepository() {}
       

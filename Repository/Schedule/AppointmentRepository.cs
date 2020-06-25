@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Schedule
 {
    public class AppointmentRepository : IAppointmentRepository
-   {
-      private string path;
-      private static AppointmentRepository instance = null;
+
+        //Id,startTime,endTime,medicalRecordId,DoctorId,RoomId,ServiceCommentId
+
+    {
+        private string path = @"../../Data/appointment.csv";
+        private static AppointmentRepository instance = null;
 
         private AppointmentRepository() {}
       

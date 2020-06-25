@@ -3,6 +3,7 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class Referral
 
+using Model.Roles;
 using System;
 
 namespace Model.Examination
@@ -13,8 +14,17 @@ namespace Model.Examination
       private string note;
       private String accessory = null;
       private uint id;
-      
-      public ReferralType Type
+
+        public Referral(ReferralType type, string note, string accessory, Specialist specialist)
+        {
+            this.type = type;
+            this.note = note;
+            this.accessory = accessory;
+            this.specialist = specialist;
+            this.id = 0;
+        }
+
+        public ReferralType Type
       {
          get
          {

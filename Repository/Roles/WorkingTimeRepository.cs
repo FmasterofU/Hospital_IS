@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Roles
 {
    public class WorkingTimeRepository : IWorkingTimeRepository
-   {
-      private string path;
-      private static WorkingTimeRepository instance = null;
+
+        //Id,StaffId,StartTime,EndTime,Timestamp
+
+    {
+        private string path = @"../../Data/working_time.csv";
+        private static WorkingTimeRepository instance = null;
 
         private WorkingTimeRepository() {}
       

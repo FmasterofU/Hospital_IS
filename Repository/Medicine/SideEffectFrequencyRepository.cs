@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Medicine
 {
    public class SideEffectFrequencyRepository : Repository.IRepositoryCRUD<SideEffectFrequency, uint>
-   {
-      private string path;
-      private static SideEffectFrequencyRepository instance = null;
+
+        //Id,DrugId,Basis,Freq,SideEffectId
+
+    {
+        private string path = @"../../Data/side_effect_frequency.csv";
+        private static SideEffectFrequencyRepository instance = null;
 
         private SideEffectFrequencyRepository() {}
       

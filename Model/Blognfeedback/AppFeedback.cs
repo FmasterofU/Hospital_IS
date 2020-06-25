@@ -3,6 +3,7 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class AppFeedback
 
+using Model.Roles;
 using System;
 
 namespace Model.Blognfeedback
@@ -12,8 +13,16 @@ namespace Model.Blognfeedback
       private string subject;
       private string note;
       private uint id;
-      
-      public string Subject
+
+        public AppFeedback(string subject, string note, Person person)
+        {
+            this.subject = subject;
+            this.note = note;
+            this.id = 0;
+            this.person = person;
+        }
+
+        public string Subject
       {
          get
          {

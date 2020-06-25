@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Medicine
 {
    public class DrugBatchRepository : Repository.IRepositoryCRUD<DrugBatch, uint>
-   {
-      private string path;
-      private static DrugBatchRepository instance = null;
+
+        //Id,DrugId,Number,ExpDate,LotNumber
+
+    {
+        private string path = @"../../Data/drug_batch.csv";
+        private static DrugBatchRepository instance = null;
 
         private DrugBatchRepository() {}
       

@@ -4,6 +4,7 @@
 // Purpose: Definition of Class Room
 
 using System;
+using System.Collections.Generic;
 
 namespace Model.Rooms
 {
@@ -12,8 +13,16 @@ namespace Model.Rooms
       private uint id;
       private RoomType type;
       private string name;
-      
-      public RoomType Type
+
+        public Room(RoomType type, string name, List<ItemCount> itemCount)
+        {
+            this.id = 0;
+            this.type = type;
+            this.name = name;
+            this.itemCount = itemCount;
+        }
+
+        public RoomType Type
       {
          get
          {

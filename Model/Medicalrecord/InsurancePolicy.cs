@@ -11,8 +11,14 @@ namespace Model.Medicalrecord
     {
       private ulong insuranceId;
       private string policyId;
-      
-      public ulong InsuranceId
+
+        public InsurancePolicy(ulong insuranceId)
+        {
+            this.insuranceId = insuranceId;
+            this.policyId = "0";
+        }
+
+        public ulong InsuranceId
       {
          get
          {

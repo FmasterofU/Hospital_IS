@@ -3,6 +3,7 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class ItemCount
 
+using Model.Inventory;
 using System;
 
 namespace Model.Rooms
@@ -12,8 +13,16 @@ namespace Model.Rooms
       private uint number;
       private uint itemId;
       private uint id;
-      
-      public uint Number
+
+        public ItemCount(uint number, uint itemId, MedEquipmentItem[] medEquipmentItem)
+        {
+            this.number = number;
+            this.itemId = itemId;
+            this.id = 0;
+            this.medEquipmentItem = medEquipmentItem;
+        }
+
+        public uint Number
       {
          get
          {

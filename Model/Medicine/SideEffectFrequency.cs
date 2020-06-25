@@ -13,8 +13,17 @@ namespace Model.Medicine
       private uint id;
       private int basis;
       private int freq;
-      
-      public uint DrugId
+
+        public SideEffectFrequency(uint drugId, int basis, int freq, SideEffect sideEffect)
+        {
+            this.drugId = drugId;
+            this.id = 0;
+            this.basis = basis;
+            this.freq = freq;
+            this.sideEffect = sideEffect;
+        }
+
+        public uint DrugId
       {
          get
          {

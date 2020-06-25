@@ -14,8 +14,17 @@ namespace Model.Medicine
       private DateTime expDate;
       private uint drugId;
       private uint id;
-      
-      public int Number
+
+        public DrugBatch(string lotNumber, int number, DateTime expDate, uint drugId)
+        {
+            this.lotNumber = lotNumber;
+            this.number = number;
+            this.expDate = expDate;
+            this.drugId = drugId;
+            this.id = 0;
+        }
+
+        public int Number
       {
          get
          {

@@ -11,9 +11,12 @@ using System.Collections.Generic;
 namespace Repository.Patientdata
 {
    public class MedicalRecordRepository : Repository.IRepositoryCRUD<MedicalRecord, uint>
-   {
-      private string path;
-      private static MedicalRecordRepository instance = null;
+
+        //MedicalRecordId,PatientId,InsuranceId,ExaminationIds
+
+    {
+        private string path = @"../../Data/medical_record.csv";
+        private static MedicalRecordRepository instance = null;
 
         private MedicalRecordRepository() {}
       

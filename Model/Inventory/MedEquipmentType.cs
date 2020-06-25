@@ -12,8 +12,15 @@ namespace Model.Inventory
       private string name;
       private uint id;
       private uint number;
-      
-      public string Name
+
+        public MedEquipmentType(string name, uint number)
+        {
+            this.name = name;
+            this.id = 0;
+            this.number = number;
+        }
+
+        public string Name
       {
          get
          {

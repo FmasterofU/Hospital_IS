@@ -11,8 +11,15 @@ namespace Model.Roles
    {
       private Object contract;
       private bool active;
-      
-      public Object Contract
+
+        protected Staff(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract, 
+                bool active) : base(name, surname, phone, email, sex, jmbg, username, password, userType)
+        {
+            this.contract = contract;
+            this.active = active;
+        }
+
+        public Object Contract
       {
          get
          {

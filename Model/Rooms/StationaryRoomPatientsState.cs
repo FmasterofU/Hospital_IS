@@ -13,8 +13,16 @@ namespace Model.Rooms
       private uint patientsNumber;
       private uint roomId;
       private uint id;
-      
-      public DateTime Timestamp
+
+        public StationaryRoomPatientsState(DateTime timestamp, uint patientsNumber, uint roomId)
+        {
+            this.timestamp = timestamp;
+            this.patientsNumber = patientsNumber;
+            this.roomId = roomId;
+            this.id = 0;
+        }
+
+        public DateTime Timestamp
       {
          get
          {

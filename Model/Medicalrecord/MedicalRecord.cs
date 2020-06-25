@@ -3,7 +3,9 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class MedicalRecord
 
+using Model.Roles;
 using System;
+using System.Collections.Generic;
 
 namespace Model.Medicalrecord
 {
@@ -13,12 +15,22 @@ namespace Model.Medicalrecord
       
       public InsurancePolicy insurancePolicy;
       public System.Collections.Generic.List<Model.Examination.Examination> examination;
-      
-      /// <summary>
-      /// Property for collection of Model.Examination.Examination
-      /// </summary>
-      /// <pdGenerated>Default opposite class collection property</pdGenerated>
-      public System.Collections.Generic.List<Model.Examination.Examination> Examination
+
+        public MedicalRecord(InsurancePolicy insurancePolicy, List<Examination.Examination> examination, Patient patient)
+        {
+            this.id = 0;
+            this.insurancePolicy = insurancePolicy;
+            this.examination = examination;
+            this.patient = patient;
+        }
+
+
+
+        /// <summary>
+        /// Property for collection of Model.Examination.Examination
+        /// </summary>
+        /// <pdGenerated>Default opposite class collection property</pdGenerated>
+        public System.Collections.Generic.List<Model.Examination.Examination> Examination
       {
          get
          {

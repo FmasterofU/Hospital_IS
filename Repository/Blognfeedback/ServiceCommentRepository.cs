@@ -10,9 +10,12 @@ using System.Collections.Generic;
 namespace Repository.Blognfeedback
 {
    public class ServiceCommentRepository : Repository.IRepositoryCRUD<ServiceComment, uint>
-   {
-      private string path;
-      private static ServiceCommentRepository instance = null;
+
+        //Id,Note,AppointmentId
+
+    {
+        private string path = @"../../Data/service_comment.csv";
+        private static ServiceCommentRepository instance = null;
 
         private ServiceCommentRepository() {}
       

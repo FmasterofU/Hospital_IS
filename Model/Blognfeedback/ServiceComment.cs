@@ -12,8 +12,15 @@ namespace Model.Blognfeedback
       private string note;
       private uint id;
       private uint appointmentId;
-      
-      public string Note
+
+        public ServiceComment(string note, uint appointmentId)
+        {
+            this.note = note;
+            this.id = 0;
+            this.appointmentId = appointmentId;
+        }
+
+        public string Note
       {
          get
          {
