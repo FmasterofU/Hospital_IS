@@ -12,14 +12,10 @@ namespace Repository.Roomsninventory
    public class ItemCountRepository : Repository.IRepositoryCRUD<ItemCount, uint>
    {
       private string path;
-      private static ItemCountRepository instance = null;
-
-        private ItemCountRepository() {}
       
       public static ItemCountRepository GetInstance()
       {
-            if (instance == null) instance = new ItemCountRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -46,5 +42,8 @@ namespace Repository.Roomsninventory
         {
             throw new NotImplementedException();
         }
+
+        public ItemCountRepository itemCountRepositoryB;
+   
    }
 }

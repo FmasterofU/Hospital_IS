@@ -12,14 +12,11 @@ namespace Repository.Schedule
    public class AppointmentRepository : IAppointmentRepository
    {
       private string path;
-      private static AppointmentRepository instance = null;
-
-        private AppointmentRepository() {}
+      private AppointmentRepository instance;
       
       public static AppointmentRepository GetInstance()
       {
-            if (instance == null) instance = new AppointmentRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public List<Appointment> GetSpan()
@@ -51,5 +48,8 @@ namespace Repository.Schedule
         {
             throw new NotImplementedException();
         }
+
+        public AppointmentRepository appointmentRepositoryB;
+   
    }
 }

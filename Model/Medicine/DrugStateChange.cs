@@ -14,15 +14,6 @@ namespace Model.Medicine
       private int threshold;
       private uint drugId;
       private uint id;
-
-        public DrugStateChange(DateTime timestamp, int totalNumber, int threshold, uint drugId, uint id)
-        {
-            this.timestamp = timestamp;
-            this.totalNumber = totalNumber;
-            this.threshold = threshold;
-            this.drugId = drugId;
-            this.id = id;
-        }
       
       public DateTime Timestamp
       {

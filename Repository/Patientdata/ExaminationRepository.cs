@@ -12,14 +12,11 @@ namespace Repository.Patientdata
    public class ExaminationRepository : Repository.IRepositoryCRUD<Examination, uint>
    {
       private string path;
-      private static ExaminationRepository instance = null;
-
-        private ExaminationRepository() {}
+      private ExaminationRepository instance;
       
       public static ExaminationRepository GetInstance()
       {
-            if (instance == null) instance = new ExaminationRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -46,5 +43,8 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
+
+        public ExaminationRepository examinationRepositoryB;
+   
    }
 }

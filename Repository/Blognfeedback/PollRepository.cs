@@ -12,14 +12,11 @@ namespace Repository.Blognfeedback
    public class PollRepository : Repository.IRepositoryCRUD<Poll, uint>
    {
       private string path;
-      private static PollRepository instance = null;
-
-        private PollRepository() {}
+      private PollRepository instance;
       
       public static PollRepository GetInstance()
       {
-            if (instance == null) instance = new PollRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -46,5 +43,8 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
+
+        public PollRepository pollRepositoryB;
+   
    }
 }

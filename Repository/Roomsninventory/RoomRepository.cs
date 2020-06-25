@@ -12,14 +12,11 @@ namespace Repository.Roomsninventory
    public class RoomRepository : IRoomRepository
    {
       private string path;
-      private static RoomRepository instance = null;
-
-        private RoomRepository() {}
+      private RoomRepository instance;
       
       public static RoomRepository GetInstance()
       {
-            if (instance == null) instance = new RoomRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public List<Room> GetAllByType(RoomType type)
@@ -51,5 +48,8 @@ namespace Repository.Roomsninventory
         {
             throw new NotImplementedException();
         }
+
+        public RoomRepository roomRepositoryB;
+   
    }
 }

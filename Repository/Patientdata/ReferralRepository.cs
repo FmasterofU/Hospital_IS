@@ -12,14 +12,11 @@ namespace Repository.Patientdata
    public class ReferralRepository : Repository.IRepositoryCRUD<Referral, uint>
    {
       private string path;
-      private static ReferralRepository instance = null;
-
-        private ReferralRepository() {}
+      private ReferralRepository instance;
       
       public static ReferralRepository GetInstance()
       {
-            if (instance == null) instance = new ReferralRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public bool Delete(uint id)
@@ -46,5 +43,8 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
+
+        public ReferralRepository referralRepositoryB;
+   
    }
 }

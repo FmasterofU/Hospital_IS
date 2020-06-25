@@ -4,7 +4,6 @@
 // Purpose: Definition of Class DrugService
 
 using Model.Medicine;
-using Repository.Medicine;
 using System;
 using System.Collections.Generic;
 
@@ -69,16 +68,7 @@ namespace Service
 
         public List<Drug> SearchDrugs(string query)
         {
-            List<Drug> list = DrugRepository.GetInstance().GetAll();
-            List<Drug> ret = new List<Drug>();
-            foreach(Drug d in list)
-            {
-                if(d.InUse && d.Name.Contains(query))
-                {
-                    ret.Add(d);
-                }
-            }
-            return ret;
+            throw new NotImplementedException();
         }
     }
 }

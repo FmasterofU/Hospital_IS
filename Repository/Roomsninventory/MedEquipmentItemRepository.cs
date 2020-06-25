@@ -13,14 +13,11 @@ namespace Repository.Roomsninventory
    public class MedEquipmentItemRepository : IMedEquipmentItemRepository
    {
       private string path;
-      private static MedEquipmentItemRepository instance = null;
-
-        private MedEquipmentItemRepository() {}
+      private MedEquipmentItemRepository instance;
       
       public static MedEquipmentItemRepository GetInstance()
       {
-            if (instance == null) instance = new MedEquipmentItemRepository();
-            return instance;
+         throw new NotImplementedException();
       }
 
         public MedEquipmentItem Create(MedEquipmentItem item)
