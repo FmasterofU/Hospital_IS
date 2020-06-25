@@ -12,11 +12,14 @@ namespace Repository.Roles
    public class WorkingTimeRepository : IWorkingTimeRepository
    {
       private string path;
-      private WorkingTimeRepository instance;
+      private static WorkingTimeRepository instance = null;
+
+        private WorkingTimeRepository() {}
       
       public static WorkingTimeRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new WorkingTimeRepository();
+            return instance;
       }
 
         public List<WorkingTime> GetAllByStaff(Staff staff)
@@ -48,8 +51,5 @@ namespace Repository.Roles
         {
             throw new NotImplementedException();
         }
-
-        public WorkingTimeRepository workingTimeRepositoryB;
-   
    }
 }

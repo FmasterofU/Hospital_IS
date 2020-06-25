@@ -12,11 +12,14 @@ namespace Repository.Patientdata
    public class InsurancePolicyRepository : Repository.IRepositoryCRUD<InsurancePolicy, string>
    {
       private string path;
-      private InsurancePolicyRepository instance;
+      private static InsurancePolicyRepository instance = null;
+
+        private InsurancePolicyRepository() {}
       
       public static InsurancePolicyRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new InsurancePolicyRepository();
+            return instance;
       }
 
         public bool Delete(string id)
@@ -43,8 +46,5 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
-
-        public InsurancePolicyRepository insurancePolicyRepositoryB;
-   
    }
 }

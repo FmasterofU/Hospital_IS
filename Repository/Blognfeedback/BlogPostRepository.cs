@@ -12,11 +12,14 @@ namespace Repository.Blognfeedback
    public class BlogPostRepository : Repository.IRepositoryCRUD<BlogPost, uint>
    {
       private string path;
-      private BlogPostRepository instance;
+      private static BlogPostRepository instance = null;
+
+        private BlogPostRepository() {}
       
       public static BlogPostRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new BlogPostRepository();
+            return instance;
       }
 
         public bool Delete(uint id)
@@ -43,8 +46,5 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
-
-        public BlogPostRepository blogPostRepositoryB;
-   
    }
 }

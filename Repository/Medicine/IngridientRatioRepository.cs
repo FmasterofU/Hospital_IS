@@ -11,11 +11,14 @@ namespace Repository.Medicine
    public class IngridientRatioRepository : Repository.IRepositoryCRUD<IngridientRatio, uint>
    {
       private string path;
-      private IngridientRatioRepository instance;
+      private static IngridientRatioRepository instance = null;
+
+        private IngridientRatioRepository() {}
       
       public static IngridientRatioRepository GetInstance()
       {
-         throw new NotImplementedException();
+            if (instance == null) instance = new IngridientRatioRepository();
+            return instance;
       }
 
         public bool Delete(uint id)
@@ -42,8 +45,5 @@ namespace Repository.Medicine
         {
             throw new NotImplementedException();
         }
-
-        public IngridientRatioRepository ingridientRatioRepositoryB;
-   
    }
 }
