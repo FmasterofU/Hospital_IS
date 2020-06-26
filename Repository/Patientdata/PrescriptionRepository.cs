@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 10:02:48 PM
 // Purpose: Definition of Class PrescriptionRepository
 
+using Class_Diagram.Repository;
 using Model.Examination;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,14 @@ namespace Repository.Patientdata
 
         public Prescription Create(Prescription item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[4];
+            data[0] = item.GetId().ToString();
+            data[1] = item.drug.GetId().ToString();
+            data[2] = item.Number.ToString();
+            data[3] = item.Usage.ToString();
+            bool isAdded = Persistence.WriteEntry(path, data);
+            if (isAdded) return item;
+            else return null;
         }
 
         public Prescription Read(uint id)
