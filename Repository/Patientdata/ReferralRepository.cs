@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 10:02:48 PM
 // Purpose: Definition of Class ReferralRepository
 
+using Class_Diagram.Repository;
 using Model.Examination;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,15 @@ namespace Repository.Patientdata
 
         public Referral Create(Referral item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            data[0] = item.GetId().ToString();
+            data[1] = item.Type.ToString();
+            data[2] = item.Note;
+            data[3] = item.Accessory;
+            data[4] = item.specialist.GetId().ToString();
+            bool isAdded = Persistence.WriteEntry(path, data);
+            if (isAdded) return item;
+            else return null;
         }
 
         public Referral Read(uint id)

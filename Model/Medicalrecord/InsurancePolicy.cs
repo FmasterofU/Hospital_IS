@@ -44,12 +44,12 @@ namespace Model.Medicalrecord
 
         public string GetId()
         {
-            throw new NotImplementedException();
+            return policyId;
         }
 
         public void SetId(string id)
         {
-            throw new NotImplementedException();
+            this.policyId = id;
         }
     }
 }

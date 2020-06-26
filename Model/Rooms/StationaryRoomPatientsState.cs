@@ -60,12 +60,12 @@ namespace Model.Rooms
 
         public uint GetId()
         {
-            throw new NotImplementedException();
+            return id;
         }
 
         public void SetId(uint id)
         {
-            throw new NotImplementedException();
+            this.id = id;
         }
     }
 }
