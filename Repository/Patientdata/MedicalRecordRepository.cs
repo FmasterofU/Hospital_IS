@@ -40,7 +40,8 @@ namespace Repository.Patientdata
         {
             List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
             //TODO: parse strings and get medRecord object
-            return new MedicalRecord();
+            // return new MedicalRecord();
+            return null;
         }
 
         public MedicalRecord Update(MedicalRecord item)
@@ -48,8 +49,8 @@ namespace Repository.Patientdata
             //TODO: put all data in string
             string[] data = { };
             bool isUpdated = Persistence.EditEntry(path, data);
-            if (isUpdated) return new MedicalRecord();
-            else return null;
+            //if (isUpdated) return new MedicalRecord();
+            return null;
         }
 
         public List<MedicalRecord> GetAll()

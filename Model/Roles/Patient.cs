@@ -6,6 +6,7 @@
 using Model.Medicine;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Model.Roles
 {
@@ -149,6 +150,24 @@ namespace Model.Roles
          if (alergens != null)
             alergens.Clear();
       }
-   
+
+        public string getPatientCommaSeparatedData()
+        {
+            return getPersonCommaSeparatedData() + "," + MedRecordId + "," + Address + "," + BirthDate.ToShortDateString() + "," + deceased.ToString() + "," + ParentName + "," + getAlergensSpaceSeparateIds();          
+        }
+
+        private string getAlergensSpaceSeparateIds()
+        {
+            StringBuilder result = new StringBuilder("");
+            foreach (Ingridient alergen in alergens)
+            {
+                result .Append( " " + alergen.GetId().ToString());
+            }
+            if(alergens.Count!=0)
+                return result.ToString().Substring(1);
+            return result.ToString();
+        }
+
+
    }
 }

@@ -11,33 +11,33 @@ namespace Repository.Roles
 {
    public interface IPersonRepository : Repository.IRepositoryCRUD<Person, uint>
    {
-      Int32 GetId(string username, string password);
+      uint GetId(string username, string password);
       
       bool HasUsername(string username);
       
-      Model.Roles.UserType GetRole(int id);
+      Model.Roles.UserType GetRole(uint id);
       
-      List<int> GetActiveDoctorIds();
+      List<uint> GetActiveDoctorIds();
       
-      List<int> GetActiveSpecialistIds();
+      List<uint> GetActiveSpecialistIds();
       
-      List<int> GetActiveSecretaryIds();
+      List<uint> GetActiveSecretaryIds();
       
-      List<int> GetActiveDirectorIds();
+      List<uint> GetActiveDirectorIds();
       
-      List<int> GetAllIds();
+      List<uint> GetAllIds();
       
-      List<int> GetAllStaffIds();
+      List<uint> GetAllStaffIds();
       
-      List<int> GetAllActiveStaffIds();
+      List<uint> GetAllActiveStaffIds();
       
-      List<int> GetIdsByJMBG(string jmbg);
+      List<uint> GetIdsByJMBG(string jmbg);
       
-      List<int> GetIdsByName(string name);
+      List<uint> GetIdsByName(string name);
       
-      List<int> GetIdsBySurname(string surname);
+      List<uint> GetIdsBySurname(string surname);
       
-      List<int> GetPatientsIds();
+      List<uint> GetPatientsIds();
    
    }
 }

@@ -147,5 +147,10 @@ namespace Model.Roles
       {
         throw new NotImplementedException();
       }
+
+        public string getPersonCommaSeparatedData()
+        {            
+            return id + "," + UserType + "," + Jmbg + "," + Name + "," + Surname + "," + Phone + "," + Email + "," + Sex + "," + Username + "," + Password;
+        }
     }
 }

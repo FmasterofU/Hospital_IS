@@ -4,6 +4,7 @@
 // Purpose: Definition of Class UserController
 
 using Model.Roles;
+using Service;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ namespace Controller
 
         public void AddPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            ((UserService)iUserService).AddPatient(patient);
         }
 
         public void AddStaffUser(Staff staff)
