@@ -235,12 +235,12 @@ namespace Model.Medicine
 
         public uint GetId()
         {
-            throw new NotImplementedException();
+            return id;
         }
 
         public void SetId(uint id)
         {
-            throw new NotImplementedException();
+            this.id = id;
         }
 
         public DrugStateChange drugStateChange;

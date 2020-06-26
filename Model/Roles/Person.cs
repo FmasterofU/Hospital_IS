@@ -145,7 +145,7 @@ namespace Model.Roles
 
       public void SetId(uint id)
       {
-        throw new NotImplementedException();
+            this.id = id;
       }
     }
 }
