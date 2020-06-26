@@ -11,7 +11,7 @@ namespace Model.Roles
    {
       private string specialization;
 
-        protected Specialist(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
+        public Specialist(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
             bool active, string specialization) : base(name, surname, phone, email, sex, jmbg, username, password, userType, contract, active)
         {
             this.specialization = specialization;
@@ -28,6 +28,11 @@ namespace Model.Roles
             this.specialization = value;
          }
       }
-   
-   }
+
+        public string getSpecialistCommaSeparatedData()
+        {
+            return getDoctorCommaSeparatedData() + "," + Specialization;
+        }
+
+    }
 }

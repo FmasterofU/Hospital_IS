@@ -4,6 +4,7 @@
 // Purpose: Definition of Class UserService
 
 using Model.Roles;
+using Repository.Roles;
 using System;
 using System.Collections.Generic;
 
@@ -27,7 +28,9 @@ namespace Service
 
         public void AddPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            List<uint> pacijenti = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
+            if (pacijenti.Count == 0)
+                PeopleRepository.GetInstance().Create(patient);            
         }
 
         public void AddStaffUser(Staff staff)

@@ -42,6 +42,11 @@ namespace Model.Roles
             this.active = value;
          }
       }
-   
-   }
+
+        public string getStaffCommaSeparatedData()
+        {
+            return getPersonCommaSeparatedData()+","+""+","+Active.ToString(); //treba dodati contract ali trenutno to nije prioritet
+        }
+
+    }
 }
