@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 10:02:48 PM
 // Purpose: Definition of Class InsurancePolicyRepository
 
+using Class_Diagram.Repository;
 using Model.Medicalrecord;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,16 @@ namespace Repository.Patientdata
 
         public InsurancePolicy Read(string id)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id);
+            if (data.Count == 1)
+            {
+                string policyID = data[0][0];
+                uint insuranceID = uint.Parse(data[0][1]);
+                InsurancePolicy ret = new InsurancePolicy(insuranceID);
+                ret.SetId(policyID);
+                return ret;
+            }
+            return null;
         }
 
         public InsurancePolicy Update(InsurancePolicy item)

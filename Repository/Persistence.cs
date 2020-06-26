@@ -34,13 +34,13 @@ namespace Class_Diagram.Repository
         {
             List<string> lines = new List<string>(File.ReadAllLines(path));
             List<string> entries = new List<string>(lines.Skip(1));
-            foreach (string entry in entries)
+            foreach (string entry in entries.ToList())
                 if (data[0].Equals(entry.Split(',')[0]))
                 {
                     string temp = "";
                     foreach (string s in data)
                         temp += s + ",";
-                    temp = entry.TrimEnd(',');
+                    temp = temp.TrimEnd(',');
                     entries[entries.IndexOf(entry)] = temp;
                 }
             File.Delete(path);
