@@ -15,9 +15,9 @@ namespace Service
 {
    public class UserService : IUserService
    {
-      private Model.Roles.Person loggedInPerson = null;
+      private Person loggedInPerson = null;
       
-      public Model.Roles.Person LoggedInPerson
+      public Person LoggedInPerson
       {
          get
          {
@@ -29,14 +29,15 @@ namespace Service
          }
       }
 
-        public void AddPatient(Patient patient)
+        public Patient AddPatient(Patient patient)
         {
             if (IsPatientAlreadyExists(patient))
-                return;
-            patient.SetId(getFirstAvailableId());
-            AddNewMedicalRecord(patient);        
-            PeopleRepository.GetInstance().Create(patient);            
-
+                return null;
+            
+            patient = AddNewMedicalRecord(patient);        
+            patient = (Patient)PeopleRepository.GetInstance().Create(patient);
+            editPatientInMedicalRecord(patient);
+                return patient;
         }
 
         private bool IsPatientAlreadyExists(Patient patient)
@@ -51,33 +52,26 @@ namespace Service
             return false;
         }
 
-        private void AddNewMedicalRecord(Patient patient)
+        private Patient AddNewMedicalRecord(Patient patient)
         {
-            MedicalRecord medicalRecord = new MedicalRecord(new InsurancePolicy(getFirstAvailableInsuranceId()),patient, getFistAvailableMedicalRecordId());
+            //TODO: Treba srediti insurance policy tako da podatak bude upotrebljiv a ne uvek isti
+            MedicalRecord medicalRecord = new MedicalRecord(new InsurancePolicy(30), patient); 
+            MedicalRecordService medicalRecordService = new MedicalRecordService();
+            medicalRecord = medicalRecordService.AddMedicalRecord(medicalRecord);
             patient.MedRecordId = medicalRecord.GetId();
-            MedicalRecordRepository.GetInstance().Create(medicalRecord);
-            //TODO: add insurance policy into repository before adding medical record
+            
+            return patient;
+
         }
 
-        private uint getFirstAvailableId()
+        private bool editPatientInMedicalRecord(Patient patient)
         {
-            string path = PeopleRepository.GetInstance().getPath();
-            return Persistence.GetNewId(path);
+            MedicalRecordService medicalRecordService = new MedicalRecordService();
+            MedicalRecord searchedMedicalRecord = medicalRecordService.GetMedicalRecordById(patient.MedRecordId);
+            searchedMedicalRecord.patient = patient;
+            return medicalRecordService.EditMedicalRecord(searchedMedicalRecord)!=null;
         }
-
-        private uint getFistAvailableMedicalRecordId()
-        {
-            string path = MedicalRecordRepository.GetInstance().getPath();
-            return Persistence.GetNewId(path);
-        }
-
-        private uint getFirstAvailableInsuranceId()
-        {
-            string path = InsurancePolicyRepository.GetInstance().getPath();
-            return Persistence.GetNewId(path);
-        }
-
-        
+      
 
         public void AddStaffUser(Staff staff)
         {

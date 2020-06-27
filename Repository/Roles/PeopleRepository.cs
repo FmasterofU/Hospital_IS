@@ -138,6 +138,7 @@ namespace Repository.Roles
 
         public Person Create(Person item)
         {
+            item.SetId(Persistence.GetNewId(path));
             bool isAdded = Persistence.WriteEntry(this.path, PreparePersonForCSV(item));
             if (isAdded)
                 return item;
@@ -160,11 +161,7 @@ namespace Repository.Roles
             throw new NotImplementedException();
         }
 
-        
-        public string getPath()
-        {
-            return path;
-        }
+
         
         //Metode za pripremu unosa u csv fajl
 

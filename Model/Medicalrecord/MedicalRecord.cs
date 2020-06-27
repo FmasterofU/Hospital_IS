@@ -25,9 +25,9 @@ namespace Model.Medicalrecord
             this.patient = patient;
         }
 
-        public MedicalRecord(InsurancePolicy insurancePolicy,Patient patient, uint medicalRecordId)
+        public MedicalRecord(InsurancePolicy insurancePolicy,Patient patient)
         {
-            this.id = medicalRecordId;
+            this.id = 0;
             this.patient = patient;
             this.examination = new List<Examination.Examination>();
             this.insurancePolicy = insurancePolicy;

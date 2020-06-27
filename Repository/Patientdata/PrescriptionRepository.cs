@@ -33,7 +33,7 @@ namespace Repository.Patientdata
 
         public Prescription Create(Prescription item)
         {
-            string[] data = new string[4];
+            string[] data = new string[4]; //TODO srediti getNewId()
             data[0] = item.GetId().ToString();
             data[1] = item.drug.GetId().ToString();
             data[2] = item.Number.ToString();
