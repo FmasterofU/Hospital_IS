@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-   public interface IAppoinmentController
+   public interface IAppointmentController
    {
       List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Model.Roles.Doctor doctor, Model.Rooms.Room room);
       

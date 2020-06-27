@@ -133,7 +133,7 @@
     <Compile Include="Service\DoctorAppointmentRecommendationStrategy.cs" />
     <Compile Include="Service\TimePeriodAppointmentRecommendationStrategy.cs" />
     <Compile Include="Service\WorkingTimeService.cs" />
-    <Compile Include="Service\IAppoinmentService.cs" />
+    <Compile Include="Service\IAppointmentService.cs" />
     <Compile Include="Service\IWorkingTimeService.cs" />
     <Compile Include="Service\ILeaveService.cs" />
     <Compile Include="Service\IDrugService.cs" />
@@ -144,13 +144,13 @@
     <Compile Include="Service\IAppointmentRecommendationStrategy.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\LeaveController.cs" />
-    <Compile Include="Controller\AppoinmentController.cs" />
+    <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\MedicalRecordController.cs" />
     <Compile Include="Controller\WorkingTimeController.cs" />
     <Compile Include="Controller\DrugController.cs" />
     <Compile Include="Controller\RoomAndInventoryController.cs" />
     <Compile Include="Controller\BlogPollFeedbackCommentController.cs" />
-    <Compile Include="Controller\IAppoinmentController.cs" />
+    <Compile Include="Controller\IAppointmentController.cs" />
     <Compile Include="Controller\IWorkingTimeController.cs" />
     <Compile Include="Controller\ILeaveController.cs" />
     <Compile Include="Controller\IDrugController.cs" />

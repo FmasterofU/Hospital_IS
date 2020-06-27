@@ -6,23 +6,42 @@
 using Model.Appointments;
 using Model.Roles;
 using Model.Rooms;
+using Repository.Roomsninventory;
+using Repository.Schedule;
 using System;
 using System.Collections.Generic;
 
 namespace Service
 {
-   public class AppointmentService : IAppoinmentService
+   public class AppointmentService : IAppointmentService
    {
       public IAppointmentRecommendationStrategy iAppointmentRecommendationStrategy;
 
         public bool AddAppointment(ref Appointment appoinment, RoomType roomType, Doctor doctor)
         {
-            throw new NotImplementedException();
+            appoinment.doctor = doctor;
+            List<Room> rooms = RoomRepository.GetInstance().GetAllByType(roomType);
+            List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(appoinment.StartTime, appoinment.EndTime);
+            HashSet<Room> roomSet = new HashSet<Room>();
+            foreach(Appointment apps in appointments)
+            {
+                roomSet.Add(apps.room);
+            }
+            foreach(Room room in rooms)
+            {
+                if(!roomSet.Contains(room))
+                {
+                    appoinment.room = room;
+                    AppointmentRepository.GetInstance().Create(appoinment);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool DeleteAppoinment(Appointment appoinment)
         {
-            throw new NotImplementedException();
+            return AppointmentRepository.GetInstance().Delete(appoinment.GetId());
         }
 
         public bool EditAppoinment(Appointment appoinment)
@@ -32,7 +51,36 @@ namespace Service
 
         public List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Room room)
         {
-            throw new NotImplementedException();
+            List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(startTime, endTime);
+            if (doctor == null && room == null) return appointments;
+            else if(doctor == null && room != null)
+            {
+                List<Appointment> ret = new List<Appointment>();
+                foreach (Appointment apps in appointments)
+                {
+                    if (apps.room.GetId() == room.GetId()) ret.Add(apps);
+                }
+                return ret;
+            }
+            else if(doctor != null && room == null)
+            {
+                List<Appointment> ret = new List<Appointment>();
+                foreach (Appointment apps in appointments)
+                {
+                    if (apps.doctor.GetId() == doctor.GetId()) ret.Add(apps);
+                }
+                return ret;
+            }
+            else
+            {
+                List<Appointment> ret = new List<Appointment>();
+                foreach (Appointment apps in appointments)
+                {
+                    if (apps.doctor.GetId() == doctor.GetId() && apps.room.GetId() == room.GetId()) ret.Add(apps);
+                }
+                return ret;
+            }
+
         }
 
         public List<Appointment> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)

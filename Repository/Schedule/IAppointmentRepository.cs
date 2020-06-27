@@ -11,7 +11,9 @@ namespace Repository.Schedule
 {
    public interface IAppointmentRepository : Repository.IRepositoryCRUD<Appointment, uint>
    {
-      List<Appointment> GetSpan();
-   
-   }
+      List<Appointment> GetExistingAppointmentsInSpan(DateTime start, DateTime end);
+
+        List<Appointment> GetAvailableAppointmentsInSpan(DateTime start, DateTime end);
+
+    }
 }

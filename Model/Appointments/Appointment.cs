@@ -17,7 +17,7 @@ namespace Model.Appointments
       private uint id;
       private uint medicalRecordId;
 
-        public Appointment(DateTime startTime, DateTime endTime, uint medicalRecordId, Doctor doctor, Room room, ServiceComment serviceComment = null)
+        public Appointment(DateTime startTime, DateTime endTime, uint medicalRecordId, Doctor doctor = null, Room room = null, ServiceComment serviceComment = null)
         {
             this.startTime = startTime;
             this.endTime = endTime;
