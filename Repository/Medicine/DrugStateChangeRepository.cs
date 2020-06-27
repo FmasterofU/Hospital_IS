@@ -39,7 +39,8 @@ namespace Repository.Medicine
         public DrugStateChange Create(DrugStateChange item)
         {
             string[] data = new string[5];
-            data[0] = item.GetId().ToString();
+            data[0] = Persistence.GetNewId(path).ToString();
+            item.SetId(uint.Parse(data[0]));
             data[1] = item.DrugId.ToString();
             data[2] = item.Timestamp.ToString();
             data[3] = item.TotalNumber.ToString();

@@ -31,7 +31,6 @@ namespace Service
             foreach (Prescription p in examination.Prescription)
             {
                 DrugStateChange oldState = p.drug.drugStateChange;
-                //TODO: generate id(last argument)
                 DrugStateChange newState = new DrugStateChange(DateTime.Now, oldState.TotalNumber - (int)p.Number, oldState.Threshold, oldState.DrugId);
                 DrugStateChangeRepository.GetInstance().Create(newState);
                 p.drug.drugStateChange = newState;
