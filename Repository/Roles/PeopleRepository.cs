@@ -3,6 +3,7 @@
 // Created: Friday, May 22, 2020 12:14:24 PM
 // Purpose: Definition of Class PeopleRepository
 
+using Class_Diagram.Repository;
 using Model.Roles;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,30 @@ namespace Repository.Roles
 
         public UserType GetRole(uint id)
         {
-            throw new NotImplementedException();
+            UserType result = UserType.None;
+            List<string[]> personsData = Persistence.ReadEntryByPrimaryKey(path, id.ToString()); 
+            if (personsData.Count != 0)
+            {
+                string[] searchedPersonData = personsData[0];
+                result = convertToUserType(searchedPersonData[1]);
+            }
+            return result;
+        }
+
+        private UserType convertToUserType(string type)
+        {
+            if (type.Equals(UserType.Manager.ToString()))
+                return UserType.Manager;
+            else if (type.Equals(UserType.Secretary.ToString()))
+                return UserType.Secretary;
+            else if (type.Equals(UserType.Doctor.ToString()))
+                return UserType.Doctor;
+            else if (type.Equals(UserType.Specialist.ToString()))
+                return UserType.Specialist;
+            else if (type.Equals(UserType.Patient.ToString()))
+                return UserType.Patient;
+            else
+                return UserType.None;
         }
 
         public List<uint> GetActiveDoctorIds()
@@ -84,7 +108,7 @@ namespace Repository.Roles
         public List<uint> GetIdsByJMBG(string jmbg)
         {
             List<uint> result = new List<uint>();
-            List<string[]> persons = Class_Diagram.Repository.Persistence.ReadEntryByKey(this.path, jmbg, 2);
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, jmbg, 2);
             foreach(string[] person in persons)
             {
                 result.Add(uint.Parse(person[0]));
@@ -114,8 +138,11 @@ namespace Repository.Roles
 
         public Person Create(Person item)
         {
-            Class_Diagram.Repository.Persistence.WriteEntry(this.path, PreparePersonForCSV(item));
-            return item;
+            bool isAdded = Persistence.WriteEntry(this.path, PreparePersonForCSV(item));
+            if (isAdded)
+                return item;
+            else
+                return null;
         }
 
         public Person Read(uint id)

@@ -4,7 +4,9 @@
 // Purpose: Definition of Class UserService
 
 using Class_Diagram.Repository;
+using Model.Medicalrecord;
 using Model.Roles;
+using Repository.Patientdata;
 using Repository.Roles;
 using System;
 using System.Collections.Generic;
@@ -29,17 +31,49 @@ namespace Service
 
         public void AddPatient(Patient patient)
         {
-            List<uint> patients = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
-            if (patients.Count != 0)
+            if (IsPatientAlreadyExists(patient))
                 return;
             patient.SetId(getFirstAvailableId());
+            AddNewMedicalRecord(patient);        
             PeopleRepository.GetInstance().Create(patient);            
 
+        }
+
+        private bool IsPatientAlreadyExists(Patient patient)
+        {
+            List<uint> peoples_ids = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
+            foreach(uint id in peoples_ids)
+            {
+                UserType tipKorisnika = PeopleRepository.GetInstance().GetRole(id);
+                if (tipKorisnika.Equals(UserType.Patient))
+                    return true;
+            }
+            return false;
+        }
+
+        private void AddNewMedicalRecord(Patient patient)
+        {
+            MedicalRecord medicalRecord = new MedicalRecord(new InsurancePolicy(getFirstAvailableInsuranceId()),patient, getFistAvailableMedicalRecordId());
+            patient.MedRecordId = medicalRecord.GetId();
+            MedicalRecordRepository.GetInstance().Create(medicalRecord);
+            //TODO: add insurance policy into repository before adding medical record
         }
 
         private uint getFirstAvailableId()
         {
             string path = PeopleRepository.GetInstance().getPath();
+            return Persistence.GetNewId(path);
+        }
+
+        private uint getFistAvailableMedicalRecordId()
+        {
+            string path = MedicalRecordRepository.GetInstance().getPath();
+            return Persistence.GetNewId(path);
+        }
+
+        private uint getFirstAvailableInsuranceId()
+        {
+            string path = InsurancePolicyRepository.GetInstance().getPath();
             return Persistence.GetNewId(path);
         }
 

@@ -104,5 +104,10 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
+
+        public string getPath()
+        {
+            return path;
+        }
    }
 }
