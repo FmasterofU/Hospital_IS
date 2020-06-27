@@ -3,21 +3,26 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Interface IMedicalRecordService
 
+using Model.Medicalrecord;
 using System;
 
 namespace Service
 {
    public interface IMedicalRecordService
    {
-      Model.Medicalrecord.MedicalRecord GetMedicalRecordByPatient(Model.Roles.Patient patient);
+        MedicalRecord GetMedicalRecordByPatient(Model.Roles.Patient patient);
+
+        MedicalRecord EditMedicalRecord(MedicalRecord medRecord);
+
+        MedicalRecord GetMedicalRecordByAppointment(Model.Appointments.Appointment appoinment);
       
-      Model.Medicalrecord.MedicalRecord GetMedicalRecordByAppointment(Model.Appointments.Appointment appoinment);
+        MedicalRecord AddMedicalRecord(MedicalRecord medRecord);
+
+        MedicalRecord GetMedicalRecordById(uint id);
       
-      bool AddMedicalRecord(Model.Medicalrecord.MedicalRecord medRecord);
+        bool EditInsurance(InsurancePolicy insurance);
       
-      bool EditInsurance(Model.Medicalrecord.InsurancePolicy insurance);
-      
-      bool AppendExamination(Model.Examination.Examination examination, Model.Medicalrecord.MedicalRecord medicalRecord);
+        bool AppendExamination(Model.Examination.Examination examination, MedicalRecord medicalRecord);
    
    }
 }

@@ -31,7 +31,7 @@ namespace Controller
       
       List<Staff> GetAllStaff();
       
-      void AddPatient(Model.Roles.Patient patient);
+      Patient AddPatient(Model.Roles.Patient patient);
       
       void EditPatient(Model.Roles.Patient patient);
       

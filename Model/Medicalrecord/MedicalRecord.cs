@@ -6,6 +6,7 @@
 using Model.Roles;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Model.Medicalrecord
 {
@@ -22,6 +23,14 @@ namespace Model.Medicalrecord
             this.insurancePolicy = insurancePolicy;
             this.examination = examination;
             this.patient = patient;
+        }
+
+        public MedicalRecord(InsurancePolicy insurancePolicy,Patient patient)
+        {
+            this.id = 0;
+            this.patient = patient;
+            this.examination = new List<Examination.Examination>();
+            this.insurancePolicy = insurancePolicy;
         }
 
 
@@ -97,6 +106,17 @@ namespace Model.Medicalrecord
         }
 
         public Model.Roles.Patient patient;
-   
-   }
+
+        private string getExaminationSpaceSeparateIds()
+        {
+            StringBuilder result = new StringBuilder("");
+            foreach (Model.Examination.Examination one_examination in examination)
+            {
+                result.Append(" " + one_examination.GetId().ToString());
+            }
+            if (examination.Count != 0)
+                return result.ToString().Substring(1);
+            return result.ToString();
+        }
+    }
 }
