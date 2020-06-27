@@ -153,7 +153,7 @@ namespace Model.Roles
 
         public string getPatientCommaSeparatedData()
         {
-            return getPersonCommaSeparatedData() + "," + MedRecordId + "," + Address + "," + BirthDate.ToShortDateString() + "," + deceased.ToString() + "," + ParentName + "," + getAlergensSpaceSeparateIds();          
+            return getPersonCommaSeparatedData() + "," + MedRecordId + "," + Address + "," + BirthDate.Ticks + "," + deceased.ToString() + "," + ParentName + "," + getAlergensSpaceSeparateIds();          
         }
 
         private string getAlergensSpaceSeparateIds()
