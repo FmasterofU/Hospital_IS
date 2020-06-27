@@ -134,7 +134,10 @@ namespace Repository.Roles
         }
 
         
-        
+        public string getPath()
+        {
+            return path;
+        }
         
         //Metode za pripremu unosa u csv fajl
 

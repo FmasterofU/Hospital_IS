@@ -3,6 +3,7 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Class UserService
 
+using Class_Diagram.Repository;
 using Model.Roles;
 using Repository.Roles;
 using System;
@@ -28,10 +29,21 @@ namespace Service
 
         public void AddPatient(Patient patient)
         {
-            List<uint> pacijenti = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
-            if (pacijenti.Count == 0)
-                PeopleRepository.GetInstance().Create(patient);            
+            List<uint> patients = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
+            if (patients.Count != 0)
+                return;
+            patient.SetId(getFirstAvailableId());
+            PeopleRepository.GetInstance().Create(patient);            
+
         }
+
+        private uint getFirstAvailableId()
+        {
+            string path = PeopleRepository.GetInstance().getPath();
+            return Persistence.GetNewId(path);
+        }
+
+        
 
         public void AddStaffUser(Staff staff)
         {
