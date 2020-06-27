@@ -12,64 +12,81 @@ namespace Service
 {
     public class DrugService : IDrugService
     {
-        public bool AddDrug(Drug drug)
+        public Drug AddDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            return DrugRepository.GetInstance().Create(drug);
         }
 
-        public bool AddDrugBatch(DrugBatch drugBatch)
+        public DrugBatch AddDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            return DrugBatchRepository.GetInstance().Create(drugBatch);
         }
 
-        public bool AddIngridient(Ingridient ingridient)
+        public Ingridient AddIngridient(Ingridient ingridient)
         {
-            throw new NotImplementedException();
+            return IngridientRepository.GetInstance().Create(ingridient);
         }
 
-        public bool AddSideEffect(SideEffect sideEffect)
+        public SideEffect AddSideEffect(SideEffect sideEffect)
         {
-            throw new NotImplementedException();
+            return SideEffectRepository.GetInstance().Create(sideEffect);
         }
 
         public bool DeleteDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            return DrugBatchRepository.GetInstance().Delete(drugBatch.DrugId);
         }
 
         public bool DisableDrugUse(Drug drug)
         {
-            throw new NotImplementedException();
+            drug.InUse = false;
+            Drug ret =  DrugRepository.GetInstance().Update(drug);
+            if (ret != null)
+                return true;
+            else return false;
         }
 
         public bool EditDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            Drug ret = DrugRepository.GetInstance().Update(drug);
+            if (ret != null)
+                return true;
+            else return false;
         }
 
         public bool EditDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            DrugBatch ret = DrugBatchRepository.GetInstance().Update(drugBatch);
+            if (ret != null)
+                return true;
+            else return false;
         }
 
         public List<Drug> GetAllDrugs()
         {
-            throw new NotImplementedException();
+            return DrugRepository.GetInstance().GetAll();
         }
 
         public List<DrugStateChange> GetAllDrugStateChange(Drug drug)
         {
-            throw new NotImplementedException();
+            IDrugStateChangeRepository idsc = DrugStateChangeRepository.GetInstance();
+            return idsc.GetAllByDrug(drug);
         }
 
         public List<DrugBatch> GetDrugBatches(Drug drug)
         {
-            throw new NotImplementedException();
+            List<DrugBatch> temp = DrugBatchRepository.GetInstance().GetAll();
+            List<DrugBatch> ret = new List<DrugBatch>();
+            foreach (DrugBatch db in temp)
+                if (db.DrugId == drug.GetId())
+                    ret.Add(db);
+            return ret;
         }
 
         public List<Drug> SearchDrugs(string query)
         {
             List<Drug> list = DrugRepository.GetInstance().GetAll();
+            if (query.Equals("")) return list;
             List<Drug> ret = new List<Drug>();
             foreach(Drug d in list)
             {

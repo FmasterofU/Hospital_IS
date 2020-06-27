@@ -3,8 +3,10 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class IngridientRatioRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
+using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
@@ -26,22 +28,38 @@ namespace Repository.Medicine
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public IngridientRatio Create(IngridientRatio item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[4];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.ingridient.GetId().ToString();
+            data[2] = item.DrugId.ToString();
+            data[3] = item.Ratio.ToString();
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public IngridientRatio Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new IngridientRatio(uint.Parse(temp[0][0]), decimal.Parse(temp[0][3]), uint.Parse(temp[0][2]), IngridientRepository.GetInstance().Read(uint.Parse(temp[0][1])));
         }
 
         public IngridientRatio Update(IngridientRatio item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[4];
+            data[0] = item.GetId().ToString();
+            data[1] = item.ingridient.GetId().ToString();
+            data[2] = item.DrugId.ToString();
+            data[3] = item.Ratio.ToString();
+            if (Persistence.EditEntry(path, data))
+                return item;
+            else return null;
         }
 
         public System.Collections.Generic.List<IngridientRatio> GetAll()

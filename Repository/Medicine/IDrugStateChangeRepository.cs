@@ -11,7 +11,7 @@ namespace Repository.Medicine
 {
    public interface IDrugStateChangeRepository : Repository.IRepositoryCRUD<DrugStateChange, uint>
    {
-      List<DrugStateChange> GetAllByDrug();
+      List<DrugStateChange> GetAllByDrug(Drug drug);
    
    }
 }

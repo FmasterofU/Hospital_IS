@@ -25,6 +25,17 @@ namespace Model.Medicine
             this.drugStateChange = drugStateChange;
         }
 
+        public Drug(uint id, string name, bool inUse, List<DrugBatch> drugBatch, List<IngridientRatio> ingridientRatio, List<SideEffectFrequency> sideEffectFrequency, DrugStateChange drugStateChange)
+        {
+            this.id = id;
+            this.name = name;
+            this.inUse = inUse;
+            this.drugBatch = drugBatch;
+            this.ingridientRatio = ingridientRatio;
+            this.sideEffectFrequency = sideEffectFrequency;
+            this.drugStateChange = drugStateChange;
+        }
+
         public string Name
       {
          get
