@@ -5,6 +5,8 @@
 
 using Class_Diagram.Repository;
 using Model.Examination;
+using Model.Roles;
+using Repository.Roles;
 using System;
 using System.Collections.Generic;
 
@@ -33,9 +35,11 @@ namespace Repository.Patientdata
 
         public Referral Create(Referral item)
         {
-            string[] data = new string[5]; //TODO: getNewID
-            data[0] = item.GetId().ToString();
-            data[1] = item.Type.ToString();
+            string[] data = new string[5];
+            data[0] = Persistence.GetNewId(path).ToString();
+            item.SetId(uint.Parse(data[0]));
+            int type = (int)item.Type;
+            data[1] = type.ToString();
             data[2] = item.Note;
             data[3] = item.Accessory;
             data[4] = item.specialist.GetId().ToString();
@@ -46,7 +50,26 @@ namespace Repository.Patientdata
 
         public Referral Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            if (data.Count == 1)
+            {
+                uint refID = uint.Parse(data[0][0]);
+                int type = int.Parse(data[0][1]);
+                ReferralType refType = (ReferralType)type;
+                string note = data[0][2];
+                string accessory = data[0][3];
+                Specialist s = null;
+                if (!data[0][4].Equals(""))
+                {
+                    uint specID = uint.Parse(data[0][4]);
+                    //TODO: specialist read
+                    //Specialist s = (Specialist)PeopleRepository.GetInstance().Read(specID);
+                }
+                Referral ret = new Referral(refType, note, accessory, s);
+                ret.SetId(refID);
+                return ret;
+            }
+            return null;
         }
 
         public Referral Update(Referral item)
