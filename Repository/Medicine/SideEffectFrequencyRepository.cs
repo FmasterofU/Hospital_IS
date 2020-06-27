@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class SideEffectFrequencyRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace Repository.Medicine
 
         public SideEffectFrequency Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new SideEffectFrequency(uint.Parse(temp[0][0]), uint.Parse(temp[0][1]), int.Parse(temp[0][2]), int.Parse(temp[0][3]), SideEffectRepository.GetInstance().Read(uint.Parse(temp[0][4])));
         }
 
         public SideEffectFrequency Update(SideEffectFrequency item)

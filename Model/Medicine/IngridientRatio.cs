@@ -21,6 +21,14 @@ namespace Model.Medicine
             this.ingridient = ingridient;
         }
 
+        public IngridientRatio(uint id, decimal ratio, uint drugId, Ingridient ingridient)
+        {
+            this.ratio = ratio;
+            this.drugId = drugId;
+            this.id = id;
+            this.ingridient = ingridient;
+        }
+
         public decimal Ratio
       {
          get

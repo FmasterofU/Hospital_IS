@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class IngridientRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace Repository.Medicine
 
         public Ingridient Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new Ingridient(uint.Parse(temp[0][0]), temp[0][1], bool.Parse(temp[0][2]));
         }
 
         public Ingridient Update(Ingridient item)

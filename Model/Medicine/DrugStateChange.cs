@@ -23,8 +23,17 @@ namespace Model.Medicine
             this.drugId = drugId;
             this.id = 0;
         }
-      
-      public DateTime Timestamp
+
+        public DrugStateChange(uint id, DateTime timestamp, int totalNumber, int threshold, uint drugId)
+        {
+            this.timestamp = timestamp;
+            this.totalNumber = totalNumber;
+            this.threshold = threshold;
+            this.drugId = drugId;
+            this.id = id;
+        }
+
+        public DateTime Timestamp
       {
          get
          {

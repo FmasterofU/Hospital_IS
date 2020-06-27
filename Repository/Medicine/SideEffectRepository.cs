@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class SideEffectRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace Repository.Medicine
 
         public SideEffect Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new SideEffect(uint.Parse(temp[0][0]), temp[0][2], temp[0][1]);
         }
 
         public SideEffect Update(SideEffect item)

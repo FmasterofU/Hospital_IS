@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class DrugBatchRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace Repository.Medicine
 
         public DrugBatch Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new DrugBatch(uint.Parse(temp[0][0]), temp[0][4], int.Parse(temp[0][2]), new DateTime(long.Parse(temp[0][3])), uint.Parse(temp[0][1]));
         }
 
         public DrugBatch Update(DrugBatch item)

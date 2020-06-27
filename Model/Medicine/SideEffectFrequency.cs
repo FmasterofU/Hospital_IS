@@ -23,6 +23,15 @@ namespace Model.Medicine
             this.sideEffect = sideEffect;
         }
 
+        public SideEffectFrequency(uint id, uint drugId, int basis, int freq, SideEffect sideEffect)
+        {
+            this.drugId = drugId;
+            this.id = id;
+            this.basis = basis;
+            this.freq = freq;
+            this.sideEffect = sideEffect;
+        }
+
         public uint DrugId
       {
          get

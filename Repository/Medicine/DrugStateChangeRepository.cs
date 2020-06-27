@@ -51,7 +51,8 @@ namespace Repository.Medicine
 
         public DrugStateChange Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new DrugStateChange(uint.Parse(temp[0][0]), new DateTime(long.Parse(temp[0][2])), int.Parse(temp[0][3]), int.Parse(temp[0][4]), uint.Parse(temp[0][1]));
         }
 
         public DrugStateChange Update(DrugStateChange item)

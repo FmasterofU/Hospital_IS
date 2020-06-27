@@ -24,6 +24,15 @@ namespace Model.Medicine
             this.id = 0;
         }
 
+        public DrugBatch(uint id, string lotNumber, int number, DateTime expDate, uint drugId)
+        {
+            this.lotNumber = lotNumber;
+            this.number = number;
+            this.expDate = expDate;
+            this.drugId = drugId;
+            this.id = id;
+        }
+
         public int Number
       {
          get

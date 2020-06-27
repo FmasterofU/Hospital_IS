@@ -3,8 +3,10 @@
 // Created: Saturday, May 30, 2020 9:29:02 PM
 // Purpose: Definition of Class IngridientRatioRepository
 
+using Class_Diagram.Repository;
 using Model.Medicine;
 using System;
+using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
@@ -36,7 +38,8 @@ namespace Repository.Medicine
 
         public IngridientRatio Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new IngridientRatio(uint.Parse(temp[0][0]), decimal.Parse(temp[0][3]), uint.Parse(temp[0][2]), IngridientRepository.GetInstance().Read(uint.Parse(temp[0][1])));
         }
 
         public IngridientRatio Update(IngridientRatio item)

@@ -41,15 +41,15 @@ namespace Repository.Medicine
             drugEntry[3] = "";
             foreach (DrugBatch db in item.DrugBatch)
                 drugEntry[3] += db.GetId().ToString() + " ";
-            drugEntry[3] = drugEntry[3].Substring(0, drugEntry[3].Length - 1);
+            if (item.drugBatch.Count != 0) drugEntry[3] = drugEntry[3].Substring(0, drugEntry[3].Length - 1);
             drugEntry[4] = "";
             foreach (IngridientRatio ir in item.IngridientRatio)
                 drugEntry[4] += ir.GetId().ToString() + " ";
-            drugEntry[4] = drugEntry[4].Substring(0, drugEntry[4].Length - 1);
+            if (item.IngridientRatio.Count != 0) drugEntry[4] = drugEntry[4].Substring(0, drugEntry[4].Length - 1);
             drugEntry[5] = "";
             foreach (SideEffectFrequency sef in item.SideEffectFrequency)
                 drugEntry[5] += sef.GetId().ToString() + " ";
-            drugEntry[5] = drugEntry[5].Substring(0, drugEntry[5].Length - 1);
+            if (item.SideEffectFrequency.Count != 0) drugEntry[5] = drugEntry[5].Substring(0, drugEntry[5].Length - 1);
             drugEntry[6] = item.drugStateChange.GetId().ToString();
             if (Persistence.WriteEntry(path, drugEntry))
                 return item;
