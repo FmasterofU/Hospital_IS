@@ -45,7 +45,7 @@ namespace Repository.Medicine
             string[] data = new string[5];
             data[0] = item.GetId().ToString();
             data[1] = item.DrugId.ToString();
-            data[2] = item.Timestamp.ToString();
+            data[2] = item.Timestamp.Ticks.ToString();
             data[3] = item.TotalNumber.ToString();
             data[4] = item.Threshold.ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
