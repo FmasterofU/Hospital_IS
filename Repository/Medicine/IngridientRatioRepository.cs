@@ -28,12 +28,20 @@ namespace Repository.Medicine
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public IngridientRatio Create(IngridientRatio item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[4];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.ingridient.GetId().ToString();
+            data[2] = item.DrugId.ToString();
+            data[3] = item.Ratio.ToString();
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public IngridientRatio Read(uint id)

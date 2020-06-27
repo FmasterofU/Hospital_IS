@@ -28,12 +28,21 @@ namespace Repository.Medicine
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public SideEffectFrequency Create(SideEffectFrequency item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.DrugId.ToString();
+            data[2] = item.Basis.ToString();
+            data[3] = item.Freq.ToString();
+            data[4] = item.sideEffect.GetId().ToString();
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public SideEffectFrequency Read(uint id)

@@ -28,12 +28,19 @@ namespace Repository.Medicine
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public Ingridient Create(Ingridient item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[3];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.Name;
+            data[2] = item.IsAlergen.ToString();
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public Ingridient Read(uint id)

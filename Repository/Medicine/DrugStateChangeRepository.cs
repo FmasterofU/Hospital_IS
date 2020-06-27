@@ -28,12 +28,16 @@ namespace Repository.Medicine
 
         public List<DrugStateChange> GetAllByDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByKey(path, drug.GetId().ToString(), 1);
+            List<DrugStateChange> ret = new List<DrugStateChange>();
+            foreach (string[] temp in data)
+                ret.Add(new DrugStateChange(uint.Parse(temp[0]), new DateTime(long.Parse(temp[2])), int.Parse(temp[3]), int.Parse(temp[4]), uint.Parse(temp[1])));
+            return ret;
         }
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public DrugStateChange Create(DrugStateChange item)
