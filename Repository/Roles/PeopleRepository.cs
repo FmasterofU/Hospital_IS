@@ -3,53 +3,60 @@
 // Created: Friday, May 22, 2020 12:14:24 PM
 // Purpose: Definition of Class PeopleRepository
 
+using Class_Diagram.Constants;
 using Class_Diagram.Repository;
+using Model.Medicine;
 using Model.Roles;
+using Repository.Medicine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
+
 
 namespace Repository.Roles
 {
-   public class PeopleRepository : IPersonRepository
+    public class PeopleRepository : IPersonRepository
 
-        //Id,UserType,Jmbg,Name,Surname,Phone,Email,Sex,Username,Password,MedRecordId,Address,BirthDate,Deceased,ParentName,AlergensIds,Contract,IsActive,Specialization
+    //Id,UserType,Jmbg,Name,Surname,Phone,Email,Sex,Username,Password,MedRecordId,Address,BirthDate,Deceased,ParentName,AlergensIds,Contract,IsActive,Specialization
 
     {
         private string path = @"../../Data/people.csv";
         private static PeopleRepository instance = null;
 
-        private const int CSV_COLUMN_SIZE = 19;
-        private int[] STAFF_COLUM_INDEX_RANGE = { 16, 17 };
-        private int SPECIALIZATION_COLUMN_INDEX = 18;
-        private int[] PATIENT_COLUMN_INDEX_RANGE = { 10, 15 };
-        private int[] PERSON_COLUMN_INDEX_RANGE = { 0, 9 };
+        private PeopleRepository() { }
 
-        private PeopleRepository() {}
-      
-      public static PeopleRepository GetInstance()
-      {
+        public static PeopleRepository GetInstance()
+        {
             if (instance == null) instance = new PeopleRepository();
             return instance;
-      }
+        }
 
         public uint GetId(string username, string password)
         {
-            throw new NotImplementedException();
+            List<string[]> searchedResult = Persistence.ReadEntryByKey(path, username, PeopleConstants.USERNAME_COLUMN);
+            if (searchedResult.Count == 0)
+                return 0;
+            string[] person = searchedResult[0];
+            if (person[PeopleConstants.PASSWORD_COLUMN].Equals(password))
+                return uint.Parse(person[PeopleConstants.ID_COLUMN]);
+            return 0;
         }
 
         public bool HasUsername(string username)
         {
-            throw new NotImplementedException();
+            List<string[]> searchedResult = Persistence.ReadEntryByKey(path, username, PeopleConstants.USERNAME_COLUMN);
+            return searchedResult.Count != 0;
         }
 
         public UserType GetRole(uint id)
         {
             UserType result = UserType.None;
-            List<string[]> personsData = Persistence.ReadEntryByPrimaryKey(path, id.ToString()); 
-            if (personsData.Count != 0)
+            List<string[]> searchedResult = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            if (searchedResult.Count != 0)
             {
-                string[] searchedPersonData = personsData[0];
-                result = convertToUserType(searchedPersonData[1]);
+                string[] person = searchedResult[PeopleConstants.ID_COLUMN];
+                result = (UserType)int.Parse(person[PeopleConstants.USER_TYPE_COLUMN]);
             }
             return result;
         }
@@ -70,70 +77,130 @@ namespace Repository.Roles
                 return UserType.None;
         }
 
+        private List<uint> getActiveUsers(UserType type)
+        {
+            int typeEnumNumber = (int) type;
+            List<string[]> searchedResult = Persistence.ReadEntryByKey(path, typeEnumNumber.ToString(), PeopleConstants.USER_TYPE_COLUMN);
+            List<uint> result = new List<uint>();
+            foreach (string[] person in searchedResult)
+            {
+                if (bool.Parse(person[PeopleConstants.IS_ACTIVE_COLUMN]))
+                    result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
+            }
+
+            return result;
+        }
+
         public List<uint> GetActiveDoctorIds()
         {
-            throw new NotImplementedException();
+            return getActiveUsers(UserType.Doctor);
         }
 
         public List<uint> GetActiveSpecialistIds()
         {
-            throw new NotImplementedException();
+            return getActiveUsers(UserType.Specialist);
         }
 
         public List<uint> GetActiveSecretaryIds()
         {
-            throw new NotImplementedException();
+            return getActiveUsers(UserType.Secretary);
         }
 
         public List<uint> GetActiveDirectorIds()
         {
-            throw new NotImplementedException();
+            return getActiveUsers(UserType.Manager);
         }
+
 
         public List<uint> GetAllIds()
         {
-            throw new NotImplementedException();
+            List<uint> result = new List<uint>();
+            foreach(Person person in GetAll())
+            {
+                result.Add(person.GetId());
+            }
+
+            return result;
         }
 
         public List<uint> GetAllStaffIds()
         {
-            throw new NotImplementedException();
+            List<uint> result = new List<uint>();
+            foreach (Person person in GetAll())
+            {
+                if(person.IsStaff())
+                    result.Add(person.GetId());
+            }
+
+            return result;
         }
 
         public List<uint> GetAllActiveStaffIds()
         {
-            throw new NotImplementedException();
+            List<uint> result = new List<uint>();
+            foreach (Person person in GetAll())
+            {
+                if (person.IsStaff())
+                {
+                    if (((Staff)person).Active)
+                        result.Add(person.GetId());
+                }
+            }
+
+            return result;
         }
 
         public List<uint> GetIdsByJMBG(string jmbg)
         {
             List<uint> result = new List<uint>();
-            List<string[]> persons = Persistence.ReadEntryByKey(this.path, jmbg, 2);
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, jmbg, PeopleConstants.JMBG_COLUMN);
             foreach(string[] person in persons)
             {
-                result.Add(uint.Parse(person[0]));
+                result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
             }
             return result;
         }
 
         public List<uint> GetIdsByName(string name)
         {
-            throw new NotImplementedException();
+            List<uint> result = new List<uint>();
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, name, PeopleConstants.NAME_COLUMN);
+            foreach (string[] person in persons)
+            {
+                if(person[PeopleConstants.NAME_COLUMN].Equals(name))
+                    result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
+            }
+            return result;
         }
 
         public List<uint> GetIdsBySurname(string surname)
         {
-            throw new NotImplementedException();
+            List<uint> result = new List<uint>();
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, surname, PeopleConstants.SURNAME_COLUMN);
+            foreach (string[] person in persons)
+            {
+                if (person[PeopleConstants.SURNAME_COLUMN].Equals(surname))
+                    result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
+            }
+            return result;
         }
 
         public List<uint> GetPatientsIds()
         {
-            throw new NotImplementedException();
+            int patientEnumNumber = (int) UserType.Patient;
+            List<string[]> searchedResult = Persistence.ReadEntryByKey(path, patientEnumNumber.ToString(), PeopleConstants.USER_TYPE_COLUMN);
+            List<uint> result = new List<uint>();
+            foreach (string[] person in searchedResult)
+            {
+                result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
+            }
+
+            return result;
         }
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public Person Create(Person item)
@@ -148,17 +215,75 @@ namespace Repository.Roles
 
         public Person Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+
+            if (data.Count == 0)
+                return null;
+            //Person data
+            string[] line = data[0];
+            uint personId = uint.Parse(line[PeopleConstants.ID_COLUMN]);
+            UserType personType = (UserType) int.Parse(line[PeopleConstants.USER_TYPE_COLUMN]);
+            string jmbg = line[PeopleConstants.JMBG_COLUMN];
+            string name = line[PeopleConstants.NAME_COLUMN];
+            string surname = line[PeopleConstants.SURNAME_COLUMN];
+            string phone = line[PeopleConstants.PHONE_COLUMN];
+            string email = line[PeopleConstants.EMAIL_COLUMN];
+            Sex sex = (Sex)int.Parse(line[PeopleConstants.SEX_COLUMN]);
+            string username = line[PeopleConstants.USERNAME_COLUMN];
+            string password = line[PeopleConstants.PASSWORD_COLUMN];
+            uint medRecordId = line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN].Equals("")? 0: uint.Parse(line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN]);
+            string address = line[PeopleConstants.ADDRESS_COLUMN];
+
+            //StaffData
+            long dateTicks = line[PeopleConstants.BIRTH_DATE_COLUMN].Equals("") ? 0 : long.Parse(line[PeopleConstants.BIRTH_DATE_COLUMN]);
+            bool decased = line[PeopleConstants.DECASED_COLUMN].Equals("") ? false : bool.Parse(line[PeopleConstants.DECASED_COLUMN]);
+            string parentName = line[PeopleConstants.PARENT_NAME_COLUMN];
+            string alergenIdsText = line[PeopleConstants.ALERGENS_IDS_COLUMN];
+            //string contract = line[PeopleRepositoryConstants.CONTRACT_COLUMN];
+            bool active = line[PeopleConstants.IS_ACTIVE_COLUMN].Equals("") ? false : bool.Parse(line[PeopleConstants.IS_ACTIVE_COLUMN]);
+            string specialization = line[PeopleConstants.SPECIALIZATION_COLUMN];
+
+            if (personType.Equals(UserType.Patient))
+                return new Patient(name, surname, phone, email, sex, jmbg, username, password, personType, address, new DateTime(dateTicks), decased, parentName, medRecordId, getAlergens(alergenIdsText));
+            else if (personType.Equals(UserType.Secretary))
+                return new Secretary(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+            else if (personType.Equals(UserType.Doctor))
+                return new Doctor(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+            else if (personType.Equals(UserType.Manager))
+                return new Manager(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+            else return null;
+   
+        }
+
+        private List<Ingridient> getAlergens(string alergensIdsText)
+        {
+            List<Ingridient> result = new List<Ingridient>();
+            if (alergensIdsText.Equals(""))
+                return result;
+            foreach (string alergenId in alergensIdsText.Split(' '))
+            {
+                result.Add(IngridientRepository.GetInstance().Read(uint.Parse(alergenId)));
+            }
+            return result;
         }
 
         public Person Update(Person item)
         {
-            throw new NotImplementedException();
+            if (Persistence.EditEntry(path, PreparePersonForCSV(item)))
+                return item;
+            return null;
         }
 
         public List<Person> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> entries = new List<string>(System.IO.File.ReadAllLines(path).Skip(1));
+            List<Person> returnValue = new List<Person>();
+            foreach(string line in entries)
+            {
+                string[] lineParams = line.Split(',');
+                returnValue.Add(Read(uint.Parse(lineParams[PeopleConstants.ID_COLUMN])));
+            }
+            return returnValue;
         }
 
 
@@ -179,7 +304,7 @@ namespace Repository.Roles
 
         private string[] CreatePatientDataArrayForCSV(Patient patient)
         {
-            string[] result = new string[CSV_COLUMN_SIZE];
+            string[] result = new string[PeopleConstants.CSV_COLUMN_SIZE];
 
             string[] patientData = patient.getPatientCommaSeparatedData().Split(',');
 
@@ -197,18 +322,18 @@ namespace Repository.Roles
         private string[] CreateSpecialistDataArrayForCSV(Specialist doctor_specialist)
         {
             string[] result = CreateStaffDataArrayForCSV((Staff)doctor_specialist);
-            result[SPECIALIZATION_COLUMN_INDEX] = doctor_specialist.Specialization;
+            result[PeopleConstants.SPECIALIZATION_COLUMN] = doctor_specialist.Specialization;
             return result;
         }
 
         private string[] CreateStaffDataArrayForCSV(Staff staff)
         {
-            string[] result = new string[CSV_COLUMN_SIZE];
+            string[] result = new string[PeopleConstants.CSV_COLUMN_SIZE];
             string[] staffData = staff.getStaffCommaSeparatedData().Split(',');
             int staffDataIndex = 0;
             for (int i = 0; i < result.Length; i++)
             {
-                if (i <= PERSON_COLUMN_INDEX_RANGE[1] || (i >= STAFF_COLUM_INDEX_RANGE[0] && i <= STAFF_COLUM_INDEX_RANGE[1]))
+                if (i <= PeopleConstants.PERSON_COLUMN_INDEX_END || (i >= PeopleConstants.STAFF_COLUM_INDEX_START  && i <= PeopleConstants.STAFF_COLUM_INDEX_END ))
                 {
                     result[i] = staffData[staffDataIndex];
                     staffDataIndex++;

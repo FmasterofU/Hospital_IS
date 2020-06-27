@@ -150,7 +150,12 @@ namespace Model.Roles
 
         public string getPersonCommaSeparatedData()
         {            
-            return id + "," + UserType + "," + Jmbg + "," + Name + "," + Surname + "," + Phone + "," + Email + "," + Sex + "," + Username + "," + Password;
+            return id + "," + (int)UserType + "," + Jmbg + "," + Name + "," + Surname + "," + Phone + "," + Email + "," + (int)Sex + "," + Username + "," + Password;
+        }
+
+        public bool IsStaff()
+        {
+            return UserType.Equals(UserType.Doctor) || UserType.Equals(UserType.Manager) || UserType.Equals(UserType.Secretary) || UserType.Equals(UserType.Specialist);
         }
     }
 }
