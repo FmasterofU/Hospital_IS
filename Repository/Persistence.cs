@@ -21,6 +21,8 @@ namespace Class_Diagram.Repository
         }
         public static bool WriteEntry(string path, string[] data)
         {
+            for (int i = 0; i < data.Length; i++)
+                data[i] = data[i].Replace(',', '|');
             string entry = "";
             foreach (string s in data)
                 entry += s + ",";
@@ -32,6 +34,8 @@ namespace Class_Diagram.Repository
         }
         public static bool EditEntry(string path, string[] data)
         {
+            for (int i = 0; i < data.Length; i++)
+                data[i] = data[i].Replace(',', '|');
             List<string> lines = new List<string>(File.ReadAllLines(path));
             List<string> entries = new List<string>(lines.Skip(1));
             foreach (string entry in entries.ToList())
@@ -59,6 +63,8 @@ namespace Class_Diagram.Repository
             foreach(string entry in entries)
             {
                 string[] parts = entry.Split(',');
+                for (int i = 0; i < parts.Length; i++)
+                    parts[i] = parts[i].Replace('|', ',');
                 if (id.Equals(parts[position]))
                     ret.Add(parts);
             }
