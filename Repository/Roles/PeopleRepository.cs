@@ -276,14 +276,11 @@ namespace Repository.Roles
 
         public List<Person> GetAll()
         {
-            List<string> entries = new List<string>(System.IO.File.ReadAllLines(path).Skip(1));
-            List<Person> returnValue = new List<Person>();
-            foreach(string line in entries)
-            {
-                string[] lineParams = line.Split(',');
-                returnValue.Add(Read(uint.Parse(lineParams[PeopleConstants.ID_COLUMN])));
-            }
-            return returnValue;
+            List<string> allIds = Persistence.ReadAllPrimaryIds(path);
+            List<Person> ret = new List<Person>();
+            foreach (string s in allIds)
+                ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
 
 
