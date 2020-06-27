@@ -14,9 +14,9 @@ namespace Controller
    {
       public Service.IUserService iUserService;
 
-        public void AddPatient(Patient patient)
+        public Patient AddPatient(Patient patient)
         {
-            ((UserService)iUserService).AddPatient(patient);
+            return ((UserService)iUserService).AddPatient(patient);
         }
 
         public void AddStaffUser(Staff staff)

@@ -33,7 +33,7 @@ namespace Repository.Patientdata
 
         public Referral Create(Referral item)
         {
-            string[] data = new string[5];
+            string[] data = new string[5]; //TODO: getNewID
             data[0] = item.GetId().ToString();
             data[1] = item.Type.ToString();
             data[2] = item.Note;

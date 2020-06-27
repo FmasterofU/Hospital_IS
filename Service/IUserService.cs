@@ -11,29 +11,29 @@ namespace Service
 {
    public interface IUserService
    {
-      Model.Roles.UserType Auth(string username, string password);
+      UserType Auth(string username, string password);
       
       void CloseSession();
       
-      Model.Roles.Person GetUser();
+      Person GetUser();
       
       void SaveUser();
       
-      void AddStaffUser(Model.Roles.Staff staff);
+      void AddStaffUser(Staff staff);
       
-      Model.Roles.UserType GetCurrentSessionType();
+      UserType GetCurrentSessionType();
       
-      void EditStaffUser(Model.Roles.Staff staff);
+      void EditStaffUser(Staff staff);
       
-      void RemoveStaffUser(Model.Roles.Staff staff);
+      void RemoveStaffUser(Staff staff);
       
       List<Doctor> GetDoctors();
       
       List<Staff> GetAllStaff();
       
-      void AddPatient(Model.Roles.Patient patient);
+      Patient AddPatient(Patient patient);
       
-      void EditPatient(Model.Roles.Patient patient);
+      void EditPatient(Patient patient);
       
       List<Patient> GetPatientBySearch(String jmbg, String name, String surname);
    

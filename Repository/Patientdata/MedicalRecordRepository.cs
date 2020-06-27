@@ -37,7 +37,8 @@ namespace Repository.Patientdata
         public MedicalRecord Create(MedicalRecord item)
         {
             string[] data = new string[4];
-            data[0] = item.GetId().ToString();
+            data[0] = Persistence.GetNewId(path).ToString();
+            item.SetId(uint.Parse(data[0]));
             data[1] = item.patient.GetId().ToString();
             data[2] = item.insurancePolicy.GetId();
             data[3] = "";
@@ -66,15 +67,16 @@ namespace Repository.Patientdata
                     //TODO: change return type
                     Patient patient = null;
                     List<Examination> exams = new List<Examination>();
-                    if (data[0].Length == 4)
+                    
+                    
+                    string[] examIDs = data[0][3].Split(' ');
+                    foreach (string exID in examIDs)
                     {
-                        string[] examIDs = data[0][3].Split(' ');
-                        foreach (string exID in examIDs)
-                        {
-                            Examination e = ExaminationRepository.GetInstance().Read(uint.Parse(exID));
-                            exams.Add(e);
-                        }
+                        if (exID.Equals("")) break;
+                        Examination e = ExaminationRepository.GetInstance().Read(uint.Parse(exID));
+                        exams.Add(e);
                     }
+                    
                     MedicalRecord ret = new MedicalRecord(policy, exams, patient);
                     ret.SetId(mrID);
                     return ret;
@@ -104,5 +106,7 @@ namespace Repository.Patientdata
         {
             throw new NotImplementedException();
         }
+
+
    }
 }

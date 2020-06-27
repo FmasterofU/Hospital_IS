@@ -16,9 +16,14 @@ namespace Service
 {
     public class MedicalRecordService : IMedicalRecordService
     {
-        public bool AddMedicalRecord(MedicalRecord medRecord)
+        public MedicalRecord AddMedicalRecord(MedicalRecord medRecord)
         {
-            throw new NotImplementedException();
+            return MedicalRecordRepository.GetInstance().Create(medRecord);            
+        }
+
+        public MedicalRecord EditMedicalRecord(MedicalRecord medRecord)
+        {
+            return MedicalRecordRepository.GetInstance().Update(medRecord);
         }
 
         public bool AppendExamination(Examination examination, MedicalRecord medicalRecord)
@@ -57,6 +62,11 @@ namespace Service
         {
             throw new NotImplementedException();
 
+        }
+
+        public MedicalRecord GetMedicalRecordById(uint id)
+        {
+            return MedicalRecordRepository.GetInstance().Read(id);
         }
     }
 }
