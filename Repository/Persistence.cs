@@ -24,7 +24,6 @@ namespace Class_Diagram.Repository
             string entry = "";
             foreach (string s in data)
                 entry += s + ",";
-            //entry = entry.TrimEnd(',');
             entry = entry.Substring(0, entry.Length - 1);
             var entryList = new List<string>();
             entryList.Add(entry);
@@ -41,7 +40,6 @@ namespace Class_Diagram.Repository
                     string temp = "";
                     foreach (string s in data)
                         temp += s + ",";
-                    // temp = temp.TrimEnd(',');
                     temp = temp.Substring(0, temp.Length - 1);
                     entries[entries.IndexOf(entry)] = temp;
                 }
