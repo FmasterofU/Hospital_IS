@@ -73,12 +73,8 @@ namespace Controller
         public List<Drug> SearchDrugs(string query)
         {
             query = query.Trim();
-            if(!query.Equals(""))
-            {
-                List<Drug> ret = ((DrugService)iDrugService).SearchDrugs(query);
-                return ret;
-            }
-            return new List<Drug>();
+            List<Drug> ret = ((DrugService)iDrugService).SearchDrugs(query);
+            return ret;
         }
     }
 }
