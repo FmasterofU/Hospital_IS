@@ -51,7 +51,13 @@ namespace Repository.Medicine
 
         public SideEffect Update(SideEffect item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[3];
+            data[0] = item.GetId().ToString();
+            data[1] = item.Name;
+            data[2] = item.Description;
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public List<SideEffect> GetAll()

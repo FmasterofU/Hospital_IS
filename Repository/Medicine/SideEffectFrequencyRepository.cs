@@ -53,7 +53,15 @@ namespace Repository.Medicine
 
         public SideEffectFrequency Update(SideEffectFrequency item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            data[0] = item.GetId().ToString();
+            data[1] = item.DrugId.ToString();
+            data[2] = item.Basis.ToString();
+            data[3] = item.Freq.ToString();
+            data[4] = item.sideEffect.GetId().ToString();
+            if (Persistence.EditEntry(path, data))
+                return item;
+            else return null;
         }
 
         public List<SideEffectFrequency> GetAll()

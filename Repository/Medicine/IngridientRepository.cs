@@ -51,7 +51,13 @@ namespace Repository.Medicine
 
         public Ingridient Update(Ingridient item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[3];
+            data[0] = item.GetId().ToString();
+            data[1] = item.Name;
+            data[2] = item.IsAlergen.ToString();
+            if (Persistence.EditEntry(path, data))
+                return item;
+            else return null;
         }
 
         public List<Ingridient> GetAll()

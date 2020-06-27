@@ -43,6 +43,7 @@ namespace Repository.Medicine
         public DrugStateChange Create(DrugStateChange item)
         {
             string[] data = new string[5];
+            item.SetId(Persistence.GetNewId(path));
             data[0] = item.GetId().ToString();
             data[1] = item.DrugId.ToString();
             data[2] = item.Timestamp.Ticks.ToString();
@@ -61,7 +62,15 @@ namespace Repository.Medicine
 
         public DrugStateChange Update(DrugStateChange item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            data[0] = item.GetId().ToString();
+            data[1] = item.DrugId.ToString();
+            data[2] = item.Timestamp.Ticks.ToString();
+            data[3] = item.TotalNumber.ToString();
+            data[4] = item.Threshold.ToString();
+            bool isAdded = Persistence.EditEntry(path, data);
+            if (isAdded) return item;
+            else return null;
         }
 
         public List<DrugStateChange> GetAll()

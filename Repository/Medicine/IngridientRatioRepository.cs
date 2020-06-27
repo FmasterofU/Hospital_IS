@@ -52,7 +52,14 @@ namespace Repository.Medicine
 
         public IngridientRatio Update(IngridientRatio item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[4];
+            data[0] = item.GetId().ToString();
+            data[1] = item.ingridient.GetId().ToString();
+            data[2] = item.DrugId.ToString();
+            data[3] = item.Ratio.ToString();
+            if (Persistence.EditEntry(path, data))
+                return item;
+            else return null;
         }
 
         public System.Collections.Generic.List<IngridientRatio> GetAll()
