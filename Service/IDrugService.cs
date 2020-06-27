@@ -15,21 +15,21 @@ namespace Service
       
       List<Drug> GetAllDrugs();
       
-      bool AddDrug(Model.Medicine.Drug drug);
+      Drug AddDrug(Model.Medicine.Drug drug);
       
       bool DisableDrugUse(Model.Medicine.Drug drug);
       
       bool EditDrug(Model.Medicine.Drug drug);
       
-      bool AddIngridient(Model.Medicine.Ingridient ingridient);
+      Ingridient AddIngridient(Model.Medicine.Ingridient ingridient);
       
-      bool AddSideEffect(Model.Medicine.SideEffect sideEffect);
+      SideEffect AddSideEffect(Model.Medicine.SideEffect sideEffect);
       
       List<DrugStateChange> GetAllDrugStateChange(Model.Medicine.Drug drug);
       
       List<DrugBatch> GetDrugBatches(Model.Medicine.Drug drug);
       
-      bool AddDrugBatch(Model.Medicine.DrugBatch drugBatch);
+      DrugBatch AddDrugBatch(Model.Medicine.DrugBatch drugBatch);
       
       bool EditDrugBatch(Model.Medicine.DrugBatch drugBatch);
       

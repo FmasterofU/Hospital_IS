@@ -79,5 +79,16 @@ namespace Class_Diagram.Repository
             File.WriteAllLines(path, entries);
             return true;
         }
+        public static List<string> ReadAllPrimaryIds(string path)
+        {
+            List<string> entries = new List<string>(File.ReadAllLines(path).Skip(1));
+            List<string> ret = new List<string>();
+            foreach (string entry in entries)
+            {
+                string[] parts = entry.Split(',');
+                ret.Add(parts[0]);
+            }
+            return ret;
+        }
     }
 }

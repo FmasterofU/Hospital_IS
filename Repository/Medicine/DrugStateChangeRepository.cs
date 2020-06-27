@@ -26,7 +26,7 @@ namespace Repository.Medicine
             return instance;
       }
 
-        public List<DrugStateChange> GetAllByDrug()
+        public List<DrugStateChange> GetAllByDrug(Drug drug)
         {
             throw new NotImplementedException();
         }
