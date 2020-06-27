@@ -106,11 +106,6 @@ namespace Model.Medicalrecord
         }
 
         public Model.Roles.Patient patient;
-        //MedicalRecordId,PatientId,InsuranceId,ExaminationIds
-        public string getMedicalRecordCommaSeparatedData()
-        {
-            return id+","+patient.GetId()+","+insurancePolicy.GetId()+","+getExaminationSpaceSeparateIds();
-        }
 
         private string getExaminationSpaceSeparateIds()
         {
