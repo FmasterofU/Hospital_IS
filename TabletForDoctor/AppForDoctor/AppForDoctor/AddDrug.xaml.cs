@@ -27,7 +27,6 @@ namespace AppForDoctor
         public AddDrug()
         {
             InitializeComponent();
-            //TODO: load all medicaments in hospital
             /*drugSet.Add("Novi");
             drugSet.Add("Nnovi");
             drugSet.Add("Noovi");
@@ -80,7 +79,6 @@ namespace AppForDoctor
             }
             DrugsPage d = DrugsPage.getInstance();
             //d.AddDrugToDict(item, amount);
-            //TODO: ne sme biti null
             d.AddDrugToDict(new Model.Examination.Prescription((uint)amount, usageTextBox.Text, adding));
             druggSet.Clear();
             this.Close();

@@ -1,4 +1,5 @@
-﻿using Model.Medicalrecord;
+﻿using Model.Examination;
+using Model.Medicalrecord;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace AppForDoctor
     public partial class RefferalsPage : Page
     {
         private static RefferalsPage instance = null;
-        private HashSet<string> refSet = new HashSet<string>();
+        //private HashSet<string> refSet = new HashSet<string>();
+        private HashSet<Model.Examination.Referral> referallSet = new HashSet<Model.Examination.Referral>();
         private RefferalsPage()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace AppForDoctor
 
         private void examinationFromRefferalsButton_Click(object sender, RoutedEventArgs e)
         {
-            ExaminationPage.getInstance().saveAddedReferrals(refSet);
+            ExaminationPage.getInstance().saveAddedReferrals(referallSet);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
@@ -75,10 +77,10 @@ namespace AppForDoctor
             a.ShowDialog();
         }
 
-        public void AddReferralToSet(string refType, string refName)
+        public void AddReferralToSet(Model.Examination.Referral referral)
         {
-            refSet.Add(refType);
-            referralsNowListBox.Items.Add(refName);
+            referallSet.Add(referral);
+            referralsNowListBox.Items.Add(referallSet.GetType().ToString());
             deleteRefferalButton.IsEnabled = true;
         }
 
@@ -92,9 +94,19 @@ namespace AppForDoctor
             deleteRefferalButton.IsEnabled = false;
         }
 
-        public HashSet<string> getRefSet()
+        public HashSet<Model.Examination.Referral> getRefSet()
         {
-            return refSet;
+            return referallSet;
+        }
+
+        public HashSet<ReferralType> getRefTypeSet()
+        {
+            HashSet<ReferralType> ret = new HashSet<ReferralType>();
+            foreach(Model.Examination.Referral r in referallSet)
+            {
+                ret.Add(r.Type);
+            }
+            return ret;
         }
 
         private void AddOldReferrals()
@@ -245,10 +257,24 @@ namespace AppForDoctor
             }
         }
 
-        public void DeleteReferralFromSet(string refType, string refName)
+        public void DeleteReferralFromSet(string refType)
         {
-            refSet.Remove(refType);
-            referralsNowListBox.Items.Remove(refName);
+            //refSet.Remove(refType);
+            //referralsNowListBox.Items.Remove(refName);
+            Model.Examination.Referral del = null;
+            foreach(Model.Examination.Referral r in referallSet)
+            {
+                if(r.Type.ToString().Equals(refType))
+                {
+                    del = r;
+                    break;
+                }
+            }
+            if(del != null)
+            {
+                referallSet.Remove(del);
+                referralsNowListBox.Items.Remove(del.Type.ToString());
+            }
             addRefferalButton.IsEnabled = true;
         }
     }

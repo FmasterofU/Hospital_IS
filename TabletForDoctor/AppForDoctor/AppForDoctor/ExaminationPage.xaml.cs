@@ -29,7 +29,8 @@ namespace AppForDoctor
         //private HashSet<string> addedDrugs = new HashSet<string>();
         //private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
         private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
-        private HashSet<string> addedReferralsSet = new HashSet<string>();
+        //private HashSet<string> addedReferralsSet = new HashSet<string>();
+        private HashSet<Model.Examination.Referral> referallSet = new HashSet<Model.Examination.Referral>();
         private DateTime? controlReviewDate = default;
         private MedicalRecord medRecord = null;
         private ExaminationPage()
@@ -96,7 +97,6 @@ namespace AppForDoctor
 
         private void saveDiagnosisButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: save history in data base
             //string toHistory = diagnosis + "\n" + DictToString(addedDrugsDict) + "\n" + HashsetToString(addedReferralsSet) + "\n" + controlReviewDate.ToString();
             //MedHistoryPage.getInstance().historyText.Text = toHistory + MedHistoryPage.getInstance().getHistory().ToString();
             saveDiagnosisButton.IsEnabled = false;
@@ -127,9 +127,9 @@ namespace AppForDoctor
             }
         }
 
-        public void saveAddedReferrals(HashSet<string> set)
+        public void saveAddedReferrals(HashSet<Model.Examination.Referral> set)
         {
-            if(!addedReferralsSet.SetEquals(set))
+            /*if(!addedReferralsSet.SetEquals(set))
             {
                 addedReferralsSet.Clear();
                 saveDiagnosisButton.IsEnabled = true;
@@ -137,6 +137,12 @@ namespace AppForDoctor
                 {
                     addedReferralsSet.Add(s);
                 }
+            }*/
+            if(!referallSet.SetEquals(set))
+            {
+                referallSet.Clear();
+                saveDiagnosisButton.IsEnabled = true;
+                foreach (Model.Examination.Referral r in set) referallSet.Add(r);
             }
         }
 

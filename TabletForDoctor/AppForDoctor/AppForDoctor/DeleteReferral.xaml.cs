@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Examination;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace AppForDoctor
     /// </summary>
     public partial class DeleteReferral : Window
     {
-        private HashSet<String> refSet = new HashSet<string>();
+        //private HashSet<string> refSet = new HashSet<string>();
+        private HashSet<Model.Examination.Referral> reffSet = new HashSet<Model.Examination.Referral>();
         public DeleteReferral()
         {
             InitializeComponent();
@@ -54,25 +56,25 @@ namespace AppForDoctor
 
         private void AddReferralsToCombo()
         {
-            refSet = RefferalsPage.getInstance().getRefSet();
+            reffSet = RefferalsPage.getInstance().getRefSet();
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {
-                foreach (string s in refSet)
+                foreach (Model.Examination.Referral r in reffSet)
                 {
-                    if (s.Equals("specialist")) referralsCombo.Items.Add("Uput lekaru specijalisti");
-                    else if (s.Equals("lab")) referralsCombo.Items.Add("Uput za laboratoriju");
-                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Uput za pomagalo");
-                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Uput za bolničko lečenje");
+                    if (r.Type == ReferralType.specialistExam) referralsCombo.Items.Add("Uput lekaru specijalisti");
+                    else if (r.Type == ReferralType.laboratory) referralsCombo.Items.Add("Uput za laboratoriju");
+                    else if (r.Type == ReferralType.medicalAccessory) referralsCombo.Items.Add("Uput za pomagalo");
+                    else if (r.Type == ReferralType.stationaryCare) referralsCombo.Items.Add("Uput za bolničko lečenje");
                 }
             }
             else if (MainWindow.GetLanguage() == MainWindow.Language.English)
             {
-                foreach (string s in refSet)
+                foreach (Model.Examination.Referral r in reffSet)
                 {
-                    if (s.Equals("specialist")) referralsCombo.Items.Add("Referral to specialist");
-                    else if (s.Equals("lab")) referralsCombo.Items.Add("Referral for laboratory");
-                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Referral for accessory");
-                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Referral for hospital care");
+                    if (r.Type == ReferralType.specialistExam) referralsCombo.Items.Add("Referral to specialist");
+                    else if (r.Type == ReferralType.laboratory) referralsCombo.Items.Add("Referral for laboratory");
+                    else if (r.Type == ReferralType.medicalAccessory) referralsCombo.Items.Add("Referral for accessory");
+                    else if (r.Type == ReferralType.stationaryCare) referralsCombo.Items.Add("Referral for hospital care");
                 }
             }
             referralsCombo.SelectedIndex = -1;
@@ -87,10 +89,10 @@ namespace AppForDoctor
         private string GetSelectedRefType()
         {
             string option = referralsCombo.SelectedItem.ToString();
-            if (option.Contains("laborator")) return "lab";
-            else if (option.Contains("pomagalo") || option.Contains("accessory")) return "accessory";
-            else if (option.Contains("bolni") || option.Contains("hospital")) return "hospital";
-            else if (option.Contains("speci")) return "specialist";
+            if (option.Contains("laborator")) return ReferralType.laboratory.ToString();
+            else if (option.Contains("pomagalo") || option.Contains("accessory")) return ReferralType.medicalAccessory.ToString();
+            else if (option.Contains("bolni") || option.Contains("hospital")) return ReferralType.stationaryCare.ToString();
+            else if (option.Contains("speci")) return ReferralType.specialistExam.ToString();
             return "";
         }
 
@@ -99,14 +101,24 @@ namespace AppForDoctor
             string selected = referralsCombo.SelectedItem.ToString();
             string type = GetSelectedRefType();
             RefferalsPage r = RefferalsPage.getInstance();
-            r.DeleteReferralFromSet(type, selected);
-            refSet.Remove(type);
+            r.DeleteReferralFromSet(type);
+            //refSet.Remove(type);
+            Model.Examination.Referral del = null;
+            foreach(Model.Examination.Referral rr in reffSet)
+            {
+                if(rr.Type.ToString().Equals(type))
+                {
+                    del = rr;
+                    break;
+                }
+            }
+            if (del != null) reffSet.Remove(del);
             referralsCombo.Items.Remove(selected);
-            if (refSet.Count == 0)
+            /*if (refSet.Count == 0)
             {
                 RefferalsPage.getInstance().disableDeleteButton();
                 this.Close();
-            }
+            }*/
         }
     }
 }

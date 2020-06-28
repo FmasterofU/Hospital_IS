@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Class_Diagram.Model.Appointments;
+using Controller;
+using Model.Rooms;
+using Repository.Roomsninventory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,6 +70,14 @@ namespace AppForDoctor
             selDate = selDate.AddTicks(selTime.TimeOfDay.Ticks);
             if (!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
             this.Close();
+            //AppointmentController c = new AppointmentController();
+            //c.SetStrategy("doctor");
+            //c.AddAppointment(new Model.Appointments.Appointment(selDate, selDate.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId(), EditProfilePage.getInstance().getUser()), 
+            //Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
+            //Model.Appointments.Appointment a =  new Model.Appointments.Appointment(selDate, selDate.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
+            //c.AddAppointment(ref a, Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
+            //List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(30), EditProfilePage.getInstance().getUser());
+            //foreach (Term t in free) Console.WriteLine(t.StartTime);
         }
 
         private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

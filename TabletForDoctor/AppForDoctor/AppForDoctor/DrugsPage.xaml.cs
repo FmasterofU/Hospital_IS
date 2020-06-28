@@ -28,7 +28,6 @@ namespace AppForDoctor
         private DrugsPage()
         {
             InitializeComponent();
-            //TODO: load drugs from database
             foreach(KeyValuePair<Model.Examination.Prescription, uint> pair in prescriptionDict)
             {
                 drugListBox.Items.Add(pair.Key.drug.Name + " *" + pair.Value);

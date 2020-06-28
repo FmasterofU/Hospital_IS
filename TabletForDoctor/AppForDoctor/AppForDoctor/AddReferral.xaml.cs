@@ -1,4 +1,5 @@
-﻿using Model.Roles;
+﻿using Model.Examination;
+using Model.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace AppForDoctor
     {
         //TODO: read isSpecialist from database
         private bool isSpecialist = true;
-        private HashSet<string> refSet = new HashSet<string>();
+        //private HashSet<string> refSet = new HashSet<string>();
+        private HashSet<ReferralType> reffSet = new HashSet<ReferralType>();
         public AddReferral()
         {
             InitializeComponent();
@@ -70,11 +72,11 @@ namespace AppForDoctor
 
         private void AddAlowedReferrals()
         {
-            refSet.Add("specialist");
-            refSet.Add("lab");
-            refSet.Add("accessory");
-            if (EditProfilePage.getInstance().getUser().UserType == UserType.Specialist) refSet.Add("hospital");
-            refSet.ExceptWith(RefferalsPage.getInstance().getRefSet());
+            reffSet.Add(ReferralType.specialistExam);
+            reffSet.Add(ReferralType.laboratory);
+            reffSet.Add(ReferralType.medicalAccessory);
+            if (EditProfilePage.getInstance().getUser().UserType == UserType.Specialist) reffSet.Add(ReferralType.stationaryCare);
+            reffSet.ExceptWith(RefferalsPage.getInstance().getRefTypeSet());
 
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {
