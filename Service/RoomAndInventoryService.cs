@@ -61,7 +61,7 @@ namespace Service
 
         public bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem)
         {
-            throw new NotImplementedException();
+            return MedEquipmentItemRepository.GetInstance().Delete(medEquipmentItem.GetId());
         }
 
         public bool DeleteRoom(Room room)
@@ -89,9 +89,25 @@ namespace Service
             return StationaryRoomPatientsStateRepository.GetInstance().GetAllByRoom(stationaryRoom);
         }
 
-        public bool UpdateMedEquipmentType(MedEquipmentType medEqType)
+        public bool EditMedEquipmentType(MedEquipmentType medEqType)
         {
             return MedEquipmentTypeRepository.GetInstance().Update(medEqType) == null ? false : true;
+        }
+
+
+        public ItemCount AddItemCount(ItemCount item)
+        {
+            return ItemCountRepository.GetInstance().Create(item);
+        }
+
+        public bool EditItemCount(ItemCount item)
+        {
+            return ItemCountRepository.GetInstance().Update(item) == null ? false : true;
+        }
+
+        public bool DeleteItemCount(ItemCount item)
+        {
+            return ItemCountRepository.GetInstance().Delete(item.GetId());
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Controller
             return iRoomAndInventoryService.AddEquipmentToRoom(room, eqType, number);
         }
 
+        public ItemCount AddItemCount(ItemCount item)
+        {
+            return iRoomAndInventoryService.AddItemCount(item);
+        }
+
         public MedEquipmentItem AddMedEquipmentItem(MedEquipmentType medEquipmentType, Room room)
         {
             return iRoomAndInventoryService.AddMedEquipmentItem(medEquipmentType, room);
@@ -35,6 +40,11 @@ namespace Controller
             return iRoomAndInventoryService.AddRoom(room);
         }
 
+        public bool DeleteItemCount(ItemCount item)
+        {
+            return iRoomAndInventoryService.DeleteItemCount(item);
+        }
+
         public bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem)
         {
             return iRoomAndInventoryService.DeleteMedEquipmentitem(medEquipmentItem);
@@ -43,6 +53,16 @@ namespace Controller
         public bool DeleteRoom(Room room)
         {
             return iRoomAndInventoryService.DeleteRoom(room);
+        }
+
+        public bool EditItemCount(ItemCount item)
+        {
+            return iRoomAndInventoryService.EditItemCount(item);
+        }
+
+        public bool EditMedEquipmentType(MedEquipmentType medEqType)
+        {
+            return iRoomAndInventoryService.EditMedEquipmentType(medEqType);
         }
 
         public bool EditRoom(Room room)
@@ -67,7 +87,7 @@ namespace Controller
 
         public bool UpdateMedEquipmentType(MedEquipmentType medEqType)
         {
-            return iRoomAndInventoryService.UpdateMedEquipmentType(medEqType);
+            return iRoomAndInventoryService.EditMedEquipmentType(medEqType);
         }
     }
 }

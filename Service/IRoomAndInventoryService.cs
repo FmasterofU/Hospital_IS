@@ -4,6 +4,7 @@
 // Purpose: Definition of Interface IRoomAndInventoryService
 
 using Model.Inventory;
+using Model.Medicine;
 using Model.Rooms;
 using System;
 using System.Collections.Generic;
@@ -25,14 +26,20 @@ namespace Service
       Room AddRoom(Model.Rooms.Room room);
       
       MedEquipmentType AddMedEquipmentType(Model.Inventory.MedEquipmentType medEquipmentType);
-      
-      List<MedEquipmentType> GetAllMedEquipmentType();
+
+        List<MedEquipmentType> GetAllMedEquipmentType();
       
       MedEquipmentItem AddMedEquipmentItem(Model.Inventory.MedEquipmentType medEquipmentType, Model.Rooms.Room room);
+
+        bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem);
       
-      bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem);
-      
-      bool UpdateMedEquipmentType(Model.Inventory.MedEquipmentType medEqType);
-   
-   }
+      bool EditMedEquipmentType(Model.Inventory.MedEquipmentType medEqType);
+
+        ItemCount AddItemCount(ItemCount item);
+
+        bool EditItemCount(ItemCount item);
+
+        bool DeleteItemCount(ItemCount item);
+
+    }
 }
