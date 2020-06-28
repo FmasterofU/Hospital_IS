@@ -130,7 +130,14 @@ namespace Service
 
         public List<Patient> GetPatientBySearch(string jmbg, string name, string surname)
         {
-            throw new NotImplementedException();
+            List<Patient> searchedPatient = new List<Patient>();
+            foreach(uint id in PeopleRepository.GetInstance().GetPatientsIds())
+            {
+                Patient patient = (Patient)PeopleRepository.GetInstance().Read(id);
+                if (patient.Jmbg.Contains(jmbg) && patient.Name.Contains(name) && patient.Surname.Contains(surname))
+                    searchedPatient.Add(patient);
+            }
+            return searchedPatient;
         }
 
         public Person GetUser(uint id)
