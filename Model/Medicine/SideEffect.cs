@@ -20,6 +20,13 @@ namespace Model.Medicine
             this.id = 0;
         }
 
+        public SideEffect(uint id, string description, string name)
+        {
+            this.description = description;
+            this.name = name;
+            this.id = id;
+        }
+
         public string Description
       {
          get

@@ -20,6 +20,13 @@ namespace Model.Medicine
             this.id = 0;
         }
 
+        public Ingridient(uint id, string name, bool isAlergen)
+        {
+            this.name = name;
+            this.isAlergen = isAlergen;
+            this.id = id;
+        }
+
         public string Name
       {
          get

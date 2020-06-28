@@ -26,22 +26,27 @@ namespace Repository.Medicine
             return instance;
       }
 
-        public List<DrugStateChange> GetAllByDrug()
+        public List<DrugStateChange> GetAllByDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByKey(path, drug.GetId().ToString(), 1);
+            List<DrugStateChange> ret = new List<DrugStateChange>();
+            foreach (string[] temp in data)
+                ret.Add(new DrugStateChange(uint.Parse(temp[0]), new DateTime(long.Parse(temp[2])), int.Parse(temp[3]), int.Parse(temp[4]), uint.Parse(temp[1])));
+            return ret;
         }
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public DrugStateChange Create(DrugStateChange item)
         {
             string[] data = new string[5];
+            item.SetId(Persistence.GetNewId(path));
             data[0] = item.GetId().ToString();
             data[1] = item.DrugId.ToString();
-            data[2] = item.Timestamp.ToString();
+            data[2] = item.Timestamp.Ticks.ToString();
             data[3] = item.TotalNumber.ToString();
             data[4] = item.Threshold.ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
@@ -51,12 +56,21 @@ namespace Repository.Medicine
 
         public DrugStateChange Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new DrugStateChange(uint.Parse(temp[0][0]), new DateTime(long.Parse(temp[0][2])), int.Parse(temp[0][3]), int.Parse(temp[0][4]), uint.Parse(temp[0][1]));
         }
 
         public DrugStateChange Update(DrugStateChange item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            data[0] = item.GetId().ToString();
+            data[1] = item.DrugId.ToString();
+            data[2] = item.Timestamp.Ticks.ToString();
+            data[3] = item.TotalNumber.ToString();
+            data[4] = item.Threshold.ToString();
+            bool isAdded = Persistence.EditEntry(path, data);
+            if (isAdded) return item;
+            else return null;
         }
 
         public List<DrugStateChange> GetAll()

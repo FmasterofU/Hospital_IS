@@ -7,77 +7,74 @@ using Model.Medicine;
 using Service;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Controller
 {
    public class DrugController : IDrugController
    {
-      public Service.IDrugService iDrugService;
+      public Service.IDrugService iDrugService = new DrugService();
 
-        public bool AddDrug(Drug drug)
+        public Drug AddDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            return iDrugService.AddDrug(drug);
         }
 
-        public bool AddDrugBatch(DrugBatch drugBatch)
+        public DrugBatch AddDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            return iDrugService.AddDrugBatch(drugBatch);
         }
 
-        public bool AddIngridient(Ingridient ingridient)
+        public Ingridient AddIngridient(Ingridient ingridient)
         {
-            throw new NotImplementedException();
+            return iDrugService.AddIngridient(ingridient);
         }
 
-        public bool AddSideEffect(SideEffect sideEffect)
+        public SideEffect AddSideEffect(SideEffect sideEffect)
         {
-            throw new NotImplementedException();
+            return iDrugService.AddSideEffect(sideEffect);
         }
 
         public bool DeleteDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            return iDrugService.DeleteDrugBatch(drugBatch);
         }
 
         public bool DisableDrugUse(Drug drug)
         {
-            throw new NotImplementedException();
+            return iDrugService.DisableDrugUse(drug);
         }
 
         public bool EditDrug(Drug drug)
         {
-            throw new NotImplementedException();
+            return iDrugService.EditDrug(drug);
         }
 
         public bool EditDrugBatch(DrugBatch drugBatch)
         {
-            throw new NotImplementedException();
+            return iDrugService.EditDrugBatch(drugBatch);
         }
 
         public List<Drug> GetAllDrugs()
         {
-            throw new NotImplementedException();
+            return iDrugService.GetAllDrugs();
         }
 
         public List<DrugStateChange> GetAllDrugStateChange(Drug drug)
         {
-            throw new NotImplementedException();
+            return iDrugService.GetAllDrugStateChange(drug);
         }
 
         public List<DrugBatch> GetDrugBatches(Drug drug)
         {
-            throw new NotImplementedException();
+            return iDrugService.GetDrugBatches(drug);
         }
 
         public List<Drug> SearchDrugs(string query)
         {
             query = query.Trim();
-            if(!query.Equals(""))
-            {
-                List<Drug> ret = ((DrugService)iDrugService).SearchDrugs(query);
-                return ret;
-            }
-            return new List<Drug>();
+            List<Drug> ret = iDrugService.SearchDrugs(query);
+            return ret;
         }
     }
 }
