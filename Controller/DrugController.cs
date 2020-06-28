@@ -25,6 +25,11 @@ namespace Controller
             return iDrugService.AddDrugBatch(drugBatch);
         }
 
+        public DrugStateChange AddDrugStateChange(DrugStateChange dsc)
+        {
+            return iDrugService.AddDrugStateChange(dsc);
+        }
+
         public Ingridient AddIngridient(Ingridient ingridient)
         {
             return iDrugService.AddIngridient(ingridient);
@@ -53,6 +58,11 @@ namespace Controller
         public bool EditDrugBatch(DrugBatch drugBatch)
         {
             return iDrugService.EditDrugBatch(drugBatch);
+        }
+
+        public bool EditDrugStateChange(DrugStateChange dsc)
+        {
+            return iDrugService.EditDrugStateChange(dsc);
         }
 
         public List<Drug> GetAllDrugs()

@@ -22,6 +22,11 @@ namespace Service
             return DrugBatchRepository.GetInstance().Create(drugBatch);
         }
 
+        public DrugStateChange AddDrugStateChange(DrugStateChange dsc)
+        {
+            return DrugStateChangeRepository.GetInstance().Create(dsc);
+        }
+
         public Ingridient AddIngridient(Ingridient ingridient)
         {
             return IngridientRepository.GetInstance().Create(ingridient);
@@ -57,6 +62,14 @@ namespace Service
         public bool EditDrugBatch(DrugBatch drugBatch)
         {
             DrugBatch ret = DrugBatchRepository.GetInstance().Update(drugBatch);
+            if (ret != null)
+                return true;
+            else return false;
+        }
+
+        public bool EditDrugStateChange(DrugStateChange dsc)
+        {
+            DrugStateChange ret = DrugStateChangeRepository.GetInstance().Update(dsc);
             if (ret != null)
                 return true;
             else return false;

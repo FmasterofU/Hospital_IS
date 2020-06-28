@@ -34,6 +34,11 @@ namespace Service
       bool EditDrugBatch(Model.Medicine.DrugBatch drugBatch);
       
       bool DeleteDrugBatch(Model.Medicine.DrugBatch drugBatch);
-   
+
+        DrugStateChange AddDrugStateChange(DrugStateChange dsc);
+
+        bool EditDrugStateChange(DrugStateChange dsc);
+
+
    }
 }
