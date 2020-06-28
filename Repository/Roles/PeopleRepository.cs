@@ -244,13 +244,15 @@ namespace Repository.Roles
             string specialization = line[PeopleConstants.SPECIALIZATION_COLUMN];
 
             if (personType.Equals(UserType.Patient))
-                return new Patient(name, surname, phone, email, sex, jmbg, username, password, personType, address, new DateTime(dateTicks), decased, parentName, medRecordId, getAlergens(alergenIdsText));
+                return new Patient(personId, name, surname, phone, email, sex, jmbg, username, password, personType, address, new DateTime(dateTicks), decased, parentName, medRecordId, getAlergens(alergenIdsText));
             else if (personType.Equals(UserType.Secretary))
-                return new Secretary(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+                return new Secretary(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
             else if (personType.Equals(UserType.Doctor))
-                return new Doctor(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+                return new Doctor(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
             else if (personType.Equals(UserType.Manager))
-                return new Manager(name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+                return new Manager(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
+            else if (personType.Equals(UserType.Specialist))
+                return new Specialist(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active, specialization);
             else return null;
    
         }

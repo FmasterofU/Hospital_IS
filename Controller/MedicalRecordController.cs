@@ -21,10 +21,9 @@ namespace Controller
             throw new NotImplementedException();
         }
 
-        public bool AppendExamination(Examination examination, MedicalRecord medicalRecord)
+        public Examination AppendExamination(Examination examination, MedicalRecord medicalRecord)
         {
-            bool ret = iMedicalRecordService.AppendExamination(examination, medicalRecord);
-            return ret;
+            return iMedicalRecordService.AppendExamination(examination, medicalRecord);
         }
 
         public bool EditInsurance(InsurancePolicy insurance)

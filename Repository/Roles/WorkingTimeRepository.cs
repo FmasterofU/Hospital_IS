@@ -3,6 +3,7 @@
 // Created: Sunday, May 24, 2020 11:16:46 AM
 // Purpose: Definition of Class WorkingTimeRepository
 
+using Class_Diagram.Repository;
 using Model.Roles;
 using System;
 using System.Collections.Generic;
@@ -27,22 +28,51 @@ namespace Repository.Roles
 
         public List<WorkingTime> GetAllByStaff(Staff staff)
         {
-            throw new NotImplementedException();
+            List<WorkingTime> all = GetAll();
+            List<WorkingTime> ret = new List<WorkingTime>();
+            foreach(WorkingTime time in all)
+            {
+                if (time.IdStaff == staff.GetId()) ret.Add(time);
+            }
+            return ret;
         }
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public WorkingTime Create(WorkingTime item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[5];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.IdStaff.ToString();
+            data[2] = item.StartTime.Ticks.ToString();
+            data[3] = item.EndTime.Ticks.ToString();
+            data[4] = item.Timestamp.Ticks.ToString();
+            bool isAdded = Persistence.WriteEntry(path, data);
+            if (isAdded) return item;
+            else return null;
         }
 
         public WorkingTime Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            if (data.Count == 1)
+            {
+                uint wtID = uint.Parse(data[0][0]);
+                uint staffID = uint.Parse(data[0][1]);
+                Staff s = (Staff)PeopleRepository.GetInstance().Read(staffID);
+                DateTime startTime = new DateTime(long.Parse(data[0][2]));
+                DateTime endTime = new DateTime(long.Parse(data[0][3]));
+                DateTime timestamp = new DateTime(long.Parse(data[0][4]));
+
+                WorkingTime ret = new WorkingTime(timestamp, startTime, endTime, staffID, s);
+                ret.SetId(wtID);
+                return ret;
+            }
+            return null;
         }
 
         public WorkingTime Update(WorkingTime item)
@@ -52,7 +82,10 @@ namespace Repository.Roles
 
         public List<WorkingTime> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<WorkingTime> ret = new List<WorkingTime>();
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
    }
 }

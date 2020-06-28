@@ -3,6 +3,7 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Interface IMedicalRecordService
 
+using Model.Examination;
 using Model.Medicalrecord;
 using System;
 
@@ -21,8 +22,8 @@ namespace Service
         MedicalRecord GetMedicalRecordById(uint id);
       
         bool EditInsurance(InsurancePolicy insurance);
-      
-        bool AppendExamination(Model.Examination.Examination examination, MedicalRecord medicalRecord);
+
+        Examination AppendExamination(Examination examination, MedicalRecord medicalRecord);
    
    }
 }

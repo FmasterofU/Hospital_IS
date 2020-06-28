@@ -34,6 +34,20 @@ namespace Model.Roles
             this.userType = userType;
         }
 
+        protected Person(uint id, string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType)
+        {
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.phone = phone;
+            this.email = email;
+            this.sex = sex;
+            this.jmbg = jmbg;
+            this.username = username;
+            this.password = password;
+            this.userType = userType;
+        }
+
         public string Name
       {
          get

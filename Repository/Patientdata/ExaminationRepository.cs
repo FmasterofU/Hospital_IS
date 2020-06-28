@@ -30,7 +30,7 @@ namespace Repository.Patientdata
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public Examination Create(Examination item)
@@ -39,8 +39,7 @@ namespace Repository.Patientdata
             data[0] = Persistence.GetNewId(path).ToString();
             item.SetId(uint.Parse(data[0]));
             data[1] = item.Time.Ticks.ToString();
-            //TODO: doctor read
-            //data[2] = item.Doctor.GetId().ToString();
+            data[2] = item.Doctor.GetId().ToString();
             data[3] = item.Diagnosis;
             data[4] = "";
             foreach(Prescription p in item.Prescription)
@@ -67,10 +66,8 @@ namespace Repository.Patientdata
                 uint exID = uint.Parse(data[0][0]);
                 long ticks = long.Parse(data[0][1]);
                 DateTime date = new DateTime(ticks);
-                //TODO: doctor read
-                //uint docID = uint.Parse(data[0][2]);
-                //Doctor d = (Doctor)PeopleRepository.GetInstance().Read(docID);
-                Doctor d = null;
+                uint docID = uint.Parse(data[0][2]);
+                Doctor d = (Doctor)PeopleRepository.GetInstance().Read(docID);
                 string diagnosis = data[0][3];
                 List<Prescription> presList = new List<Prescription>();
                 string[] presIDs = data[0][4].Split(' ');
@@ -103,7 +100,10 @@ namespace Repository.Patientdata
 
         public List<Examination> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<Examination> ret = new List<Examination>();
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
    }
 }

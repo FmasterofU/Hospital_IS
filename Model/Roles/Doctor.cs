@@ -12,6 +12,9 @@ namespace Model.Roles
         public Doctor(string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
                 bool active) : base(name, surname, phone, email, sex, jmbg, username, password, userType, contract, active) {}
 
+        public Doctor(uint id, string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
+                bool active) : base(id, name, surname, phone, email, sex, jmbg, username, password, userType, contract, active) { }
+
         public string getDoctorCommaSeparatedData()
         {
             return getStaffCommaSeparatedData();
