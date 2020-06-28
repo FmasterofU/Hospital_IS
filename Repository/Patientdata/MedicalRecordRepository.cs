@@ -63,9 +63,7 @@ namespace Repository.Patientdata
                 InsurancePolicy policy = InsurancePolicyRepository.GetInstance().Read(insuranceID);
                 if (policy != null)
                 {
-                    //Patient patient = PeopleRepository.GetInstance().Read(patID);
-                    //TODO: change return type
-                    Patient patient = null;
+                    Patient patient = (Patient)PeopleRepository.GetInstance().Read(patID);
                     List<Examination> exams = new List<Examination>();
                     
                     
@@ -104,7 +102,10 @@ namespace Repository.Patientdata
 
         public List<MedicalRecord> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<MedicalRecord> ret = new List<MedicalRecord>();
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
 
 

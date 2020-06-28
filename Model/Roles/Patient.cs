@@ -29,6 +29,17 @@ namespace Model.Roles
             this.alergens = alergens;
         }
 
+        public Patient(uint id, string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, string address, DateTime birthDate, bool deceased,
+                string parentName, uint medRecordId, List<Ingridient> alergens) : base(id, name, surname, phone, email, sex, jmbg, username, password, userType)
+        {
+            this.address = address;
+            this.birthDate = birthDate;
+            this.deceased = deceased;
+            this.parentName = parentName;
+            this.medRecordId = medRecordId;
+            this.alergens = alergens;
+        }
+
         public string Address
       {
          get

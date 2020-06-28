@@ -19,6 +19,13 @@ namespace Model.Roles
             this.active = active;
         }
 
+        protected Staff(uint id, string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
+                bool active) : base(id, name, surname, phone, email, sex, jmbg, username, password, userType)
+        {
+            this.contract = contract;
+            this.active = active;
+        }
+
         public Object Contract
       {
          get

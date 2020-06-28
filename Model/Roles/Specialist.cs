@@ -17,6 +17,12 @@ namespace Model.Roles
             this.specialization = specialization;
         }
 
+        public Specialist(uint id, string name, string surname, string phone, string email, Sex sex, string jmbg, string username, string password, UserType userType, object contract,
+            bool active, string specialization) : base(id, name, surname, phone, email, sex, jmbg, username, password, userType, contract, active)
+        {
+            this.specialization = specialization;
+        }
+
         public string Specialization
       {
          get

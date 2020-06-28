@@ -30,7 +30,7 @@ namespace Repository.Patientdata
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public Prescription Create(Prescription item)
@@ -53,9 +53,7 @@ namespace Repository.Patientdata
             {
                 uint presID = uint.Parse(data[0][0]);
                 uint drugID = uint.Parse(data[0][1]);
-                //TODO: drug read
-                //Drug d = DrugRepository.GetInstance().Read(drugID);
-                Drug d = null;
+                Drug d = DrugRepository.GetInstance().Read(drugID);
                 uint num = uint.Parse(data[0][2]);
                 string usage = data[0][3];
                 Prescription ret = new Prescription(num, usage, d);
@@ -72,7 +70,10 @@ namespace Repository.Patientdata
 
         public List<Prescription> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<Prescription> ret = new List<Prescription>();
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
    }
 }
