@@ -36,6 +36,8 @@ namespace Controller
         bool EditPatient(Model.Roles.Patient patient);
       
       List<Patient> GetPatientBySearch(String jmbg, String name, String surname);
+
+        bool IsPatientExist(string jmbg);
    
    }
 }

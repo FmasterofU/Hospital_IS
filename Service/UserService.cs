@@ -154,5 +154,18 @@ namespace Service
         {
             throw new NotImplementedException();
         }
+
+        public bool IsPatientExist(string jmbg)
+        {
+            List<uint> ids = PeopleRepository.GetInstance().GetIdsByJMBG(jmbg);
+             
+            foreach(uint id in ids)
+            {
+                Person p = PeopleRepository.GetInstance().Read(id);
+                if (p.GetType().Equals(UserType.Patient))
+                    return true;
+            }
+            return false;
+        }
     }
 }

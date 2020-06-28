@@ -69,6 +69,11 @@ namespace Controller
             return iUserService.GetUser(id);
         }
 
+        public bool IsPatientExist(string jmbg)
+        {
+            return iUserService.IsPatientExist(jmbg);
+        }
+
         public bool RemoveStaffUser(Staff staff)
         {
             return iUserService.RemoveStaffUser(staff);
