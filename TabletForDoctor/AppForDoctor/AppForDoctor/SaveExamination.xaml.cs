@@ -1,4 +1,5 @@
-﻿using Model.Roles;
+﻿using Model.Medicalrecord;
+using Model.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,8 +82,8 @@ namespace AppForDoctor
         private List<StringBuilder> GetReportFromExamination()
         {
             ExaminationPage e = ExaminationPage.getInstance();
-            MedRecord mr = e.getMedRecord();
-            User patient = UserList.getByID(mr.PatientID);
+            MedicalRecord mr = e.getMedRecord();
+            Patient patient = mr.patient;
             Doctor doctor = EditProfilePage.getInstance().getUser();
 
             StringBuilder retEng = new StringBuilder();
@@ -95,8 +96,8 @@ namespace AppForDoctor
 
             retSrb.Append("Pacijent: ");
             retEng.Append("Patient: ");
-            retSrb.Append(patient.Name + " " + patient.Surname + ", star(a) " + patient.Age + " godina.\n");
-            retEng.Append(patient.Name + " " + patient.Surname + ", age " + patient.Age + "\n");
+            //retSrb.Append(patient.Name + " " + patient.Surname + ", star(a) " + patient.Age + " godina.\n");
+            //retEng.Append(patient.Name + " " + patient.Surname + ", age " + patient.Age + "\n");
 
             retSrb.Append("Dijagnoza: ");
             retEng.Append("Diagnosis: ");

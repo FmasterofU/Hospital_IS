@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Medicalrecord;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,9 @@ namespace AppForDoctor
         private MedHistoryPage()
         {
             InitializeComponent();
-            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+            MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
             history = new StringBuilder();
-            foreach(Examination e in mr.Examinations)
+            /*foreach(Examination e in mr.Examinations)
             {
                 if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Anamneza: ");
                 else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Anamnesis: ");
@@ -49,7 +50,7 @@ namespace AppForDoctor
                     history.Append(r.RefType + " : " + r.Note + "\n");
                 }
                 history.Append("**********************************\n\n");
-            }
+            }*/
 
             historyText.Text = history.ToString();
         }

@@ -1,5 +1,7 @@
-﻿using Model.Medicalrecord;
+﻿using Controller;
+using Model.Medicalrecord;
 using Model.Roles;
+using Repository.Roles;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -60,24 +62,31 @@ namespace AppForDoctor
             User patient = UserList.getByID(mr.PatientID);
             patientsComboBox.Items.Add(patient.Name + " " + patient.Surname + "\nID = " + patient.PatientID);
             patientsComboBox.SelectedIndex = 0;*/
-            UserService service = new UserService();
-            Person p = service.GetUser(uint.Parse(idText.Text));
-            if (p.UserType == UserType.Patient)
-            {
-                Patient pat = (Patient)p;
-                MedicalRecord mr = (new MedicalRecordService()).GetMedicalRecordByPatient(pat);
-            }
+            patientsComboBox.Items.Clear();
+            patientsComboBox.SelectedIndex = -1;
+            UserController c = new UserController();
+            List<Patient> pats = c.GetPatientBySearch(idText.Text, "", "");
+            if (pats.Count == 0) return;
+            foreach (Patient p in pats) patientsComboBox.Items.Add(p.Name + " " + p.Surname + "\nJMBG = " + p.Jmbg);
+            patientsComboBox.SelectedIndex = 0;
         }
 
         private void nameSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            patientsComboBox.Items.Clear();
+            /*patientsComboBox.Items.Clear();
             patientsComboBox.SelectedIndex = -1;
             List<User> users = UserList.getPatientByName(nameText.Text.ToLower());
             if (users.Count == 0) return;
             
             foreach(User u in users)
                 patientsComboBox.Items.Add(u.Name + " " + u.Surname + "\nID = " + u.PatientID);
+            patientsComboBox.SelectedIndex = 0;*/
+            patientsComboBox.Items.Clear();
+            patientsComboBox.SelectedIndex = -1;
+            UserController c = new UserController();
+            List<Patient> pats = c.GetPatientBySearch("", nameText.Text, "");
+            if (pats.Count == 0) return;
+            foreach (Patient p in pats) patientsComboBox.Items.Add(p.Name + " " + p.Surname + "\nJMBG = " + p.Jmbg);
             patientsComboBox.SelectedIndex = 0;
         }
 
@@ -100,13 +109,30 @@ namespace AppForDoctor
         {
             string[] parts = patientsComboBox.SelectedItem.ToString().Split('=');
             string id = parts[1].Trim();
-            MedRecord mr = MedRecordList.getMedHistory(id);
+            /*MedRecord mr = MedRecordList.getMedHistory(id);
             if (mr == null) return;
             MainMenuPage.clearInstance();
             ExaminationPage.getInstance(mr);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
-            this.Close();
+            this.Close();*/
+            MedicalRecordController c = new MedicalRecordController();
+            List<uint> ids = PeopleRepository.GetInstance().GetIdsByJMBG(id);
+            foreach(uint iid in ids)
+            {
+                Person p = PeopleRepository.GetInstance().Read(iid);
+                if(p.UserType == UserType.Patient)
+                {
+                    Patient pat = (Patient)p;
+                    MedicalRecord mr = c.GetMedicalRecordByPatient(pat);
+                    MainMenuPage.clearInstance();
+                    ExaminationPage.getInstance(mr);
+                    MainWindow w = MainWindow.getInstance();
+                    w.changePage(2);
+                    this.Close();
+
+                }
+            }
         }
 
         private void patientsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using Model.Roles;
+﻿using Controller;
+using Model.Roles;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -62,8 +63,8 @@ namespace AppForDoctor
             EditProfilePage.getInstance(u);
             w.changePage(1);
             instance = null;*/
-            UserService service = new UserService();
-            List<Doctor> docs = service.GetActiveDoctors();
+            UserController c = new UserController();
+            List<Doctor> docs = c.GetDoctors();
             string inputMail = mailTextBox.Text;
             string inputPass = passTextBox.Password;
             foreach(Doctor d in docs)

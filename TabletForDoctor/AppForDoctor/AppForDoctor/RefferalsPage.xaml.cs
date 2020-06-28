@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Medicalrecord;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,12 +100,12 @@ namespace AppForDoctor
         private void AddOldReferrals()
         {
             HashSet<string> old = new HashSet<string>();
-            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+            MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
 
-            foreach(Examination e in mr.Examinations)
+            /*foreach(Examination e in mr.Examinations)
             {
                 foreach (Referral r in e.Referrals) old.Add(r.RefType);
-            }
+            }*/
 
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {

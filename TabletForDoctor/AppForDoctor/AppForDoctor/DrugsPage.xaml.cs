@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Medicalrecord;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,15 +38,15 @@ namespace AppForDoctor
             oldDrugsListBox.Items.Add("Staari");
             oldDrugsListBox.Items.Add("Starri");
             oldDrugsListBox.Items.Add("Starii");*/
-            MedRecord mr = ExaminationPage.getInstance().getMedRecord();
+            MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
             HashSet<string> drugs = new HashSet<string>();
-            foreach(Examination e in mr.Examinations)
+            /*foreach(Examination e in mr.Examinations)
             {
                 foreach(Prescription p in e.Prescriptions)
                 {
                     drugs.Add(p.Drug.Name);
                 }
-            }
+            }*/
 
             foreach (string s in drugs) oldDrugsListBox.Items.Add(s);
         }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Model.Medicalrecord;
+using Model.Roles;
+using Repository.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +30,7 @@ namespace AppForDoctor
         private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
         private HashSet<string> addedReferralsSet = new HashSet<string>();
         private DateTime? controlReviewDate = default;
-        private MedRecord medRecord = null;
+        private MedicalRecord medRecord = null;
         private ExaminationPage()
         {
             InitializeComponent();
@@ -42,12 +45,11 @@ namespace AppForDoctor
             return instance;
         }
 
-        public static ExaminationPage getInstance(MedRecord mr)
+        public static ExaminationPage getInstance(MedicalRecord mr)
         {
             instance = getInstance();
             instance.medRecord = mr;
-            User patient = UserList.getByID(mr.PatientID);
-            instance.patientName.Content = patient.Name + " " + patient.Surname + ", ID = " + patient.PatientID;
+            instance.patientName.Content = mr.patient.Name + " " + mr.patient.Surname + ", ID = " + mr.patient.GetId();
             return instance;
         }
 
@@ -198,7 +200,7 @@ namespace AppForDoctor
             instance = null;
         }
 
-        public MedRecord getMedRecord()
+        public MedicalRecord getMedRecord()
         {
             return medRecord;
         }
