@@ -25,7 +25,7 @@ namespace Service
         {
             medEquipmentType.Number += 1;
             medEquipmentType = MedEquipmentTypeRepository.GetInstance().Update(medEquipmentType);
-            MedEquipmentItem mei = MedEquipmentItemRepository.GetInstance().Create(new MedEquipmentItem(medEquipmentType.GetId(), room.GetId(), medEquipmentType);
+            MedEquipmentItem mei = MedEquipmentItemRepository.GetInstance().Create(new MedEquipmentItem(medEquipmentType.GetId(), room.GetId(), medEquipmentType));
             ItemCount temp = null;
             foreach(ItemCount ic in room.ItemCount)
                 if(mei.TypeId == ic.ItemId)

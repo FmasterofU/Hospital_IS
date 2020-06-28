@@ -3,9 +3,11 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Class AppointmentService
 
+using Class_Diagram.Model.Appointments;
 using Model.Appointments;
 using Model.Roles;
 using Model.Rooms;
+using Repository.Roles;
 using Repository.Roomsninventory;
 using Repository.Schedule;
 using System;
@@ -15,11 +17,10 @@ namespace Service
 {
    public class AppointmentService : IAppointmentService
    {
-      public IAppointmentRecommendationStrategy iAppointmentRecommendationStrategy;
+      public IAppointmentRecommendationStrategy iAppointmentRecommendationStrategy = null;
 
         public bool AddAppointment(ref Appointment appoinment, RoomType roomType, Doctor doctor)
         {
-            appoinment.doctor = doctor;
             List<Room> rooms = RoomRepository.GetInstance().GetAllByType(roomType);
             List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(appoinment.StartTime, appoinment.EndTime);
             HashSet<Room> roomSet = new HashSet<Room>();
@@ -27,6 +28,29 @@ namespace Service
             {
                 roomSet.Add(apps.room);
             }
+            if(doctor == null)
+            {
+                List<uint> docIDs = PeopleRepository.GetInstance().GetActiveDoctorIds();
+                List<Doctor> docs = new List<Doctor>();
+                foreach(uint id in docIDs)
+                {
+                    docs.Add((Doctor)PeopleRepository.GetInstance().Read(id));
+                }
+                HashSet<Doctor> docSet = new HashSet<Doctor>();
+                foreach(Appointment apps in appointments)
+                {
+                    docSet.Add(apps.doctor);
+                }
+                foreach(Doctor d in docs)
+                {
+                    if(!docSet.Contains(d))
+                    {
+                        doctor = d;
+                        break;
+                    }
+                }
+            }
+            appoinment.doctor = doctor;
             foreach(Room room in rooms)
             {
                 if(!roomSet.Contains(room))
@@ -83,14 +107,15 @@ namespace Service
 
         }
 
-        public List<Appointment> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
+        public List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
         {
-            throw new NotImplementedException();
+            if (iAppointmentRecommendationStrategy == null) return null;
+            return iAppointmentRecommendationStrategy.RecommendAppointments(startDateTime, endDateTime, doctor);
         }
 
         public void SetStrategy(IAppointmentRecommendationStrategy strategy)
         {
-            throw new NotImplementedException();
+            iAppointmentRecommendationStrategy = strategy;
         }
     }
 }

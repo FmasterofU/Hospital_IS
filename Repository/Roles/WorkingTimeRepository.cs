@@ -28,12 +28,10 @@ namespace Repository.Roles
 
         public List<WorkingTime> GetAllByStaff(Staff staff)
         {
-            List<WorkingTime> all = GetAll();
+            List<string[]> ids = Persistence.ReadEntryByKey(path, staff.GetId().ToString(), 1);
             List<WorkingTime> ret = new List<WorkingTime>();
-            foreach(WorkingTime time in all)
-            {
-                if (time.IdStaff == staff.GetId()) ret.Add(time);
-            }
+            foreach (string[] s in ids)
+                ret.Add(Read(uint.Parse(s[0])));
             return ret;
         }
 

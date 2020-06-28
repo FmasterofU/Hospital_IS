@@ -3,7 +3,9 @@
 // Created: Monday, June 22, 2020 7:30:59 PM
 // Purpose: Definition of Interface IAppoinmentController
 
+using Class_Diagram.Model.Appointments;
 using Model.Appointments;
+using Model.Roles;
 using System;
 using System.Collections.Generic;
 
@@ -18,6 +20,10 @@ namespace Controller
       bool EditAppoinment(Model.Appointments.Appointment appoinment);
       
       bool DeleteAppoinment(Model.Appointments.Appointment appoinment);
-   
+
+        void SetStrategy(string strategy);
+
+        List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor);
+
    }
 }
