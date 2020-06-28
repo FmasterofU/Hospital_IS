@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 10:34:03 PM
 // Purpose: Definition of Class AppointmentRepository
 
+using Class_Diagram.Model.Appointments;
 using Class_Diagram.Repository;
 using Model.Appointments;
 using Model.Blognfeedback;
@@ -20,9 +21,16 @@ namespace Repository.Schedule
 
         //Id,startTime,endTime,medicalRecordId,DoctorId,RoomId,ServiceCommentId
 
+
     {
         private string path = @"../../Data/appointment.csv";
         private static AppointmentRepository instance = null;
+
+        public const int ID_COLUMN = 0; public const int START_TIME_COLUMN = 1; public const int END_TIME_COLUMN = 2; public const int MEDICAL_RECORD_ID_COLUMN = 3;
+        public const int DOCTOR_ID_COLUMN = 4; public const int ROOM_ID_COLUMN = 5; public const int SERVICE_COMMENT_ID_COLUMN = 6;
+        public const int START_OF_WORKING_TIME_HOURS = 7; public const int START_OF_WORKING_TIME_MINUTE = 0; public const int END_OF_WORKING_TIME_HOURS = 22; public const int END_OF_WORKING_TIME_MINUTE = 0;
+        public const int APPOINTMENT_DURATION = 30;
+
 
         private AppointmentRepository() {}
       
@@ -90,12 +98,48 @@ namespace Repository.Schedule
 
         public List<Appointment> GetExistingAppointmentsInSpan(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            List<string> allIds = Persistence.ReadAllPrimaryIds(path);
+            List<Appointment> ret = new List<Appointment>();
+            foreach(string id in allIds)
+            {
+                Appointment appointment = Read(uint.Parse(id));
+                if (appointment.StartTime>=start && appointment.EndTime<=end)
+                    ret.Add(appointment);
+            }
+            return ret;
         }
 
-        public List<Appointment> GetAvailableAppointmentsInSpan(DateTime start, DateTime end)
+        public List<Term> GetAvailableAppointmentsInSpan(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            List<Appointment> existingAppointment = GetExistingAppointmentsInSpan(start, end);
+            DateTime appointment = start;
+            List<Term> availableTerms = new List<Term>();
+
+            int examRoomCount = RoomRepository.GetInstance().GetAllByType(RoomType.examRoom).Count;
+
+            while (appointment < end)
+            {
+                if (IsWorkingTime(appointment))
+                {
+                    int freeRooms = examRoomCount;
+                    foreach (Appointment reservedAppointment in existingAppointment)
+                    {
+                        if (reservedAppointment.StartTime.Equals(appointment))
+                            freeRooms--;
+                    }
+                    if (freeRooms > 0)
+                        availableTerms.Add(new Term(appointment, appointment.AddMinutes(APPOINTMENT_DURATION)));
+                }
+                appointment.AddMinutes(APPOINTMENT_DURATION);
+            }
+            return availableTerms;
+        }
+
+        private bool IsWorkingTime(DateTime date)
+        {
+            DateTime startTime = new DateTime(date.Year, date.Month, date.Day, START_OF_WORKING_TIME_HOURS, START_OF_WORKING_TIME_MINUTE, 0);
+            DateTime endTime = new DateTime(date.Year, date.Month, date.Day, END_OF_WORKING_TIME_HOURS, END_OF_WORKING_TIME_MINUTE, 0);
+            return date >= startTime && date <= endTime.AddMinutes(-APPOINTMENT_DURATION);
         }
     }
 }
