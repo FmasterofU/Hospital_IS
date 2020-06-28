@@ -1,5 +1,6 @@
 ﻿using ManagingDirectorMobile.Model;
 using ManagingDirectorMobile.ViewModel;
+using Model.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +42,10 @@ namespace ManagingDirectorMobile.View
         {
             if ((sender as DataGrid).SelectedItem != null)
             {
-                CodeTextBox.Text = ((sender as DataGrid).SelectedItem as DrugBatchDummy).Code;
-                (DataContext as DrugsChangeViewModel).EXPDate = ((sender as DataGrid).SelectedItem as DrugBatchDummy).StringifyEXP();
+                CodeTextBox.Text = ((sender as DataGrid).SelectedItem as DrugBatch).LotNumber;
+                DateTime EXP = ((sender as DataGrid).SelectedItem as DrugBatch).ExpDate;
+                (DataContext as DrugsChangeViewModel).EXPDate = "" + EXP.Day + "." + EXP.Month + "." + EXP.Year + ".";
+                DatePicker.SelectedDate = EXP;
             }
         }
 

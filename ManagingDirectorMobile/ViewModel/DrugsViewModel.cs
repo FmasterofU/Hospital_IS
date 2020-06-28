@@ -22,7 +22,7 @@ namespace ManagingDirectorMobile.ViewModel
             List<Drug> d = c.GetAllDrugs();
             drugs = new ObservableCollection<Drug>();
             foreach (Drug temp in d)
-                drugs.Add(temp);
+                if(temp.InUse) drugs.Add(temp);
         }
 
         public void Search(String name = null)
@@ -38,7 +38,13 @@ namespace ManagingDirectorMobile.ViewModel
             }
             drugs = new ObservableCollection<Drug>();
             foreach (Drug temp in d)
-                drugs.Add(temp);
+                if (temp.InUse) drugs.Add(temp);
+        }
+
+        internal void Remove(Drug drug)
+        {
+            drug.InUse = false;
+            c.EditDrug(drug);
         }
     }
 }

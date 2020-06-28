@@ -52,7 +52,7 @@ namespace ManagingDirectorMobile.View
 
         public void RemoveSelectedItem()
         {
-            ((DrugsViewModel)this.DataContext).drugs.Remove(DrugListDG.SelectedItem as Drug);
+            ((DrugsViewModel)this.DataContext).Remove(DrugListDG.SelectedItem as Drug);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

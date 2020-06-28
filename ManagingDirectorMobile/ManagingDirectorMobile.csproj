@@ -99,9 +99,10 @@
     <Compile Include="ModelController\Controller\RoomAndInventoryController.cs" />
     <Compile Include="ModelController\Controller\UserController.cs" />
     <Compile Include="ModelController\Controller\WorkingTimeController.cs" />
-    <Compile Include="ModelController\DrugDummy.cs" />
     <Compile Include="ModelController\DrugBatchDummy.cs" />
+    <Compile Include="ModelController\DrugDummy.cs" />
     <Compile Include="ModelController\Model\Appointments\Appointment.cs" />
+    <Compile Include="ModelController\Model\Appointments\Term.cs" />
     <Compile Include="ModelController\Model\Blognfeedback\AppFeedback.cs" />
     <Compile Include="ModelController\Model\Blognfeedback\BlogPost.cs" />
     <Compile Include="ModelController\Model\Blognfeedback\Poll.cs" />

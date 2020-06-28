@@ -33,6 +33,7 @@ namespace ManagingDirectorMobile.ViewModel
         {
             if (threshold != -1) {
                 drug.drugStateChange.Threshold = threshold;
+                c.EditDrugStateChange(drug.drugStateChange);
             }
             if (code != null)
             {
@@ -45,8 +46,8 @@ namespace ManagingDirectorMobile.ViewModel
                     }
                 if (check!=null)
                 {
-                    DrugStateChange dsc = new DrugStateChange(DateTime.Now, quantity != -1 ? quantity - check.Number : 0, drug.drugStateChange.Threshold, drug.GetId());
-                    //dsc = c.
+                    DrugStateChange dsc = new DrugStateChange(DateTime.Now, quantity != -1 ? drug.drugStateChange.TotalNumber + (quantity - check.Number) : drug.drugStateChange.TotalNumber, drug.drugStateChange.Threshold, drug.GetId());
+                    dsc = c.AddDrugStateChange(dsc);
                     check.Number = quantity != -1 ? quantity : check.Number;
                     check.ExpDate = EXP == null ? check.ExpDate : (DateTime)EXP;
                     c.EditDrugBatch(check);
@@ -57,7 +58,7 @@ namespace ManagingDirectorMobile.ViewModel
                     DrugBatch db = new DrugBatch(code, quantity, EXP.GetValueOrDefault(), drug.GetId());
                     db = c.AddDrugBatch(db);
                     drug.drugStateChange.TotalNumber += quantity;
-                    //drug.drugStateChange = c.
+                    drug.drugStateChange = c.AddDrugStateChange(drug.drugStateChange);
                     drug.drugBatch.Add(db);
                 }
             }

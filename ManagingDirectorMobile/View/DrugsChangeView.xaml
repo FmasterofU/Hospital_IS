@@ -91,11 +91,11 @@
                               CellStyle="{StaticResource Body_Content_DataGrid_Centering}"
                               SelectionChanged="DrugBatchListDG_SelectionChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Code}" Width="*" FontSize="20"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding LotNumber}" Width="*" FontSize="20"></DataGridTextColumn>
                             </DataGrid.Columns>
                             <DataGrid.RowDetailsTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Quantity}" FontSize="16"></Label>
+                                    <Label Content="{Binding Number}" FontSize="16"></Label>
                                 </DataTemplate>
                             </DataGrid.RowDetailsTemplate>
                         </DataGrid>
