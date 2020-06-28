@@ -7,19 +7,19 @@ using System;
 
 namespace Model.Rooms
 {
-   public class StationaryRoomPatientsState : Repository.IIdentifiable<uint>
-   {
-      private DateTime timestamp;
-      private uint patientsNumber;
-      private uint roomId;
-      private uint id;
+    public class StationaryRoomPatientsState : Repository.IIdentifiable<uint>
+    {
+        private DateTime timestamp;
+        private uint patientsNumber;
+        private uint roomId;
+        private uint id;
 
         public StationaryRoomPatientsState(DateTime timestamp, uint patientsNumber, uint roomId)
         {
             this.timestamp = timestamp;
             this.patientsNumber = patientsNumber;
             this.roomId = roomId;
-            this.id = 0;
+            id = 0;
         }
 
         public StationaryRoomPatientsState(uint id, DateTime timestamp, uint patientsNumber, uint roomId)
@@ -31,40 +31,22 @@ namespace Model.Rooms
         }
 
         public DateTime Timestamp
-      {
-         get
-         {
-            return timestamp;
-         }
-         set
-         {
-            this.timestamp = value;
-         }
-      }
-      
-      public uint PatientsNumber
-      {
-         get
-         {
-            return patientsNumber;
-         }
-         set
-         {
-            this.patientsNumber = value;
-         }
-      }
-      
-      public uint RoomId
-      {
-         get
-         {
-            return roomId;
-         }
-         set
-         {
-            this.roomId = value;
-         }
-      }
+        {
+            get => timestamp;
+            set => timestamp = value;
+        }
+
+        public uint PatientsNumber
+        {
+            get => patientsNumber;
+            set => patientsNumber = value;
+        }
+
+        public uint RoomId
+        {
+            get => roomId;
+            set => roomId = value;
+        }
 
         public uint GetId()
         {

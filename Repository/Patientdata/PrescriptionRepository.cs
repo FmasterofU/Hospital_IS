@@ -12,21 +12,25 @@ using System.Collections.Generic;
 
 namespace Repository.Patientdata
 {
-   public class PrescriptionRepository : Repository.IRepositoryCRUD<Prescription, uint>
+    public class PrescriptionRepository : Repository.IRepositoryCRUD<Prescription, uint>
 
-        //Id, DrugId, Number, Usage
+    //Id, DrugId, Number, Usage
 
     {
         private string path = @"../../Data/prescription.csv";
         private static PrescriptionRepository instance = null;
 
-        private PrescriptionRepository() {}
-      
-      public static PrescriptionRepository GetInstance()
-      {
-            if (instance == null) instance = new PrescriptionRepository();
+        private PrescriptionRepository() { }
+
+        public static PrescriptionRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new PrescriptionRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -42,8 +46,14 @@ namespace Repository.Patientdata
             data[2] = item.Number.ToString();
             data[3] = item.Usage.ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Prescription Read(uint id)
@@ -72,8 +82,12 @@ namespace Repository.Patientdata
         {
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<Prescription> ret = new List<Prescription>();
-            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            foreach (string s in ids)
+            {
+                ret.Add(Read(uint.Parse(s)));
+            }
+
             return ret;
         }
-   }
+    }
 }

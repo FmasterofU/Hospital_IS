@@ -9,21 +9,25 @@ using System.Collections.Generic;
 
 namespace Repository.Blognfeedback
 {
-   public class AppFeedbackRepository : Repository.IRepositoryCRUD<AppFeedback, uint>
+    public class AppFeedbackRepository : Repository.IRepositoryCRUD<AppFeedback, uint>
 
-        //Id, Subject, Note, PersonId
+    //Id, Subject, Note, PersonId
 
     {
-      private string path = @"../../Data/app_feedback.csv";
-      private static AppFeedbackRepository instance = null;
+        private string path = @"../../Data/app_feedback.csv";
+        private static AppFeedbackRepository instance = null;
 
-        private AppFeedbackRepository() {}
-      
-      public static AppFeedbackRepository GetInstance()
-      {
-            if (instance == null) instance = new AppFeedbackRepository();
+        private AppFeedbackRepository() { }
+
+        public static AppFeedbackRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new AppFeedbackRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -49,5 +53,5 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

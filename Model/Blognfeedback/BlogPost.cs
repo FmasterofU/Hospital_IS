@@ -8,57 +8,39 @@ using System;
 
 namespace Model.Blognfeedback
 {
-   public class BlogPost : Repository.IIdentifiable<uint>
+    public class BlogPost : Repository.IIdentifiable<uint>
     {
-      private DateTime time;
-      private string text;
-      private uint id;
+        private DateTime time;
+        private string text;
+        private uint id;
 
         public BlogPost(DateTime time, string text, Staff author)
         {
             this.time = time;
             this.text = text;
-            this.id = 0;
+            id = 0;
             this.author = author;
         }
 
-        public DateTime Time
-      {
-         get
-         {
-            return time;
-         }
-      }
-      
-      public string Text
-      {
-         get
-         {
-            return text;
-         }
-         set
-         {
-            this.text = value;
-         }
-      }
-      
-      public Model.Roles.Staff author;
-      
-      /// <summary>
-      /// Property for Model.Roles.Staff
-      /// </summary>
-      /// <pdGenerated>Default opposite class property</pdGenerated>
-      public Model.Roles.Staff Author
-      {
-         get
-         {
-            return author;
-         }
-         set
-         {
-            this.author = value;
-         }
-      }
+        public DateTime Time => time;
+
+        public string Text
+        {
+            get => text;
+            set => text = value;
+        }
+
+        public Model.Roles.Staff author;
+
+        /// <summary>
+        /// Property for Model.Roles.Staff
+        /// </summary>
+        /// <pdGenerated>Default opposite class property</pdGenerated>
+        public Model.Roles.Staff Author
+        {
+            get => author;
+            set => author = value;
+        }
 
         public uint GetId()
         {

@@ -10,18 +10,18 @@ using System;
 
 namespace Model.Appointments
 {
-   public class Appointment : Repository.IIdentifiable<uint>
+    public class Appointment : Repository.IIdentifiable<uint>
     {
-      private DateTime startTime;
-      private DateTime endTime;
-      private uint id;
-      private uint medicalRecordId;
+        private DateTime startTime;
+        private DateTime endTime;
+        private uint id;
+        private uint medicalRecordId;
 
         public Appointment(DateTime startTime, DateTime endTime, uint medicalRecordId, Doctor doctor = null, Room room = null, ServiceComment serviceComment = null)
         {
             this.startTime = startTime;
             this.endTime = endTime;
-            this.id = 0;
+            id = 0;
             this.medicalRecordId = medicalRecordId;
             this.doctor = doctor;
             this.room = room;
@@ -29,44 +29,26 @@ namespace Model.Appointments
         }
 
         public DateTime StartTime
-      {
-         get
-         {
-            return startTime;
-         }
-         set
-         {
-            this.startTime = value;
-         }
-      }
-      
-      public DateTime EndTime
-      {
-         get
-         {
-            return endTime;
-         }
-         set
-         {
-            this.endTime = value;
-         }
-      }
-      
-      public uint MedicalRecordId
-      {
-         get
-         {
-            return medicalRecordId;
-         }
-         set
-         {
-            this.medicalRecordId = value;
-         }
-      }
-      
-      public Model.Roles.Doctor doctor;
-      public Model.Rooms.Room room;
-      public ServiceComment serviceComment;
+        {
+            get => startTime;
+            set => startTime = value;
+        }
+
+        public DateTime EndTime
+        {
+            get => endTime;
+            set => endTime = value;
+        }
+
+        public uint MedicalRecordId
+        {
+            get => medicalRecordId;
+            set => medicalRecordId = value;
+        }
+
+        public Model.Roles.Doctor doctor;
+        public Model.Rooms.Room room;
+        public ServiceComment serviceComment;
 
         public uint GetId()
         {

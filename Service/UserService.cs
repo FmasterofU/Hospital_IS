@@ -3,51 +3,47 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Class UserService
 
-using Class_Diagram.Repository;
 using Model.Medicalrecord;
 using Model.Roles;
-using Repository.Patientdata;
 using Repository.Roles;
 using System;
 using System.Collections.Generic;
 
 namespace Service
 {
-   public class UserService : IUserService
-   {
-      private Person loggedInPerson = null;
-      
-      public Person LoggedInPerson
-      {
-         get
-         {
-            return loggedInPerson;
-         }
-         private set
-         {
-            this.loggedInPerson = value;
-         }
-      }
+    public class UserService : IUserService
+    {
+        private Person loggedInPerson = null;
+
+        public Person LoggedInPerson
+        {
+            get => loggedInPerson;
+            private set => loggedInPerson = value;
+        }
 
         public Patient AddPatient(Patient patient)
         {
             if (IsPatientAlreadyExist(patient.Jmbg))
+            {
                 return null;
-            
-            patient = AddNewMedicalRecord(patient);        
+            }
+
+            patient = AddNewMedicalRecord(patient);
             patient = (Patient)PeopleRepository.GetInstance().Create(patient);
             editPatientInMedicalRecord(patient);
-                return patient;
+            return patient;
         }
 
         public bool IsPatientAlreadyExist(string jmbg)
         {
             List<uint> peoples_ids = PeopleRepository.GetInstance().GetIdsByJMBG(jmbg);
-            foreach(uint id in peoples_ids)
+            foreach (uint id in peoples_ids)
             {
                 UserType tipKorisnika = PeopleRepository.GetInstance().GetRole(id);
                 if (tipKorisnika.Equals(UserType.Patient))
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -55,11 +51,11 @@ namespace Service
         private Patient AddNewMedicalRecord(Patient patient)
         {
             //TODO: Treba srediti insurance policy tako da podatak bude upotrebljiv a ne uvek isti
-            MedicalRecord medicalRecord = new MedicalRecord(new InsurancePolicy(30), patient); 
+            MedicalRecord medicalRecord = new MedicalRecord(new InsurancePolicy(30), patient);
             MedicalRecordService medicalRecordService = new MedicalRecordService();
             medicalRecord = medicalRecordService.AddMedicalRecord(medicalRecord);
             patient.MedRecordId = medicalRecord.GetId();
-            
+
             return patient;
 
         }
@@ -69,19 +65,21 @@ namespace Service
             MedicalRecordService medicalRecordService = new MedicalRecordService();
             MedicalRecord searchedMedicalRecord = medicalRecordService.GetMedicalRecordById(patient.MedRecordId);
             searchedMedicalRecord.patient = patient;
-            return medicalRecordService.EditMedicalRecord(searchedMedicalRecord)!=null;
+            return medicalRecordService.EditMedicalRecord(searchedMedicalRecord) != null;
         }
-      
+
         public Staff AddStaffUser(Staff staff)
         {
-            return (Staff) PeopleRepository.GetInstance().Create(staff);
+            return (Staff)PeopleRepository.GetInstance().Create(staff);
         }
 
         public UserType Auth(string username, string password)
         {
-           uint id =  PeopleRepository.GetInstance().GetId(username, password);
+            uint id = PeopleRepository.GetInstance().GetId(username, password);
             if (id == 0)
+            {
                 return UserType.None;
+            }
 
             return PeopleRepository.GetInstance().GetRole(id);
         }
@@ -93,7 +91,7 @@ namespace Service
 
         public bool EditPatient(Patient patient)
         {
-            return PeopleRepository.GetInstance().Update(patient)!=null;
+            return PeopleRepository.GetInstance().Update(patient) != null;
         }
 
         public bool EditStaffUser(Staff staff)
@@ -105,7 +103,7 @@ namespace Service
         {
             List<uint> stafIds = PeopleRepository.GetInstance().GetAllStaffIds();
             List<Staff> retVal = new List<Staff>();
-            foreach(uint id in stafIds)
+            foreach (uint id in stafIds)
             {
                 retVal.Add((Staff)PeopleRepository.GetInstance().Read(id));
             }
@@ -135,7 +133,9 @@ namespace Service
             {
                 Patient patient = (Patient)PeopleRepository.GetInstance().Read(id);
                 if (patient.Jmbg.Contains(jmbg) && patient.Name.Contains(name) && patient.Surname.Contains(surname))
+                {
                     searchedPatient.Add(patient);
+                }
             }
             return searchedPatient;
         }
@@ -147,7 +147,7 @@ namespace Service
 
         public bool RemoveStaffUser(Staff staff)
         {
-           return PeopleRepository.GetInstance().Delete(staff.GetId());
+            return PeopleRepository.GetInstance().Delete(staff.GetId());
         }
 
         public void SaveUser()
@@ -155,6 +155,6 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        
+
     }
 }

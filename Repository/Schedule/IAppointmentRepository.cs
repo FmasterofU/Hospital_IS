@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Repository.Schedule
 {
-   public interface IAppointmentRepository : Repository.IRepositoryCRUD<Appointment, uint>
-   {
-      List<Appointment> GetExistingAppointmentsInSpan(DateTime start, DateTime end);
+    public interface IAppointmentRepository : Repository.IRepositoryCRUD<Appointment, uint>
+    {
+        List<Appointment> GetExistingAppointmentsInSpan(DateTime start, DateTime end);
 
-      List<Term> GetAvailableAppointmentsInSpan(DateTime start, DateTime end);
+        List<Term> GetAvailableAppointmentsInSpan(DateTime start, DateTime end);
 
     }
 }

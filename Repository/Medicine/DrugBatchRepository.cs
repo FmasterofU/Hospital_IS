@@ -10,21 +10,25 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-   public class DrugBatchRepository : Repository.IRepositoryCRUD<DrugBatch, uint>
+    public class DrugBatchRepository : Repository.IRepositoryCRUD<DrugBatch, uint>
 
-        //Id,DrugId,Number,ExpDate,LotNumber
+    //Id,DrugId,Number,ExpDate,LotNumber
 
     {
         private string path = @"../../Data/drug_batch.csv";
         private static DrugBatchRepository instance = null;
 
-        private DrugBatchRepository() {}
-      
-      public static DrugBatchRepository GetInstance()
-      {
-            if (instance == null) instance = new DrugBatchRepository();
+        private DrugBatchRepository() { }
+
+        public static DrugBatchRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new DrugBatchRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -41,8 +45,13 @@ namespace Repository.Medicine
             data[3] = item.ExpDate.Ticks.ToString();
             data[4] = item.LotNumber;
             if (Persistence.WriteEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public DrugBatch Read(uint id)
@@ -60,8 +69,13 @@ namespace Repository.Medicine
             data[3] = item.ExpDate.Ticks.ToString();
             data[4] = item.LotNumber;
             if (Persistence.EditEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<DrugBatch> GetAll()
@@ -69,8 +83,11 @@ namespace Repository.Medicine
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<DrugBatch> ret = new List<DrugBatch>();
             foreach (string s in ids)
+            {
                 ret.Add(Read(uint.Parse(s)));
+            }
+
             return ret;
         }
-   }
+    }
 }

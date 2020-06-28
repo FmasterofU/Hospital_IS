@@ -15,35 +15,35 @@ using System.Collections.Generic;
 
 namespace Service
 {
-   public class AppointmentService : IAppointmentService
-   {
-      public IAppointmentRecommendationStrategy iAppointmentRecommendationStrategy = null;
+    public class AppointmentService : IAppointmentService
+    {
+        public IAppointmentRecommendationStrategy iAppointmentRecommendationStrategy = null;
 
         public bool AddAppointment(ref Appointment appoinment, RoomType roomType, Doctor doctor)
         {
             List<Room> rooms = RoomRepository.GetInstance().GetAllByType(roomType);
             List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(appoinment.StartTime, appoinment.EndTime);
             HashSet<Room> roomSet = new HashSet<Room>();
-            foreach(Appointment apps in appointments)
+            foreach (Appointment apps in appointments)
             {
                 roomSet.Add(apps.room);
             }
-            if(doctor == null)
+            if (doctor == null)
             {
                 List<uint> docIDs = PeopleRepository.GetInstance().GetActiveDoctorIds();
                 List<Doctor> docs = new List<Doctor>();
-                foreach(uint id in docIDs)
+                foreach (uint id in docIDs)
                 {
                     docs.Add((Doctor)PeopleRepository.GetInstance().Read(id));
                 }
                 HashSet<Doctor> docSet = new HashSet<Doctor>();
-                foreach(Appointment apps in appointments)
+                foreach (Appointment apps in appointments)
                 {
                     docSet.Add(apps.doctor);
                 }
-                foreach(Doctor d in docs)
+                foreach (Doctor d in docs)
                 {
-                    if(!docSet.Contains(d))
+                    if (!docSet.Contains(d))
                     {
                         doctor = d;
                         break;
@@ -51,9 +51,9 @@ namespace Service
                 }
             }
             appoinment.doctor = doctor;
-            foreach(Room room in rooms)
+            foreach (Room room in rooms)
             {
-                if(!roomSet.Contains(room))
+                if (!roomSet.Contains(room))
                 {
                     appoinment.room = room;
                     AppointmentRepository.GetInstance().Create(appoinment);
@@ -76,22 +76,31 @@ namespace Service
         public List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Room room)
         {
             List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(startTime, endTime);
-            if (doctor == null && room == null) return appointments;
-            else if(doctor == null && room != null)
+            if (doctor == null && room == null)
+            {
+                return appointments;
+            }
+            else if (doctor == null && room != null)
             {
                 List<Appointment> ret = new List<Appointment>();
                 foreach (Appointment apps in appointments)
                 {
-                    if (apps.room.GetId() == room.GetId()) ret.Add(apps);
+                    if (apps.room.GetId() == room.GetId())
+                    {
+                        ret.Add(apps);
+                    }
                 }
                 return ret;
             }
-            else if(doctor != null && room == null)
+            else if (doctor != null && room == null)
             {
                 List<Appointment> ret = new List<Appointment>();
                 foreach (Appointment apps in appointments)
                 {
-                    if (apps.doctor.GetId() == doctor.GetId()) ret.Add(apps);
+                    if (apps.doctor.GetId() == doctor.GetId())
+                    {
+                        ret.Add(apps);
+                    }
                 }
                 return ret;
             }
@@ -100,7 +109,10 @@ namespace Service
                 List<Appointment> ret = new List<Appointment>();
                 foreach (Appointment apps in appointments)
                 {
-                    if (apps.doctor.GetId() == doctor.GetId() && apps.room.GetId() == room.GetId()) ret.Add(apps);
+                    if (apps.doctor.GetId() == doctor.GetId() && apps.room.GetId() == room.GetId())
+                    {
+                        ret.Add(apps);
+                    }
                 }
                 return ret;
             }
@@ -109,7 +121,11 @@ namespace Service
 
         public List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
         {
-            if (iAppointmentRecommendationStrategy == null) return null;
+            if (iAppointmentRecommendationStrategy == null)
+            {
+                return null;
+            }
+
             return iAppointmentRecommendationStrategy.RecommendAppointments(startDateTime, endDateTime, doctor);
         }
 

@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-   public class UserController : IUserController
-   {
-      public IUserService iUserService = new UserService();
+    public class UserController : IUserController
+    {
+        public IUserService iUserService = new UserService();
 
         public Patient AddPatient(Patient patient)
         {

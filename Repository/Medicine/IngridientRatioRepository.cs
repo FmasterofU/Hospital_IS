@@ -10,21 +10,25 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-   public class IngridientRatioRepository : Repository.IRepositoryCRUD<IngridientRatio, uint>
+    public class IngridientRatioRepository : Repository.IRepositoryCRUD<IngridientRatio, uint>
 
-        //Id,IngridientId,DrugId,Ratio
+    //Id,IngridientId,DrugId,Ratio
 
     {
         private string path = @"../../Data/ingridient_ratio.csv";
         private static IngridientRatioRepository instance = null;
 
-        private IngridientRatioRepository() {}
-      
-      public static IngridientRatioRepository GetInstance()
-      {
-            if (instance == null) instance = new IngridientRatioRepository();
+        private IngridientRatioRepository() { }
+
+        public static IngridientRatioRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new IngridientRatioRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -40,8 +44,13 @@ namespace Repository.Medicine
             data[2] = item.DrugId.ToString();
             data[3] = item.Ratio.ToString();
             if (Persistence.WriteEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public IngridientRatio Read(uint id)
@@ -58,13 +67,18 @@ namespace Repository.Medicine
             data[2] = item.DrugId.ToString();
             data[3] = item.Ratio.ToString();
             if (Persistence.EditEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public System.Collections.Generic.List<IngridientRatio> GetAll()
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

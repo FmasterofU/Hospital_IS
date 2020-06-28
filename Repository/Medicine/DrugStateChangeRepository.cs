@@ -10,28 +10,35 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-   public class DrugStateChangeRepository : IDrugStateChangeRepository
+    public class DrugStateChangeRepository : IDrugStateChangeRepository
 
-        //Id,DrugId,Timestamp,TotalNumber,Threshold
+    //Id,DrugId,Timestamp,TotalNumber,Threshold
 
     {
         private string path = @"../../Data/drug_state_change.csv";
         private static DrugStateChangeRepository instance = null;
 
-        private DrugStateChangeRepository() {}
-      
-      public static DrugStateChangeRepository GetInstance()
-      {
-            if (instance == null) instance = new DrugStateChangeRepository();
+        private DrugStateChangeRepository() { }
+
+        public static DrugStateChangeRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new DrugStateChangeRepository();
+            }
+
             return instance;
-      }
+        }
 
         public List<DrugStateChange> GetAllByDrug(Drug drug)
         {
             List<string[]> data = Persistence.ReadEntryByKey(path, drug.GetId().ToString(), 1);
             List<DrugStateChange> ret = new List<DrugStateChange>();
             foreach (string[] temp in data)
+            {
                 ret.Add(new DrugStateChange(uint.Parse(temp[0]), new DateTime(long.Parse(temp[2])), int.Parse(temp[3]), int.Parse(temp[4]), uint.Parse(temp[1])));
+            }
+
             return ret;
         }
 
@@ -50,8 +57,14 @@ namespace Repository.Medicine
             data[3] = item.TotalNumber.ToString();
             data[4] = item.Threshold.ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public DrugStateChange Read(uint id)
@@ -69,13 +82,19 @@ namespace Repository.Medicine
             data[3] = item.TotalNumber.ToString();
             data[4] = item.Threshold.ToString();
             bool isAdded = Persistence.EditEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<DrugStateChange> GetAll()
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

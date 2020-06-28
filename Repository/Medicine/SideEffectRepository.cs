@@ -10,21 +10,25 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-   public class SideEffectRepository : Repository.IRepositoryCRUD<SideEffect, uint>
+    public class SideEffectRepository : Repository.IRepositoryCRUD<SideEffect, uint>
 
-        //Id,Name,Description
+    //Id,Name,Description
 
     {
         private string path = @"../../Data/side_effect.csv";
         private static SideEffectRepository instance = null;
 
-        private SideEffectRepository() {}
-      
-      public static SideEffectRepository GetInstance()
-      {
-            if (instance == null) instance = new SideEffectRepository();
+        private SideEffectRepository() { }
+
+        public static SideEffectRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new SideEffectRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -39,8 +43,13 @@ namespace Repository.Medicine
             data[1] = item.Name;
             data[2] = item.Description;
             if (Persistence.WriteEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public SideEffect Read(uint id)
@@ -56,13 +65,18 @@ namespace Repository.Medicine
             data[1] = item.Name;
             data[2] = item.Description;
             if (Persistence.WriteEntry(path, data))
+            {
                 return item;
-            else return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<SideEffect> GetAll()
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

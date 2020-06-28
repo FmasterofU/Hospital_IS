@@ -3,44 +3,30 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class InsurancePolicy
 
-using System;
-
 namespace Model.Medicalrecord
 {
-   public class InsurancePolicy : Repository.IIdentifiable<string>
+    public class InsurancePolicy : Repository.IIdentifiable<string>
     {
-      private ulong insuranceId;
-      private string policyId;
+        private ulong insuranceId;
+        private string policyId;
 
         public InsurancePolicy(ulong insuranceId)
         {
             this.insuranceId = insuranceId;
-            this.policyId = "0";
+            policyId = "0";
         }
 
         public ulong InsuranceId
-      {
-         get
-         {
-            return insuranceId;
-         }
-         set
-         {
-            this.insuranceId = value;
-         }
-      }
-      
-      public string PolicyId
-      {
-         get
-         {
-            return policyId;
-         }
-         set
-         {
-            this.policyId = value;
-         }
-      }
+        {
+            get => insuranceId;
+            set => insuranceId = value;
+        }
+
+        public string PolicyId
+        {
+            get => policyId;
+            set => policyId = value;
+        }
 
         public string GetId()
         {
@@ -49,7 +35,7 @@ namespace Model.Medicalrecord
 
         public void SetId(string id)
         {
-            this.policyId = id;
+            policyId = id;
         }
     }
 }

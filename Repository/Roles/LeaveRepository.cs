@@ -9,21 +9,25 @@ using System.Collections.Generic;
 
 namespace Repository.Roles
 {
-   public class LeaveRepository : ILeaveRepository
+    public class LeaveRepository : ILeaveRepository
 
-        //Id,StaffId,Type,Start,End
+    //Id,StaffId,Type,Start,End
 
     {
         private string path = @"../../Data/leave.csv";
         private static LeaveRepository instance = null;
 
-        private LeaveRepository() {}
-      
-      public static LeaveRepository GetInstance()
-      {
-            if (instance == null) instance = new LeaveRepository();
+        private LeaveRepository() { }
+
+        public static LeaveRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new LeaveRepository();
+            }
+
             return instance;
-      }
+        }
 
         public List<Leave> GetAllByStaff(Staff staff)
         {
@@ -54,5 +58,5 @@ namespace Repository.Roles
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

@@ -6,7 +6,6 @@
 using Model.Inventory;
 using Model.Rooms;
 using Repository.Roomsninventory;
-using System;
 using System.Collections.Generic;
 
 namespace Service
@@ -15,9 +14,16 @@ namespace Service
     {
         public Room AddEquipmentToRoom(Room room, MedEquipmentType eqType, uint number)
         {
-            if (number == 0) return room;
+            if (number == 0)
+            {
+                return room;
+            }
+
             for (uint i = 0; i < number; i++)
+            {
                 AddMedEquipmentItem(eqType, room);
+            }
+
             return RoomRepository.GetInstance().Read(room.GetId());
         }
 
@@ -27,16 +33,21 @@ namespace Service
             medEquipmentType = MedEquipmentTypeRepository.GetInstance().Update(medEquipmentType);
             MedEquipmentItem mei = MedEquipmentItemRepository.GetInstance().Create(new MedEquipmentItem(medEquipmentType.GetId(), room.GetId(), medEquipmentType));
             ItemCount temp = null;
-            foreach(ItemCount ic in room.ItemCount)
-                if(mei.TypeId == ic.ItemId)
+            foreach (ItemCount ic in room.ItemCount)
+            {
+                if (mei.TypeId == ic.ItemId)
                 {
                     temp = ic;
                     break;
                 }
+            }
+
             if (temp == null)
             {
-                List<MedEquipmentItem> meiList = new List<MedEquipmentItem>();
-                meiList.Add(mei);
+                List<MedEquipmentItem> meiList = new List<MedEquipmentItem>
+                {
+                    mei
+                };
                 ItemCount ic = ItemCountRepository.GetInstance().Create(new ItemCount(1, medEquipmentType.GetId(), meiList.ToArray()));
                 room.ItemCount.Add(ic);
                 RoomRepository.GetInstance().Update(room);

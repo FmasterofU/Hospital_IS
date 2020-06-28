@@ -4,14 +4,13 @@
 // Purpose: Definition of Interface IStationaryRoomPatientsStateRepository
 
 using Model.Rooms;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-   public interface IStationaryRoomPatientsStateRepository : Repository.IRepositoryCRUD<StationaryRoomPatientsState,uint>
-   {
-      List<StationaryRoomPatientsState> GetAllByRoom(Model.Rooms.StationaryRoom room);
-   
-   }
+    public interface IStationaryRoomPatientsStateRepository : Repository.IRepositoryCRUD<StationaryRoomPatientsState, uint>
+    {
+        List<StationaryRoomPatientsState> GetAllByRoom(Model.Rooms.StationaryRoom room);
+
+    }
 }

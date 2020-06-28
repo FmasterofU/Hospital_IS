@@ -4,16 +4,15 @@
 // Purpose: Definition of Interface ILeaveController
 
 using Model.Roles;
-using System;
 using System.Collections.Generic;
 
 namespace Controller
 {
-   public interface ILeaveController
-   {
-      List<Leave> GetLeavesByStaff(Model.Roles.Staff staff);
-      
-      bool AddLeave(Model.Roles.Leave leave);
-   
-   }
+    public interface ILeaveController
+    {
+        List<Leave> GetLeavesByStaff(Model.Roles.Staff staff);
+
+        bool AddLeave(Model.Roles.Leave leave);
+
+    }
 }

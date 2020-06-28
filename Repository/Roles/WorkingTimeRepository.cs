@@ -10,28 +10,35 @@ using System.Collections.Generic;
 
 namespace Repository.Roles
 {
-   public class WorkingTimeRepository : IWorkingTimeRepository
+    public class WorkingTimeRepository : IWorkingTimeRepository
 
-        //Id,StaffId,StartTime,EndTime,Timestamp
+    //Id,StaffId,StartTime,EndTime,Timestamp
 
     {
         private string path = @"../../Data/working_time.csv";
         private static WorkingTimeRepository instance = null;
 
-        private WorkingTimeRepository() {}
-      
-      public static WorkingTimeRepository GetInstance()
-      {
-            if (instance == null) instance = new WorkingTimeRepository();
+        private WorkingTimeRepository() { }
+
+        public static WorkingTimeRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new WorkingTimeRepository();
+            }
+
             return instance;
-      }
+        }
 
         public List<WorkingTime> GetAllByStaff(Staff staff)
         {
             List<string[]> ids = Persistence.ReadEntryByKey(path, staff.GetId().ToString(), 1);
             List<WorkingTime> ret = new List<WorkingTime>();
             foreach (string[] s in ids)
+            {
                 ret.Add(Read(uint.Parse(s[0])));
+            }
+
             return ret;
         }
 
@@ -50,8 +57,14 @@ namespace Repository.Roles
             data[3] = item.EndTime.Ticks.ToString();
             data[4] = item.Timestamp.Ticks.ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public WorkingTime Read(uint id)
@@ -82,8 +95,12 @@ namespace Repository.Roles
         {
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<WorkingTime> ret = new List<WorkingTime>();
-            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            foreach (string s in ids)
+            {
+                ret.Add(Read(uint.Parse(s)));
+            }
+
             return ret;
         }
-   }
+    }
 }

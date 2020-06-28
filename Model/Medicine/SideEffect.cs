@@ -3,21 +3,19 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class SideEffect
 
-using System;
-
 namespace Model.Medicine
 {
-   public class SideEffect : Repository.IIdentifiable<uint>
+    public class SideEffect : Repository.IIdentifiable<uint>
     {
-      private string description;
-      private string name;
-      private uint id;
+        private string description;
+        private string name;
+        private uint id;
 
         public SideEffect(string description, string name)
         {
             this.description = description;
             this.name = name;
-            this.id = 0;
+            id = 0;
         }
 
         public SideEffect(uint id, string description, string name)
@@ -27,21 +25,9 @@ namespace Model.Medicine
             this.id = id;
         }
 
-        public string Description
-      {
-         get
-         {
-            return description;
-         }
-      }
-      
-      public string Name
-      {
-         get
-         {
-            return name;
-         }
-      }
+        public string Description => description;
+
+        public string Name => name;
 
         public uint GetId()
         {

@@ -11,19 +11,19 @@ using System.Collections.Generic;
 
 namespace Service
 {
-   public interface IAppointmentService
-   {
-      List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Model.Rooms.Room room);
-      
-      bool AddAppointment(ref Model.Appointments.Appointment appoinment, Model.Rooms.RoomType roomType, Model.Roles.Doctor doctor);
-      
-      bool EditAppoinment(Model.Appointments.Appointment appoinment);
-      
-      bool DeleteAppoinment(Model.Appointments.Appointment appoinment);
-      
-      void SetStrategy(IAppointmentRecommendationStrategy strategy);
-      
-      List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
-   
-   }
+    public interface IAppointmentService
+    {
+        List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Model.Rooms.Room room);
+
+        bool AddAppointment(ref Model.Appointments.Appointment appoinment, Model.Rooms.RoomType roomType, Model.Roles.Doctor doctor);
+
+        bool EditAppoinment(Model.Appointments.Appointment appoinment);
+
+        bool DeleteAppoinment(Model.Appointments.Appointment appoinment);
+
+        void SetStrategy(IAppointmentRecommendationStrategy strategy);
+
+        List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
+
+    }
 }

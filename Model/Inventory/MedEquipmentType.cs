@@ -3,20 +3,18 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class MedEquipmentType
 
-using System;
-
 namespace Model.Inventory
 {
-   public class MedEquipmentType : Repository.IIdentifiable<uint>
+    public class MedEquipmentType : Repository.IIdentifiable<uint>
     {
-      private string name;
-      private uint id;
-      private uint number;
+        private string name;
+        private uint id;
+        private uint number;
 
         public MedEquipmentType(string name, uint number)
         {
             this.name = name;
-            this.id = 0;
+            id = 0;
             this.number = number;
         }
 
@@ -28,36 +26,18 @@ namespace Model.Inventory
         }
 
         public string Name
-      {
-         get
-         {
-            return name;
-         }
-         set
-         {
-            this.name = value;
-         }
-      }
-      
-      public uint Id
-      {
-         get
-         {
-            return id;
-         }
-      }
-      
-      public uint Number
-      {
-         get
-         {
-            return number;
-         }
-         set
-         {
-            this.number = value;
-         }
-      }
+        {
+            get => name;
+            set => name = value;
+        }
+
+        public uint Id => id;
+
+        public uint Number
+        {
+            get => number;
+            set => number = value;
+        }
 
         public uint GetId()
         {

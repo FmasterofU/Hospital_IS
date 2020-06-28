@@ -4,21 +4,20 @@
 // Purpose: Definition of Class ItemCount
 
 using Model.Inventory;
-using System;
 
 namespace Model.Rooms
 {
-   public class ItemCount : Repository.IIdentifiable<uint>
-   {
-      private uint number;
-      private uint itemId;
-      private uint id;
+    public class ItemCount : Repository.IIdentifiable<uint>
+    {
+        private uint number;
+        private uint itemId;
+        private uint id;
 
         public ItemCount(uint number, uint itemId, MedEquipmentItem[] medEquipmentItem)
         {
             this.number = number;
             this.itemId = itemId;
-            this.id = 0;
+            id = 0;
             this.medEquipmentItem = medEquipmentItem;
         }
 
@@ -31,30 +30,18 @@ namespace Model.Rooms
         }
 
         public uint Number
-      {
-         get
-         {
-            return number;
-         }
-         set
-         {
-            this.number = value;
-         }
-      }
-      
-      public uint ItemId
-      {
-         get
-         {
-            return itemId;
-         }
-         set
-         {
-            this.itemId = value;
-         }
-      }
-      
-      public Model.Inventory.MedEquipmentItem[] medEquipmentItem;
+        {
+            get => number;
+            set => number = value;
+        }
+
+        public uint ItemId
+        {
+            get => itemId;
+            set => itemId = value;
+        }
+
+        public Model.Inventory.MedEquipmentItem[] medEquipmentItem;
 
         public uint GetId()
         {

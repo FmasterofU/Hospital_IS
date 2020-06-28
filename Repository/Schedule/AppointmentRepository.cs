@@ -17,9 +17,9 @@ using System.Collections.Generic;
 
 namespace Repository.Schedule
 {
-   public class AppointmentRepository : IAppointmentRepository
+    public class AppointmentRepository : IAppointmentRepository
 
-        //Id,startTime,endTime,medicalRecordId,DoctorId,RoomId,ServiceCommentId
+    //Id,startTime,endTime,medicalRecordId,DoctorId,RoomId,ServiceCommentId
 
 
     {
@@ -32,13 +32,17 @@ namespace Repository.Schedule
         public const int APPOINTMENT_DURATION = 30;
 
 
-        private AppointmentRepository() {}
-      
-      public static AppointmentRepository GetInstance()
-      {
-            if (instance == null) instance = new AppointmentRepository();
+        private AppointmentRepository() { }
+
+        public static AppointmentRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new AppointmentRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -55,10 +59,20 @@ namespace Repository.Schedule
             data[3] = item.MedicalRecordId.ToString();
             data[4] = item.doctor.GetId().ToString();
             data[5] = item.room.GetId().ToString();
-            if (item.serviceComment != null) data[6] = item.serviceComment.GetId().ToString();
+            if (item.serviceComment != null)
+            {
+                data[6] = item.serviceComment.GetId().ToString();
+            }
+
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Appointment Read(uint id)
@@ -100,11 +114,13 @@ namespace Repository.Schedule
         {
             List<string> allIds = Persistence.ReadAllPrimaryIds(path);
             List<Appointment> ret = new List<Appointment>();
-            foreach(string id in allIds)
+            foreach (string id in allIds)
             {
                 Appointment appointment = Read(uint.Parse(id));
-                if (appointment.StartTime>=start && appointment.EndTime<=end)
+                if (appointment.StartTime >= start && appointment.EndTime <= end)
+                {
                     ret.Add(appointment);
+                }
             }
             return ret;
         }
@@ -125,10 +141,14 @@ namespace Repository.Schedule
                     foreach (Appointment reservedAppointment in existingAppointment)
                     {
                         if (reservedAppointment.StartTime.Equals(appointment))
+                        {
                             freeRooms--;
+                        }
                     }
                     if (freeRooms > 0)
+                    {
                         availableTerms.Add(new Term(appointment, appointment.AddMinutes(APPOINTMENT_DURATION)));
+                    }
                 }
                 appointment.AddMinutes(APPOINTMENT_DURATION);
             }

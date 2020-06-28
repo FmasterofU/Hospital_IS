@@ -49,14 +49,18 @@ namespace Service
         {
             List<WorkingTime> all = GetAllWorkingTimes(staff);
             List<WorkingTime> timesBefore = new List<WorkingTime>();
-            foreach(WorkingTime wt in all)
+            foreach (WorkingTime wt in all)
             {
-                if(DateTime.Compare(date, wt.Timestamp) > 0)
+                if (DateTime.Compare(date, wt.Timestamp) > 0)
                 {
                     timesBefore.Add(wt);
                 }
             }
-            if (timesBefore.Count == 0) return null;
+            if (timesBefore.Count == 0)
+            {
+                return null;
+            }
+
             WorkingTime ret = timesBefore[0];
             long min = Math.Abs(DateTime.Now.Ticks - timesBefore[0].Timestamp.Ticks);
             long diff;

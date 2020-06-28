@@ -9,21 +9,25 @@ using System.Collections.Generic;
 
 namespace Repository.Blognfeedback
 {
-   public class PollRepository : Repository.IRepositoryCRUD<Poll, uint>
+    public class PollRepository : Repository.IRepositoryCRUD<Poll, uint>
 
-        //Id,Questions,Answers,PatientId
+    //Id,Questions,Answers,PatientId
 
     {
         private string path = @"../../Data/poll.csv";
         private static PollRepository instance = null;
 
-        private PollRepository() {}
-      
-      public static PollRepository GetInstance()
-      {
-            if (instance == null) instance = new PollRepository();
+        private PollRepository() { }
+
+        public static PollRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new PollRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -49,5 +53,5 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
-   }
+    }
 }

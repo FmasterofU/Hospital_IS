@@ -4,32 +4,31 @@
 // Purpose: Definition of Class MedicalRecord
 
 using Model.Roles;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Model.Medicalrecord
 {
-   public class MedicalRecord : Repository.IIdentifiable<uint>
+    public class MedicalRecord : Repository.IIdentifiable<uint>
     {
-      private uint id;
-      
-      public InsurancePolicy insurancePolicy;
-      public System.Collections.Generic.List<Model.Examination.Examination> examination;
+        private uint id;
+
+        public InsurancePolicy insurancePolicy;
+        public System.Collections.Generic.List<Model.Examination.Examination> examination;
 
         public MedicalRecord(InsurancePolicy insurancePolicy, List<Examination.Examination> examination, Patient patient)
         {
-            this.id = 0;
+            id = 0;
             this.insurancePolicy = insurancePolicy;
             this.examination = examination;
             this.patient = patient;
         }
 
-        public MedicalRecord(InsurancePolicy insurancePolicy,Patient patient)
+        public MedicalRecord(InsurancePolicy insurancePolicy, Patient patient)
         {
-            this.id = 0;
+            id = 0;
             this.patient = patient;
-            this.examination = new List<Examination.Examination>();
+            examination = new List<Examination.Examination>();
             this.insurancePolicy = insurancePolicy;
         }
 
@@ -40,60 +39,82 @@ namespace Model.Medicalrecord
         /// </summary>
         /// <pdGenerated>Default opposite class collection property</pdGenerated>
         public System.Collections.Generic.List<Model.Examination.Examination> Examination
-      {
-         get
-         {
-            if (examination == null)
-               examination = new System.Collections.Generic.List<Model.Examination.Examination>();
-            return examination;
-         }
-         set
-         {
-            RemoveAllExamination();
-            if (value != null)
+        {
+            get
             {
-               foreach (Model.Examination.Examination oExamination in value)
-                  AddExamination(oExamination);
+                if (examination == null)
+                {
+                    examination = new System.Collections.Generic.List<Model.Examination.Examination>();
+                }
+
+                return examination;
             }
-         }
-      }
-      
-      /// <summary>
-      /// Add a new Model.Examination.Examination in the collection
-      /// </summary>
-      /// <pdGenerated>Default Add</pdGenerated>
-      public void AddExamination(Model.Examination.Examination newExamination)
-      {
-         if (newExamination == null)
-            return;
-         if (this.examination == null)
-            this.examination = new System.Collections.Generic.List<Model.Examination.Examination>();
-         if (!this.examination.Contains(newExamination))
-            this.examination.Add(newExamination);
-      }
-      
-      /// <summary>
-      /// Remove an existing Model.Examination.Examination from the collection
-      /// </summary>
-      /// <pdGenerated>Default Remove</pdGenerated>
-      public void RemoveExamination(Model.Examination.Examination oldExamination)
-      {
-         if (oldExamination == null)
-            return;
-         if (this.examination != null)
-            if (this.examination.Contains(oldExamination))
-               this.examination.Remove(oldExamination);
-      }
-      
-      /// <summary>
-      /// Remove all instances of Model.Examination.Examination from the collection
-      /// </summary>
-      /// <pdGenerated>Default removeAll</pdGenerated>
-      public void RemoveAllExamination()
-      {
-         if (examination != null)
-            examination.Clear();
-      }
+            set
+            {
+                RemoveAllExamination();
+                if (value != null)
+                {
+                    foreach (Model.Examination.Examination oExamination in value)
+                    {
+                        AddExamination(oExamination);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add a new Model.Examination.Examination in the collection
+        /// </summary>
+        /// <pdGenerated>Default Add</pdGenerated>
+        public void AddExamination(Model.Examination.Examination newExamination)
+        {
+            if (newExamination == null)
+            {
+                return;
+            }
+
+            if (examination == null)
+            {
+                examination = new System.Collections.Generic.List<Model.Examination.Examination>();
+            }
+
+            if (!examination.Contains(newExamination))
+            {
+                examination.Add(newExamination);
+            }
+        }
+
+        /// <summary>
+        /// Remove an existing Model.Examination.Examination from the collection
+        /// </summary>
+        /// <pdGenerated>Default Remove</pdGenerated>
+        public void RemoveExamination(Model.Examination.Examination oldExamination)
+        {
+            if (oldExamination == null)
+            {
+                return;
+            }
+
+            if (examination != null)
+            {
+                if (examination.Contains(oldExamination))
+                {
+                    examination.Remove(oldExamination);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Remove all instances of Model.Examination.Examination from the collection
+        /// </summary>
+        /// <pdGenerated>Default removeAll</pdGenerated>
+        public void RemoveAllExamination()
+        {
+            if (examination != null)
+            {
+                examination.Clear();
+            }
+        }
 
         public uint GetId()
         {
@@ -115,7 +136,10 @@ namespace Model.Medicalrecord
                 result.Append(" " + one_examination.GetId().ToString());
             }
             if (examination.Count != 0)
+            {
                 return result.ToString().Substring(1);
+            }
+
             return result.ToString();
         }
     }

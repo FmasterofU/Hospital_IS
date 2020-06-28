@@ -12,21 +12,25 @@ using System.Collections.Generic;
 
 namespace Repository.Patientdata
 {
-   public class ReferralRepository : Repository.IRepositoryCRUD<Referral, uint>
+    public class ReferralRepository : Repository.IRepositoryCRUD<Referral, uint>
 
-        //Id, Type, Note, Accessory, SpecialistId
+    //Id, Type, Note, Accessory, SpecialistId
 
     {
         private string path = @"../../Data/referral.csv";
         private static ReferralRepository instance = null;
 
-        private ReferralRepository() {}
-      
-      public static ReferralRepository GetInstance()
-      {
-            if (instance == null) instance = new ReferralRepository();
+        private ReferralRepository() { }
+
+        public static ReferralRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ReferralRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -44,8 +48,14 @@ namespace Repository.Patientdata
             data[3] = item.Accessory;
             data[4] = item.specialist.GetId().ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Referral Read(uint id)
@@ -80,8 +90,12 @@ namespace Repository.Patientdata
         {
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<Referral> ret = new List<Referral>();
-            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            foreach (string s in ids)
+            {
+                ret.Add(Read(uint.Parse(s)));
+            }
+
             return ret;
         }
-   }
+    }
 }

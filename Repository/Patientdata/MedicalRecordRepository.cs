@@ -8,26 +8,29 @@ using Model.Examination;
 using Model.Medicalrecord;
 using Model.Roles;
 using Repository.Roles;
-using System;
 using System.Collections.Generic;
 
 namespace Repository.Patientdata
 {
-   public class MedicalRecordRepository : Repository.IRepositoryCRUD<MedicalRecord, uint>
+    public class MedicalRecordRepository : Repository.IRepositoryCRUD<MedicalRecord, uint>
 
-        //MedicalRecordId,PatientId,InsuranceId,ExaminationIds
+    //MedicalRecordId,PatientId,InsuranceId,ExaminationIds
 
     {
         private string path = @"../../Data/medical_record.csv";
         private static MedicalRecordRepository instance = null;
 
-        private MedicalRecordRepository() {}
-      
-      public static MedicalRecordRepository GetInstance()
-      {
-            if (instance == null) instance = new MedicalRecordRepository();
+        private MedicalRecordRepository() { }
+
+        public static MedicalRecordRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MedicalRecordRepository();
+            }
+
             return instance;
-      }
+        }
 
         public bool Delete(uint id)
         {
@@ -48,14 +51,20 @@ namespace Repository.Patientdata
             }
             data[3] = data[3].Trim();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded) return item;
-            else return null;
+            if (isAdded)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public MedicalRecord Read(uint id)
         {
             List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
-            if(data.Count == 1)
+            if (data.Count == 1)
             {
                 uint mrID = uint.Parse(data[0][0]);
                 uint patID = uint.Parse(data[0][1]);
@@ -65,16 +74,20 @@ namespace Repository.Patientdata
                 {
                     Patient patient = (Patient)PeopleRepository.GetInstance().Read(patID);
                     List<Examination> exams = new List<Examination>();
-                    
-                    
+
+
                     string[] examIDs = data[0][3].Split(' ');
                     foreach (string exID in examIDs)
                     {
-                        if (exID.Equals("")) break;
+                        if (exID.Equals(""))
+                        {
+                            break;
+                        }
+
                         Examination e = ExaminationRepository.GetInstance().Read(uint.Parse(exID));
                         exams.Add(e);
                     }
-                    
+
                     MedicalRecord ret = new MedicalRecord(policy, exams, patient);
                     ret.SetId(mrID);
                     return ret;
@@ -90,24 +103,34 @@ namespace Repository.Patientdata
             data[1] = item.patient.GetId().ToString();
             data[2] = item.insurancePolicy.GetId();
             data[3] = "";
-            foreach(Examination e in item.Examination)
+            foreach (Examination e in item.Examination)
             {
                 data[3] += e.GetId().ToString() + " ";
             }
             data[3] = data[3].Trim();
             bool isUpdated = Persistence.EditEntry(path, data);
-            if (isUpdated) return item;
-            else return null;
+            if (isUpdated)
+            {
+                return item;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<MedicalRecord> GetAll()
         {
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<MedicalRecord> ret = new List<MedicalRecord>();
-            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            foreach (string s in ids)
+            {
+                ret.Add(Read(uint.Parse(s)));
+            }
+
             return ret;
         }
 
 
-   }
+    }
 }

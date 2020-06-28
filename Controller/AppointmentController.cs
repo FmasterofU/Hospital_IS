@@ -13,9 +13,9 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-   public class AppointmentController : IAppointmentController
-   {
-      public Service.IAppointmentService iAppoinmentService = new AppointmentService();
+    public class AppointmentController : IAppointmentController
+    {
+        public Service.IAppointmentService iAppoinmentService = new AppointmentService();
 
         public bool AddAppointment(ref Appointment appoinment, RoomType roomType, Doctor doctor)
         {
@@ -44,11 +44,11 @@ namespace Controller
 
         public void SetStrategy(string strategy)
         {
-            if(strategy.ToLower().Equals("doctor"))
+            if (strategy.ToLower().Equals("doctor"))
             {
                 iAppoinmentService.SetStrategy(new DoctorAppointmentRecommendationStrategy());
             }
-            else if(strategy.ToLower().Equals("time"))
+            else if (strategy.ToLower().Equals("time"))
             {
                 iAppoinmentService.SetStrategy(new TimePeriodAppointmentRecommendationStrategy());
             }

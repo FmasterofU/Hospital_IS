@@ -9,9 +9,9 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-   public class LeaveController : ILeaveController
-   {
-      public Service.ILeaveService iLeaveService;
+    public class LeaveController : ILeaveController
+    {
+        public Service.ILeaveService iLeaveService;
 
         public bool AddLeave(Leave leave)
         {

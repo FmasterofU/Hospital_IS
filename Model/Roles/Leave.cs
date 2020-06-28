@@ -7,13 +7,13 @@ using System;
 
 namespace Model.Roles
 {
-   public class Leave : Repository.IIdentifiable<uint>
-   {
-      private LeaveType type;
-      private DateTime start;
-      private DateTime end;
-      private uint idStaff;
-      private uint id;
+    public class Leave : Repository.IIdentifiable<uint>
+    {
+        private LeaveType type;
+        private DateTime start;
+        private DateTime end;
+        private uint idStaff;
+        private uint id;
 
         public Leave(LeaveType type, DateTime start, DateTime end, uint idStaff, Staff staff)
         {
@@ -21,59 +21,35 @@ namespace Model.Roles
             this.start = start;
             this.end = end;
             this.idStaff = idStaff;
-            this.id = 0;
+            id = 0;
             this.staff = staff;
         }
 
         public LeaveType Type
-      {
-         get
-         {
-            return type;
-         }
-         set
-         {
-            this.type = value;
-         }
-      }
-      
-      public DateTime Start
-      {
-         get
-         {
-            return start;
-         }
-         set
-         {
-            this.start = value;
-         }
-      }
-      
-      public uint IdStaff
-      {
-         get
-         {
-            return idStaff;
-         }
-         set
-         {
-            this.idStaff = value;
-         }
-      }
-      
-      public DateTime End
-      {
-         get
-         {
-            return end;
-         }
-         set
-         {
-            this.end = value;
-         }
-      }
-      
-      public Staff staff;
+        {
+            get => type;
+            set => type = value;
+        }
+
+        public DateTime Start
+        {
+            get => start;
+            set => start = value;
+        }
+
+        public uint IdStaff
+        {
+            get => idStaff;
+            set => idStaff = value;
+        }
+
+        public DateTime End
+        {
+            get => end;
+            set => end = value;
+        }
+
+        public Staff staff;
 
         public uint GetId()
         {
