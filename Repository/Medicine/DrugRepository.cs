@@ -65,15 +65,15 @@ namespace Repository.Medicine
             string[] dbids = temp[0][3].Split(' ');
             List<DrugBatch> dbs = new List<DrugBatch>();
             foreach (string dbid in dbids)
-                dbs.Add(DrugBatchRepository.GetInstance().Read(uint.Parse(dbid)));
+                if (!dbid.Equals("")) dbs.Add(DrugBatchRepository.GetInstance().Read(uint.Parse(dbid)));
             string[] irids = temp[0][4].Split(' ');
             List<IngridientRatio> irs = new List<IngridientRatio>();
             foreach (string irid in irids)
-                irs.Add(IngridientRatioRepository.GetInstance().Read(uint.Parse(irid)));
+                if (!irid.Equals("")) irs.Add(IngridientRatioRepository.GetInstance().Read(uint.Parse(irid)));
             string[] sefids = temp[0][5].Split(' ');
             List<SideEffectFrequency> sefs = new List<SideEffectFrequency>();
             foreach (string sefid in sefids)
-                sefs.Add(SideEffectFrequencyRepository.GetInstance().Read(uint.Parse(sefid)));
+                if (!sefid.Equals("")) sefs.Add(SideEffectFrequencyRepository.GetInstance().Read(uint.Parse(sefid)));
             return new Drug(id, name, inUse, dbs, irs, sefs, dsc);
         }
 
