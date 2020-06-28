@@ -23,7 +23,7 @@ namespace ManagingDirectorMobile.ViewModel
         public DefaultNotificationViewModel()
         {
             notifications = new ObservableCollection<Notification>();
-            foreach (Drug drug in Drug.GetDrugList())
+            foreach (DrugDummy drug in DrugDummy.GetDrugList())
                 if (drug.Number < drug.Threshold)
                     notifications.Add(new Notification() { Name = drug.Name, Type = 0 });
         }

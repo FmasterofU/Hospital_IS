@@ -1,5 +1,6 @@
 ﻿using ManagingDirectorMobile.Model;
 using ManagingDirectorMobile.ViewModel;
+using Model.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +73,7 @@ namespace ManagingDirectorMobile.View
         private void ShowHistoricalDataButton_Click(object sender, RoutedEventArgs e)
         {
             Drug drug = DrugListDG.SelectedItem as Drug;
-            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsHistoryViewModel(DrugListDG.SelectedItem as Drug);
+            ((MainWindow)Application.Current.MainWindow).cntrlZ2.Content = new DrugsHistoryViewModel(drug);
         }
 
         private void DrugListDG_SelectionChanged(object sender, SelectionChangedEventArgs e)

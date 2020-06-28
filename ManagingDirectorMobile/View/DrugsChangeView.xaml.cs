@@ -41,8 +41,8 @@ namespace ManagingDirectorMobile.View
         {
             if ((sender as DataGrid).SelectedItem != null)
             {
-                CodeTextBox.Text = ((sender as DataGrid).SelectedItem as DrugBatch).Code;
-                (DataContext as DrugsChangeViewModel).EXPDate = ((sender as DataGrid).SelectedItem as DrugBatch).StringifyEXP();
+                CodeTextBox.Text = ((sender as DataGrid).SelectedItem as DrugBatchDummy).Code;
+                (DataContext as DrugsChangeViewModel).EXPDate = ((sender as DataGrid).SelectedItem as DrugBatchDummy).StringifyEXP();
             }
         }
 

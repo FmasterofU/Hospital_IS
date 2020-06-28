@@ -1,4 +1,6 @@
-﻿using ManagingDirectorMobile.Model;
+﻿using Controller;
+using ManagingDirectorMobile.Model;
+using Model.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,24 +15,30 @@ namespace ManagingDirectorMobile.ViewModel
     {
 
         public ObservableCollection<Drug> drugs { get; set; }
+        Controller.IDrugController c = new DrugController();
 
         public DrugsViewModel()
         {
-            drugs = Drug.GetDrugList();
+            List<Drug> d = c.GetAllDrugs();
+            drugs = new ObservableCollection<Drug>();
+            foreach (Drug temp in d)
+                drugs.Add(temp);
         }
 
         public void Search(String name = null)
         {
+            List<Drug> d;
             if (name == null)
             {
-                drugs = Drug.GetDrugList();
-                return;
+                d = c.GetAllDrugs();
             }
-            var newDrugs = new ObservableCollection<Drug>();
-            foreach(Drug drug in drugs)
-                if (drug.Name.Equals(name))
-                    newDrugs.Add(drug);
-            drugs = newDrugs;
+            else
+            {
+                d = c.SearchDrugs(name);
+            }
+            drugs = new ObservableCollection<Drug>();
+            foreach (Drug temp in d)
+                drugs.Add(temp);
         }
     }
 }

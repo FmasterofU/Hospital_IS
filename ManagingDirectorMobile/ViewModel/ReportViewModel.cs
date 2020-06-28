@@ -13,12 +13,12 @@ namespace ManagingDirectorMobile.ViewModel
     {
         public static void DrugsReport()
         {
-            var items = Enumerable.Range(0, Drug.drugs.Count - 1).Select(x => new
+            var items = Enumerable.Range(0, DrugDummy.drugs.Count - 1).Select(x => new
             {
-                Prop1 = Drug.drugs[x].Name,
-                Prop2 = Drug.drugs[x].Code,
-                Prop3 = Drug.drugs[x].Number,
-                Prop4 = Drug.drugs[x].Threshold
+                Prop1 = DrugDummy.drugs[x].Name,
+                Prop2 = DrugDummy.drugs[x].Code,
+                Prop3 = DrugDummy.drugs[x].Number,
+                Prop4 = DrugDummy.drugs[x].Threshold
             }) ;
 
             var pdf = items.ToPdf(scheme =>

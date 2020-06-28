@@ -12,7 +12,7 @@ namespace ManagingDirectorMobile.ViewModel
         private static readonly Random _random = new Random();
         public static void Add(String name, int number)
         {
-            Drug.drugs.Add(new Drug() { Name = name, Threshold=number,Code= _random.Next(0,10000).ToString() });
+            DrugDummy.drugs.Add(new DrugDummy() { Name = name, Threshold=number,Code= _random.Next(0,10000).ToString() });
         }
     }
 }

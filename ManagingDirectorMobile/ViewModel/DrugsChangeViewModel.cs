@@ -1,4 +1,6 @@
-﻿using ManagingDirectorMobile.Model;
+﻿using Controller;
+using ManagingDirectorMobile.Model;
+using Model.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,45 +12,56 @@ namespace ManagingDirectorMobile.ViewModel
 {
     class DrugsChangeViewModel
     {
+        Controller.IDrugController c = new DrugController();
         private Drug drug;
         public string DrugName { get { return drug.Name; } }
-        public string DrugQuantity { get { return drug.Number.ToString(); } }
-        public string DrugMinimumFormString { get { return "minimum(" + drug.Threshold + "):"; } }
+        public string DrugQuantity { get { return drug.drugStateChange.TotalNumber.ToString(); } }
+        public string DrugMinimumFormString { get { return "minimum(" + drug.drugStateChange.Threshold + "):"; } }
         public ObservableCollection<DrugBatch> drugBatches { get; set; }
         public string EXPDate { get; set; }
 
         public DrugsChangeViewModel(Drug drug) {
             this.drug = drug;
-            drugBatches = drug.drugBatches;
+            List<DrugBatch> d = c.GetDrugBatches(drug);
+            drugBatches = new ObservableCollection<DrugBatch>();
+            foreach (DrugBatch temp in d)
+                drugBatches.Add(temp);
             EXPDate = "";
         }
 
         public void Save(int threshold, DateTime? EXP, string code, int quantity)
         {
-            if (threshold != -1)
-                drug.Threshold = threshold;
+            if (threshold != -1) {
+                drug.drugStateChange.Threshold = threshold;
+            }
             if (code != null)
             {
                 DrugBatch check = null;
-                foreach(DrugBatch db in drug.drugBatches)
-                    if (db.Code.Equals(code))
+                foreach(DrugBatch db in c.GetDrugBatches(drug))
+                    if (db.LotNumber.Equals(code))
                     {
                         check = db;
                         break;
                     }
                 if (check!=null)
                 {
-                    drug.Number += quantity != -1 ? quantity - check.Quantity : 0;
-                    check.Quantity = quantity != -1 ? quantity : check.Quantity;
-                    check.EXP = EXP==null? check.EXP: (DateTime)EXP;
+                    DrugStateChange dsc = new DrugStateChange(DateTime.Now, quantity != -1 ? quantity - check.Number : 0, drug.drugStateChange.Threshold, drug.GetId());
+                    //dsc = c.
+                    check.Number = quantity != -1 ? quantity : check.Number;
+                    check.ExpDate = EXP == null ? check.ExpDate : (DateTime)EXP;
+                    c.EditDrugBatch(check);
+                    drug.drugStateChange = dsc;
                 }
                 else if(EXP!=null && quantity!=-1)
                 {
-                    drug.Number += quantity;
-                    drug.drugBatches.Add(new DrugBatch() { Code = code, EXP = (DateTime)EXP, Quantity = quantity });
+                    DrugBatch db = new DrugBatch(code, quantity, EXP.GetValueOrDefault(), drug.GetId());
+                    db = c.AddDrugBatch(db);
+                    drug.drugStateChange.TotalNumber += quantity;
+                    //drug.drugStateChange = c.
+                    drug.drugBatch.Add(db);
                 }
             }
-                
+            c.EditDrug(drug);
         }
     }
 }

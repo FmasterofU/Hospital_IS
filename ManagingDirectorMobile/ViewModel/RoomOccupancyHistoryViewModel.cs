@@ -12,7 +12,7 @@ namespace ManagingDirectorMobile.ViewModel
     using OxyPlot.Series;
     class RoomOccupancyHistoryViewModel
     {
-        public RoomOccupancyHistoryViewModel(Drug drug)
+        public RoomOccupancyHistoryViewModel(DrugDummy drug)
         {
             this.MyModel = new PlotModel { Title = "Intenzivna njega 1" };
             //this.MyModel.Series.Add(new FunctionSeries(Math.Cos, 0, 10, 0.1, "stanje"));
