@@ -12,11 +12,9 @@ namespace Service
 {
     public class WorkingTimeService : IWorkingTimeService
     {
-        public bool AddWorkingTime(WorkingTime workingTime)
+        public WorkingTime AddWorkingTime(WorkingTime workingTime)
         {
-            WorkingTime adding = WorkingTimeRepository.GetInstance().Create(workingTime);
-            //TODO: check ret val
-            return true;
+            return WorkingTimeRepository.GetInstance().Create(workingTime);
         }
 
         public List<WorkingTime> GetAllWorkingTimes(Staff staff)

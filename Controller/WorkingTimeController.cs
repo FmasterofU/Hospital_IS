@@ -14,7 +14,7 @@ namespace Controller
    {
       public Service.IWorkingTimeService iWorkingTimeService = new WorkingTimeService();
 
-        public bool AddWorkingTime(WorkingTime workingTime)
+        public WorkingTime AddWorkingTime(WorkingTime workingTime)
         {
             return iWorkingTimeService.AddWorkingTime(workingTime);
         }

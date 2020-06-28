@@ -26,7 +26,7 @@ namespace Service
             return MedicalRecordRepository.GetInstance().Update(medRecord);
         }
 
-        public bool AppendExamination(Examination examination, MedicalRecord medicalRecord)
+        public Examination AppendExamination(Examination examination, MedicalRecord medicalRecord)
         {
             foreach (Prescription p in examination.Prescription)
             {
@@ -39,11 +39,11 @@ namespace Service
             }
 
             foreach (Referral r in examination.Referral) ReferralRepository.GetInstance().Create(r);
+            examination = ExaminationRepository.GetInstance().Create(examination);
 
             medicalRecord.AddExamination(examination);
             MedicalRecordRepository.GetInstance().Update(medicalRecord);
-            //TODO: check return value
-            return true;
+            return examination;
         }
 
         public bool EditInsurance(InsurancePolicy insurance)
