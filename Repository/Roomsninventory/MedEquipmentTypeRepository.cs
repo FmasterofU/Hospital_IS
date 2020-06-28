@@ -3,6 +3,7 @@
 // Created: Saturday, May 30, 2020 9:08:39 PM
 // Purpose: Definition of Class MedEquipmentTypeRepository
 
+using Class_Diagram.Repository;
 using Model.Inventory;
 using System;
 using System.Collections.Generic;
@@ -27,27 +28,45 @@ namespace Repository.Roomsninventory
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public MedEquipmentType Create(MedEquipmentType item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[3];
+            item.SetId(Persistence.GetNewId(path));
+            data[0] = item.GetId().ToString();
+            data[1] = item.Name;
+            data[2] = item.Number.ToString();
+            if (Persistence.WriteEntry(path, data))
+                return item;
+            else return null;
         }
 
         public MedEquipmentType Read(uint id)
         {
-            throw new NotImplementedException();
+            List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
+            return new MedEquipmentType(uint.Parse(data[0][0]), data[0][1], uint.Parse(data[0][2]));
         }
 
         public MedEquipmentType Update(MedEquipmentType item)
         {
-            throw new NotImplementedException();
+            string[] data = new string[3];
+            data[0] = item.GetId().ToString();
+            data[1] = item.Name;
+            data[2] = item.Number.ToString();
+            if (Persistence.EditEntry(path, data))
+                return item;
+            else return null;
         }
 
         public List<MedEquipmentType> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<MedEquipmentType> met = new List<MedEquipmentType>();
+            foreach (string s in ids)
+                met.Add(Read(uint.Parse(s)));
+            return met;
         }
    }
 }

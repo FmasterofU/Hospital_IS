@@ -22,6 +22,22 @@ namespace Model.Rooms
             this.itemCount = itemCount;
         }
 
+        public Room(uint id, RoomType type, string name, List<ItemCount> itemCount)
+        {
+            this.id = id;
+            this.type = type;
+            this.name = name;
+            this.itemCount = itemCount;
+        }
+
+        public Room(Room room)
+        {
+            this.id = room.id;
+            this.type = room.type;
+            this.name = room.name;
+            this.itemCount = room.itemCount;
+        }
+
         public RoomType Type
       {
          get

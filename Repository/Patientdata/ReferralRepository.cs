@@ -30,7 +30,7 @@ namespace Repository.Patientdata
 
         public bool Delete(uint id)
         {
-            throw new NotImplementedException();
+            return Persistence.RemoveEntry(path, id.ToString());
         }
 
         public Referral Create(Referral item)
@@ -62,8 +62,7 @@ namespace Repository.Patientdata
                 if (!data[0][4].Equals(""))
                 {
                     uint specID = uint.Parse(data[0][4]);
-                    //TODO: specialist read
-                    //Specialist s = (Specialist)PeopleRepository.GetInstance().Read(specID);
+                    s = (Specialist)PeopleRepository.GetInstance().Read(specID);
                 }
                 Referral ret = new Referral(refType, note, accessory, s);
                 ret.SetId(refID);
@@ -79,7 +78,10 @@ namespace Repository.Patientdata
 
         public List<Referral> GetAll()
         {
-            throw new NotImplementedException();
+            List<string> ids = Persistence.ReadAllPrimaryIds(path);
+            List<Referral> ret = new List<Referral>();
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
+            return ret;
         }
    }
 }

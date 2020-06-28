@@ -21,6 +21,22 @@ namespace Model.Rooms
             this.stationaryRoomPatientsState = stationaryRoomPatientsState;
         }
 
+        public StationaryRoom(uint id, RoomType type, string name, List<ItemCount> itemCount, int capacity, List<Patient> patient,
+                StationaryRoomPatientsState stationaryRoomPatientsState) : base(id, type, name, itemCount)
+        {
+            this.capacity = capacity;
+            this.patient = patient;
+            this.stationaryRoomPatientsState = stationaryRoomPatientsState;
+        }
+
+        public StationaryRoom(Room room, int capacity, List<Patient> patient,
+                StationaryRoomPatientsState stationaryRoomPatientsState) : base(room)
+        {
+            this.capacity = capacity;
+            this.patient = patient;
+            this.stationaryRoomPatientsState = stationaryRoomPatientsState;
+        }
+
         public int Capacity
       {
          get

@@ -140,8 +140,5 @@ namespace Repository.Schedule
             DateTime endTime = new DateTime(date.Year, date.Month, date.Day, END_OF_WORKING_TIME_HOURS, END_OF_WORKING_TIME_MINUTE, 0);
             return date >= startTime && date <= endTime.AddMinutes(-APPOINTMENT_DURATION);
         }
-
-
-        
     }
 }

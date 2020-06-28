@@ -19,7 +19,7 @@ namespace Controller
       
       List<WorkingTime> GetAllWorkingTimes(Model.Roles.Staff staff);
       
-      bool AddWorkingTime(Model.Roles.WorkingTime workingTime);
+      WorkingTime AddWorkingTime(Model.Roles.WorkingTime workingTime);
    
    }
 }
