@@ -8,5 +8,6 @@ namespace ManagingDirectorMobile.ViewModel
 {
     class RoomsViewModel
     {
+
     }
 }

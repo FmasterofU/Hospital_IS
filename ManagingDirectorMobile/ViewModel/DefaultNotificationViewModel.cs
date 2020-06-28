@@ -1,4 +1,6 @@
-﻿using ManagingDirectorMobile.Model;
+﻿using Controller;
+using ManagingDirectorMobile.Model;
+using Model.Medicine;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,12 +21,14 @@ namespace ManagingDirectorMobile.ViewModel
     {
         public string NotificationCount { get { return notifications.Count().ToString(); } }
         public ObservableCollection<Notification> notifications { get; set; }
+        private static Controller.IDrugController c = new DrugController();
 
         public DefaultNotificationViewModel()
         {
             notifications = new ObservableCollection<Notification>();
-            foreach (DrugDummy drug in DrugDummy.GetDrugList())
-                if (drug.Number < drug.Threshold)
+            List<Drug> d = c.GetAllDrugs();
+            foreach (Drug drug in d)
+                if (drug.InUse && drug.drugStateChange.TotalNumber < drug.drugStateChange.Threshold)
                     notifications.Add(new Notification() { Name = drug.Name, Type = 0 });
         }
 
