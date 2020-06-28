@@ -15,6 +15,7 @@ namespace Class_Diagram.Model.Appointments
         {
             StartTime = startTime;
             EndTime = endTime;
+
         }
     }
 }
