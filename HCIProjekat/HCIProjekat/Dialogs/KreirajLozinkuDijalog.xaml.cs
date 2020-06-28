@@ -20,6 +20,7 @@ namespace HCIProjekat.Dialogs
     public partial class KreirajLozinkuDijalog : Window
     {
         private bool potvrdjen;
+        private string lozinka;
         public KreirajLozinkuDijalog()
         {
             InitializeComponent();
@@ -89,6 +90,10 @@ namespace HCIProjekat.Dialogs
         public bool isPotvrdjen()
         {
             return potvrdjen; 
+        }
+        public string getLozinku()
+        {
+            return lozinka;
         }
     }
 }

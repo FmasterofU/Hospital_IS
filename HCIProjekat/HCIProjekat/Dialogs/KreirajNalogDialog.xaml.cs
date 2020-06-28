@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controller;
+using Model.Medicine;
+using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,29 +48,29 @@ namespace HCIProjekat.Dialogs
             }
             else
             {
+                Sex pol = Sex.potato;
+                if (rb_pol_m.IsChecked == true)
+                    pol = Sex.male;
+                else if (rb_pol_z.IsChecked == true)
+                    pol = Sex.female;
 
-                Model.Pacijent pac = Model.SviPacijenti.getInstance().searchByJMBG(txt_jmbg.Text);
-
-                if (pac != null)
+                // Model.Pacijent pac = Model.SviPacijenti.getInstance().searchByJMBG(txt_jmbg.Text);
+                UserController controller = new UserController();
+                Patient patient = new Patient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_jmbg.Text, txt_email.Text, "", UserType.Patient, txt_adresa.Text, dp_rodjen.SelectedDate.Value, false, txt_ime_rod.Text, 0, new List<Ingridient>());
+                List<Patient> existPatients = controller.GetPatientBySearch(patient.Jmbg, "", "");
+                if (existPatients.Count != 0)
                 {
                     MessageBox.Show("Vec postoji osoba sa istim JMBG u sistemu!");
                     return;
                 }
                 Opacity = 0.5;
                 
-                String pol;
-                if (rb_pol_m.IsChecked == true)
-                    pol = "M";
-                else if (rb_pol_z.IsChecked == true)
-                    pol = "Z";
-                else
-                    pol = "";
-                Model.Pacijent pacijent = new Model.Pacijent(txt_jmbg.Text, txt_ime.Text, txt_prz.Text, txt_ime_rod.Text, dp_rodjen.SelectedDate.Value , pol, txt_adresa.Text, txt_email.Text, txt_tel.Text);
                 KreirajLozinkuDijalog kld = new KreirajLozinkuDijalog();
                 kld.ShowDialog(); //treba da stoji u else
                 if (kld.isPotvrdjen())
                 {
-                    Model.SviPacijenti.getInstance().dodajPacijenta(pacijent);
+                    patient.Password = kld.getLozinku();
+                    patient = controller.AddPatient(patient);
                 }
                 Opacity =1;
             }

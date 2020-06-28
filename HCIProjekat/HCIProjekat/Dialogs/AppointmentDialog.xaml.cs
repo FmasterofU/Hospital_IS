@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,7 @@ namespace HCIProjekat.Dialogs
             txt_jmbg.Text = termin.jmbgPacijenta;
             if (!termin.jmbgPacijenta.Equals(""))
             {
+                //Patient p = ;
                 Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(termin.jmbgPacijenta);
                 txt_ime.Text = p.ime;
                 txt_prz.Text = p.prezime;
