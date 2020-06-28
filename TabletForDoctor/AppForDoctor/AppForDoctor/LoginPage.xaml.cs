@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Roles;
+using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +49,7 @@ namespace AppForDoctor
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            User u = UserList.IsDoctor(mailTextBox.Text, passTextBox.Password);
+            /*User u = UserList.IsDoctor(mailTextBox.Text, passTextBox.Password);
             if (u == null)
             {
                 Style style = this.FindResource("incorectLabelStyle") as Style;
@@ -59,7 +61,26 @@ namespace AppForDoctor
             w.changePage(4);
             EditProfilePage.getInstance(u);
             w.changePage(1);
-            instance = null;
+            instance = null;*/
+            UserService service = new UserService();
+            List<Doctor> docs = service.GetActiveDoctors();
+            string inputMail = mailTextBox.Text;
+            string inputPass = passTextBox.Password;
+            foreach(Doctor d in docs)
+            {
+                if(d.Password.Equals(inputPass) && d.Email.Equals(inputMail))
+                {
+                    MainWindow w = MainWindow.getInstance();
+                    w.changePage(4);
+                    EditProfilePage.getInstance(d);
+                    w.changePage(1);
+                    instance = null;
+                }
+            }
+            Style style = this.FindResource("incorectLabelStyle") as Style;
+            mailLabel.Style = style;
+            passLabel.Style = style;
+            return;
         }
 
         private void TextChanged(object sender, TextChangedEventArgs e)

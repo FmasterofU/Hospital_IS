@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using Model.Roles;
 
 namespace AppForDoctor
 {
@@ -24,7 +25,7 @@ namespace AppForDoctor
     {
         private static EditProfilePage instance = null;
         private int previousPage = 0;
-        private User user = null;
+        private Doctor doctor = null;
         private string name = "Elena";
         private string surname = "Elenic";
         private string adress = "Adresa 01";
@@ -58,19 +59,17 @@ namespace AppForDoctor
             return instance;
         }
 
-        public static EditProfilePage getInstance(User user)
+        public static EditProfilePage getInstance(Doctor doctor)
         {
             instance = getInstance();
-            instance.user = user;
-            instance.nameTextBox.Text = instance.user.Name;
-            instance.name = instance.user.Name;
-            instance.surnameTextBox.Text = instance.user.Surname;
-            instance.surname = instance.user.Surname;
-            instance.adressTextBox.Text = instance.user.Adress;
-            instance.adress = instance.user.Adress;
-            instance.mailTextBox.Text = instance.user.Mail;
-            instance.mail = instance.user.Mail;
-            instance.password = instance.user.Password;
+            instance.doctor = doctor;
+            instance.nameTextBox.Text = instance.doctor.Name;
+            instance.name = instance.doctor.Name;
+            instance.surnameTextBox.Text = instance.doctor.Surname;
+            instance.surname = instance.doctor.Surname;
+            instance.mailTextBox.Text = instance.doctor.Email;
+            instance.mail = instance.doctor.Email;
+            instance.password = instance.doctor.Password;
             return instance;
         }
 
@@ -261,9 +260,9 @@ namespace AppForDoctor
             return reportsForPdfEng;
         }
 
-        public User getUser()
+        public Doctor getUser()
         {
-            return user;
+            return doctor;
         }
     }
 }

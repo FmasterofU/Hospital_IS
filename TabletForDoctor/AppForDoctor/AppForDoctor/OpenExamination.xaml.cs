@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Model.Medicalrecord;
+using Model.Roles;
+using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,13 +53,20 @@ namespace AppForDoctor
 
         private void idSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            patientsComboBox.Items.Clear();
+            /*patientsComboBox.Items.Clear();
             patientsComboBox.SelectedIndex = -1;
             MedRecord mr = MedRecordList.getMedHistory(idText.Text);
             if (mr == null) return;
             User patient = UserList.getByID(mr.PatientID);
             patientsComboBox.Items.Add(patient.Name + " " + patient.Surname + "\nID = " + patient.PatientID);
-            patientsComboBox.SelectedIndex = 0;
+            patientsComboBox.SelectedIndex = 0;*/
+            UserService service = new UserService();
+            Person p = service.GetUser(uint.Parse(idText.Text));
+            if (p.UserType == UserType.Patient)
+            {
+                Patient pat = (Patient)p;
+                MedicalRecord mr = (new MedicalRecordService()).GetMedicalRecordByPatient(pat);
+            }
         }
 
         private void nameSearchButton_Click(object sender, RoutedEventArgs e)

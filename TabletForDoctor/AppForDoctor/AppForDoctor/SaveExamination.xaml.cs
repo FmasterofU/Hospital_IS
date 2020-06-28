@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,7 +83,7 @@ namespace AppForDoctor
             ExaminationPage e = ExaminationPage.getInstance();
             MedRecord mr = e.getMedRecord();
             User patient = UserList.getByID(mr.PatientID);
-            User doctor = EditProfilePage.getInstance().getUser();
+            Doctor doctor = EditProfilePage.getInstance().getUser();
 
             StringBuilder retEng = new StringBuilder();
             StringBuilder retSrb = new StringBuilder();

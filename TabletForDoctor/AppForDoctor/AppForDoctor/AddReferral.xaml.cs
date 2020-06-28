@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,7 +73,7 @@ namespace AppForDoctor
             refSet.Add("specialist");
             refSet.Add("lab");
             refSet.Add("accessory");
-            if (EditProfilePage.getInstance().getUser().UserType == 5) refSet.Add("hospital");
+            if (EditProfilePage.getInstance().getUser().UserType == UserType.Specialist) refSet.Add("hospital");
             refSet.ExceptWith(RefferalsPage.getInstance().getRefSet());
 
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
