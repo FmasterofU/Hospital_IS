@@ -12,7 +12,7 @@ namespace Controller
 {
    public class UserController : IUserController
    {
-      public Service.IUserService iUserService = new UserService();
+      public IUserService iUserService = new UserService();
 
         public Patient AddPatient(Patient patient)
         {
@@ -69,9 +69,9 @@ namespace Controller
             return iUserService.GetUser(id);
         }
 
-        public bool IsPatientExist(string jmbg)
+        public bool IsPatientAlreadyExist(string jmbg)
         {
-            return iUserService.IsPatientExist(jmbg);
+            return iUserService.IsPatientAlreadyExist(jmbg);
         }
 
         public bool RemoveStaffUser(Staff staff)
