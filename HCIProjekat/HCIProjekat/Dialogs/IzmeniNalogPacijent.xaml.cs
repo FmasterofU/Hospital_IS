@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +22,13 @@ namespace HCIProjekat.Dialogs
     public partial class IzmeniNalogPacijent : Window
     {
         public bool izmeni { get; set; }
-        private Model.Pacijent pacijent = null;
+        private Patient pacijent = null;
 
-        public IzmeniNalogPacijent(String jmbg, String ime, String prezime, String roditelj, DateTime datum, String pol, String adresa, String email, String telefon, int status)
+        public IzmeniNalogPacijent(Patient pacijent)
         {
             InitializeComponent();
-            pacijent = new Model.Pacijent(jmbg, ime, prezime, roditelj, datum, pol, adresa, email, telefon, status);
+
+            this.pacijent = pacijent;
             izmeni = false;
         }
 
@@ -36,15 +39,15 @@ namespace HCIProjekat.Dialogs
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl_jmbg.Content = pacijent.jmbg;
-            txt_ime.Text = pacijent.ime;
-            txt_prz.Text = pacijent.prezime;
-            txt_ime_rod.Text = pacijent.imeRoditelja;
-            dp_rodjen.SelectedDate = pacijent.datumRodjenja;
-            txt_adresa.Text = pacijent.adresa;
-            txt_tel.Text = pacijent.telefon;
-            txt_email.Text = pacijent.email;
-            if (pacijent.status == 1)
+            lbl_jmbg.Content = pacijent.Jmbg;
+            txt_ime.Text = pacijent.Name;
+            txt_prz.Text = pacijent.Surname;
+            txt_ime_rod.Text = pacijent.ParentName;
+            dp_rodjen.SelectedDate = pacijent.BirthDate;
+            txt_adresa.Text = pacijent.Address;
+            txt_tel.Text = pacijent.Phone ;
+            txt_email.Text = pacijent.Email;
+            if (!pacijent.Deceased)
                 cb_aktivan.IsChecked = true;
             cekirajPol();
 
@@ -58,8 +61,14 @@ namespace HCIProjekat.Dialogs
             }
             else
             {
-                pacijent = new Model.Pacijent(lbl_jmbg.Content.ToString(), txt_ime.Text, txt_prz.Text, txt_ime_rod.Text, dp_rodjen.SelectedDate.Value, getPol(), txt_adresa.Text, txt_email.Text, txt_tel.Text,getStatus());
-                bool uspeo = Model.SviPacijenti.getInstance().azurirajPacijenta(pacijent);
+                UserController userController = new UserController();
+                Sex pol = Sex.potato;
+                if (rb_pol_m.IsChecked == true)
+                    pol = Sex.male;
+                else if (rb_pol_z.IsChecked == true)
+                    pol = Sex.female;
+                pacijent.editPatient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_email.Text, pacijent.Password, txt_email.Text, dp_rodjen.SelectedDate.Value, cb_aktivan.IsChecked==true,txt_ime_rod.Text);
+                bool uspeo = userController.EditPatient(pacijent);
                 if (uspeo)
                 {
                     MessageBox.Show("Uspesno sacuvavanje podataka");
@@ -90,7 +99,7 @@ namespace HCIProjekat.Dialogs
 
         private void cekirajPol()
         {
-            if (pacijent.pol.Equals("M"))
+            if (pacijent.Sex.Equals(Sex.male))
             {
                 rb_pol_m.IsChecked = true;
             }
@@ -98,6 +107,11 @@ namespace HCIProjekat.Dialogs
             {
                 rb_pol_z.IsChecked = true;
             }
+        }
+
+        public Patient getPatient()
+        {
+            return pacijent;
         }
 
        

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Controller;
+using Model.Roles;
 
 namespace HCIProjekat.UserControls
 {
@@ -23,6 +25,7 @@ namespace HCIProjekat.UserControls
     {
         public ObservableCollection<Model.Termin> terminidoktora;
         public Model.Zaposleni doktor;
+        private UserController userController = new UserController();
         public DoctorTermsUC(Model.Zaposleni doktor)
         {
             InitializeComponent();
@@ -51,8 +54,8 @@ namespace HCIProjekat.UserControls
             dp_date.SelectedDate = DateTime.Now.Date;
             DgAppointmentsListXAML.Items.Clear();
             foreach (Model.Termin t in pronadjiTermineUOdgovarajucemDanu(DateTime.Now.Date)) {
-                Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(t.jmbgPacijenta);
-                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, t.jmbgPacijenta, p.ime, p.prezime));
+                Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
+                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, t.jmbgPacijenta, p.Name, p.Surname));
                }
 
         }

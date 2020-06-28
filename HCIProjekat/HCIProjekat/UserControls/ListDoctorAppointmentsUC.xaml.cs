@@ -23,6 +23,8 @@ using System.Drawing;
 using System.Windows;
 using Syncfusion.Pdf.Grid;
 using System.Data;
+using Controller;
+using Model.Roles;
 
 namespace HCIProjekat.UserControls
 {
@@ -31,6 +33,7 @@ namespace HCIProjekat.UserControls
     /// </summary>
     public partial class ListDoctorAppointmentsUC : UserControl
     {
+        private UserController userController = new UserController();
         public ObservableCollection<Model.Termin> termini;
         public Model.Zaposleni doktor;
         private DateTime termin_od;
@@ -51,8 +54,8 @@ namespace HCIProjekat.UserControls
         {
             foreach(Model.Termin t in termini)
             {
-                Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(t.jmbgPacijenta);
-                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(),t.vreme.ToShortTimeString(),t.soba,p.jmbg,p.ime,p.prezime));
+                Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
+                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(),t.vreme.ToShortTimeString(),t.soba,p.Jmbg,p.Name,p.Surname));
             }
             lbl_appointment_counter.Content = termini.Count;
         }
@@ -95,8 +98,8 @@ namespace HCIProjekat.UserControls
 
             foreach (Model.Termin t in termini)
             {
-                Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(t.jmbgPacijenta);
-                dataTable.Rows.Add(new object[] { t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, p.jmbg, p.ime, p.prezime });
+                Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
+                dataTable.Rows.Add(new object[] { t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, p.Jmbg, p.Name, p.Surname });
             }
             //Assign data source.
             pdfGrid.DataSource = dataTable;

@@ -1,4 +1,5 @@
-﻿using Model.Roles;
+﻿using Controller;
+using Model.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace HCIProjekat.Dialogs
     public partial class AppointmentDialog : Window
     {
         private Model.Termin termin;
+        private UserController userController = new UserController();
         public bool sacuvano { get; set; }
         private Model.Zaposleni doktor;
         public AppointmentDialog(Model.Termin termin)
@@ -37,10 +39,9 @@ namespace HCIProjekat.Dialogs
             txt_jmbg.Text = termin.jmbgPacijenta;
             if (!termin.jmbgPacijenta.Equals(""))
             {
-                //Patient p = ;
-                Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(termin.jmbgPacijenta);
-                txt_ime.Text = p.ime;
-                txt_prz.Text = p.prezime;
+                Patient p = userController.GetPatientBySearch(termin.jmbgPacijenta,"","")[0];
+                txt_ime.Text = p.Name;
+                txt_prz.Text = p.Surname;
                 grid_zauzet.Visibility = Visibility.Visible;
                 grid_slobodan.Visibility = Visibility.Hidden;
             }
@@ -94,11 +95,11 @@ namespace HCIProjekat.Dialogs
 
         private void btn_search_Click(object sender, RoutedEventArgs e)
         {
-            Model.Pacijent p = Model.SviPacijenti.getInstance().searchByJMBG(txt_jmbg.Text);
+            Patient p = userController.GetPatientBySearch(txt_jmbg.Text,"","")[0];
             if(p != null)
             {
-                txt_ime.Text = p.ime;
-                txt_prz.Text = p.prezime;
+                txt_ime.Text = p.Name;
+                txt_prz.Text = p.Surname;
             }
         }
 

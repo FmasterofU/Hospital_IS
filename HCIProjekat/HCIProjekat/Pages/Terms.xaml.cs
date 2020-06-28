@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -22,7 +24,7 @@ namespace HCIProjekat.Pages
     /// </summary>
     public partial class Terms : Page
     {
-
+        private UserController userController = new UserController();
         ObservableCollection<Model.TermsRow> termini { get; set; }
         ObservableCollection<Model.Termin> zakazani { get; set; }
         private DateTime selektovaniTermin;
@@ -79,15 +81,15 @@ namespace HCIProjekat.Pages
                     
                     if (term.vreme.Equals(termin))
                     {
-                        Model.Pacijent p =Model.SviPacijenti.getInstance().searchByJMBG(term.jmbgPacijenta);
+                        Patient p = userController.GetPatientBySearch(term.jmbgPacijenta,"","")[0];
                         if (term.soba == 1)
-                            s1 = p.ime + " " + p.prezime;
+                            s1 = p.Name + " " + p.Surname;
                         else if (term.soba == 2)
-                            s2 = p.ime + " " + p.prezime;
+                            s2 = p.Name + " " + p.Surname;
                         else if (term.soba == 3)
-                            s3 = p.ime + " " + p.prezime;
+                            s3 = p.Name + " " + p.Surname;
                         else if (term.soba == 4)
-                            s4 = p.ime + " " + p.prezime;
+                            s4 = p.Name + " " + p.Surname;
 
                     }
                 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Model.Roles;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -20,17 +22,16 @@ namespace HCIProjekat.Pages
     /// </summary>
     public partial class AllPatients : Page 
     {
-        private ObservableCollection<Model.Pacijent> pacijenti = new ObservableCollection<Model.Pacijent>();
-        private Model.Pacijent pacijent = null;
+        private Patient pacijent = null;
+        private UserController userController = new UserController();
         public AllPatients()
         {
             InitializeComponent();
-            pacijenti = Model.SviPacijenti.getInstance().getPacijente();
-
-            foreach(Model.Pacijent p in pacijenti)
+            foreach (Patient p in userController.GetPatientBySearch("", "", ""))
             {
                 dg_pronadjeni_pacijenti.Items.Add(p);
             }
+            
         }
         private void BtnPocetna_Click(object sender, RoutedEventArgs e)
         {
@@ -39,13 +40,14 @@ namespace HCIProjekat.Pages
 
         private void BtnIzmeniPodatke_Click(object sender, RoutedEventArgs e)
         {
-           
-            Dialogs.IzmeniNalogPacijent dijalog = new Dialogs.IzmeniNalogPacijent(lbl_jmbg.Content.ToString(),lbl_ime.Content.ToString(), lbl_prezime.Content.ToString(), lbl_roditelj.Content.ToString(), stringToDate(),lbl_pol.Content.ToString(), lbl_adresa.Content.ToString(), lbl_email.Content.ToString(), lbl_telefon.Content.ToString(), getStatus());
+            UserController userController = new UserController();
+            Patient pacijent = userController.GetPatientBySearch(lbl_jmbg.Content.ToString(),"","")[0];
+            Dialogs.IzmeniNalogPacijent dijalog = new Dialogs.IzmeniNalogPacijent(pacijent);
             dijalog.ShowDialog();
             if (dijalog.izmeni)
             {
                 dg_pronadjeni_pacijenti.Items.Refresh();
-                azurirajProfil(Model.SviPacijenti.getInstance().searchByJMBG(lbl_jmbg.Content.ToString()));
+                azurirajProfil(dijalog.getPatient());
             }
         }
 
@@ -57,72 +59,56 @@ namespace HCIProjekat.Pages
         private void BtnPretraga_Click(object sender, RoutedEventArgs e)
         {
             dg_pronadjeni_pacijenti.Items.Clear();
-            foreach(Model.Pacijent p in pacijenti)
+            foreach (Patient p in userController.GetPatientBySearch(txt_jmbg.Text,txt_ime.Text,txt_prezime.Text))
             {
-                String pol = getPol();
-                if(p.jmbg.Contains(txt_jmbg.Text) && p.ime.Contains(txt_ime.Text) && p.prezime.Contains(txt_prezime.Text) && p.pol.Contains(pol))
-                {
-                    dg_pronadjeni_pacijenti.Items.Add(p);
-                }
+                dg_pronadjeni_pacijenti.Items.Add(p);
             }
+
         }
 
-        private String getPol()
+        private Sex getPol()
         {
             if (rb_pol_m.IsChecked == true)
-                return  "M";
+                return  Sex.male;
             else if (rb_pol_z.IsChecked == true)
-                return  "Z";
+                return  Sex.female;
             else
-                return "";
+                return Sex.potato;
         }
 
-        private int getStatus()
-        {
-            if (lbl_status.Content.Equals("Aktivan"))
-                return 1;
-            else if (lbl_status.Content.Equals("Neaktivan"))
-                return 0;
-            else
-            {
-                return 2;
-            }
-        }
 
         private void dg_pronadjeni_pacijenti_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            pacijent = dg_pronadjeni_pacijenti.SelectedItem as Model.Pacijent;
+            pacijent = dg_pronadjeni_pacijenti.SelectedItem as Patient;
             if(pacijent != null)
             {
                 azurirajProfil(pacijent);
             }
         }
 
-        private void azurirajProfil(Model.Pacijent pac)
+        private void azurirajProfil(Patient pac)
         {
-            lbl_jmbg.Content = pac.jmbg;
-            lbl_ime.Content = pac.ime;
-            lbl_prezime.Content = pac.prezime;
-            lbl_roditelj.Content = pac.imeRoditelja;
-            lbl_datum.Content = pac.datumRodjenja.ToShortDateString();
-            lbl_pol.Content = pac.pol;
-            lbl_adresa.Content = pac.adresa;
-            lbl_email.Content = pac.email;
-            lbl_telefon.Content = pac.telefon;
-            tb_moguce_zakazivanje.IsChecked = pac.moguceZakazivanje;
-            lbl_status.Content = pac.getStatusString();
+            lbl_jmbg.Content = pac.Jmbg;
+            lbl_ime.Content = pac.Name;
+            lbl_prezime.Content = pac.Surname;
+            lbl_roditelj.Content = pac.ParentName;
+            lbl_datum.Content = pac.BirthDate.ToShortDateString();
+            lbl_pol.Content = pac.Sex;
+            lbl_adresa.Content = pac.Address;
+            lbl_email.Content = pac.Email;
+            lbl_telefon.Content = pac.Phone;
+            //tb_moguce_zakazivanje.IsChecked = pac.moguceZakazivanje;
+            lbl_status.Content = pac.Deceased;
         }
 
         private void tb_moguce_zakazivanje_Checked(object sender, RoutedEventArgs e)
         {
-            pacijent.moguceZakazivanje = true;
-            bool uspeo = Model.SviPacijenti.getInstance().azurirajPacijenta(pacijent);
+           
         }
 
         private void tb_moguce_zakazivanje_Unchecked(object sender, RoutedEventArgs e)
         {
-            pacijent.moguceZakazivanje = false;
-            bool uspeo = Model.SviPacijenti.getInstance().azurirajPacijenta(pacijent);
+            
         }
 
         private DateTime stringToDate()

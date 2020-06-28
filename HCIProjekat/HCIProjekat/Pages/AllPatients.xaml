@@ -105,12 +105,12 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header= "   JMBG  " Binding="{Binding jmbg}" Width="auto"/>
-                                <DataGridTextColumn Header="   Ime  " Binding="{Binding ime}" Width="auto"/>
-                                <DataGridTextColumn Header="   Roditelj  " Binding="{Binding imeRoditelja}" Width="auto"/>
-                                <DataGridTextColumn Header="   Prezime  " Binding="{Binding prezime}" Width="auto"/>
-                                <DataGridTextColumn Header="   Pol  " Binding="{Binding pol}" Width="auto"/>
-                                <DataGridTextColumn Header="   Adresa  " Binding="{Binding email}" Width="*"/>
+                                <DataGridTextColumn Header= "   JMBG  " Binding="{Binding Jmbg}" Width="auto"/>
+                                <DataGridTextColumn Header="   Ime  " Binding="{Binding Name}" Width="auto"/>
+                                <DataGridTextColumn Header="   Roditelj  " Binding="{Binding ParentName}" Width="auto"/>
+                                <DataGridTextColumn Header="   Prezime  " Binding="{Binding Surname}" Width="auto"/>
+                                <DataGridTextColumn Header="   Pol  " Binding="{Binding Sex}" Width="auto"/>
+                                <DataGridTextColumn Header="   Adresa  " Binding="{Binding Email}" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Border>

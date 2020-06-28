@@ -57,7 +57,7 @@ namespace HCIProjekat.Dialogs
                 // Model.Pacijent pac = Model.SviPacijenti.getInstance().searchByJMBG(txt_jmbg.Text);
                 UserController controller = new UserController();
                 Patient patient = new Patient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_jmbg.Text, txt_email.Text, "", UserType.Patient, txt_adresa.Text, dp_rodjen.SelectedDate.Value, false, txt_ime_rod.Text, 0, new List<Ingridient>());
-                if (controller.IsPatientExist(patient.Jmbg))
+                if (controller.IsPatientAlreadyExist(patient.Jmbg))
                 {
                     MessageBox.Show("Vec postoji osoba sa istim JMBG u sistemu!");
                     return;
