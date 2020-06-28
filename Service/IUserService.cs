@@ -15,25 +15,25 @@ namespace Service
       
       void CloseSession();
       
-      Person GetUser();
+      Person GetUser(uint id);
       
       void SaveUser();
       
-      void AddStaffUser(Staff staff);
+      Staff AddStaffUser(Staff staff);
       
       UserType GetCurrentSessionType();
       
-      void EditStaffUser(Staff staff);
+      bool EditStaffUser(Staff staff);
       
-      void RemoveStaffUser(Staff staff);
+      bool RemoveStaffUser(Staff staff);
       
-      List<Doctor> GetDoctors();
+      List<Doctor> GetActiveDoctors();
       
       List<Staff> GetAllStaff();
       
       Patient AddPatient(Patient patient);
       
-      void EditPatient(Patient patient);
+      bool EditPatient(Patient patient);
       
       List<Patient> GetPatientBySearch(String jmbg, String name, String surname);
    
