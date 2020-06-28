@@ -80,7 +80,7 @@ namespace AppForDoctor
         public void AddReferralToSet(Model.Examination.Referral referral)
         {
             referallSet.Add(referral);
-            referralsNowListBox.Items.Add(referallSet.GetType().ToString());
+            referralsNowListBox.Items.Add(referral.Type.ToString());
             deleteRefferalButton.IsEnabled = true;
         }
 

@@ -80,22 +80,22 @@ namespace AppForDoctor
 
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {
-                foreach(string s in refSet)
+                foreach(ReferralType s in reffSet)
                 {
-                    if (s.Equals("specialist")) referralsCombo.Items.Add("Uput lekaru specijalisti");
-                    else if (s.Equals("lab")) referralsCombo.Items.Add("Uput za laboratoriju");
-                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Uput za pomagalo");
-                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Uput za bolničko lečenje");
+                    if (s == ReferralType.specialistExam) referralsCombo.Items.Add("Uput lekaru specijalisti");
+                    else if (s == ReferralType.laboratory) referralsCombo.Items.Add("Uput za laboratoriju");
+                    else if (s == ReferralType.medicalAccessory) referralsCombo.Items.Add("Uput za pomagalo");
+                    else if (s == ReferralType.stationaryCare) referralsCombo.Items.Add("Uput za bolničko lečenje");
                 }
             }
             else if (MainWindow.GetLanguage() == MainWindow.Language.English)
             {
-                foreach (string s in refSet)
+                foreach (ReferralType s in reffSet)
                 {
-                    if (s.Equals("specialist")) referralsCombo.Items.Add("Referral to specialist");
-                    else if (s.Equals("lab")) referralsCombo.Items.Add("Referral for laboratory");
-                    else if (s.Equals("accessory")) referralsCombo.Items.Add("Referral for accessory");
-                    else if (s.Equals("hospital")) referralsCombo.Items.Add("Referral for hospital care");
+                    if (s == ReferralType.specialistExam) referralsCombo.Items.Add("Referral to specialist");
+                    else if (s == ReferralType.laboratory) referralsCombo.Items.Add("Referral for laboratory");
+                    else if (s == ReferralType.medicalAccessory) referralsCombo.Items.Add("Referral for accessory");
+                    else if (s == ReferralType.stationaryCare) referralsCombo.Items.Add("Referral for hospital care");
                 }
             }
             referralsCombo.SelectedIndex = -1;
@@ -169,29 +169,35 @@ namespace AppForDoctor
             else addReferralButton.IsEnabled = false;
         }
 
-        private string GetSelectedRefType()
+        private ReferralType GetSelectedRefType()
         {
             string option = referralsCombo.SelectedItem.ToString();
-            if (option.Contains("laborator")) return "lab";
-            else if (option.Contains("pomagalo") || option.Contains("accessory")) return "accessory";
-            else if (option.Contains("bolni") || option.Contains("hospital")) return "hospital";
-            else if (option.Contains("speci")) return "specialist";
-            return "";
+            if (option.Contains("laborator")) return ReferralType.laboratory;
+            else if (option.Contains("pomagalo") || option.Contains("accessory")) return ReferralType.medicalAccessory;
+            else if (option.Contains("bolni") || option.Contains("hospital")) return ReferralType.stationaryCare;
+            else return ReferralType.specialistExam;
+            //return "";
         }
 
         private void addReferralButton_Click(object sender, RoutedEventArgs e)
         {
             string selected = referralsCombo.SelectedItem.ToString();
-            string type = GetSelectedRefType();
+            ReferralType type = GetSelectedRefType();
             RefferalsPage r = RefferalsPage.getInstance();
-            r.AddReferralToSet(type, selected);
-            refSet.Remove(type);
+            string cause = "";
+            if (type == ReferralType.specialistExam) cause = causeForSpecialistText.Text;
+            else if (type == ReferralType.medicalAccessory) cause = causeForAccessoryText.Text;
+            else if (type == ReferralType.stationaryCare) cause = causeForHospitalText.Text;
+            else if (type == ReferralType.laboratory) cause = causeForLabText.Text;
+            Model.Examination.Referral rr = new Model.Examination.Referral(type, cause, type == ReferralType.medicalAccessory ? accessoryTypeTextBox.Text : "", null);
+            r.AddReferralToSet(rr);
+            reffSet.Remove(type);
             referralsCombo.Items.Remove(selected);
-            if (refSet.Count == 0)
+            /*if (refSet.Count == 0)
             {
                 RefferalsPage.getInstance().disableAddButton();
                 this.Close();
-            }
+            }*/
         }
     }
 }

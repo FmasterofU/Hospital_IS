@@ -114,11 +114,11 @@ namespace AppForDoctor
             }
             if (del != null) reffSet.Remove(del);
             referralsCombo.Items.Remove(selected);
-            /*if (refSet.Count == 0)
+            if (reffSet.Count == 0)
             {
                 RefferalsPage.getInstance().disableDeleteButton();
                 this.Close();
-            }*/
+            }
         }
     }
 }
