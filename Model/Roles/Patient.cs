@@ -40,6 +40,21 @@ namespace Model.Roles
             this.alergens = alergens;
         }
 
+        public void editPatient(string name, string surname, string phone, string email, Sex sex, string username, string password, string address, DateTime birthDate, bool deceased,
+                string parentName)
+        {
+            Name = name;
+            Surname = surname;
+            phone = Phone;
+            Email = email;
+            Sex = sex;
+            Username = username;
+            Password = password;
+            Address = address;
+            BirthDate = birthDate;
+            Deceased = deceased;
+        }
+
         public string Address
       {
          get
