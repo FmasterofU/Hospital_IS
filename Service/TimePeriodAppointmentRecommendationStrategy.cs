@@ -6,6 +6,7 @@
 using Class_Diagram.Model.Appointments;
 using Model.Appointments;
 using Model.Roles;
+using Repository.Schedule;
 using System;
 using System.Collections.Generic;
 
@@ -15,8 +16,7 @@ namespace Service
     {
         public List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
         {
-            AppointmentService service = new AppointmentService();
-            return service.GetAvailableInTimeFrame(startDateTime, endDateTime, null);
+            return AppointmentRepository.GetInstance().GetAvailableAppointmentsInSpan(startDateTime, endDateTime);
         }
     }
 }

@@ -107,22 +107,6 @@ namespace Service
 
         }
 
-        public List<Term> GetAvailableInTimeFrame(DateTime start, DateTime end, Doctor doctor)
-        {
-            List<Term> free = AppointmentRepository.GetInstance().GetAvailableAppointmentsInSpan(start, end);
-            if(doctor != null)
-            {
-                List<Appointment> all = GetAppointmentsInTimeFrame(start, end, doctor, null);
-                List<Term> ret = new List<Term>();
-                foreach(Appointment app in all)
-                {
-                    if (!free.Contains(new Term(app.StartTime, app.EndTime))) ret.Add(new Term(app.StartTime, app.EndTime));
-                }
-                return ret;
-            }
-            return free;
-        }
-
         public List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
         {
             if (iAppointmentRecommendationStrategy == null) return null;

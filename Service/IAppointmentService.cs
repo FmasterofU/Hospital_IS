@@ -24,8 +24,6 @@ namespace Service
       void SetStrategy(IAppointmentRecommendationStrategy strategy);
       
       List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
-
-        List<Term> GetAvailableInTimeFrame(DateTime start, DateTime end, Doctor doctor);
    
    }
 }
