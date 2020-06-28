@@ -22,6 +22,14 @@ namespace Model.Inventory
             this.medEquipmentType = medEquipmentType;
         }
 
+        public MedEquipmentItem(uint id, uint typeId, uint roomId, MedEquipmentType medEquipmentType)
+        {
+            this.id = id;
+            this.typeId = typeId;
+            this.roomId = roomId;
+            this.medEquipmentType = medEquipmentType;
+        }
+
         public uint TypeId
       {
          get
