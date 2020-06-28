@@ -20,13 +20,14 @@ namespace AppForDoctor
     /// </summary>
     public partial class ChangeDrugAmount : Window
     {
-        private Dictionary<string, int> drugDict = new Dictionary<string, int>();
+        //private Dictionary<string, int> drugDict = new Dictionary<string, int>();
+        private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
         private int amount = 1;
         public ChangeDrugAmount()
         {
             InitializeComponent();
-            drugDict = DrugsPage.getInstance().getDrugDict();
-            foreach (string s in drugDict.Keys) changeAmountComboBox.Items.Add(s);
+            prescriptionDict = DrugsPage.getInstance().getDrugDict();
+            foreach (Model.Examination.Prescription s in prescriptionDict.Keys) changeAmountComboBox.Items.Add(s.drug.Name);
             changeAmountComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
@@ -56,18 +57,47 @@ namespace AppForDoctor
 
         private void changeAmountButton_Click(object sender, RoutedEventArgs e)
         {
-            string choice = changeAmountComboBox.SelectedItem.ToString();
+            /*string choice = changeAmountComboBox.SelectedItem.ToString();
             DrugsPage.getInstance().ChangeDrugAmount(choice, amount);
             drugDict[choice] = amount;
+            changeAmountButton.IsEnabled = false;*/
+            string choice = changeAmountComboBox.SelectedItem.ToString();
+            Model.Examination.Prescription old = null;
+            foreach (Model.Examination.Prescription p in prescriptionDict.Keys)
+            {
+                if (p.drug.Name.Equals(choice))
+                {
+                    old = p;
+                    break;
+                }
+            }
+            DrugsPage.getInstance().ChangeDrugAmount(old, (uint)amount);
+            prescriptionDict.Remove(old);
+            old.Number = (uint)amount;
+            prescriptionDict.Add(old, old.Number);
             changeAmountButton.IsEnabled = false;
         }
 
         private void changeAmountComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!changeAmountComboBox.Items.IsEmpty)
+            /*if (!changeAmountComboBox.Items.IsEmpty)
             {
                 string choice = changeAmountComboBox.SelectedItem.ToString();
                 amountText.Text = drugDict[choice].ToString();
+            }*/
+            if (!changeAmountComboBox.Items.IsEmpty)
+            {
+                string choice = changeAmountComboBox.SelectedItem.ToString();
+                Model.Examination.Prescription old = null;
+                foreach (Model.Examination.Prescription p in prescriptionDict.Keys)
+                {
+                    if (p.drug.Name.Equals(choice))
+                    {
+                        old = p;
+                        break;
+                    }
+                }
+                amountText.Text = prescriptionDict[old].ToString();
             }
             //else amountText.Text = "0";
         }
@@ -83,9 +113,13 @@ namespace AppForDoctor
             changeAmountComboBox.Items.Clear();
             changeAmountButton.IsEnabled = false;
 
-            foreach (string s in drugDict.Keys)
+            /*foreach (string s in drugDict.Keys)
             {
                 if (s.ToLower().Contains(input)) changeAmountComboBox.Items.Add(s);
+            }*/
+            foreach(Model.Examination.Prescription p in prescriptionDict.Keys)
+            {
+                if (p.drug.Name.ToLower().Contains(input)) changeAmountComboBox.Items.Add(p.drug.Name);
             }
             if (changeAmountComboBox.Items.Count != 0)
             {
@@ -113,7 +147,16 @@ namespace AppForDoctor
             {
                 if (amount >= 1)
                 {
-                    if (amount != drugDict[choice]) changeAmountButton.IsEnabled = true;
+                    Model.Examination.Prescription old = null;
+                    foreach (Model.Examination.Prescription p in prescriptionDict.Keys)
+                    {
+                        if (p.drug.Name.Equals(choice))
+                        {
+                            old = p;
+                            break;
+                        }
+                    }
+                    if (amount != (int)prescriptionDict[old]) changeAmountButton.IsEnabled = true;
                     plusButton.IsEnabled = true;
                     if (amount > 1) minusButton.IsEnabled = true;
                 }

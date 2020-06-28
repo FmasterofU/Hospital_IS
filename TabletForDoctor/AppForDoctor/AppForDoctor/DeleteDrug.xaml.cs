@@ -24,7 +24,7 @@ namespace AppForDoctor
         public DeleteDrug()
         {
             InitializeComponent();
-            drugSet = DrugsPage.getInstance().getDrugSet();
+            drugSet = DrugsPage.getInstance().geDrugNameSet();
             foreach (string s in drugSet) deleteDrugsComboBox.Items.Add(s);
             deleteDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();

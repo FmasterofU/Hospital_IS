@@ -22,15 +22,16 @@ namespace AppForDoctor
     public partial class DrugsPage : Page
     {
         //private HashSet<string> drugSet = new HashSet<string>();
-        private Dictionary<string, int> drugDict = new Dictionary<string, int>();
+        //private Dictionary<string, int> drugDict = new Dictionary<string, int>();
+        private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
         private static DrugsPage instance = null;
         private DrugsPage()
         {
             InitializeComponent();
             //TODO: load drugs from database
-            foreach(KeyValuePair<string, int> pair in drugDict)
+            foreach(KeyValuePair<Model.Examination.Prescription, uint> pair in prescriptionDict)
             {
-                drugListBox.Items.Add(pair.Key + " *" + pair.Value);
+                drugListBox.Items.Add(pair.Key.drug.Name + " *" + pair.Value);
             }
             /*oldDrugsListBox.Items.Add("Stari");
             oldDrugsListBox.Items.Add("Sstari");
@@ -47,6 +48,13 @@ namespace AppForDoctor
                     drugs.Add(p.Drug.Name);
                 }
             }*/
+            foreach(Model.Examination.Examination e in mr.Examination)
+            {
+                foreach(Model.Examination.Prescription p in e.Prescription)
+                {
+                    drugs.Add(p.drug.Name);
+                }
+            }
 
             foreach (string s in drugs) oldDrugsListBox.Items.Add(s);
         }
@@ -54,7 +62,7 @@ namespace AppForDoctor
         public static DrugsPage getInstance()
         {
             if (instance == null) instance = new DrugsPage();
-            if (instance.drugDict.Count == 0)
+            if (instance.prescriptionDict.Count == 0)
             {
                 instance.deleteDrugButton.IsEnabled = false;
                 instance.changeAmountButton.IsEnabled = false;
@@ -98,7 +106,18 @@ namespace AppForDoctor
 
         public void DeleteDrugFromDict(string item)
         {
-            drugDict.Remove(item);
+            //drugDict.Remove(item);
+            Model.Examination.Prescription deleting = null;
+            foreach (Model.Examination.Prescription p in prescriptionDict.Keys)
+            {
+                if(p.drug.Name.Equals(item))
+                {
+                    deleting = p;
+                    break;
+                }
+            }
+            if (deleting == null) return;
+            prescriptionDict.Remove(deleting);
             foreach (string s in drugListBox.Items)
             {
                 if (s.Contains(item + " *"))
@@ -108,7 +127,7 @@ namespace AppForDoctor
                 }
             }
             //drugListBox.Items.Remove(item);
-            if (drugDict.Count == 0)
+            if (prescriptionDict.Count == 0)
             {
                 deleteDrugButton.IsEnabled = false;
                 changeAmountButton.IsEnabled = false;
@@ -116,38 +135,59 @@ namespace AppForDoctor
             if (!addDrugButton.IsEnabled) addDrugButton.IsEnabled = true;
         }
 
-        public void AddDrugToDict(string adding, int amount)
+        public void AddDrugToDict(Model.Examination.Prescription item)
         {
-            drugDict.Add(adding, amount);
-            drugListBox.Items.Add(adding + " *" + amount);
+            prescriptionDict.Add(item, item.Number);
+            drugListBox.Items.Add(item.drug.Name + " *" + item.Number);
             deleteDrugButton.IsEnabled = true;
             changeAmountButton.IsEnabled = true;
         }
 
-        public void ChangeDrugAmount(string drug, int amount)
+        public void ChangeDrugAmount(Model.Examination.Prescription old, uint amount)
         {
-            string changed = drug + " *" + drugDict[drug];
+            /*string changed = drug + " *" + drugDict[drug];
             int index = drugListBox.Items.IndexOf(changed);
             drugDict[drug] = amount;
             drugListBox.Items.Remove(changed);
-            drugListBox.Items.Insert(index, drug + " *" + amount);
+            drugListBox.Items.Insert(index, drug + " *" + amount);*/
+            string changed = old.drug.Name + " *" + prescriptionDict[old];
+            int index = drugListBox.Items.IndexOf(changed);
+            old.Number = amount;
+            drugListBox.Items.Remove(changed);
+            drugListBox.Items.Insert(index, old.drug.Name + " *" + amount);
+            prescriptionDict.Remove(old);
+            old.Number = amount;
+            prescriptionDict.Add(old, old.Number);
         }
 
-        public HashSet<string> getDrugSet()
+        public HashSet<string> geDrugNameSet()
         {
             HashSet<string> ret = new HashSet<string>();
-            foreach (string s in drugDict.Keys) ret.Add(s);
+            foreach (Model.Examination.Prescription s in prescriptionDict.Keys)
+            {
+                ret.Add(s.drug.Name);
+            }
             return ret;
         }
 
-        public Dictionary<string, int> getDrugDict()
+        public HashSet<Model.Medicine.Drug> geDrugSet()
         {
-            return drugDict;
+            HashSet<Model.Medicine.Drug> ret = new HashSet<Model.Medicine.Drug>();
+            foreach (Model.Examination.Prescription s in prescriptionDict.Keys)
+            {
+                ret.Add(s.drug);
+            }
+            return ret;
+        }
+
+        public Dictionary<Model.Examination.Prescription, uint> getDrugDict()
+        {
+            return prescriptionDict;
         }
 
         private void examinationFromDrugsButton_Click(object sender, RoutedEventArgs e)
         {
-            ExaminationPage.getInstance().saveAddedDrugs(drugDict);
+            ExaminationPage.getInstance().saveAddedDrugs(prescriptionDict);
             MainWindow w = MainWindow.getInstance();
             w.changePage(2);
         }
@@ -159,7 +199,7 @@ namespace AppForDoctor
 
         private void deleteDrugButton_Click(object sender, RoutedEventArgs e)
         {
-            if(drugDict.Count != 0)
+            if(prescriptionDict.Count != 0)
             {
                 DeleteDrug delete = new DeleteDrug();
                 delete.ShowDialog();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace AppForDoctor
     /// </summary>
     public partial class AddDrug : Window
     {
-        private HashSet<string> drugSet = new HashSet<string>();
+        //private HashSet<string> drugSet = new HashSet<string>();
+        private HashSet<Model.Medicine.Drug> druggSet = new HashSet<Model.Medicine.Drug>();
         private int amount = 1;
         public AddDrug()
         {
@@ -32,8 +34,8 @@ namespace AppForDoctor
             drugSet.Add("Novvi");
             drugSet.Add("Novii");
             drugSet.Add("Novio");*/
-            drugSet = DrugList.ContainsInName("");
-            drugSet.ExceptWith(DrugsPage.getInstance().getDrugSet());
+            //drugSet = DrugList.ContainsInName("");
+            //drugSet.ExceptWith(DrugsPage.getInstance().geDrugNameSet());
             //foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
             //addDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
@@ -67,29 +69,57 @@ namespace AppForDoctor
         private void addDrugButton_Click(object sender, RoutedEventArgs e)
         {
             string item = addDrugsComboBox.SelectedItem.ToString();
+            Model.Medicine.Drug adding = null;
+            foreach (Model.Medicine.Drug dd in druggSet)
+            {
+                if (dd.Name.Equals(item))
+                {
+                    adding = dd;
+                    break;
+                }
+            }
             DrugsPage d = DrugsPage.getInstance();
-            d.AddDrugToDict(item, amount);
-            drugSet.Remove(item);
-            addDrugsComboBox.Items.Remove(item);
+            //d.AddDrugToDict(item, amount);
+            //TODO: ne sme biti null
+            d.AddDrugToDict(new Model.Examination.Prescription((uint)amount, usageTextBox.Text, adding));
+            druggSet.Clear();
+            this.Close();
+            //drugSet.Remove(item);
+            /*addDrugsComboBox.Items.Remove(item);
             addDrugsComboBox.SelectedIndex = 0;
             amountText.Text = "1";
             minusButton.IsEnabled = false;
             usageTextBox.Text = "";
-            if (drugSet.Count == 0)
+            /*if (drugSet.Count == 0)
             {
                 DrugsPage.getInstance().disableAddButton();
                 this.Close();
             }
-            else if (addDrugsComboBox.Items.Count == 0) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            if (addDrugsComboBox.Items.Count == 0) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));*/
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
+            druggSet.Clear();
             string input = searchInput.Text.ToLower();
             addDrugsComboBox.Items.Clear();
-            foreach (string s in drugSet)
+            /*foreach (string s in drugSet)
             {
                 if (s.ToLower().Contains(input)) addDrugsComboBox.Items.Add(s);
+            }*/
+            DrugController c = new DrugController();
+            List<Model.Medicine.Drug> drugs = c.SearchDrugs(input);
+            if(drugs.Count != 0)
+            {
+                HashSet<string> set = DrugsPage.getInstance().geDrugNameSet();
+               foreach (Model.Medicine.Drug drug in drugs)
+                {
+                    if (!set.Contains(drug.Name))
+                    {
+                        druggSet.Add(drug);
+                        addDrugsComboBox.Items.Add(drug.Name);
+                    }
+                }
             }
             if (addDrugsComboBox.Items.Count != 0)
             {

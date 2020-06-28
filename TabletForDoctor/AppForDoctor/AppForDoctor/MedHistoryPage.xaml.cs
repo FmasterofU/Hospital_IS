@@ -51,6 +51,24 @@ namespace AppForDoctor
                 }
                 history.Append("**********************************\n\n");
             }*/
+            foreach(Model.Examination.Examination e in mr.Examination)
+            {
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Dijagnoza: ");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Diagnosis: ");
+                history.Append(e.Diagnosis + "\n");
+
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Lekovi: ");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Drugs: ");
+
+                foreach(Model.Examination.Prescription p in e.Prescription) history.Append(p.drug.Name + " *" + p.Number + " : " + p.Usage + "\n");
+
+                if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) history.Append("Uputi: \n");
+                else if (MainWindow.GetLanguage() == MainWindow.Language.English) history.Append("Referrals: \n");
+
+                foreach (Model.Examination.Referral r in e.Referral) history.Append(r.Type + " : " + r.Note + "\n");
+
+                history.Append("**********************************\n\n");
+            }
 
             historyText.Text = history.ToString();
         }

@@ -27,7 +27,8 @@ namespace AppForDoctor
         private static ExaminationPage instance = null;
         private string diagnosis = "";
         //private HashSet<string> addedDrugs = new HashSet<string>();
-        private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
+        //private Dictionary<string, int> addedDrugsDict = new Dictionary<string, int>();
+        private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
         private HashSet<string> addedReferralsSet = new HashSet<string>();
         private DateTime? controlReviewDate = default;
         private MedicalRecord medRecord = null;
@@ -49,7 +50,7 @@ namespace AppForDoctor
         {
             instance = getInstance();
             instance.medRecord = mr;
-            instance.patientName.Content = mr.patient.Name + " " + mr.patient.Surname + ", ID = " + mr.patient.GetId();
+            instance.patientName.Content = mr.patient.Name + " " + mr.patient.Surname + ", ID = " + mr.patient.Jmbg;
             return instance;
         }
 
@@ -113,15 +114,15 @@ namespace AppForDoctor
             saveDiagnosisButton.IsEnabled = true;
         }
 
-        public void saveAddedDrugs(Dictionary<string, int> d)
+        public void saveAddedDrugs(Dictionary<Model.Examination.Prescription, uint> d)
         {
-            if (d.Count != addedDrugsDict.Count || d.Except(addedDrugsDict).Any())
+            if (d.Count != prescriptionDict.Count || d.Except(prescriptionDict).Any())
             {
-                addedDrugsDict.Clear();
+                prescriptionDict.Clear();
                 saveDiagnosisButton.IsEnabled = true;
-                foreach (KeyValuePair<string, int> pair in d)
+                foreach (KeyValuePair<Model.Examination.Prescription, uint> pair in d)
                 {
-                    addedDrugsDict.Add(pair.Key, pair.Value);
+                    prescriptionDict.Add(pair.Key, pair.Value);
                 }
             }
         }
@@ -161,10 +162,10 @@ namespace AppForDoctor
             }
         }
 
-        public static string DictToString(Dictionary<string, int> input)
+        public static string DictToString(Dictionary<string, uint> input)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (KeyValuePair<string, int> pair in input)
+            foreach (KeyValuePair<string, uint> pair in input)
             {
                 sb.Append("\t");
                 sb.Append(pair.Key);
@@ -210,9 +211,9 @@ namespace AppForDoctor
             return diagnosisText.Text;
         }
 
-        public Dictionary<string, int> getRecipes()
+        public Dictionary<Model.Examination.Prescription, uint> getRecipes()
         {
-            return addedDrugsDict;
+            return prescriptionDict;
         }
     }
 }

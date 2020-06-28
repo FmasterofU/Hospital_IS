@@ -106,8 +106,8 @@ namespace AppForDoctor
 
             retSrb.Append("Prepisani lekovi: \n");
             retEng.Append("Prescribed drugs: \n");
-            retSrb.Append(ExaminationPage.DictToString(e.getRecipes()) + "\n");
-            retEng.Append(ExaminationPage.DictToString(e.getRecipes()) + "\n");
+            //retSrb.Append(ExaminationPage.DictToString(e.getRecipes()) + "\n");
+            //retEng.Append(ExaminationPage.DictToString(e.getRecipes()) + "\n");
 
             retSrb.Append("Pregled obavio/la: ");
             retEng.Append("By: ");
