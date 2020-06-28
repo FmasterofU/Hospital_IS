@@ -13,7 +13,7 @@ namespace Repository.Schedule
    {
       List<Appointment> GetExistingAppointmentsInSpan(DateTime start, DateTime end);
 
-        List<Appointment> GetAvailableAppointmentsInSpan(DateTime start, DateTime end);
+        List<Term> GetAvailableAppointmentsInSpan(DateTime start, DateTime end);
 
     }
 }
