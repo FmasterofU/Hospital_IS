@@ -93,7 +93,9 @@ namespace Repository.Roles
 
         public List<uint> GetActiveDoctorIds()
         {
-            return getActiveUsers(UserType.Doctor);
+            List<uint> result = getActiveUsers(UserType.Doctor);
+            result.AddRange(getActiveUsers(UserType.Specialist));
+            return result;
         }
 
         public List<uint> GetActiveSpecialistIds()
