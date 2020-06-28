@@ -130,6 +130,7 @@ namespace Repository.Schedule
                     if (freeRooms > 0)
                         availableTerms.Add(new Term(appointment, appointment.AddMinutes(APPOINTMENT_DURATION)));
                 }
+                appointment.AddMinutes(APPOINTMENT_DURATION);
             }
             return availableTerms;
         }
