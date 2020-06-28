@@ -351,4 +351,6 @@ MigrationBackup/
 
 #Data
 /Data
-Test.cs
+
+# Model copy 
+/ModelController
