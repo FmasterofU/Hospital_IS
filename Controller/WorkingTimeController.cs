@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-    public class WorkingTimeController : IWorkingTimeController
-    {
-        public Service.IWorkingTimeService iWorkingTimeService = new WorkingTimeService();
+   public class WorkingTimeController : IWorkingTimeController
+   {
+      public Service.IWorkingTimeService iWorkingTimeService = new WorkingTimeService();
 
         public WorkingTime AddWorkingTime(WorkingTime workingTime)
         {

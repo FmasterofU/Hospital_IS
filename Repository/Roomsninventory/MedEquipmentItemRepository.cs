@@ -6,29 +6,26 @@
 using Class_Diagram.Repository;
 using Model.Inventory;
 using Model.Rooms;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-    public class MedEquipmentItemRepository : IMedEquipmentItemRepository
+   public class MedEquipmentItemRepository : IMedEquipmentItemRepository
 
-    //Id,TypeId,RoomId
+        //Id,TypeId,RoomId
 
     {
         private string path = @"../../Data/med_equipment_item.csv";
         private static MedEquipmentItemRepository instance = null;
 
-        private MedEquipmentItemRepository() { }
-
-        public static MedEquipmentItemRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new MedEquipmentItemRepository();
-            }
-
+        private MedEquipmentItemRepository() {}
+      
+      public static MedEquipmentItemRepository GetInstance()
+      {
+            if (instance == null) instance = new MedEquipmentItemRepository();
             return instance;
-        }
+      }
 
         public MedEquipmentItem Create(MedEquipmentItem item)
         {
@@ -38,13 +35,8 @@ namespace Repository.Roomsninventory
             data[1] = item.TypeId.ToString();
             data[2] = item.RoomId.ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public bool Delete(uint id)
@@ -57,10 +49,7 @@ namespace Repository.Roomsninventory
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<MedEquipmentItem> mei = new List<MedEquipmentItem>();
             foreach (string s in ids)
-            {
                 mei.Add(Read(uint.Parse(s)));
-            }
-
             return mei;
         }
 
@@ -69,10 +58,7 @@ namespace Repository.Roomsninventory
             List<string[]> ids = Persistence.ReadEntryByKey(path, room.GetId().ToString(), 2);
             List<MedEquipmentItem> mei = new List<MedEquipmentItem>();
             foreach (string[] s in ids)
-            {
                 mei.Add(Read(uint.Parse(s[0])));
-            }
-
             return mei;
         }
 
@@ -81,10 +67,7 @@ namespace Repository.Roomsninventory
             List<string[]> ids = Persistence.ReadEntryByKey(path, medEquipmentType.GetId().ToString(), 1);
             List<MedEquipmentItem> mei = new List<MedEquipmentItem>();
             foreach (string[] s in ids)
-            {
                 mei.Add(Read(uint.Parse(s[0])));
-            }
-
             return mei;
         }
 
@@ -101,13 +84,8 @@ namespace Repository.Roomsninventory
             data[1] = item.TypeId.ToString();
             data[2] = item.RoomId.ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
     }
 }

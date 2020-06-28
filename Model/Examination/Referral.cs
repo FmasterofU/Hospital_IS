@@ -4,15 +4,16 @@
 // Purpose: Definition of Class Referral
 
 using Model.Roles;
+using System;
 
 namespace Model.Examination
 {
-    public class Referral : Repository.IIdentifiable<uint>
+   public class Referral : Repository.IIdentifiable<uint>
     {
-        private ReferralType type;
-        private string note;
-        private string accessory = null;
-        private uint id;
+      private ReferralType type;
+      private string note;
+      private String accessory = null;
+      private uint id;
 
         public Referral(ReferralType type, string note, string accessory, Specialist specialist)
         {
@@ -20,28 +21,46 @@ namespace Model.Examination
             this.note = note;
             this.accessory = accessory;
             this.specialist = specialist;
-            id = 0;
+            this.id = 0;
         }
 
         public ReferralType Type
-        {
-            get => type;
-            set => type = value;
-        }
-
-        public string Note
-        {
-            get => note;
-            set => note = value;
-        }
-
-        public string Accessory
-        {
-            get => accessory;
-            set => accessory = value;
-        }
-
-        public Model.Roles.Specialist specialist;
+      {
+         get
+         {
+            return type;
+         }
+         set
+         {
+            this.type = value;
+         }
+      }
+      
+      public string Note
+      {
+         get
+         {
+            return note;
+         }
+         set
+         {
+            this.note = value;
+         }
+      }
+      
+      public String Accessory
+      {
+         get
+         {
+            return accessory;
+         }
+         set
+         {
+            this.accessory = value;
+         }
+      }
+      
+      public Model.Roles.Specialist specialist;
 
         public uint GetId()
         {

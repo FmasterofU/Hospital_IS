@@ -24,10 +24,7 @@ namespace Service
                 List<Term> ret = new List<Term>();
                 foreach (Appointment app in all)
                 {
-                    if (!free.Contains(new Term(app.StartTime, app.EndTime)))
-                    {
-                        ret.Add(new Term(app.StartTime, app.EndTime));
-                    }
+                    if (!free.Contains(new Term(app.StartTime, app.EndTime))) ret.Add(new Term(app.StartTime, app.EndTime));
                 }
                 return ret;
             }

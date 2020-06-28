@@ -10,25 +10,21 @@ using System.Collections.Generic;
 
 namespace Repository.Patientdata
 {
-    public class InsurancePolicyRepository : Repository.IRepositoryCRUD<InsurancePolicy, string>
+   public class InsurancePolicyRepository : Repository.IRepositoryCRUD<InsurancePolicy, string>
 
-    //PolicyId,InsuranceId
+        //PolicyId,InsuranceId
 
     {
         private string path = @"../../Data/insurance_policy.csv";
         private static InsurancePolicyRepository instance = null;
 
-        private InsurancePolicyRepository() { }
-
-        public static InsurancePolicyRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new InsurancePolicyRepository();
-            }
-
+        private InsurancePolicyRepository() {}
+      
+      public static InsurancePolicyRepository GetInstance()
+      {
+            if (instance == null) instance = new InsurancePolicyRepository();
             return instance;
-        }
+      }
 
         public bool Delete(string id)
         {
@@ -68,5 +64,5 @@ namespace Repository.Patientdata
         {
             return path;
         }
-    }
+   }
 }

@@ -8,33 +8,45 @@ using System;
 
 namespace Model.Blognfeedback
 {
-    public class Poll : Repository.IIdentifiable<uint>
+   public class Poll : Repository.IIdentifiable<uint>
     {
-        private uint id;
-        private Array questions;
-        private Array answers;
+      private uint id;
+      private Array questions;
+      private Array answers;
 
         public Poll(Array questions, Array answers, Patient patient)
         {
-            id = 0;
+            this.id = 0;
             this.questions = questions;
             this.answers = answers;
             this.patient = patient;
         }
 
         public Array Questions
-        {
-            get => questions;
-            set => questions = value;
-        }
-
-        public Array Answers
-        {
-            get => answers;
-            set => answers = value;
-        }
-
-        public Model.Roles.Patient patient;
+      {
+         get
+         {
+            return questions;
+         }
+         set
+         {
+            this.questions = value;
+         }
+      }
+      
+      public Array Answers
+      {
+         get
+         {
+            return answers;
+         }
+         set
+         {
+            this.answers = value;
+         }
+      }
+      
+      public Model.Roles.Patient patient;
 
         public uint GetId()
         {

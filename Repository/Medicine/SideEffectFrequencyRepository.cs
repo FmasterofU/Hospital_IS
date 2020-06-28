@@ -10,25 +10,21 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-    public class SideEffectFrequencyRepository : Repository.IRepositoryCRUD<SideEffectFrequency, uint>
+   public class SideEffectFrequencyRepository : Repository.IRepositoryCRUD<SideEffectFrequency, uint>
 
-    //Id,DrugId,Basis,Freq,SideEffectId
+        //Id,DrugId,Basis,Freq,SideEffectId
 
     {
         private string path = @"../../Data/side_effect_frequency.csv";
         private static SideEffectFrequencyRepository instance = null;
 
-        private SideEffectFrequencyRepository() { }
-
-        public static SideEffectFrequencyRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new SideEffectFrequencyRepository();
-            }
-
+        private SideEffectFrequencyRepository() {}
+      
+      public static SideEffectFrequencyRepository GetInstance()
+      {
+            if (instance == null) instance = new SideEffectFrequencyRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -45,13 +41,8 @@ namespace Repository.Medicine
             data[3] = item.Freq.ToString();
             data[4] = item.sideEffect.GetId().ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public SideEffectFrequency Read(uint id)
@@ -69,18 +60,13 @@ namespace Repository.Medicine
             data[3] = item.Freq.ToString();
             data[4] = item.sideEffect.GetId().ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public List<SideEffectFrequency> GetAll()
         {
             throw new NotImplementedException();
         }
-    }
+   }
 }

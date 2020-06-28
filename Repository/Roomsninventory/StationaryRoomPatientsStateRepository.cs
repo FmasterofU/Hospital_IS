@@ -10,35 +10,28 @@ using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-    public class StationaryRoomPatientsStateRepository : IStationaryRoomPatientsStateRepository
+   public class StationaryRoomPatientsStateRepository : IStationaryRoomPatientsStateRepository
 
-    //Id,RoomId,PatientsNumber,Timestamp
+        //Id,RoomId,PatientsNumber,Timestamp
 
     {
         private string path = @"../../Data/stationary_room_patients_state.csv";
         private static StationaryRoomPatientsStateRepository instance = null;
 
-        private StationaryRoomPatientsStateRepository() { }
-
-        public static StationaryRoomPatientsStateRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new StationaryRoomPatientsStateRepository();
-            }
-
+        private StationaryRoomPatientsStateRepository() {}
+      
+      public static StationaryRoomPatientsStateRepository GetInstance()
+      {
+            if (instance == null) instance = new StationaryRoomPatientsStateRepository();
             return instance;
-        }
+      }
 
         public List<StationaryRoomPatientsState> GetAllByRoom(StationaryRoom room)
         {
             List<string[]> ids = Persistence.ReadEntryByKey(path, room.GetId().ToString(), 1);
             List<StationaryRoomPatientsState> srps = new List<StationaryRoomPatientsState>();
             foreach (string[] s in ids)
-            {
                 srps.Add(Read(uint.Parse(s[0])));
-            }
-
             return srps;
         }
 
@@ -56,13 +49,8 @@ namespace Repository.Roomsninventory
             data[2] = item.PatientsNumber.ToString();
             data[3] = item.Timestamp.Ticks.ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public StationaryRoomPatientsState Read(uint id)
@@ -79,13 +67,8 @@ namespace Repository.Roomsninventory
             data[2] = item.PatientsNumber.ToString();
             data[3] = item.Timestamp.Ticks.ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public List<StationaryRoomPatientsState> GetAll()
@@ -93,11 +76,8 @@ namespace Repository.Roomsninventory
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<StationaryRoomPatientsState> srps = new List<StationaryRoomPatientsState>();
             foreach (string s in ids)
-            {
                 srps.Add(Read(uint.Parse(s)));
-            }
-
             return srps;
         }
-    }
+   }
 }

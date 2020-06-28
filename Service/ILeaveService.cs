@@ -4,15 +4,16 @@
 // Purpose: Definition of Interface ILeaveService
 
 using Model.Roles;
+using System;
 using System.Collections.Generic;
 
 namespace Service
 {
-    public interface ILeaveService
-    {
-        List<Leave> GetLeavesByStaff(Model.Roles.Staff staff);
-
-        bool AddLeave(Model.Roles.Leave leave);
-
-    }
+   public interface ILeaveService
+   {
+      List<Leave> GetLeavesByStaff(Model.Roles.Staff staff);
+      
+      bool AddLeave(Model.Roles.Leave leave);
+   
+   }
 }

@@ -18,7 +18,7 @@ namespace Service
     {
         public MedicalRecord AddMedicalRecord(MedicalRecord medRecord)
         {
-            return MedicalRecordRepository.GetInstance().Create(medRecord);
+            return MedicalRecordRepository.GetInstance().Create(medRecord);            
         }
 
         public MedicalRecord EditMedicalRecord(MedicalRecord medRecord)
@@ -38,11 +38,7 @@ namespace Service
                 PrescriptionRepository.GetInstance().Create(p);
             }
 
-            foreach (Referral r in examination.Referral)
-            {
-                ReferralRepository.GetInstance().Create(r);
-            }
-
+            foreach (Referral r in examination.Referral) ReferralRepository.GetInstance().Create(r);
             examination = ExaminationRepository.GetInstance().Create(examination);
 
             medicalRecord.AddExamination(examination);

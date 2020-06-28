@@ -3,19 +3,21 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class IngridientRatio
 
+using System;
+
 namespace Model.Medicine
 {
-    public class IngridientRatio : Repository.IIdentifiable<uint>
+   public class IngridientRatio : Repository.IIdentifiable<uint>
     {
-        private decimal ratio;
-        private uint drugId;
-        private uint id;
+      private decimal ratio;
+      private uint drugId;
+      private uint id;
 
         public IngridientRatio(decimal ratio, uint drugId, Ingridient ingridient)
         {
             this.ratio = ratio;
             this.drugId = drugId;
-            id = 0;
+            this.id = 0;
             this.ingridient = ingridient;
         }
 
@@ -28,18 +30,30 @@ namespace Model.Medicine
         }
 
         public decimal Ratio
-        {
-            get => ratio;
-            set => ratio = value;
-        }
-
-        public uint DrugId
-        {
-            get => drugId;
-            set => drugId = value;
-        }
-
-        public Ingridient ingridient;
+      {
+         get
+         {
+            return ratio;
+         }
+         set
+         {
+            this.ratio = value;
+         }
+      }
+      
+      public uint DrugId
+      {
+         get
+         {
+            return drugId;
+         }
+         set
+         {
+            this.drugId = value;
+         }
+      }
+      
+      public Ingridient ingridient;
 
         public uint GetId()
         {

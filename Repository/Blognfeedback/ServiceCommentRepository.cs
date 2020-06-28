@@ -9,25 +9,21 @@ using System.Collections.Generic;
 
 namespace Repository.Blognfeedback
 {
-    public class ServiceCommentRepository : Repository.IRepositoryCRUD<ServiceComment, uint>
+   public class ServiceCommentRepository : Repository.IRepositoryCRUD<ServiceComment, uint>
 
-    //Id,Note,AppointmentId
+        //Id,Note,AppointmentId
 
     {
         private string path = @"../../Data/service_comment.csv";
         private static ServiceCommentRepository instance = null;
 
-        private ServiceCommentRepository() { }
-
-        public static ServiceCommentRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ServiceCommentRepository();
-            }
-
+        private ServiceCommentRepository() {}
+      
+      public static ServiceCommentRepository GetInstance()
+      {
+            if (instance == null) instance = new ServiceCommentRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -53,5 +49,5 @@ namespace Repository.Blognfeedback
         {
             throw new NotImplementedException();
         }
-    }
+   }
 }

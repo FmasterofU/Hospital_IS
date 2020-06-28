@@ -4,13 +4,14 @@
 // Purpose: Definition of Interface IRoomRepository
 
 using Model.Rooms;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-    public interface IRoomRepository : Repository.IRepositoryCRUD<Room, uint>
-    {
-        List<Room> GetAllByType(Model.Rooms.RoomType type);
-
-    }
+   public interface IRoomRepository : Repository.IRepositoryCRUD<Room, uint>
+   {
+      List<Room> GetAllByType(Model.Rooms.RoomType type);
+   
+   }
 }

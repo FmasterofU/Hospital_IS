@@ -6,29 +6,26 @@
 using Class_Diagram.Repository;
 using Model.Inventory;
 using Model.Rooms;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-    public class ItemCountRepository : Repository.IRepositoryCRUD<ItemCount, uint>
+   public class ItemCountRepository : Repository.IRepositoryCRUD<ItemCount, uint>
 
-    //Id,TypeId,ItemIds,Number
+        //Id,TypeId,ItemIds,Number
 
     {
         private string path = @"../../Data/item_count.csv";
         private static ItemCountRepository instance = null;
 
-        private ItemCountRepository() { }
-
-        public static ItemCountRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ItemCountRepository();
-            }
-
+        private ItemCountRepository() {}
+      
+      public static ItemCountRepository GetInstance()
+      {
+            if (instance == null) instance = new ItemCountRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -43,20 +40,12 @@ namespace Repository.Roomsninventory
             data[1] = item.ItemId.ToString();
             data[2] = "";
             foreach (MedEquipmentItem mei in item.medEquipmentItem)
-            {
                 data[2] += mei.GetId().ToString() + " ";
-            }
-
             data[2] = data[2].Trim();
             data[3] = item.Number.ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public ItemCount Read(uint id)
@@ -65,10 +54,7 @@ namespace Repository.Roomsninventory
             string[] ids = temp[0][2].Split(' ');
             List<MedEquipmentItem> mei = new List<MedEquipmentItem>();
             foreach (string s in ids)
-            {
                 mei.Add(MedEquipmentItemRepository.GetInstance().Read(uint.Parse(s)));
-            }
-
             return new ItemCount(uint.Parse(temp[0][0]), uint.Parse(temp[0][3]), uint.Parse(temp[0][1]), mei.ToArray());
         }
 
@@ -79,20 +65,12 @@ namespace Repository.Roomsninventory
             data[1] = item.ItemId.ToString();
             data[2] = "";
             foreach (MedEquipmentItem mei in item.medEquipmentItem)
-            {
                 data[2] += mei.GetId().ToString() + " ";
-            }
-
             data[2] = data[2].Trim();
             data[3] = item.Number.ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public List<ItemCount> GetAll()
@@ -100,11 +78,8 @@ namespace Repository.Roomsninventory
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<ItemCount> ic = new List<ItemCount>();
             foreach (string s in ids)
-            {
                 ic.Add(Read(uint.Parse(s)));
-            }
-
             return ic;
         }
-    }
+   }
 }

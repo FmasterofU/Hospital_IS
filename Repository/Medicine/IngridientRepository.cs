@@ -10,25 +10,21 @@ using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-    public class IngridientRepository : Repository.IRepositoryCRUD<Ingridient, uint>
+   public class IngridientRepository : Repository.IRepositoryCRUD<Ingridient, uint>
 
-    //Id,Name,IsAlergen
+        //Id,Name,IsAlergen
 
     {
         private string path = @"../../Data/ingridient.csv";
         private static IngridientRepository instance = null;
 
-        private IngridientRepository() { }
-
-        public static IngridientRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new IngridientRepository();
-            }
-
+        private IngridientRepository() {}
+      
+      public static IngridientRepository GetInstance()
+      {
+            if (instance == null) instance = new IngridientRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -43,13 +39,8 @@ namespace Repository.Medicine
             data[1] = item.Name;
             data[2] = item.IsAlergen.ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public Ingridient Read(uint id)
@@ -65,18 +56,13 @@ namespace Repository.Medicine
             data[1] = item.Name;
             data[2] = item.IsAlergen.ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public List<Ingridient> GetAll()
         {
             throw new NotImplementedException();
         }
-    }
+   }
 }

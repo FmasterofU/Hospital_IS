@@ -12,25 +12,21 @@ using System.Collections.Generic;
 
 namespace Repository.Patientdata
 {
-    public class ExaminationRepository : Repository.IRepositoryCRUD<Examination, uint>
+   public class ExaminationRepository : Repository.IRepositoryCRUD<Examination, uint>
 
-    //Id,Time,DoctorId,Diagnosis,PrescriptionIds,ReferralIds
+        //Id,Time,DoctorId,Diagnosis,PrescriptionIds,ReferralIds
 
     {
         private string path = @"../../Data/examination.csv";
         private static ExaminationRepository instance = null;
 
-        private ExaminationRepository() { }
-
-        public static ExaminationRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new ExaminationRepository();
-            }
-
+        private ExaminationRepository() {}
+      
+      public static ExaminationRepository GetInstance()
+      {
+            if (instance == null) instance = new ExaminationRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -46,7 +42,7 @@ namespace Repository.Patientdata
             data[2] = item.Doctor.GetId().ToString();
             data[3] = item.Diagnosis;
             data[4] = "";
-            foreach (Prescription p in item.Prescription)
+            foreach(Prescription p in item.Prescription)
             {
                 data[4] += p.GetId().ToString() + " ";
             }
@@ -58,14 +54,8 @@ namespace Repository.Patientdata
             }
             data[5] = data[5].Trim();
             bool isAdded = Persistence.WriteEntry(path, data);
-            if (isAdded)
-            {
-                return item;
-            }
-            else
-            {
-                return null;
-            }
+            if (isAdded) return item;
+            else return null;
         }
 
         public Examination Read(uint id)
@@ -83,11 +73,7 @@ namespace Repository.Patientdata
                 string[] presIDs = data[0][4].Split(' ');
                 foreach (string presID in presIDs)
                 {
-                    if (presID.Equals(""))
-                    {
-                        break;
-                    }
-
+                    if (presID.Equals("")) break;
                     Prescription p = PrescriptionRepository.GetInstance().Read(uint.Parse(presID));
                     presList.Add(p);
                 }
@@ -95,11 +81,7 @@ namespace Repository.Patientdata
                 string[] refIDs = data[0][5].Split(' ');
                 foreach (string refID in refIDs)
                 {
-                    if (refID.Equals(""))
-                    {
-                        break;
-                    }
-
+                    if (refID.Equals("")) break;
                     Referral r = ReferralRepository.GetInstance().Read(uint.Parse(refID));
                     refList.Add(r);
                 }
@@ -120,12 +102,8 @@ namespace Repository.Patientdata
         {
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<Examination> ret = new List<Examination>();
-            foreach (string s in ids)
-            {
-                ret.Add(Read(uint.Parse(s)));
-            }
-
+            foreach (string s in ids) ret.Add(Read(uint.Parse(s)));
             return ret;
         }
-    }
+   }
 }

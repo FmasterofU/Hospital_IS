@@ -12,9 +12,9 @@ using System;
 
 namespace Controller
 {
-    public class MedicalRecordController : IMedicalRecordController
-    {
-        public Service.IMedicalRecordService iMedicalRecordService = new MedicalRecordService();
+   public class MedicalRecordController : IMedicalRecordController
+   {
+      public Service.IMedicalRecordService iMedicalRecordService = new MedicalRecordService();
 
         public bool AddMedicalRecord(MedicalRecord medRecord)
         {

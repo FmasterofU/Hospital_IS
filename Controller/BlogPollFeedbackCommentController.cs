@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 namespace Controller
 {
-    public class BlogPollFeedbackCommentController : IBlogPollFeedbackCommentController
-    {
-        public Service.IBlogPollFeedbackCommentService iBlogPollFeedbackCommentService;
+   public class BlogPollFeedbackCommentController : IBlogPollFeedbackCommentController
+   {
+      public Service.IBlogPollFeedbackCommentService iBlogPollFeedbackCommentService;
 
         public bool AddBlogPost(BlogPost blogPost)
         {

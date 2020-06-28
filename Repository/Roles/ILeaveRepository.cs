@@ -4,13 +4,14 @@
 // Purpose: Definition of Interface ILeaveRepository
 
 using Model.Roles;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roles
 {
-    public interface ILeaveRepository : Repository.IRepositoryCRUD<Leave, uint>
-    {
-        List<Leave> GetAllByStaff(Model.Roles.Staff staff);
-
-    }
+   public interface ILeaveRepository : Repository.IRepositoryCRUD<Leave, uint>
+   {
+      List<Leave> GetAllByStaff(Model.Roles.Staff staff);
+   
+   }
 }

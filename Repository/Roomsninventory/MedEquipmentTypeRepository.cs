@@ -5,29 +5,26 @@
 
 using Class_Diagram.Repository;
 using Model.Inventory;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roomsninventory
 {
-    public class MedEquipmentTypeRepository : Repository.IRepositoryCRUD<MedEquipmentType, uint>
+   public class MedEquipmentTypeRepository : Repository.IRepositoryCRUD<MedEquipmentType, uint>
 
-    //Id,Name,Number
+        //Id,Name,Number
 
     {
         private string path = @"../../Data/med_equipment_type.csv";
         private static MedEquipmentTypeRepository instance = null;
 
-        private MedEquipmentTypeRepository() { }
-
-        public static MedEquipmentTypeRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new MedEquipmentTypeRepository();
-            }
-
+        private MedEquipmentTypeRepository() {}
+      
+      public static MedEquipmentTypeRepository GetInstance()
+      {
+            if (instance == null) instance = new MedEquipmentTypeRepository();
             return instance;
-        }
+      }
 
         public bool Delete(uint id)
         {
@@ -42,13 +39,8 @@ namespace Repository.Roomsninventory
             data[1] = item.Name;
             data[2] = item.Number.ToString();
             if (Persistence.WriteEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public MedEquipmentType Read(uint id)
@@ -64,13 +56,8 @@ namespace Repository.Roomsninventory
             data[1] = item.Name;
             data[2] = item.Number.ToString();
             if (Persistence.EditEntry(path, data))
-            {
                 return item;
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public List<MedEquipmentType> GetAll()
@@ -78,11 +65,8 @@ namespace Repository.Roomsninventory
             List<string> ids = Persistence.ReadAllPrimaryIds(path);
             List<MedEquipmentType> met = new List<MedEquipmentType>();
             foreach (string s in ids)
-            {
                 met.Add(Read(uint.Parse(s)));
-            }
-
             return met;
         }
-    }
+   }
 }

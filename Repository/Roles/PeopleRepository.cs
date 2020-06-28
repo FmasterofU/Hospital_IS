@@ -10,6 +10,7 @@ using Model.Roles;
 using Repository.Medicine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 
@@ -27,11 +28,7 @@ namespace Repository.Roles
 
         public static PeopleRepository GetInstance()
         {
-            if (instance == null)
-            {
-                instance = new PeopleRepository();
-            }
-
+            if (instance == null) instance = new PeopleRepository();
             return instance;
         }
 
@@ -39,16 +36,10 @@ namespace Repository.Roles
         {
             List<string[]> searchedResult = Persistence.ReadEntryByKey(path, username, PeopleConstants.USERNAME_COLUMN);
             if (searchedResult.Count == 0)
-            {
                 return 0;
-            }
-
             string[] person = searchedResult[0];
             if (person[PeopleConstants.PASSWORD_COLUMN].Equals(password))
-            {
                 return uint.Parse(person[PeopleConstants.ID_COLUMN]);
-            }
-
             return 0;
         }
 
@@ -73,42 +64,28 @@ namespace Repository.Roles
         private UserType convertToUserType(string type)
         {
             if (type.Equals(UserType.Manager.ToString()))
-            {
                 return UserType.Manager;
-            }
             else if (type.Equals(UserType.Secretary.ToString()))
-            {
                 return UserType.Secretary;
-            }
             else if (type.Equals(UserType.Doctor.ToString()))
-            {
                 return UserType.Doctor;
-            }
             else if (type.Equals(UserType.Specialist.ToString()))
-            {
                 return UserType.Specialist;
-            }
             else if (type.Equals(UserType.Patient.ToString()))
-            {
                 return UserType.Patient;
-            }
             else
-            {
                 return UserType.None;
-            }
         }
 
         private List<uint> getActiveUsers(UserType type)
         {
-            int typeEnumNumber = (int)type;
+            int typeEnumNumber = (int) type;
             List<string[]> searchedResult = Persistence.ReadEntryByKey(path, typeEnumNumber.ToString(), PeopleConstants.USER_TYPE_COLUMN);
             List<uint> result = new List<uint>();
             foreach (string[] person in searchedResult)
             {
                 if (bool.Parse(person[PeopleConstants.IS_ACTIVE_COLUMN]))
-                {
                     result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
-                }
             }
 
             return result;
@@ -140,7 +117,7 @@ namespace Repository.Roles
         public List<uint> GetAllIds()
         {
             List<uint> result = new List<uint>();
-            foreach (Person person in GetAll())
+            foreach(Person person in GetAll())
             {
                 result.Add(person.GetId());
             }
@@ -153,10 +130,8 @@ namespace Repository.Roles
             List<uint> result = new List<uint>();
             foreach (Person person in GetAll())
             {
-                if (person.IsStaff())
-                {
+                if(person.IsStaff())
                     result.Add(person.GetId());
-                }
             }
 
             return result;
@@ -170,9 +145,7 @@ namespace Repository.Roles
                 if (person.IsStaff())
                 {
                     if (((Staff)person).Active)
-                    {
                         result.Add(person.GetId());
-                    }
                 }
             }
 
@@ -182,8 +155,8 @@ namespace Repository.Roles
         public List<uint> GetIdsByJMBG(string jmbg)
         {
             List<uint> result = new List<uint>();
-            List<string[]> persons = Persistence.ReadEntryByKey(path, jmbg, PeopleConstants.JMBG_COLUMN);
-            foreach (string[] person in persons)
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, jmbg, PeopleConstants.JMBG_COLUMN);
+            foreach(string[] person in persons)
             {
                 result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
             }
@@ -193,13 +166,11 @@ namespace Repository.Roles
         public List<uint> GetIdsByName(string name)
         {
             List<uint> result = new List<uint>();
-            List<string[]> persons = Persistence.ReadEntryByKey(path, name, PeopleConstants.NAME_COLUMN);
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, name, PeopleConstants.NAME_COLUMN);
             foreach (string[] person in persons)
             {
-                if (person[PeopleConstants.NAME_COLUMN].Equals(name))
-                {
+                if(person[PeopleConstants.NAME_COLUMN].Equals(name))
                     result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
-                }
             }
             return result;
         }
@@ -207,20 +178,18 @@ namespace Repository.Roles
         public List<uint> GetIdsBySurname(string surname)
         {
             List<uint> result = new List<uint>();
-            List<string[]> persons = Persistence.ReadEntryByKey(path, surname, PeopleConstants.SURNAME_COLUMN);
+            List<string[]> persons = Persistence.ReadEntryByKey(this.path, surname, PeopleConstants.SURNAME_COLUMN);
             foreach (string[] person in persons)
             {
                 if (person[PeopleConstants.SURNAME_COLUMN].Equals(surname))
-                {
                     result.Add(uint.Parse(person[PeopleConstants.ID_COLUMN]));
-                }
             }
             return result;
         }
 
         public List<uint> GetPatientsIds()
         {
-            int patientEnumNumber = (int)UserType.Patient;
+            int patientEnumNumber = (int) UserType.Patient;
             List<string[]> searchedResult = Persistence.ReadEntryByKey(path, patientEnumNumber.ToString(), PeopleConstants.USER_TYPE_COLUMN);
             List<uint> result = new List<uint>();
             foreach (string[] person in searchedResult)
@@ -239,15 +208,11 @@ namespace Repository.Roles
         public Person Create(Person item)
         {
             item.SetId(Persistence.GetNewId(path));
-            bool isAdded = Persistence.WriteEntry(path, PreparePersonForCSV(item));
+            bool isAdded = Persistence.WriteEntry(this.path, PreparePersonForCSV(item));
             if (isAdded)
-            {
                 return item;
-            }
             else
-            {
                 return null;
-            }
         }
 
         public Person Read(uint id)
@@ -255,13 +220,11 @@ namespace Repository.Roles
             List<string[]> data = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
 
             if (data.Count == 0)
-            {
                 return null;
-            }
             //Person data
             string[] line = data[0];
             uint personId = uint.Parse(line[PeopleConstants.ID_COLUMN]);
-            UserType personType = (UserType)int.Parse(line[PeopleConstants.USER_TYPE_COLUMN]);
+            UserType personType = (UserType) int.Parse(line[PeopleConstants.USER_TYPE_COLUMN]);
             string jmbg = line[PeopleConstants.JMBG_COLUMN];
             string name = line[PeopleConstants.NAME_COLUMN];
             string surname = line[PeopleConstants.SURNAME_COLUMN];
@@ -270,7 +233,7 @@ namespace Repository.Roles
             Sex sex = (Sex)int.Parse(line[PeopleConstants.SEX_COLUMN]);
             string username = line[PeopleConstants.USERNAME_COLUMN];
             string password = line[PeopleConstants.PASSWORD_COLUMN];
-            uint medRecordId = line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN].Equals("") ? 0 : uint.Parse(line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN]);
+            uint medRecordId = line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN].Equals("")? 0: uint.Parse(line[PeopleConstants.MEDICAL_RECORD_ID_COLUMN]);
             string address = line[PeopleConstants.ADDRESS_COLUMN];
 
             //StaffData
@@ -283,39 +246,24 @@ namespace Repository.Roles
             string specialization = line[PeopleConstants.SPECIALIZATION_COLUMN];
 
             if (personType.Equals(UserType.Patient))
-            {
                 return new Patient(personId, name, surname, phone, email, sex, jmbg, username, password, personType, address, new DateTime(dateTicks), decased, parentName, medRecordId, getAlergens(alergenIdsText));
-            }
             else if (personType.Equals(UserType.Secretary))
-            {
                 return new Secretary(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
-            }
             else if (personType.Equals(UserType.Doctor))
-            {
                 return new Doctor(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
-            }
             else if (personType.Equals(UserType.Manager))
-            {
                 return new Manager(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active);
-            }
             else if (personType.Equals(UserType.Specialist))
-            {
                 return new Specialist(personId, name, surname, phone, email, sex, jmbg, username, password, personType, null, active, specialization);
-            }
-            else
-            {
-                return null;
-            }
+            else return null;
+   
         }
 
         private List<Ingridient> getAlergens(string alergensIdsText)
         {
             List<Ingridient> result = new List<Ingridient>();
             if (alergensIdsText.Equals(""))
-            {
                 return result;
-            }
-
             foreach (string alergenId in alergensIdsText.Split(' '))
             {
                 result.Add(IngridientRepository.GetInstance().Read(uint.Parse(alergenId)));
@@ -326,10 +274,7 @@ namespace Repository.Roles
         public Person Update(Person item)
         {
             if (Persistence.EditEntry(path, PreparePersonForCSV(item)))
-            {
                 return item;
-            }
-
             return null;
         }
 
@@ -338,31 +283,22 @@ namespace Repository.Roles
             List<string> allIds = Persistence.ReadAllPrimaryIds(path);
             List<Person> ret = new List<Person>();
             foreach (string s in allIds)
-            {
                 ret.Add(Read(uint.Parse(s)));
-            }
-
             return ret;
         }
 
 
-
+        
         //Metode za pripremu unosa u csv fajl
 
         private string[] PreparePersonForCSV(Person item)
         {
             if (item.UserType.Equals(UserType.Patient))
-            {
                 return CreatePatientDataArrayForCSV((Patient)item);
-            }
             else if (item.UserType.Equals(UserType.Doctor) || item.UserType.Equals(UserType.Secretary) || item.UserType.Equals(UserType.Manager))
-            {
                 return CreateStaffDataArrayForCSV((Staff)item);
-            }
             else if (item.UserType.Equals(UserType.Specialist))
-            {
                 return CreateSpecialistDataArrayForCSV((Specialist)item);
-            }
 
             return null;
         }
@@ -376,13 +312,9 @@ namespace Repository.Roles
             for (int i = 0; i < result.Length; i++)
             {
                 if (i < patientData.Length)
-                {
                     result[i] = patientData[i];
-                }
                 else
-                {
                     result[i] = "";
-                }
             }
 
             return result;
@@ -390,7 +322,7 @@ namespace Repository.Roles
 
         private string[] CreateSpecialistDataArrayForCSV(Specialist doctor_specialist)
         {
-            string[] result = CreateStaffDataArrayForCSV(doctor_specialist);
+            string[] result = CreateStaffDataArrayForCSV((Staff)doctor_specialist);
             result[PeopleConstants.SPECIALIZATION_COLUMN] = doctor_specialist.Specialization;
             return result;
         }
@@ -402,7 +334,7 @@ namespace Repository.Roles
             int staffDataIndex = 0;
             for (int i = 0; i < result.Length; i++)
             {
-                if (i <= PeopleConstants.PERSON_COLUMN_INDEX_END || (i >= PeopleConstants.STAFF_COLUM_INDEX_START && i <= PeopleConstants.STAFF_COLUM_INDEX_END))
+                if (i <= PeopleConstants.PERSON_COLUMN_INDEX_END || (i >= PeopleConstants.STAFF_COLUM_INDEX_START  && i <= PeopleConstants.STAFF_COLUM_INDEX_END ))
                 {
                     result[i] = staffData[staffDataIndex];
                     staffDataIndex++;

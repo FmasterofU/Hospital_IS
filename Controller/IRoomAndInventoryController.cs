@@ -5,12 +5,13 @@
 
 using Model.Inventory;
 using Model.Rooms;
+using System;
 using System.Collections.Generic;
 
 namespace Controller
 {
-    public interface IRoomAndInventoryController
-    {
+   public interface IRoomAndInventoryController
+   {
         Model.Rooms.Room AddEquipmentToRoom(Model.Rooms.Room room, Model.Inventory.MedEquipmentType eqType, uint number);
 
         List<StationaryRoomPatientsState> GetAllStationaryRoomPatientsState(Model.Rooms.StationaryRoom stationaryRoom);

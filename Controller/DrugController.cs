@@ -5,13 +5,15 @@
 
 using Model.Medicine;
 using Service;
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Controller
 {
-    public class DrugController : IDrugController
-    {
-        public Service.IDrugService iDrugService = new DrugService();
+   public class DrugController : IDrugController
+   {
+      public Service.IDrugService iDrugService = new DrugService();
 
         public Drug AddDrug(Drug drug)
         {

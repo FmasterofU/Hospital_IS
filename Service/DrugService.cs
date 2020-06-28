@@ -5,6 +5,7 @@
 
 using Model.Medicine;
 using Repository.Medicine;
+using System;
 using System.Collections.Generic;
 
 namespace Service
@@ -44,54 +45,34 @@ namespace Service
         public bool DisableDrugUse(Drug drug)
         {
             drug.InUse = false;
-            Drug ret = DrugRepository.GetInstance().Update(drug);
+            Drug ret =  DrugRepository.GetInstance().Update(drug);
             if (ret != null)
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         public bool EditDrug(Drug drug)
         {
             Drug ret = DrugRepository.GetInstance().Update(drug);
             if (ret != null)
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         public bool EditDrugBatch(DrugBatch drugBatch)
         {
             DrugBatch ret = DrugBatchRepository.GetInstance().Update(drugBatch);
             if (ret != null)
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         public bool EditDrugStateChange(DrugStateChange dsc)
         {
             DrugStateChange ret = DrugStateChangeRepository.GetInstance().Update(dsc);
             if (ret != null)
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
 
         public List<Drug> GetAllDrugs()
@@ -110,28 +91,19 @@ namespace Service
             List<DrugBatch> temp = DrugBatchRepository.GetInstance().GetAll();
             List<DrugBatch> ret = new List<DrugBatch>();
             foreach (DrugBatch db in temp)
-            {
                 if (db.DrugId == drug.GetId())
-                {
                     ret.Add(db);
-                }
-            }
-
             return ret;
         }
 
         public List<Drug> SearchDrugs(string query)
         {
             List<Drug> list = DrugRepository.GetInstance().GetAll();
-            if (query.Equals(""))
-            {
-                return list;
-            }
-
+            if (query.Equals("")) return list;
             List<Drug> ret = new List<Drug>();
-            foreach (Drug d in list)
+            foreach(Drug d in list)
             {
-                if (d.InUse && d.Name.Contains(query))
+                if(d.InUse && d.Name.Contains(query))
                 {
                     ret.Add(d);
                 }

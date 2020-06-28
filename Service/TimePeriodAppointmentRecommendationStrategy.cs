@@ -4,6 +4,7 @@
 // Purpose: Definition of Class TimePeriodAppointmentRecommendationStrategy
 
 using Class_Diagram.Model.Appointments;
+using Model.Appointments;
 using Model.Roles;
 using Repository.Schedule;
 using System;

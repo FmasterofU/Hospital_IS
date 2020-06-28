@@ -5,24 +5,25 @@
 
 using Model.Examination;
 using Model.Medicalrecord;
+using System;
 
 namespace Service
 {
-    public interface IMedicalRecordService
-    {
+   public interface IMedicalRecordService
+   {
         MedicalRecord GetMedicalRecordByPatient(Model.Roles.Patient patient);
 
         MedicalRecord EditMedicalRecord(MedicalRecord medRecord);
 
         MedicalRecord GetMedicalRecordByAppointment(Model.Appointments.Appointment appoinment);
-
+      
         MedicalRecord AddMedicalRecord(MedicalRecord medRecord);
 
         MedicalRecord GetMedicalRecordById(uint id);
-
+      
         bool EditInsurance(InsurancePolicy insurance);
 
         Examination AppendExamination(Examination examination, MedicalRecord medicalRecord);
-
-    }
+   
+   }
 }

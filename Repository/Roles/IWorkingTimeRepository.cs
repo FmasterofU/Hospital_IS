@@ -4,13 +4,14 @@
 // Purpose: Definition of Interface IWorkingTimeRepository
 
 using Model.Roles;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Roles
 {
-    public interface IWorkingTimeRepository : Repository.IRepositoryCRUD<WorkingTime, uint>
-    {
-        List<WorkingTime> GetAllByStaff(Model.Roles.Staff staff);
-
-    }
+   public interface IWorkingTimeRepository : Repository.IRepositoryCRUD<WorkingTime, uint>
+   {
+      List<WorkingTime> GetAllByStaff(Model.Roles.Staff staff);
+   
+   }
 }

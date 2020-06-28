@@ -4,13 +4,14 @@
 // Purpose: Definition of Interface IDrugStateChangeRepository
 
 using Model.Medicine;
+using System;
 using System.Collections.Generic;
 
 namespace Repository.Medicine
 {
-    public interface IDrugStateChangeRepository : Repository.IRepositoryCRUD<DrugStateChange, uint>
-    {
-        List<DrugStateChange> GetAllByDrug(Drug drug);
-
-    }
+   public interface IDrugStateChangeRepository : Repository.IRepositoryCRUD<DrugStateChange, uint>
+   {
+      List<DrugStateChange> GetAllByDrug(Drug drug);
+   
+   }
 }

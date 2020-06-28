@@ -4,46 +4,65 @@
 // Purpose: Definition of Class AppFeedback
 
 using Model.Roles;
+using System;
 
 namespace Model.Blognfeedback
 {
-    public class AppFeedback : Repository.IIdentifiable<uint>
+   public class AppFeedback : Repository.IIdentifiable<uint>
     {
-        private string subject;
-        private string note;
-        private uint id;
+      private string subject;
+      private string note;
+      private uint id;
 
         public AppFeedback(string subject, string note, Person person)
         {
             this.subject = subject;
             this.note = note;
-            id = 0;
+            this.id = 0;
             this.person = person;
         }
 
         public string Subject
-        {
-            get => subject;
-            set => subject = value;
-        }
-
-        public string Note
-        {
-            get => note;
-            set => note = value;
-        }
-
-        public Model.Roles.Person person;
-
-        /// <summary>
-        /// Property for Model.Roles.Person
-        /// </summary>
-        /// <pdGenerated>Default opposite class property</pdGenerated>
-        public Model.Roles.Person Person
-        {
-            get => person;
-            set => person = value;
-        }
+      {
+         get
+         {
+            return subject;
+         }
+         set
+         {
+            this.subject = value;
+         }
+      }
+      
+      public string Note
+      {
+         get
+         {
+            return note;
+         }
+         set
+         {
+            this.note = value;
+         }
+      }
+      
+      public Model.Roles.Person person;
+      
+      /// <summary>
+      /// Property for Model.Roles.Person
+      /// </summary>
+      /// <pdGenerated>Default opposite class property</pdGenerated>
+      public Model.Roles.Person Person
+      {
+         get
+         {
+            return person;
+         }
+         set
+         {
+            this.person = value;
+         }
+      }
 
         public uint GetId()
         {

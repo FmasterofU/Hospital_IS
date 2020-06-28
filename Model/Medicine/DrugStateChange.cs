@@ -7,13 +7,13 @@ using System;
 
 namespace Model.Medicine
 {
-    public class DrugStateChange : Repository.IIdentifiable<uint>
+   public class DrugStateChange : Repository.IIdentifiable<uint>
     {
-        private DateTime timestamp;
-        private int totalNumber;
-        private int threshold;
-        private uint drugId;
-        private uint id;
+      private DateTime timestamp;
+      private int totalNumber;
+      private int threshold;
+      private uint drugId;
+      private uint id;
 
         public DrugStateChange(DateTime timestamp, int totalNumber, int threshold, uint drugId)
         {
@@ -21,7 +21,7 @@ namespace Model.Medicine
             this.totalNumber = totalNumber;
             this.threshold = threshold;
             this.drugId = drugId;
-            id = 0;
+            this.id = 0;
         }
 
         public DrugStateChange(uint id, DateTime timestamp, int totalNumber, int threshold, uint drugId)
@@ -34,28 +34,52 @@ namespace Model.Medicine
         }
 
         public DateTime Timestamp
-        {
-            get => timestamp;
-            set => timestamp = value;
-        }
-
-        public int TotalNumber
-        {
-            get => totalNumber;
-            set => totalNumber = value;
-        }
-
-        public int Threshold
-        {
-            get => threshold;
-            set => threshold = value;
-        }
-
-        public uint DrugId
-        {
-            get => drugId;
-            set => drugId = value;
-        }
+      {
+         get
+         {
+            return timestamp;
+         }
+         set
+         {
+            this.timestamp = value;
+         }
+      }
+      
+      public int TotalNumber
+      {
+         get
+         {
+            return totalNumber;
+         }
+         set
+         {
+            this.totalNumber = value;
+         }
+      }
+      
+      public int Threshold
+      {
+         get
+         {
+            return threshold;
+         }
+         set
+         {
+            this.threshold = value;
+         }
+      }
+      
+      public uint DrugId
+      {
+         get
+         {
+            return drugId;
+         }
+         set
+         {
+            this.drugId = value;
+         }
+      }
 
         public uint GetId()
         {

@@ -6,13 +6,14 @@
 using Model.Inventory;
 using Model.Rooms;
 using Service;
+using System;
 using System.Collections.Generic;
 
 namespace Controller
 {
-    public class RoomAndInventoryController : IRoomAndInventoryController
-    {
-        public Service.IRoomAndInventoryService iRoomAndInventoryService = new RoomAndInventoryService();
+   public class RoomAndInventoryController : IRoomAndInventoryController
+   {
+      public Service.IRoomAndInventoryService iRoomAndInventoryService = new RoomAndInventoryService();
 
         public Room AddEquipmentToRoom(Room room, MedEquipmentType eqType, uint number)
         {

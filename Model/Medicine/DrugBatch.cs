@@ -7,13 +7,13 @@ using System;
 
 namespace Model.Medicine
 {
-    public class DrugBatch : Repository.IIdentifiable<uint>
-    {
-        private string lotNumber;
-        private int number;
-        private DateTime expDate;
-        private uint drugId;
-        private uint id;
+   public class DrugBatch : Repository.IIdentifiable<uint>
+   {
+      private string lotNumber;
+      private int number;
+      private DateTime expDate;
+      private uint drugId;
+      private uint id;
 
         public DrugBatch(string lotNumber, int number, DateTime expDate, uint drugId)
         {
@@ -21,7 +21,7 @@ namespace Model.Medicine
             this.number = number;
             this.expDate = expDate;
             this.drugId = drugId;
-            id = 0;
+            this.id = 0;
         }
 
         public DrugBatch(uint id, string lotNumber, int number, DateTime expDate, uint drugId)
@@ -34,28 +34,52 @@ namespace Model.Medicine
         }
 
         public int Number
-        {
-            get => number;
-            set => number = value;
-        }
-
-        public DateTime ExpDate
-        {
-            get => expDate;
-            set => expDate = value;
-        }
-
-        public string LotNumber
-        {
-            get => lotNumber;
-            set => lotNumber = value;
-        }
-
-        public uint DrugId
-        {
-            get => drugId;
-            set => drugId = value;
-        }
+      {
+         get
+         {
+            return number;
+         }
+         set
+         {
+            this.number = value;
+         }
+      }
+      
+      public DateTime ExpDate
+      {
+         get
+         {
+            return expDate;
+         }
+         set
+         {
+            this.expDate = value;
+         }
+      }
+      
+      public string LotNumber
+      {
+         get
+         {
+            return lotNumber;
+         }
+         set
+         {
+            this.lotNumber = value;
+         }
+      }
+      
+      public uint DrugId
+      {
+         get
+         {
+            return drugId;
+         }
+         set
+         {
+            this.drugId = value;
+         }
+      }
 
         public uint GetId()
         {

@@ -3,18 +3,20 @@
 // Created: Thursday, May 21, 2020 10:21:32 PM
 // Purpose: Definition of Class MedEquipmentItem
 
+using System;
+
 namespace Model.Inventory
 {
-    public class MedEquipmentItem : Repository.IIdentifiable<uint>
-    {
-        private uint id;
-        private uint typeId;
-        private uint roomId;
+   public class MedEquipmentItem : Repository.IIdentifiable<uint>
+   {
+      private uint id;
+      private uint typeId;
+      private uint roomId;
 
         //TODO: maybe refactor constructor (type and type id)
         public MedEquipmentItem(uint typeId, uint roomId, MedEquipmentType medEquipmentType)
         {
-            id = 0;
+            this.id = 0;
             this.typeId = typeId;
             this.roomId = roomId;
             this.medEquipmentType = medEquipmentType;
@@ -29,18 +31,30 @@ namespace Model.Inventory
         }
 
         public uint TypeId
-        {
-            get => typeId;
-            set => typeId = value;
-        }
-
-        public uint RoomId
-        {
-            get => roomId;
-            set => roomId = value;
-        }
-
-        public MedEquipmentType medEquipmentType;
+      {
+         get
+         {
+            return typeId;
+         }
+         set
+         {
+            this.typeId = value;
+         }
+      }
+      
+      public uint RoomId
+      {
+         get
+         {
+            return roomId;
+         }
+         set
+         {
+            this.roomId = value;
+         }
+      }
+      
+      public MedEquipmentType medEquipmentType;
 
         public uint GetId()
         {
