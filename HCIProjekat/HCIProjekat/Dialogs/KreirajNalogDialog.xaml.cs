@@ -57,8 +57,7 @@ namespace HCIProjekat.Dialogs
                 // Model.Pacijent pac = Model.SviPacijenti.getInstance().searchByJMBG(txt_jmbg.Text);
                 UserController controller = new UserController();
                 Patient patient = new Patient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_jmbg.Text, txt_email.Text, "", UserType.Patient, txt_adresa.Text, dp_rodjen.SelectedDate.Value, false, txt_ime_rod.Text, 0, new List<Ingridient>());
-                List<Patient> existPatients = controller.GetPatientBySearch(patient.Jmbg, "", "");
-                if (existPatients.Count != 0)
+                if (controller.IsPatientExist(patient.Jmbg))
                 {
                     MessageBox.Show("Vec postoji osoba sa istim JMBG u sistemu!");
                     return;
@@ -70,7 +69,8 @@ namespace HCIProjekat.Dialogs
                 if (kld.isPotvrdjen())
                 {
                     patient.Password = kld.getLozinku();
-                    patient = controller.AddPatient(patient);
+                    if (controller.AddPatient(patient) != null)
+                        this.Close();
                 }
                 Opacity =1;
             }

@@ -45,15 +45,15 @@ namespace HCIProjekat.Dialogs
             {
                 setPasswordBoxs();
             }
+            else if(pass_lozinka.Visibility == Visibility.Visible)
+            {
+                setTextBoxs();
+            }
             if (pass_lozinka.Password.ToString().Equals(pass_potvrda_lozinke.Password.ToString()))
             {
                 MessageBox.Show("Uspesno kreiranje naloga", "Uspesan unos", MessageBoxButton.OK, MessageBoxImage.Information);
-                //foreach(Window window in System.Windows.Application.Current.Windows)
-                //{
-                //    //if (window.Name == "NalogPacijentaDijalog")
-                //    //    window.Close();
-                //}
                 potvrdjen = true;
+                lozinka = txt_lozinka.Text;
                 this.Close();                
             }
             else
