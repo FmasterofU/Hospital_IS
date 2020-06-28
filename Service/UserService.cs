@@ -31,7 +31,7 @@ namespace Service
 
         public Patient AddPatient(Patient patient)
         {
-            if (IsPatientAlreadyExists(patient))
+            if (IsPatientAlreadyExist(patient.Jmbg))
                 return null;
             
             patient = AddNewMedicalRecord(patient);        
@@ -40,9 +40,9 @@ namespace Service
                 return patient;
         }
 
-        private bool IsPatientAlreadyExists(Patient patient)
+        public bool IsPatientAlreadyExist(string jmbg)
         {
-            List<uint> peoples_ids = PeopleRepository.GetInstance().GetIdsByJMBG(patient.Jmbg);
+            List<uint> peoples_ids = PeopleRepository.GetInstance().GetIdsByJMBG(jmbg);
             foreach(uint id in peoples_ids)
             {
                 UserType tipKorisnika = PeopleRepository.GetInstance().GetRole(id);
@@ -155,17 +155,6 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public bool IsPatientExist(string jmbg)
-        {
-            List<uint> ids = PeopleRepository.GetInstance().GetIdsByJMBG(jmbg);
-             
-            foreach(uint id in ids)
-            {
-                Person p = PeopleRepository.GetInstance().Read(id);
-                if (p.GetType().Equals(UserType.Patient))
-                    return true;
-            }
-            return false;
-        }
+        
     }
 }
