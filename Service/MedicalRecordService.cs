@@ -59,7 +59,7 @@ namespace Service
 
         public MedicalRecord GetMedicalRecordByPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            return MedicalRecordRepository.GetInstance().Read(patient.MedRecordId);
 
         }
 

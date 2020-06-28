@@ -39,7 +39,7 @@ namespace Controller
 
         public MedicalRecord GetMedicalRecordByPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            return iMedicalRecordService.GetMedicalRecordByPatient(patient);
         }
     }
 }

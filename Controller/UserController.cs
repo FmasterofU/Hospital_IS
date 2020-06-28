@@ -12,21 +12,21 @@ namespace Controller
 {
    public class UserController : IUserController
    {
-      public Service.IUserService iUserService;
+      public Service.IUserService iUserService = new UserService();
 
         public Patient AddPatient(Patient patient)
         {
-            return ((UserService)iUserService).AddPatient(patient);
+            return iUserService.AddPatient(patient);
         }
 
-        public void AddStaffUser(Staff staff)
+        public Staff AddStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+            return iUserService.AddStaffUser(staff);
         }
 
         public UserType Auth(string username, string password)
         {
-            throw new NotImplementedException();
+            return iUserService.Auth(username, password);
         }
 
         public void CloseSession()
@@ -34,19 +34,19 @@ namespace Controller
             throw new NotImplementedException();
         }
 
-        public void EditPatient(Patient patient)
+        public bool EditPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            return iUserService.EditPatient(patient);
         }
 
-        public void EditStaffUser(Staff staff)
+        public bool EditStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+            return iUserService.EditStaffUser(staff);
         }
 
         public List<Staff> GetAllStaff()
         {
-            throw new NotImplementedException();
+            return iUserService.GetAllStaff();
         }
 
         public UserType GetCurrentSessionType()
@@ -56,22 +56,22 @@ namespace Controller
 
         public List<Doctor> GetDoctors()
         {
-            throw new NotImplementedException();
+            return iUserService.GetActiveDoctors();
         }
 
         public List<Patient> GetPatientBySearch(string jmbg, string name, string surname)
         {
-            throw new NotImplementedException();
+            return iUserService.GetPatientBySearch(jmbg, name, surname);
         }
 
-        public Person GetUser()
+        public Person GetUser(uint id)
         {
-            throw new NotImplementedException();
+            return iUserService.GetUser(id);
         }
 
-        public void RemoveStaffUser(Staff staff)
+        public bool RemoveStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+            return iUserService.RemoveStaffUser(staff);
         }
 
         public void SaveUser()
