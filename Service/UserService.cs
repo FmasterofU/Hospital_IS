@@ -72,15 +72,18 @@ namespace Service
             return medicalRecordService.EditMedicalRecord(searchedMedicalRecord)!=null;
         }
       
-
-        public void AddStaffUser(Staff staff)
+        public Staff AddStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+            return (Staff) PeopleRepository.GetInstance().Create(staff);
         }
 
         public UserType Auth(string username, string password)
         {
-            throw new NotImplementedException();
+           uint id =  PeopleRepository.GetInstance().GetId(username, password);
+            if (id == 0)
+                return UserType.None;
+
+            return PeopleRepository.GetInstance().GetRole(id);
         }
 
         public void CloseSession()
@@ -88,19 +91,25 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public void EditPatient(Patient patient)
+        public bool EditPatient(Patient patient)
         {
-            throw new NotImplementedException();
+            return PeopleRepository.GetInstance().Update(patient)!=null;
         }
 
-        public void EditStaffUser(Staff staff)
+        public bool EditStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+            return PeopleRepository.GetInstance().Update(staff) != null;
         }
 
         public List<Staff> GetAllStaff()
         {
-            throw new NotImplementedException();
+            List<uint> stafIds = PeopleRepository.GetInstance().GetAllStaffIds();
+            List<Staff> retVal = new List<Staff>();
+            foreach(uint id in stafIds)
+            {
+                retVal.Add((Staff)PeopleRepository.GetInstance().Read(id));
+            }
+            return retVal;
         }
 
         public UserType GetCurrentSessionType()
@@ -108,9 +117,15 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public List<Doctor> GetDoctors()
+        public List<Doctor> GetActiveDoctors()
         {
-            throw new NotImplementedException();
+            List<uint> doctorsIds = PeopleRepository.GetInstance().GetActiveDoctorIds();
+            List<Doctor> retVal = new List<Doctor>();
+            foreach (uint id in doctorsIds)
+            {
+                retVal.Add((Doctor)PeopleRepository.GetInstance().Read(id));
+            }
+            return retVal;
         }
 
         public List<Patient> GetPatientBySearch(string jmbg, string name, string surname)
@@ -118,14 +133,14 @@ namespace Service
             throw new NotImplementedException();
         }
 
-        public Person GetUser()
+        public Person GetUser(uint id)
         {
-            throw new NotImplementedException();
+            return PeopleRepository.GetInstance().Read(id);
         }
 
-        public void RemoveStaffUser(Staff staff)
+        public bool RemoveStaffUser(Staff staff)
         {
-            throw new NotImplementedException();
+           return PeopleRepository.GetInstance().Delete(staff.GetId());
         }
 
         public void SaveUser()
