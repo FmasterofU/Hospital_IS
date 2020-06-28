@@ -22,6 +22,14 @@ namespace Model.Rooms
             this.medEquipmentItem = medEquipmentItem;
         }
 
+        public ItemCount(uint id, uint number, uint itemId, MedEquipmentItem[] medEquipmentItem)
+        {
+            this.number = number;
+            this.itemId = itemId;
+            this.id = id;
+            this.medEquipmentItem = medEquipmentItem;
+        }
+
         public uint Number
       {
          get

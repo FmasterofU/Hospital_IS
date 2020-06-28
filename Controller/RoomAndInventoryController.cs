@@ -5,6 +5,7 @@
 
 using Model.Inventory;
 using Model.Rooms;
+using Service;
 using System;
 using System.Collections.Generic;
 
@@ -12,61 +13,61 @@ namespace Controller
 {
    public class RoomAndInventoryController : IRoomAndInventoryController
    {
-      public Service.IRoomAndInventoryService iRoomAndInventoryService;
+      public Service.IRoomAndInventoryService iRoomAndInventoryService = new RoomAndInventoryService();
 
         public Room AddEquipmentToRoom(Room room, MedEquipmentType eqType, uint number)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.AddEquipmentToRoom(room, eqType, number);
         }
 
-        public bool AddMedEquipmentItem(MedEquipmentType medEquipmentType, Room room)
+        public MedEquipmentItem AddMedEquipmentItem(MedEquipmentType medEquipmentType, Room room)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.AddMedEquipmentItem(medEquipmentType, room);
         }
 
-        public bool AddMedEquipmentType(MedEquipmentType medEquipmentType)
+        public MedEquipmentType AddMedEquipmentType(MedEquipmentType medEquipmentType)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.AddMedEquipmentType(medEquipmentType);
         }
 
-        public bool AddRoom(Room room)
+        public Room AddRoom(Room room)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.AddRoom(room);
         }
 
         public bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.DeleteMedEquipmentitem(medEquipmentItem);
         }
 
         public bool DeleteRoom(Room room)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.DeleteRoom(room);
         }
 
         public bool EditRoom(Room room)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.EditRoom(room);
         }
 
         public List<MedEquipmentType> GetAllMedEquipmentType()
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.GetAllMedEquipmentType();
         }
 
         public List<Room> GetAllRooms()
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.GetAllRooms();
         }
 
         public List<StationaryRoomPatientsState> GetAllStationaryRoomPatientsState(StationaryRoom stationaryRoom)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.GetAllStationaryRoomPatientsState(stationaryRoom);
         }
 
         public bool UpdateMedEquipmentType(MedEquipmentType medEqType)
         {
-            throw new NotImplementedException();
+            return iRoomAndInventoryService.UpdateMedEquipmentType(medEqType);
         }
     }
 }

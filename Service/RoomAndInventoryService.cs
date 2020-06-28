@@ -5,6 +5,7 @@
 
 using Model.Inventory;
 using Model.Rooms;
+using Repository.Roomsninventory;
 using System;
 using System.Collections.Generic;
 
@@ -14,22 +15,48 @@ namespace Service
     {
         public Room AddEquipmentToRoom(Room room, MedEquipmentType eqType, uint number)
         {
-            throw new NotImplementedException();
+            if (number == 0) return room;
+            for (uint i = 0; i < number; i++)
+                AddMedEquipmentItem(eqType, room);
+            return RoomRepository.GetInstance().Read(room.GetId());
         }
 
-        public bool AddMedEquipmentItem(MedEquipmentType medEquipmentType, Room room)
+        public MedEquipmentItem AddMedEquipmentItem(MedEquipmentType medEquipmentType, Room room)
         {
-            throw new NotImplementedException();
+            medEquipmentType.Number += 1;
+            medEquipmentType = MedEquipmentTypeRepository.GetInstance().Update(medEquipmentType);
+            MedEquipmentItem mei = MedEquipmentItemRepository.GetInstance().Create(new MedEquipmentItem(medEquipmentType.GetId(), room.GetId(), medEquipmentType);
+            ItemCount temp = null;
+            foreach(ItemCount ic in room.ItemCount)
+                if(mei.TypeId == ic.ItemId)
+                {
+                    temp = ic;
+                    break;
+                }
+            if (temp == null)
+            {
+                List<MedEquipmentItem> meiList = new List<MedEquipmentItem>();
+                meiList.Add(mei);
+                ItemCount ic = ItemCountRepository.GetInstance().Create(new ItemCount(1, medEquipmentType.GetId(), meiList.ToArray()));
+                room.ItemCount.Add(ic);
+                RoomRepository.GetInstance().Update(room);
+            }
+            else
+            {
+                temp.Number += 1;
+                ItemCountRepository.GetInstance().Update(temp);
+            }
+            return mei;
         }
 
-        public bool AddMedEquipmentType(MedEquipmentType medEquipmentType)
+        public MedEquipmentType AddMedEquipmentType(MedEquipmentType medEquipmentType)
         {
-            throw new NotImplementedException();
+            return MedEquipmentTypeRepository.GetInstance().Create(medEquipmentType);
         }
 
-        public bool AddRoom(Room room)
+        public Room AddRoom(Room room)
         {
-            throw new NotImplementedException();
+            return RoomRepository.GetInstance().Create(room);
         }
 
         public bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem)
@@ -39,32 +66,32 @@ namespace Service
 
         public bool DeleteRoom(Room room)
         {
-            throw new NotImplementedException();
+            return RoomRepository.GetInstance().Delete(room.GetId());
         }
 
         public bool EditRoom(Room room)
         {
-            throw new NotImplementedException();
+            return RoomRepository.GetInstance().Update(room) == null ? false : true;
         }
 
         public List<MedEquipmentType> GetAllMedEquipmentType()
         {
-            throw new NotImplementedException();
+            return MedEquipmentTypeRepository.GetInstance().GetAll();
         }
 
         public List<Room> GetAllRooms()
         {
-            throw new NotImplementedException();
+            return RoomRepository.GetInstance().GetAll();
         }
 
         public List<StationaryRoomPatientsState> GetAllStationaryRoomPatientsState(StationaryRoom stationaryRoom)
         {
-            throw new NotImplementedException();
+            return StationaryRoomPatientsStateRepository.GetInstance().GetAllByRoom(stationaryRoom);
         }
 
         public bool UpdateMedEquipmentType(MedEquipmentType medEqType)
         {
-            throw new NotImplementedException();
+            return MedEquipmentTypeRepository.GetInstance().Update(medEqType) == null ? false : true;
         }
     }
 }

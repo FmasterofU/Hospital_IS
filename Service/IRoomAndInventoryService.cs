@@ -22,13 +22,13 @@ namespace Service
       
       bool EditRoom(Model.Rooms.Room room);
       
-      bool AddRoom(Model.Rooms.Room room);
+      Room AddRoom(Model.Rooms.Room room);
       
-      bool AddMedEquipmentType(Model.Inventory.MedEquipmentType medEquipmentType);
+      MedEquipmentType AddMedEquipmentType(Model.Inventory.MedEquipmentType medEquipmentType);
       
       List<MedEquipmentType> GetAllMedEquipmentType();
       
-      bool AddMedEquipmentItem(Model.Inventory.MedEquipmentType medEquipmentType, Model.Rooms.Room room);
+      MedEquipmentItem AddMedEquipmentItem(Model.Inventory.MedEquipmentType medEquipmentType, Model.Rooms.Room room);
       
       bool DeleteMedEquipmentitem(MedEquipmentItem medEquipmentItem);
       
