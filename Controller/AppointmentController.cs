@@ -6,23 +6,24 @@
 using Model.Appointments;
 using Model.Roles;
 using Model.Rooms;
+using Service;
 using System;
 using System.Collections.Generic;
 
 namespace Controller
 {
-   public class AppoinmentController : IAppoinmentController
+   public class AppointmentController : IAppointmentController
    {
-      public Service.IAppoinmentService iAppoinmentService;
+      public Service.IAppointmentService iAppoinmentService = new AppointmentService();
 
         public bool AddAppointment(ref Appointment appoinment, RoomType roomType, Doctor doctor)
         {
-            throw new NotImplementedException();
+            return iAppoinmentService.AddAppointment(ref appoinment, roomType, doctor);
         }
 
         public bool DeleteAppoinment(Appointment appoinment)
         {
-            throw new NotImplementedException();
+            return iAppoinmentService.DeleteAppoinment(appoinment);
         }
 
         public bool EditAppoinment(Appointment appoinment)
@@ -32,7 +33,7 @@ namespace Controller
 
         public List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Room room)
         {
-            throw new NotImplementedException();
+            return iAppoinmentService.GetAppointmentsInTimeFrame(startTime, endTime, doctor, room);
         }
     }
 }

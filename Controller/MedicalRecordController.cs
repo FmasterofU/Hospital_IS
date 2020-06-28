@@ -14,7 +14,7 @@ namespace Controller
 {
    public class MedicalRecordController : IMedicalRecordController
    {
-      public Service.IMedicalRecordService iMedicalRecordService;
+      public Service.IMedicalRecordService iMedicalRecordService = new MedicalRecordService();
 
         public bool AddMedicalRecord(MedicalRecord medRecord)
         {
@@ -23,7 +23,7 @@ namespace Controller
 
         public bool AppendExamination(Examination examination, MedicalRecord medicalRecord)
         {
-            bool ret = ((MedicalRecordService)iMedicalRecordService).AppendExamination(examination, medicalRecord);
+            bool ret = iMedicalRecordService.AppendExamination(examination, medicalRecord);
             return ret;
         }
 
@@ -34,7 +34,7 @@ namespace Controller
 
         public MedicalRecord GetMedicalRecordByAppointment(Appointment appoinment)
         {
-            MedicalRecord medicalRecord = ((MedicalRecordService)iMedicalRecordService).GetMedicalRecordByAppointment(appoinment);
+            MedicalRecord medicalRecord = iMedicalRecordService.GetMedicalRecordByAppointment(appoinment);
             return medicalRecord;
         }
 
