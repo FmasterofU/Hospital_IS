@@ -3,7 +3,9 @@
 // Created: Monday, June 22, 2020 7:18:25 PM
 // Purpose: Definition of Interface IAppoinmentService
 
+using Class_Diagram.Model.Appointments;
 using Model.Appointments;
+using Model.Roles;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +13,7 @@ namespace Service
 {
    public interface IAppointmentService
    {
-      List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Model.Roles.Doctor doctor, Model.Rooms.Room room);
+      List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Model.Rooms.Room room);
       
       bool AddAppointment(ref Model.Appointments.Appointment appoinment, Model.Rooms.RoomType roomType, Model.Roles.Doctor doctor);
       
@@ -21,7 +23,9 @@ namespace Service
       
       void SetStrategy(IAppointmentRecommendationStrategy strategy);
       
-      List<Appointment> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
+      List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
+
+        List<Term> GetAvailableInTimeFrame(DateTime start, DateTime end, Doctor doctor);
    
    }
 }

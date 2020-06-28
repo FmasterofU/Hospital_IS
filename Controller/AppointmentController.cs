@@ -3,6 +3,7 @@
 // Created: Monday, June 22, 2020 7:35:03 PM
 // Purpose: Definition of Class AppoinmentController
 
+using Class_Diagram.Model.Appointments;
 using Model.Appointments;
 using Model.Roles;
 using Model.Rooms;
@@ -34,6 +35,23 @@ namespace Controller
         public List<Appointment> GetAppointmentsInTimeFrame(DateTime startTime, DateTime endTime, Doctor doctor, Room room)
         {
             return iAppoinmentService.GetAppointmentsInTimeFrame(startTime, endTime, doctor, room);
+        }
+
+        public List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor)
+        {
+            return iAppoinmentService.RecommendAppointments(startDateTime, endDateTime, doctor);
+        }
+
+        public void SetStrategy(string strategy)
+        {
+            if(strategy.ToLower().Equals("doctor"))
+            {
+                iAppoinmentService.SetStrategy(new DoctorAppointmentRecommendationStrategy());
+            }
+            else if(strategy.ToLower().Equals("time"))
+            {
+                iAppoinmentService.SetStrategy(new TimePeriodAppointmentRecommendationStrategy());
+            }
         }
     }
 }

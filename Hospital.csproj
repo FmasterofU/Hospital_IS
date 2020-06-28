@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\PeopleRepositoryConstants.cs" />
+    <Compile Include="Model\Appointments\Term.cs" />
     <Compile Include="Model\Medicalrecord\MedicalRecord.cs" />
     <Compile Include="Model\Medicalrecord\InsurancePolicy.cs" />
     <Compile Include="Model\Appointments\Appointment.cs" />
