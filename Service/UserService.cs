@@ -120,10 +120,15 @@ namespace Service
         public List<Doctor> GetActiveDoctors()
         {
             List<uint> doctorsIds = PeopleRepository.GetInstance().GetActiveDoctorIds();
+            List<uint> specIDs = PeopleRepository.GetInstance().GetActiveSpecialistIds();
             List<Doctor> retVal = new List<Doctor>();
             foreach (uint id in doctorsIds)
             {
                 retVal.Add((Doctor)PeopleRepository.GetInstance().Read(id));
+            }
+            foreach(uint id in specIDs)
+            {
+                retVal.Add((Specialist)PeopleRepository.GetInstance().Read(id));
             }
             return retVal;
         }
