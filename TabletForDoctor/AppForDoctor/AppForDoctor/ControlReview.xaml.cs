@@ -67,17 +67,20 @@ namespace AppForDoctor
 
         private void saveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            selDate = selDate.AddTicks(selTime.TimeOfDay.Ticks);
+            /*selDate = selDate.AddTicks(selTime.TimeOfDay.Ticks);
             if (!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
-            this.Close();
-            //AppointmentController c = new AppointmentController();
+            this.Close();*/
+            DateTime selected = DateTime.Parse(termCombo.SelectedItem.ToString());
+            AppointmentController c = new AppointmentController();
             //c.SetStrategy("doctor");
             //c.AddAppointment(new Model.Appointments.Appointment(selDate, selDate.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId(), EditProfilePage.getInstance().getUser()), 
             //Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
-            //Model.Appointments.Appointment a =  new Model.Appointments.Appointment(selDate, selDate.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
-            //c.AddAppointment(ref a, Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
+            Model.Appointments.Appointment a =  new Model.Appointments.Appointment(selected, selected.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
+            c.AddAppointment(ref a, Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
+            this.Close();
             //List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(30), EditProfilePage.getInstance().getUser());
-            //foreach (Term t in free) Console.WriteLine(t.StartTime);
+            //foreach (Term t in free) termCombo.Items.Add(t.StartTime.ToString());
+            //if (termCombo.Items.Count != 0) termCombo.SelectedIndex = 0;
         }
 
         private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -86,25 +89,41 @@ namespace AppForDoctor
             if (date != null)
             {
                 selDate = date.Value;
+                if (termCombo != null)
+                {
+                    termCombo.Items.Clear();
+                    AppointmentController c = new AppointmentController();
+                    c.SetStrategy("doctor");
+                    List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(30), EditProfilePage.getInstance().getUser());
+                
+                    foreach (Term t in free) termCombo.Items.Add(t.StartTime.ToString());
+                    if (termCombo.Items.Count != 0) termCombo.SelectedIndex = 0;
+                }
             }
-            if (!selDate.ToString().Equals("")) saveControlButton.IsEnabled = true;
-            else saveControlButton.IsEnabled = false;
+            //if (!selDate.ToString().Equals("")) saveControlButton.IsEnabled = true;
+            if(selDate.ToString().Equals("")) saveControlButton.IsEnabled = false;
         }
 
         public void setInitialDate(DateTime? initial)
         {
             calendar.SelectedDate = initial;
-            timePicker.Value = initial;
+            //timePicker.Value = initial;
             saveControlButton.IsEnabled = true;
         }
 
-        private void TimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void termCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (termCombo.SelectedIndex < 0) saveControlButton.IsEnabled = false;
+            else saveControlButton.IsEnabled = true;
+        }
+
+        /*private void TimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             DateTime? time = timePicker.Value;
             if (time != null)
             {
                 selTime = time.Value;
             }
-        }
+        }*/
     }
 }

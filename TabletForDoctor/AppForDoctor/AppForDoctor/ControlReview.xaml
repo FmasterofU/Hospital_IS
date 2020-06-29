@@ -37,8 +37,9 @@
                 </DatePicker>
             </Viewbox>
             <Viewbox VerticalAlignment="Center" Height="80" Margin="0,20,0,0">
-                <xctk:TimePicker x:Name="timePicker" Margin="0,0,0,0" Value="00:00:00" AllowTextInput="False" MaxDropDownHeight="70" ValueChanged="TimePicker_ValueChanged" FontSize="8" 
-                             Background="{DynamicResource backgroundColor}" Foreground="{DynamicResource foregroundColor}"/>
+                <!--<xctk:TimePicker x:Name="timePicker" Margin="0,0,0,0" Value="00:00:00" AllowTextInput="False" MaxDropDownHeight="70" ValueChanged="TimePicker_ValueChanged" FontSize="8" 
+                             Background="{DynamicResource backgroundColor}" Foreground="{DynamicResource foregroundColor}"/>-->
+                <ComboBox x:Name="termCombo" Style="{StaticResource comboboxStyle}" SelectionChanged="termCombo_SelectionChanged" SelectedIndex="-1"></ComboBox>
             </Viewbox>
         </StackPanel>
     </Grid>
