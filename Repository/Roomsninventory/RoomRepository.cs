@@ -30,7 +30,7 @@ namespace Repository.Roomsninventory
 
         public List<Room> GetAllByType(RoomType type)
         {
-            List<string[]> ids = Persistence.ReadEntryByKey(path, type.ToString(), 1);
+            List<string[]> ids = Persistence.ReadEntryByKey(path, ((int)type).ToString(), 1);
             List<Room> ret = new List<Room>();
             foreach (string[] s in ids)
                 ret.Add(Read(uint.Parse(s[0])));
