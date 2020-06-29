@@ -140,7 +140,7 @@
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <DataGrid DockPanel.Dock="Bottom" x:Name="DrugListDG" ItemsSource="{Binding drugs}" 
+                    <DataGrid DockPanel.Dock="Bottom" x:Name="DrugListDG" ItemsSource="{Binding rooms}" 
                               AutoGenerateColumns="False" 
                               CanUserResizeRows="False" 
                               CanUserReorderColumns="False" 
@@ -162,7 +162,7 @@
                         </DataGrid.Columns>
                         <DataGrid.RowDetailsTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding Details}" FontSize="16"></Label>
+                                <Label Content="{Binding Type}" FontSize="16"></Label>
                             </DataTemplate>
                         </DataGrid.RowDetailsTemplate>
                     </DataGrid>

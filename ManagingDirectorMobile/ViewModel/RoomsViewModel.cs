@@ -11,11 +11,13 @@ namespace ManagingDirectorMobile.ViewModel
 {
     class RoomsViewModel
     {
-        private static Controller.IDrugController c = new DrugController();
+        private static Controller.IRoomAndInventoryController c = new RoomAndInventoryController();
         public ObservableCollection<Room> rooms { get; set; }
         public RoomsViewModel()
         {
-            
+            List<Room> r = c.GetAllRooms();
+            foreach (Room room in r)
+                rooms.Add(room);
         }
     }
 }
