@@ -26,7 +26,6 @@ namespace AppForDoctor
     {
         //TODO: read isSpecialist from database
         private bool isSpecialist = true;
-        //private HashSet<string> refSet = new HashSet<string>();
         private HashSet<ReferralType> reffSet = new HashSet<ReferralType>();
         private List<Specialist> specs = new List<Specialist>();
         private int specIndex = -1;
@@ -218,11 +217,6 @@ namespace AppForDoctor
             r.AddReferralToSet(rr);
             reffSet.Remove(type);
             referralsCombo.Items.Remove(selected);
-            /*if (refSet.Count == 0)
-            {
-                RefferalsPage.getInstance().disableAddButton();
-                this.Close();
-            }*/
         }
 
         private void specialistTypeTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

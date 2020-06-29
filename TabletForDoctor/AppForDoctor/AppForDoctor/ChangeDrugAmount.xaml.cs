@@ -20,7 +20,6 @@ namespace AppForDoctor
     /// </summary>
     public partial class ChangeDrugAmount : Window
     {
-        //private Dictionary<string, int> drugDict = new Dictionary<string, int>();
         private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
         private int amount = 1;
         public ChangeDrugAmount()
@@ -57,10 +56,6 @@ namespace AppForDoctor
 
         private void changeAmountButton_Click(object sender, RoutedEventArgs e)
         {
-            /*string choice = changeAmountComboBox.SelectedItem.ToString();
-            DrugsPage.getInstance().ChangeDrugAmount(choice, amount);
-            drugDict[choice] = amount;
-            changeAmountButton.IsEnabled = false;*/
             string choice = changeAmountComboBox.SelectedItem.ToString();
             Model.Examination.Prescription old = null;
             foreach (Model.Examination.Prescription p in prescriptionDict.Keys)
@@ -80,11 +75,6 @@ namespace AppForDoctor
 
         private void changeAmountComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*if (!changeAmountComboBox.Items.IsEmpty)
-            {
-                string choice = changeAmountComboBox.SelectedItem.ToString();
-                amountText.Text = drugDict[choice].ToString();
-            }*/
             if (!changeAmountComboBox.Items.IsEmpty)
             {
                 string choice = changeAmountComboBox.SelectedItem.ToString();
@@ -99,7 +89,6 @@ namespace AppForDoctor
                 }
                 amountText.Text = prescriptionDict[old].ToString();
             }
-            //else amountText.Text = "0";
         }
 
         private void searchInput_KeyUp(object sender, KeyEventArgs e)
@@ -113,10 +102,6 @@ namespace AppForDoctor
             changeAmountComboBox.Items.Clear();
             changeAmountButton.IsEnabled = false;
 
-            /*foreach (string s in drugDict.Keys)
-            {
-                if (s.ToLower().Contains(input)) changeAmountComboBox.Items.Add(s);
-            }*/
             foreach(Model.Examination.Prescription p in prescriptionDict.Keys)
             {
                 if (p.drug.Name.ToLower().Contains(input)) changeAmountComboBox.Items.Add(p.drug.Name);

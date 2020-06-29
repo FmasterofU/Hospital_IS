@@ -27,16 +27,6 @@ namespace AppForDoctor
         public AddDrug()
         {
             InitializeComponent();
-            /*drugSet.Add("Novi");
-            drugSet.Add("Nnovi");
-            drugSet.Add("Noovi");
-            drugSet.Add("Novvi");
-            drugSet.Add("Novii");
-            drugSet.Add("Novio");*/
-            //drugSet = DrugList.ContainsInName("");
-            //drugSet.ExceptWith(DrugsPage.getInstance().geDrugNameSet());
-            //foreach (string s in drugSet) addDrugsComboBox.Items.Add(s);
-            //addDrugsComboBox.SelectedIndex = 0;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
         }
@@ -78,22 +68,9 @@ namespace AppForDoctor
                 }
             }
             DrugsPage d = DrugsPage.getInstance();
-            //d.AddDrugToDict(item, amount);
             d.AddDrugToDict(new Model.Examination.Prescription((uint)amount, usageTextBox.Text, adding));
             druggSet.Clear();
             this.Close();
-            //drugSet.Remove(item);
-            /*addDrugsComboBox.Items.Remove(item);
-            addDrugsComboBox.SelectedIndex = 0;
-            amountText.Text = "1";
-            minusButton.IsEnabled = false;
-            usageTextBox.Text = "";
-            /*if (drugSet.Count == 0)
-            {
-                DrugsPage.getInstance().disableAddButton();
-                this.Close();
-            }
-            if (addDrugsComboBox.Items.Count == 0) searchButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));*/
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -101,10 +78,7 @@ namespace AppForDoctor
             druggSet.Clear();
             string input = searchInput.Text.ToLower();
             addDrugsComboBox.Items.Clear();
-            /*foreach (string s in drugSet)
-            {
-                if (s.ToLower().Contains(input)) addDrugsComboBox.Items.Add(s);
-            }*/
+
             DrugController c = new DrugController();
             List<Model.Medicine.Drug> drugs = c.SearchDrugs(input);
             if(drugs.Count != 0)
@@ -160,33 +134,6 @@ namespace AppForDoctor
                     if (amount > 1) minusButton.IsEnabled = true;
                 }
             }
-            /*if (Int32.TryParse(amountText.Text, out amount))
-            {
-                if(amount <= 0)
-                {
-                    addDrugButton.IsEnabled = false;
-                    plusButton.IsEnabled = false;
-                    minusButton.IsEnabled = false;
-                }
-                else if(amount == 1)
-                {
-                    addDrugButton.IsEnabled = true;
-                    plusButton.IsEnabled = true;
-                    minusButton.IsEnabled = false;
-                }
-                else
-                {
-                    addDrugButton.IsEnabled = true;
-                    plusButton.IsEnabled = true;
-                    minusButton.IsEnabled = true;
-                }
-            }
-            else
-            {
-                addDrugButton.IsEnabled = false;
-                plusButton.IsEnabled = false;
-                minusButton.IsEnabled = false;
-            }*/
         }
 
         private void plusButton_Click(object sender, RoutedEventArgs e)

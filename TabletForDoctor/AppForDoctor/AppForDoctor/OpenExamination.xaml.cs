@@ -55,13 +55,6 @@ namespace AppForDoctor
 
         private void idSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            /*patientsComboBox.Items.Clear();
-            patientsComboBox.SelectedIndex = -1;
-            MedRecord mr = MedRecordList.getMedHistory(idText.Text);
-            if (mr == null) return;
-            User patient = UserList.getByID(mr.PatientID);
-            patientsComboBox.Items.Add(patient.Name + " " + patient.Surname + "\nID = " + patient.PatientID);
-            patientsComboBox.SelectedIndex = 0;*/
             patientsComboBox.Items.Clear();
             patientsComboBox.SelectedIndex = -1;
             UserController c = new UserController();
@@ -73,14 +66,6 @@ namespace AppForDoctor
 
         private void nameSearchButton_Click(object sender, RoutedEventArgs e)
         {
-            /*patientsComboBox.Items.Clear();
-            patientsComboBox.SelectedIndex = -1;
-            List<User> users = UserList.getPatientByName(nameText.Text.ToLower());
-            if (users.Count == 0) return;
-            
-            foreach(User u in users)
-                patientsComboBox.Items.Add(u.Name + " " + u.Surname + "\nID = " + u.PatientID);
-            patientsComboBox.SelectedIndex = 0;*/
             patientsComboBox.Items.Clear();
             patientsComboBox.SelectedIndex = -1;
             UserController c = new UserController();
@@ -109,13 +94,6 @@ namespace AppForDoctor
         {
             string[] parts = patientsComboBox.SelectedItem.ToString().Split('=');
             string id = parts[1].Trim();
-            /*MedRecord mr = MedRecordList.getMedHistory(id);
-            if (mr == null) return;
-            MainMenuPage.clearInstance();
-            ExaminationPage.getInstance(mr);
-            MainWindow w = MainWindow.getInstance();
-            w.changePage(2);
-            this.Close();*/
             MedicalRecordController c = new MedicalRecordController();
             List<uint> ids = PeopleRepository.GetInstance().GetIdsByJMBG(id);
             foreach(uint iid in ids)

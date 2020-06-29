@@ -67,9 +67,6 @@ namespace AppForDoctor
 
         private void saveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            /*selDate = selDate.AddTicks(selTime.TimeOfDay.Ticks);
-            if (!selDate.ToString().Equals(""))  ExaminationPage.getInstance().setControlDate(selDate);
-            this.Close();*/
             DateTime selected = DateTime.Parse(termCombo.SelectedItem.ToString());
             AppointmentController c = new AppointmentController();
             Model.Appointments.Appointment a =  new Model.Appointments.Appointment(selected, selected.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
@@ -94,14 +91,12 @@ namespace AppForDoctor
                     if (termCombo.Items.Count != 0) termCombo.SelectedIndex = 0;
                 }
             }
-            //if (!selDate.ToString().Equals("")) saveControlButton.IsEnabled = true;
             if(selDate.ToString().Equals("")) saveControlButton.IsEnabled = false;
         }
 
         public void setInitialDate(DateTime? initial)
         {
             calendar.SelectedDate = initial;
-            //timePicker.Value = initial;
             saveControlButton.IsEnabled = true;
         }
 
@@ -110,14 +105,5 @@ namespace AppForDoctor
             if (termCombo.SelectedIndex < 0) saveControlButton.IsEnabled = false;
             else saveControlButton.IsEnabled = true;
         }
-
-        /*private void TimePicker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            DateTime? time = timePicker.Value;
-            if (time != null)
-            {
-                selTime = time.Value;
-            }
-        }*/
     }
 }

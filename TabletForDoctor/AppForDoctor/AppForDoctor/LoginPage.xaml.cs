@@ -50,19 +50,6 @@ namespace AppForDoctor
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            /*User u = UserList.IsDoctor(mailTextBox.Text, passTextBox.Password);
-            if (u == null)
-            {
-                Style style = this.FindResource("incorectLabelStyle") as Style;
-                mailLabel.Style = style;
-                passLabel.Style = style;
-                return;
-            }
-            MainWindow w = MainWindow.getInstance();
-            w.changePage(4);
-            EditProfilePage.getInstance(u);
-            w.changePage(1);
-            instance = null;*/
             UserController c = new UserController();
             List<Doctor> docs = c.GetDoctors();
             string inputMail = mailTextBox.Text;

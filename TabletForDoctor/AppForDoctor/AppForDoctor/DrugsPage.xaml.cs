@@ -21,8 +21,6 @@ namespace AppForDoctor
     /// </summary>
     public partial class DrugsPage : Page
     {
-        //private HashSet<string> drugSet = new HashSet<string>();
-        //private Dictionary<string, int> drugDict = new Dictionary<string, int>();
         private Dictionary<Model.Examination.Prescription, uint> prescriptionDict = new Dictionary<Model.Examination.Prescription, uint>();
         private static DrugsPage instance = null;
         private DrugsPage()
@@ -32,21 +30,9 @@ namespace AppForDoctor
             {
                 drugListBox.Items.Add(pair.Key.drug.Name + " *" + pair.Value);
             }
-            /*oldDrugsListBox.Items.Add("Stari");
-            oldDrugsListBox.Items.Add("Sstari");
-            oldDrugsListBox.Items.Add("Sttari");
-            oldDrugsListBox.Items.Add("Staari");
-            oldDrugsListBox.Items.Add("Starri");
-            oldDrugsListBox.Items.Add("Starii");*/
             MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
             HashSet<string> drugs = new HashSet<string>();
-            /*foreach(Examination e in mr.Examinations)
-            {
-                foreach(Prescription p in e.Prescriptions)
-                {
-                    drugs.Add(p.Drug.Name);
-                }
-            }*/
+
             foreach(Model.Examination.Examination e in mr.Examination)
             {
                 foreach(Model.Examination.Prescription p in e.Prescription)
@@ -144,11 +130,6 @@ namespace AppForDoctor
 
         public void ChangeDrugAmount(Model.Examination.Prescription old, uint amount)
         {
-            /*string changed = drug + " *" + drugDict[drug];
-            int index = drugListBox.Items.IndexOf(changed);
-            drugDict[drug] = amount;
-            drugListBox.Items.Remove(changed);
-            drugListBox.Items.Insert(index, drug + " *" + amount);*/
             string changed = old.drug.Name + " *" + prescriptionDict[old];
             int index = drugListBox.Items.IndexOf(changed);
             old.Number = amount;

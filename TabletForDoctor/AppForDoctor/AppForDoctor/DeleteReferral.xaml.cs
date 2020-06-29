@@ -20,14 +20,11 @@ namespace AppForDoctor
     /// </summary>
     public partial class DeleteReferral : Window
     {
-        //private HashSet<string> refSet = new HashSet<string>();
         private HashSet<Model.Examination.Referral> reffSet = new HashSet<Model.Examination.Referral>();
         public DeleteReferral()
         {
             InitializeComponent();
             AddReferralsToCombo();
-            //refSet = RefferalsPage.getInstance().getRefSet();
-            //foreach (string s in refSet) referralsCombo.Items.Add(s);
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
         }
@@ -102,7 +99,6 @@ namespace AppForDoctor
             string type = GetSelectedRefType();
             RefferalsPage r = RefferalsPage.getInstance();
             r.DeleteReferralFromSet(type);
-            //refSet.Remove(type);
             Model.Examination.Referral del = null;
             foreach(Model.Examination.Referral rr in reffSet)
             {

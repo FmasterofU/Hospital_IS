@@ -111,14 +111,9 @@ namespace AppForDoctor
 
         private void AddOldReferrals()
         {
-            //HashSet<string> old = new HashSet<string>();
             HashSet<ReferralType> refs = new HashSet<ReferralType>();
             MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
 
-            /*foreach(Examination e in mr.Examinations)
-            {
-                foreach (Referral r in e.Referrals) old.Add(r.RefType);
-            }*/
             foreach(Model.Examination.Examination e in mr.Examination)
             {
                 foreach (Model.Examination.Referral r in e.Referral) refs.Add(r.Type);
@@ -264,8 +259,6 @@ namespace AppForDoctor
 
         public void DeleteReferralFromSet(string refType)
         {
-            //refSet.Remove(refType);
-            //referralsNowListBox.Items.Remove(refName);
             Model.Examination.Referral del = null;
             foreach(Model.Examination.Referral r in referallSet)
             {
