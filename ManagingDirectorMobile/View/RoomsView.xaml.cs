@@ -35,7 +35,12 @@ namespace ManagingDirectorMobile.View
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DrugListDG.ItemsSource = null;
+            if (SearchTexBox.Text.Equals(""))
+                ((RoomsViewModel)this.DataContext).Search();
+            else
+                ((RoomsViewModel)this.DataContext).Search(SearchTexBox.Text);
+            DrugListDG.ItemsSource = ((RoomsViewModel)this.DataContext).rooms;
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
