@@ -117,5 +117,17 @@ namespace Service
         {
             iAppointmentRecommendationStrategy = strategy;
         }
+
+        public List<Appointment> GetExistingAppointmentsInSpan(DateTime startTime, DateTime endTime, Doctor doctor)
+        {
+            List<Appointment> appointments = AppointmentRepository.GetInstance().GetExistingAppointmentsInSpan(startTime, endTime);
+            List<Appointment> result = new List<Appointment>();
+            foreach (Appointment appoint in appointments)
+            {
+                if (appoint.doctor.GetId().Equals(doctor.GetId()))
+                    result.Add(appoint);
+            }
+            return result;
+        }
     }
 }

@@ -53,5 +53,10 @@ namespace Controller
                 iAppoinmentService.SetStrategy(new TimePeriodAppointmentRecommendationStrategy());
             }
         }
+
+        public List<Appointment> GetExistingAppointmentsInSpan(DateTime startTime, DateTime endTime, Doctor doctor)
+        {
+            return iAppoinmentService.GetExistingAppointmentsInSpan(startTime, endTime, doctor);
+        }
     }
 }

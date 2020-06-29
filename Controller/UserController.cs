@@ -44,6 +44,16 @@ namespace Controller
             return iUserService.EditStaffUser(staff);
         }
 
+        public List<Manager> GetActiveManagers()
+        {
+            return iUserService.GetActiveManagers();
+        }
+
+        public List<Secretary> GetActiveSecretary()
+        {
+            return iUserService.GetActiveSecretary();
+        }
+
         public List<Staff> GetAllStaff()
         {
             return iUserService.GetAllStaff();

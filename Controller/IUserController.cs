@@ -38,6 +38,10 @@ namespace Controller
       List<Patient> GetPatientBySearch(String jmbg, String name, String surname);
 
         bool IsPatientAlreadyExist(string jmbg);
-   
-   }
+
+        List<Secretary> GetActiveSecretary();
+
+        List<Manager> GetActiveManagers();
+
+    }
 }

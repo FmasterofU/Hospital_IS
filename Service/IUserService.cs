@@ -28,7 +28,11 @@ namespace Service
       bool RemoveStaffUser(Staff staff);
       
       List<Doctor> GetActiveDoctors();
-      
+
+        List<Secretary> GetActiveSecretary();
+
+        List<Manager> GetActiveManagers();
+
       List<Staff> GetAllStaff();
       
       Patient AddPatient(Patient patient);
@@ -36,6 +40,7 @@ namespace Service
       bool EditPatient(Patient patient);
       
       List<Patient> GetPatientBySearch(String jmbg, String name, String surname);
+
 
         bool IsPatientAlreadyExist(string jmbg);
    

@@ -25,5 +25,6 @@ namespace Controller
 
         List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Doctor doctor);
 
+        List<Appointment> GetExistingAppointmentsInSpan(DateTime startTime, DateTime endTime, Doctor doctor);
    }
 }

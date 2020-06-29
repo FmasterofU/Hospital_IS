@@ -128,6 +128,28 @@ namespace Service
             return retVal;
         }
 
+        public List<Secretary> GetActiveSecretary()
+        {
+            List<uint> doctorsIds = PeopleRepository.GetInstance().GetActiveSecretaryIds();
+            List<Secretary> retVal = new List<Secretary>();
+            foreach (uint id in doctorsIds)
+            {
+                retVal.Add((Secretary)PeopleRepository.GetInstance().Read(id));
+            }
+            return retVal;
+        }
+
+        public List<Manager> GetActiveManagers()
+        {
+            List<uint> doctorsIds = PeopleRepository.GetInstance().GetActiveDirectorIds();
+            List<Manager> retVal = new List<Manager>();
+            foreach (uint id in doctorsIds)
+            {
+                retVal.Add((Manager)PeopleRepository.GetInstance().Read(id));
+            }
+            return retVal;
+        }
+
         public List<Patient> GetPatientBySearch(string jmbg, string name, string surname)
         {
             List<Patient> searchedPatient = new List<Patient>();

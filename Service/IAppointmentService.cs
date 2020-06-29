@@ -24,6 +24,7 @@ namespace Service
       void SetStrategy(IAppointmentRecommendationStrategy strategy);
       
       List<Term> RecommendAppointments(DateTime startDateTime, DateTime endDateTime, Model.Roles.Doctor doctor);
-   
+
+        List<Appointment> GetExistingAppointmentsInSpan(DateTime startTime, DateTime endTime, Doctor doctor);
    }
 }
