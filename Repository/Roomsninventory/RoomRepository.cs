@@ -76,14 +76,14 @@ namespace Repository.Roomsninventory
             string[] icids = temp[0][3].Split(' ');
             List<ItemCount> ics = new List<ItemCount>();
             foreach (string s in icids)
-                ics.Add(ItemCountRepository.GetInstance().Read(uint.Parse(s)));
+                if (!s.Equals("")) ics.Add(ItemCountRepository.GetInstance().Read(uint.Parse(s)));
             Room room = new Room(uint.Parse(temp[0][0]), (RoomType)int.Parse(temp[0][1]), temp[0][2], ics);
             if ((RoomType)int.Parse(temp[0][1]) == RoomType.stationary)
             {
                 string[] pids = temp[0][5].Split(' ');
                 List<Patient> p = new List<Patient>();
                 foreach (string s in pids)
-                    p.Add(PeopleRepository.GetInstance().Read(s[0]) as Patient);
+                    if (!s.Equals("")) p.Add(PeopleRepository.GetInstance().Read(uint.Parse(s)) as Patient);
                 return new StationaryRoom(room, int.Parse(temp[0][4]), p, StationaryRoomPatientsStateRepository.GetInstance().Read(uint.Parse(temp[0][6])));
             }
             else return room;
