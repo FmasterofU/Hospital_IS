@@ -40,5 +40,9 @@ namespace Controller
 
         bool DeleteItemCount(ItemCount item);
 
+        StationaryRoomPatientsState AddStationaryRoomPatientsState(StationaryRoomPatientsState stat);
+
+        bool EditStationaryRoomPatientsState(StationaryRoomPatientsState stat);
+
     }
 }

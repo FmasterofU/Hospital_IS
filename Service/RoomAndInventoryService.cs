@@ -109,5 +109,15 @@ namespace Service
         {
             return ItemCountRepository.GetInstance().Delete(item.GetId());
         }
+
+        public StationaryRoomPatientsState AddStationaryRoomPatientsState(StationaryRoomPatientsState stat)
+        {
+            return StationaryRoomPatientsStateRepository.GetInstance().Create(stat);
+        }
+
+        public bool EditStationaryRoomPatientsState(StationaryRoomPatientsState stat)
+        {
+            return StationaryRoomPatientsStateRepository.GetInstance().Update(stat) == null ? false : true;
+        }
     }
 }

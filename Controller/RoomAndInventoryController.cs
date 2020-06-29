@@ -40,6 +40,11 @@ namespace Controller
             return iRoomAndInventoryService.AddRoom(room);
         }
 
+        public StationaryRoomPatientsState AddStationaryRoomPatientsState(StationaryRoomPatientsState stat)
+        {
+            return iRoomAndInventoryService.AddStationaryRoomPatientsState(stat);
+        }
+
         public bool DeleteItemCount(ItemCount item)
         {
             return iRoomAndInventoryService.DeleteItemCount(item);
@@ -68,6 +73,11 @@ namespace Controller
         public bool EditRoom(Room room)
         {
             return iRoomAndInventoryService.EditRoom(room);
+        }
+
+        public bool EditStationaryRoomPatientsState(StationaryRoomPatientsState stat)
+        {
+            return iRoomAndInventoryService.EditStationaryRoomPatientsState(stat);
         }
 
         public List<MedEquipmentType> GetAllMedEquipmentType()
