@@ -76,9 +76,13 @@ namespace Repository.Schedule
                 uint roomID = uint.Parse(data[0][5]);
                 //TODO: room read
                 Room r = RoomRepository.GetInstance().Read(roomID);
-                uint commID = uint.Parse(data[0][6]);
-                //TODO: comment read
-                ServiceComment comm = ServiceCommentRepository.GetInstance().Read(commID);
+                ServiceComment comm = null;
+                if (!data[0][6].Equals(""))
+                {
+                    uint commID = uint.Parse(data[0][6]);
+                    //TODO: comment read
+                    comm = ServiceCommentRepository.GetInstance().Read(commID);
+                }
 
                 Appointment ret = new Appointment(startTime, endTime, mrID, d, r, comm);
                 ret.SetId(appID);
