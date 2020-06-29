@@ -55,7 +55,7 @@ namespace HCIProjekat.UserControls
             DgAppointmentsListXAML.Items.Clear();
             foreach (Model.Termin t in pronadjiTermineUOdgovarajucemDanu(DateTime.Now.Date)) {
                 Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
-                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, t.jmbgPacijenta, p.Name, p.Surname));
+                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba.ToString(), p.MedRecordId.ToString()));
                }
 
         }

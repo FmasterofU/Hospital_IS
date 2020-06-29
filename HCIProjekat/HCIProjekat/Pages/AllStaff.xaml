@@ -118,12 +118,12 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header= "   ID  " Binding="{Binding id}" Width="auto"/>
-                                <DataGridTextColumn Header="   Ime  " Binding="{Binding ime}" Width="*"/>
-                                <DataGridTextColumn Header="   Prezime  " Binding="{Binding prezime}" Width="*"/>
-                                <DataGridTextColumn Header="   Pol  " Binding="{Binding pol}" Width="50"/>
-                                <DataGridTextColumn Header="   Tip  " Binding="{Binding tipZaposlenog}" Width="auto"/>
-                                <DataGridTextColumn Header="   Zvanje  " Binding="{Binding zvanje}" Width="auto"/>
+                                <DataGridTextColumn Header= "   ID  " Binding="{Binding Id}" Width="auto"/>
+                                <DataGridTextColumn Header="   Ime  " Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="   Prezime  " Binding="{Binding Surname}" Width="*"/>
+                                <DataGridTextColumn Header="   Pol  " Binding="{Binding Sex}" Width="50"/>
+                                <DataGridTextColumn Header="   Tip  " Binding="{Binding UserType}" Width="auto"/>
+                                <DataGridTextColumn Header="   Zvanje  " Binding="{Binding Specialization}" Width="auto"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Border>

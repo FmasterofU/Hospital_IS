@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model.Roles;
+using Controller;
 
 namespace HCIProjekat.Pages
 {
@@ -21,15 +23,15 @@ namespace HCIProjekat.Pages
     /// </summary>
     public partial class AllStaff : Page
     {
-        private ObservableCollection<Model.Zaposleni> zaposleni = new ObservableCollection<Model.Zaposleni>();
-        private Model.Zaposleni radnik = null;
+        private UserController userController = new UserController();
+        private ObservableCollection<Staff> zaposleni = new ObservableCollection<Staff>();
+        private Staff radnik = null;
         public AllStaff()
         {
             InitializeComponent();
-            zaposleni = Model.SviZaposleni.getInstance().getZaposleni();
-            foreach (Model.Zaposleni z in zaposleni)
+            foreach(Staff radnik in userController.GetAllStaff())
             {
-                dg_pronadjeni_zaposleni.Items.Add(z);
+                dg_pronadjeni_zaposleni.Items.Add(radnik);
             }
         }
 
@@ -56,7 +58,7 @@ namespace HCIProjekat.Pages
         private void BtnPrikaziTermine_Click(object sender, RoutedEventArgs e)
         {
             stStaffInfo.Children.Clear();
-            stStaffInfo.Children.Add(new UserControls.DoctorTermsUC(radnik));
+           // stStaffInfo.Children.Add(new UserControls.DoctorTermsUC(radnik)); //prikaz doktorovih termina
             btns_opcije.Visibility = Visibility.Hidden;
             btn_doctor_profile.Visibility = Visibility.Visible;
         }
@@ -69,7 +71,7 @@ namespace HCIProjekat.Pages
                 if (vremenskiOpseg[0] != DateTime.MinValue)
                 {
                     stStaffInfo.Children.Clear();
-                    stStaffInfo.Children.Add( new UserControls.ListDoctorAppointmentsUC(vremenskiOpseg[0],vremenskiOpseg[1],radnik));
+                    stStaffInfo.Children.Add( new UserControls.ListDoctorAppointmentsUC(vremenskiOpseg[0],vremenskiOpseg[1],(Doctor)radnik));
                     btns_opcije.Visibility = Visibility.Hidden;
                     btn_doctor_profile.Visibility = Visibility.Visible;
                    
@@ -82,39 +84,64 @@ namespace HCIProjekat.Pages
         {
             dg_pronadjeni_zaposleni.Items.Clear();
 
-            foreach (Model.Zaposleni z in zaposleni)
-            {
-                String pol;
-                if (rb_pol_m.IsChecked == true)
-                    pol = "M";
-                else if (rb_pol_z.IsChecked == true)
-                    pol = "Z";
-                else
-                    pol = "";
+            
 
-                if (z.id.Contains(txt_jmbg.Text) && z.ime.Contains(txt_ime.Text) && z.prezime.Contains(txt_prezime.Text) && z.pol.Contains(pol))
+            if (cmbStaffType.SelectedIndex == 0) //svi zaposleni
+            {
+                foreach (Staff pronadjeniRadnik in userController.GetAllStaff())
                 {
-                    if (cmbStaffType.SelectedIndex == 0) //svi zaposleni
-                    {
-                        dg_pronadjeni_zaposleni.Items.Add(z);
-                    }
-                    else if (cmbStaffType.SelectedIndex == 1 && z.tipZaposlenog.Equals("Doktor")) //doktori
+                    if (ContainsSearchValues(pronadjeniRadnik))
+                        dg_pronadjeni_zaposleni.Items.Add(pronadjeniRadnik);
+                }
+            }
+            else if (cmbStaffType.SelectedIndex == 1) //svi doktori
+            {
+                foreach(Staff pronadjeniDoktor in userController.GetDoctors())
+                {
+                    if (ContainsSearchValues(pronadjeniDoktor))
                     {
                         if (cmbDoctorSpeciality.SelectedIndex == 0)
-                            dg_pronadjeni_zaposleni.Items.Add(z);
-                        else
+                            dg_pronadjeni_zaposleni.Items.Add(pronadjeniDoktor);
+                        else if (pronadjeniDoktor.UserType.Equals(UserType.Specialist))
                         {
-                            if (z.zvanje.Equals(cmbDoctorSpeciality.Text))
-                                dg_pronadjeni_zaposleni.Items.Add(z);
-                        }
-                    }
-                    else //ostali zaposleni
-                    {
-                        if (z.tipZaposlenog.Equals(cmbStaffType.Text))
-                            dg_pronadjeni_zaposleni.Items.Add(z);
+                            Specialist specialist = (Specialist)pronadjeniDoktor;
+                            if (specialist.Specialization.Equals(cmbDoctorSpeciality.Text))
+                                dg_pronadjeni_zaposleni.Items.Add(pronadjeniDoktor);
+                        }        
                     }
                 }
             }
+            else if (cmbStaffType.SelectedIndex == 2)
+            {
+                foreach (Staff pronadjeniSekretar in userController.GetSecretary())
+                {
+                    if (ContainsSearchValues(pronadjeniSekretar))
+                        dg_pronadjeni_zaposleni.Items.Add(pronadjeniSekretar);
+                }
+            }
+            else if (cmbStaffType.SelectedIndex == 3)
+            {
+                foreach (Staff pronadjeniMenadzer in userController.GetManagers())
+                {
+                    if (ContainsSearchValues(pronadjeniMenadzer))
+                        dg_pronadjeni_zaposleni.Items.Add(pronadjeniMenadzer);
+                }
+            }
+        }
+
+        private bool ContainsSearchValues(Staff staff)
+        {
+            return staff.GetId().ToString().Contains(txt_jmbg.Text) && staff.Name.Contains(txt_ime.Text) && staff.Surname.Contains(txt_prezime.Text) && staff.Sex.Equals(getPol());
+        }
+
+        private Sex getPol()
+        {
+            Sex pol = Sex.potato;
+            if (rb_pol_m.IsChecked == true)
+                pol = Sex.male;
+            else if (rb_pol_z.IsChecked == true)
+                pol = Sex.female;
+            return pol;
         }
 
         private void btn_doctor_profile_Click(object sender, RoutedEventArgs e)
@@ -145,8 +172,8 @@ namespace HCIProjekat.Pages
         private void dg_pronadjeni_zaposleni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            radnik = dg_pronadjeni_zaposleni.SelectedItem as Model.Zaposleni;
-            if (radnik.tipZaposlenog.Equals("Doktor"))
+            radnik = dg_pronadjeni_zaposleni.SelectedItem as Staff;
+            if (radnik.UserType.Equals(UserType.Doctor))
             {
                 btn_prikazTermina.IsEnabled = true;
                 btn_radniKalendar.IsEnabled = true;
@@ -160,7 +187,7 @@ namespace HCIProjekat.Pages
             stStaffInfo.Children.Add(new UserControls.StaffProfile(radnik));
         }
 
-        public Model.Zaposleni getZaposleni()
+        public Staff getZaposleni()
         {
             return radnik;
         }

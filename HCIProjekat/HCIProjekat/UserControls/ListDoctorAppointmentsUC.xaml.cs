@@ -25,6 +25,8 @@ using Syncfusion.Pdf.Grid;
 using System.Data;
 using Controller;
 using Model.Roles;
+using Class_Diagram.Model.Appointments;
+using Model.Appointments;
 
 namespace HCIProjekat.UserControls
 {
@@ -34,28 +36,32 @@ namespace HCIProjekat.UserControls
     public partial class ListDoctorAppointmentsUC : UserControl
     {
         private UserController userController = new UserController();
-        public ObservableCollection<Model.Termin> termini;
-        public Model.Zaposleni doktor;
+        private AppointmentController appointmentController = new AppointmentController();
+        public ObservableCollection<Appointment> termini;
+        public Doctor doktor;
         private DateTime termin_od;
         private DateTime termin_do;
-        public ListDoctorAppointmentsUC(DateTime termin_od ,DateTime termin_do,Model.Zaposleni doktor)
+        public ListDoctorAppointmentsUC(DateTime termin_od ,DateTime termin_do,Doctor doktor)
         {
             InitializeComponent();
             Model.SviTermini.getInstance();
             Model.SviZaposleni.getInstance();
             Model.SviPacijenti.getInstance();
             this.doktor = doktor;
-            termini = doktor.getTerminUOdgovarajucemVremenskomOpsegu(termin_od, termin_do);
+            foreach (Appointment app in appointmentController.GetExistingAppointmentsInSpan(termin_od, termin_do, doktor))
+            {
+                termini.Add(app);
+            }
             this.termin_od = termin_od;
             this.termin_do = termin_do;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach(Model.Termin t in termini)
+            foreach(Appointment t in termini)
             {
-                Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
-                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.vreme.ToShortDateString(),t.vreme.ToShortTimeString(),t.soba,p.Jmbg,p.Name,p.Surname));
+                //Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
+                DgAppointmentsListXAML.Items.Add(new Model.TerminiDoktoraRow(t.StartTime.ToShortDateString(),t.StartTime.ToShortTimeString(),t.room.GetId().ToString(),t.MedicalRecordId.ToString()));
             }
             lbl_appointment_counter.Content = termini.Count;
         }
@@ -96,10 +102,10 @@ namespace HCIProjekat.UserControls
             //Add rows to the DataTable.
 
 
-            foreach (Model.Termin t in termini)
+            foreach (Appointment t in termini)
             {
-                Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
-                dataTable.Rows.Add(new object[] { t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, p.Jmbg, p.Name, p.Surname });
+                /*Patient p = userController.GetPatientBySearch(t.jmbgPacijenta,"","")[0];
+                dataTable.Rows.Add(new object[] { t.vreme.ToShortDateString(), t.vreme.ToShortTimeString(), t.soba, p.Jmbg, p.Name, p.Surname });*/
             }
             //Assign data source.
             pdfGrid.DataSource = dataTable;
@@ -113,7 +119,7 @@ namespace HCIProjekat.UserControls
 
         private String printInfo()
         {
-            String retVal = "Id:  "+doktor.id+"\nIme:  "+doktor.ime+"\nPrezime:  "+doktor.prezime + "\nZvanje:  "+doktor.zvanje;
+            String retVal = "Id:  "+doktor.GetId()+"\nIme:  "+doktor.Name+"\nPrezime:  "+doktor.Surname + "\nZvanje:  "+getZvanje(doktor);
             return retVal;
         }
 
@@ -121,6 +127,20 @@ namespace HCIProjekat.UserControls
         {
             String retVal = "Vreme od: " + termin_od.ToShortDateString()+ "- "+termin_do.ToShortDateString()+"\nUkupno pregleda: "+lbl_appointment_counter.Content.ToString()+"\n\nPodaci preuzeti: "+DateTime.Now.ToString();
             return retVal;
+        }
+
+        private string getZvanje(Staff zap)
+        {
+            if (zap.UserType.Equals(UserType.Specialist))
+                return ((Specialist)zap).Specialization;
+            else if (zap.UserType.Equals(UserType.Doctor))
+                return "Doktor opste prakse";
+            else if (zap.UserType.Equals(UserType.Secretary))
+                return "Sekretar";
+            else if (zap.UserType.Equals(UserType.Manager))
+                return "Menadzer";
+            else
+                return "";
         }
     }
 }

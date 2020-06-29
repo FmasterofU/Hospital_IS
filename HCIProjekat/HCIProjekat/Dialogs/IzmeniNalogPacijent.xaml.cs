@@ -67,7 +67,7 @@ namespace HCIProjekat.Dialogs
                     pol = Sex.male;
                 else if (rb_pol_z.IsChecked == true)
                     pol = Sex.female;
-                pacijent.editPatient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_email.Text, pacijent.Password, txt_email.Text, dp_rodjen.SelectedDate.Value, cb_aktivan.IsChecked==true,txt_ime_rod.Text);
+                pacijent.editPatient(txt_ime.Text, txt_prz.Text, txt_tel.Text, txt_email.Text, pol, txt_email.Text, pacijent.Password, txt_email.Text, dp_rodjen.SelectedDate.Value, cb_aktivan.IsChecked==false,txt_ime_rod.Text);
                 bool uspeo = userController.EditPatient(pacijent);
                 if (uspeo)
                 {

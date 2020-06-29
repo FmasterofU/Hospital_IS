@@ -24,6 +24,9 @@ namespace HCIProjekat.Pages
     {
         private Patient pacijent = null;
         private UserController userController = new UserController();
+        private string jmbg="";
+        private string ime="";
+        private string prezime="";
         public AllPatients()
         {
             InitializeComponent();
@@ -46,7 +49,10 @@ namespace HCIProjekat.Pages
             dijalog.ShowDialog();
             if (dijalog.izmeni)
             {
-                dg_pronadjeni_pacijenti.Items.Refresh();
+                dg_pronadjeni_pacijenti.Items.Clear();
+                foreach(Patient p in userController.GetPatientBySearch(jmbg, ime, prezime)){
+                    dg_pronadjeni_pacijenti.Items.Add(p);
+                }
                 azurirajProfil(dijalog.getPatient());
             }
         }
@@ -59,6 +65,9 @@ namespace HCIProjekat.Pages
         private void BtnPretraga_Click(object sender, RoutedEventArgs e)
         {
             dg_pronadjeni_pacijenti.Items.Clear();
+            jmbg = txt_jmbg.Text;
+            ime = txt_ime.Text;
+            prezime = txt_prezime.Text;
             foreach (Patient p in userController.GetPatientBySearch(txt_jmbg.Text,txt_ime.Text,txt_prezime.Text))
             {
                 dg_pronadjeni_pacijenti.Items.Add(p);
@@ -98,7 +107,15 @@ namespace HCIProjekat.Pages
             lbl_email.Content = pac.Email;
             lbl_telefon.Content = pac.Phone;
             //tb_moguce_zakazivanje.IsChecked = pac.moguceZakazivanje;
-            lbl_status.Content = pac.Deceased;
+            lbl_status.Content = getStatus(pac);
+        }
+
+        private string getStatus(Patient patient)
+        {
+            if (patient.Deceased)
+                return "Neaktivan";
+            else
+                return "Aktivan";
         }
 
         private void tb_moguce_zakazivanje_Checked(object sender, RoutedEventArgs e)
