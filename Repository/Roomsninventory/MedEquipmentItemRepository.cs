@@ -74,7 +74,7 @@ namespace Repository.Roomsninventory
         public MedEquipmentItem Read(uint id)
         {
             List<string[]> temp = Persistence.ReadEntryByPrimaryKey(path, id.ToString());
-            return new MedEquipmentItem(uint.Parse(temp[0][0]), uint.Parse(temp[0][2]), uint.Parse(temp[0][1]), MedEquipmentTypeRepository.GetInstance().Read(uint.Parse(temp[0][2])));
+            return new MedEquipmentItem(uint.Parse(temp[0][0]), uint.Parse(temp[0][1]), uint.Parse(temp[0][2]), MedEquipmentTypeRepository.GetInstance().Read(uint.Parse(temp[0][1])));
         }
 
         public MedEquipmentItem Update(MedEquipmentItem item)

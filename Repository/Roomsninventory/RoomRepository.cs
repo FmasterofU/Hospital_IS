@@ -47,7 +47,7 @@ namespace Repository.Roomsninventory
             string[] temp = new string[7];
             item.SetId(Persistence.GetNewId(path));
             temp[0] = item.GetId().ToString();
-            temp[1] = item.Type.ToString();
+            temp[1] = ((int)item.Type).ToString();
             temp[2] = item.Name;
             temp[3] = "";
             foreach (ItemCount ic in item.ItemCount)
@@ -93,7 +93,7 @@ namespace Repository.Roomsninventory
         {
             string[] temp = new string[7];
             temp[0] = item.GetId().ToString();
-            temp[1] = item.Type.ToString();
+            temp[1] = ((int)item.Type).ToString();
             temp[2] = item.Name;
             temp[3] = "";
             foreach (ItemCount ic in item.ItemCount)
