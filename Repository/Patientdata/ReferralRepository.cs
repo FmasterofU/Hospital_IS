@@ -42,7 +42,7 @@ namespace Repository.Patientdata
             data[1] = type.ToString();
             data[2] = item.Note;
             data[3] = item.Accessory;
-            data[4] = item.specialist.GetId().ToString();
+            if (item.specialist != null) data[4] = item.specialist.GetId().ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
             if (isAdded) return item;
             else return null;
