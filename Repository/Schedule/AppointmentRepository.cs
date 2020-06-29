@@ -55,6 +55,7 @@ namespace Repository.Schedule
             data[3] = item.MedicalRecordId.ToString();
             data[4] = item.doctor.GetId().ToString();
             data[5] = item.room.GetId().ToString();
+            data[6] = "";
             if (item.serviceComment != null) data[6] = item.serviceComment.GetId().ToString();
             bool isAdded = Persistence.WriteEntry(path, data);
             if (isAdded) return item;
