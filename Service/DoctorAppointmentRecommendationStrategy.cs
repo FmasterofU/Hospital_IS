@@ -22,9 +22,9 @@ namespace Service
                 AppointmentService service = new AppointmentService();
                 List<Appointment> all = service.GetAppointmentsInTimeFrame(startDateTime, endDateTime, doctor, null);
                 List<Term> ret = new List<Term>();
-                foreach (Appointment app in all)
+                foreach (Term app in free)
                 {
-                    if (!free.Contains(new Term(app.StartTime, app.EndTime))) ret.Add(new Term(app.StartTime, app.EndTime));
+                    if (!ret.Contains(app)) ret.Add(app);
                 }
                 return ret;
             }
