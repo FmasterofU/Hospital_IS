@@ -18,8 +18,11 @@ namespace ManagingDirectorMobile.ViewModel
             if(selectedIndex == (int)RoomType.stationary)
             {
                 StationaryRoomPatientsState stat = new StationaryRoomPatientsState(DateTime.Now, 0, 0);
-                c.a
+                stat = c.AddStationaryRoomPatientsState(stat);
                 StationaryRoom r = c.AddRoom(new StationaryRoom((RoomType)selectedIndex, text, new List<ItemCount>(), 0, new List<Patient>(), stat)) as StationaryRoom;
+                stat.RoomId = r.GetId();
+                c.EditStationaryRoomPatientsState(stat);
+                
                     return;
             }
             c.AddRoom(new Room((RoomType)selectedIndex, text, new List<ItemCount>()));
