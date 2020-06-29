@@ -33,5 +33,11 @@ namespace ManagingDirectorMobile.ViewModel
                     if (room.Name.Contains(text))
                         rooms.Add(room);
         }
+
+        internal void Remove(Room room)
+        {
+            if (room.ItemCount.Count == 0 && (room.Type != RoomType.stationary || (room as StationaryRoom).Patient.Count == 0))
+                c.DeleteRoom(room);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ManagingDirectorMobile.ViewModel;
+using Model.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,7 @@ namespace ManagingDirectorMobile.View
 
         public void RemoveSelectedItem()
         {
-            throw new NotImplementedException();
+            ((RoomsViewModel)this.DataContext).Remove(DrugListDG.SelectedItem as Room);
         }
     }
 }
