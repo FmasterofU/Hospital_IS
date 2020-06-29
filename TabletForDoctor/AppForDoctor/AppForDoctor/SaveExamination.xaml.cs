@@ -1,4 +1,5 @@
-﻿using Model.Medicalrecord;
+﻿using Controller;
+using Model.Medicalrecord;
 using Model.Roles;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,11 @@ namespace AppForDoctor
     /// </summary>
     public partial class SaveExamination : Window
     {
-        public SaveExamination()
+        Model.Examination.Examination exam = null;
+        public SaveExamination(Model.Examination.Examination e)
         {
             InitializeComponent();
+            exam = e;
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian) ToSerbian();
             else if (MainWindow.GetLanguage() == MainWindow.Language.English) ToEnglish();
         }
@@ -57,6 +60,8 @@ namespace AppForDoctor
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             List<StringBuilder> reports = GetReportFromExamination();
+            MedicalRecordController mrc = new MedicalRecordController();
+            mrc.AppendExamination(exam, ExaminationPage.getInstance().getMedRecord());
             EditProfilePage.getInstance().AddReportSrb(reports[0]);
             EditProfilePage.getInstance().AddReportEng(reports[1]);
             MedHistoryPage.clearInstance();

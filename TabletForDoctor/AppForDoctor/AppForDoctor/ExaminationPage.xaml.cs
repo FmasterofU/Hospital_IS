@@ -1,4 +1,5 @@
-﻿using Model.Medicalrecord;
+﻿using Controller;
+using Model.Medicalrecord;
 using Model.Roles;
 using Repository.Roles;
 using System;
@@ -85,7 +86,8 @@ namespace AppForDoctor
 
         private void menuFromExaminationButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveExamination ee = new SaveExamination();
+            Model.Examination.Examination adding = new Model.Examination.Examination(DateTime.Now, diagnosisText.Text, EditProfilePage.getInstance().getUser(), prescriptionDict.Keys.ToList(), referallSet.ToList());
+            SaveExamination ee = new SaveExamination(adding);
             ee.ShowDialog();
             /*MedHistoryPage.clearInstance();
             DrugsPage.clearInstance();
