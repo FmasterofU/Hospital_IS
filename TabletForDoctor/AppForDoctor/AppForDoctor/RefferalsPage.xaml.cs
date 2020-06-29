@@ -111,32 +111,37 @@ namespace AppForDoctor
 
         private void AddOldReferrals()
         {
-            HashSet<string> old = new HashSet<string>();
+            //HashSet<string> old = new HashSet<string>();
+            HashSet<ReferralType> refs = new HashSet<ReferralType>();
             MedicalRecord mr = ExaminationPage.getInstance().getMedRecord();
 
             /*foreach(Examination e in mr.Examinations)
             {
                 foreach (Referral r in e.Referrals) old.Add(r.RefType);
             }*/
+            foreach(Model.Examination.Examination e in mr.Examination)
+            {
+                foreach (Model.Examination.Referral r in e.Referral) refs.Add(r.Type);
+            }
 
             if (MainWindow.GetLanguage() == MainWindow.Language.Serbian)
             {
-                foreach (string s in old)
+                foreach (ReferralType s in refs)
                 {
-                    if (s.Equals("specialist")) referralsBeforeListBox.Items.Add("Uput lekaru specijalisti");
-                    else if (s.Equals("lab")) referralsBeforeListBox.Items.Add("Uput za laboratoriju");
-                    else if (s.Equals("accessory")) referralsBeforeListBox.Items.Add("Uput za pomagalo");
-                    else if (s.Equals("hospital")) referralsBeforeListBox.Items.Add("Uput za bolničko lečenje");
+                    if (s == ReferralType.specialistExam) referralsBeforeListBox.Items.Add("Uput lekaru specijalisti");
+                    else if (s == ReferralType.laboratory) referralsBeforeListBox.Items.Add("Uput za laboratoriju");
+                    else if (s == ReferralType.medicalAccessory) referralsBeforeListBox.Items.Add("Uput za pomagalo");
+                    else if (s == ReferralType.stationaryCare) referralsBeforeListBox.Items.Add("Uput za bolničko lečenje");
                 }
             }
             else if (MainWindow.GetLanguage() == MainWindow.Language.English)
             {
-                foreach (string s in old)
+                foreach (ReferralType s in refs)
                 {
-                    if (s.Equals("specialist")) referralsBeforeListBox.Items.Add("Referral to specialist");
-                    else if (s.Equals("lab")) referralsBeforeListBox.Items.Add("Referral for laboratory");
-                    else if (s.Equals("accessory")) referralsBeforeListBox.Items.Add("Referral for accessory");
-                    else if (s.Equals("hospital")) referralsBeforeListBox.Items.Add("Referral for hospital care");
+                    if (s == ReferralType.specialistExam) referralsBeforeListBox.Items.Add("Referral to specialist");
+                    else if (s == ReferralType.laboratory) referralsBeforeListBox.Items.Add("Referral for laboratory");
+                    else if (s == ReferralType.medicalAccessory) referralsBeforeListBox.Items.Add("Referral for accessory");
+                    else if (s == ReferralType.stationaryCare) referralsBeforeListBox.Items.Add("Referral for hospital care");
                 }
             }
         }
