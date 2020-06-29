@@ -24,7 +24,16 @@ namespace Service
                 List<Term> ret = new List<Term>();
                 foreach (Term app in free)
                 {
-                    if (!ret.Contains(app)) ret.Add(app);
+                    bool x = false;
+                    foreach (Appointment appo in all)
+                    {
+                        if (DateTime.Compare(app.StartTime, appo.StartTime) == 0 && DateTime.Compare(app.EndTime, appo.EndTime) == 0)
+                        {
+                            x = true;
+                            break;
+                        }
+                    }
+                    if (!x) ret.Add(app);
                 }
                 return ret;
             }
