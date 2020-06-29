@@ -1,5 +1,8 @@
-﻿using Model.Examination;
+﻿using Class_Diagram.Model.Appointments;
+using Controller;
+using Model.Examination;
 using Model.Roles;
+using Repository.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,8 @@ namespace AppForDoctor
         private bool isSpecialist = true;
         //private HashSet<string> refSet = new HashSet<string>();
         private HashSet<ReferralType> reffSet = new HashSet<ReferralType>();
+        private List<Specialist> specs = new List<Specialist>();
+        private int specIndex = -1;
         public AddReferral()
         {
             InitializeComponent();
@@ -40,7 +45,7 @@ namespace AppForDoctor
             addReferralButton.Content = "Dodaj";
             labAnalysisTypeLabel.Content = "Tip analize:";
             accessoryTypeLabel.Content = "Tip pomagala:";
-            specialistTypeLabel.Content = "Tip specijaliste:";
+            specialistTypeLabel.Content = "Specijalista:";
             causeForLabGroup.Header = "Razlog upućivanja:";
             causeForAccessoryGroup.Header = "Razlog upućivanja:";
             causeForHospitalGroup.Header = "Razlog upućivanja:";
@@ -53,7 +58,7 @@ namespace AppForDoctor
             addReferralButton.Content = "Add";
             labAnalysisTypeLabel.Content = "Analysis type:";
             accessoryTypeLabel.Content = "Accessory type:";
-            specialistTypeLabel.Content = "Specialist's type:";
+            specialistTypeLabel.Content = "Specialist:";
             causeForLabGroup.Header = "Cause for referral:";
             causeForAccessoryGroup.Header = "Cause for referral:";
             causeForHospitalGroup.Header = "Cause for referral:";
@@ -110,7 +115,16 @@ namespace AppForDoctor
                 if (option.Contains("laborator")) laboratoryPanel.Visibility = Visibility.Visible;
                 else if (option.Contains("pomagalo") || option.Contains("accessory")) accessoryPanel.Visibility = Visibility.Visible;
                 else if (option.Contains("bolni") || option.Contains("hospital")) hospitalCarePanel.Visibility = Visibility.Visible;
-                else if (option.Contains("speci")) specialistPanel.Visibility = Visibility.Visible;
+                else if (option.Contains("speci"))
+                {
+                    specialistPanel.Visibility = Visibility.Visible;
+                    List<uint> specsIDs= PeopleRepository.GetInstance().GetActiveSpecialistIds();
+                    foreach(uint id in specsIDs)
+                    {
+                        specs.Add((Specialist)PeopleRepository.GetInstance().Read(id));
+                    }
+                    foreach (Specialist sp in specs) specialistTypeComboBox.Items.Add(sp.Surname + " - " + sp.Specialization);
+                }
             }
         }
 
@@ -129,8 +143,10 @@ namespace AppForDoctor
 
             causeForHospitalText.Text = "";
 
-            specialistTypeTextBox.Text = "";
+            specialistTypeComboBox.SelectedIndex = -1;
             causeForSpecialistText.Text = "";
+            specs.Clear();
+            specIndex = -1;
         }
 
         private bool CanISaveReferral()
@@ -155,7 +171,7 @@ namespace AppForDoctor
                 }
                 else if (option.Contains("speci"))
                 {
-                    if (!specialistTypeTextBox.Text.Trim().Equals("") && !causeForSpecialistText.Text.Trim().Equals("")) return true;
+                    if (specialistTypeComboBox.SelectedIndex >= 0 && !causeForSpecialistText.Text.Trim().Equals("")) return true;
                     else return false;
                 }
                     return false;
@@ -185,11 +201,20 @@ namespace AppForDoctor
             ReferralType type = GetSelectedRefType();
             RefferalsPage r = RefferalsPage.getInstance();
             string cause = "";
-            if (type == ReferralType.specialistExam) cause = causeForSpecialistText.Text;
+            if (type == ReferralType.specialistExam)
+            {
+                cause = causeForSpecialistText.Text;
+                AppointmentController c = new AppointmentController();
+                c.SetStrategy("doctor");
+                DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                List<Term> free = c.RecommendAppointments(time.AddDays(7), time.AddDays(8), EditProfilePage.getInstance().getUser());
+                Model.Appointments.Appointment a = new Model.Appointments.Appointment(free[0].StartTime, free[0].StartTime.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
+                c.AddAppointment(ref a, Model.Rooms.RoomType.examRoom, specs[specIndex]);
+            }
             else if (type == ReferralType.medicalAccessory) cause = causeForAccessoryText.Text;
             else if (type == ReferralType.stationaryCare) cause = causeForHospitalText.Text;
             else if (type == ReferralType.laboratory) cause = causeForLabText.Text;
-            Model.Examination.Referral rr = new Model.Examination.Referral(type, cause, type == ReferralType.medicalAccessory ? accessoryTypeTextBox.Text : "", null);
+            Model.Examination.Referral rr = new Model.Examination.Referral(type, cause, type == ReferralType.medicalAccessory ? accessoryTypeTextBox.Text : "", specIndex > -1 ? specs[specIndex] : null);
             r.AddReferralToSet(rr);
             reffSet.Remove(type);
             referralsCombo.Items.Remove(selected);
@@ -198,6 +223,11 @@ namespace AppForDoctor
                 RefferalsPage.getInstance().disableAddButton();
                 this.Close();
             }*/
+        }
+
+        private void specialistTypeTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            specIndex = specialistTypeComboBox.SelectedIndex;
         }
     }
 }

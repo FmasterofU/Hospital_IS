@@ -72,15 +72,9 @@ namespace AppForDoctor
             this.Close();*/
             DateTime selected = DateTime.Parse(termCombo.SelectedItem.ToString());
             AppointmentController c = new AppointmentController();
-            //c.SetStrategy("doctor");
-            //c.AddAppointment(new Model.Appointments.Appointment(selDate, selDate.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId(), EditProfilePage.getInstance().getUser()), 
-            //Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
             Model.Appointments.Appointment a =  new Model.Appointments.Appointment(selected, selected.AddMinutes(30), ExaminationPage.getInstance().getMedRecord().GetId());
             c.AddAppointment(ref a, Model.Rooms.RoomType.examRoom, EditProfilePage.getInstance().getUser());
             this.Close();
-            //List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(30), EditProfilePage.getInstance().getUser());
-            //foreach (Term t in free) termCombo.Items.Add(t.StartTime.ToString());
-            //if (termCombo.Items.Count != 0) termCombo.SelectedIndex = 0;
         }
 
         private void calendar_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -94,7 +88,7 @@ namespace AppForDoctor
                     termCombo.Items.Clear();
                     AppointmentController c = new AppointmentController();
                     c.SetStrategy("doctor");
-                    List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(30), EditProfilePage.getInstance().getUser());
+                    List<Term> free = c.RecommendAppointments(selDate, selDate.AddHours(24), EditProfilePage.getInstance().getUser());
                 
                     foreach (Term t in free) termCombo.Items.Add(t.StartTime.ToString());
                     if (termCombo.Items.Count != 0) termCombo.SelectedIndex = 0;
